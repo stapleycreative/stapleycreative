@@ -51,9 +51,9 @@ export default async function CaseStudyPage({ params }: Props) {
             color: "var(--color-text-tertiary)",
             borderTop: "1px solid var(--color-border-subtle)",
           }}>
-          {extra.client && <span>Client: <span style={{ color: "var(--color-text-secondary)" }}>{extra.client as string}</span></span>}
-          {extra.role && <span>Role: <span style={{ color: "var(--color-text-secondary)" }}>{extra.role as string}</span></span>}
-          {extra.year && <span>Year: <span style={{ color: "var(--color-text-secondary)" }}>{extra.year as string}</span></span>}
+          {extra.client && <span>Client: <span style={{ color: "var(--color-text-secondary)" }}>{String(extra.client)}</span></span>}
+          {extra.role && <span>Role: <span style={{ color: "var(--color-text-secondary)" }}>{String(extra.role)}</span></span>}
+          {extra.year && <span>Year: <span style={{ color: "var(--color-text-secondary)" }}>{String(extra.year)}</span></span>}
           <span>{meta.readingTime}</span>
         </div>
       </div>
