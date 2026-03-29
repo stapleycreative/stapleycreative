@@ -8,54 +8,117 @@ tags: ["Design Systems", "Scale", "Infrastructure"]
 date: "2020-12-01"
 ---
 
-## The setup
+## What iFIT was when I arrived
 
-When I joined iFIT, it was a hardware company with 20,000 users and a single product. When I left, it was a connected fitness platform with 6 million users, five product surfaces (treadmill, bike, rower, app, web), and a design team of twelve.
+In 2015, iFIT was a hardware company. They made treadmills with small screens that could play workout videos. One product, one screen size, one operating system, about 20,000 users. The design team was me and one other person.
 
-The challenge wasn't making things look good. The challenge was making things stay consistent across five surfaces, three operating systems, and twelve designers — while the product evolved every sprint.
+By the time I left in 2020, it was a connected fitness platform: treadmills, bikes, rowers, a mobile app, and a web dashboard. Five product surfaces, three operating systems, 6 million users, and a design team of twelve. The company had been through a rebrand, an IPO push, and multiple product line acquisitions.
+
+My job changed shape three times. I started as Creative Director overseeing brand and product design. I transitioned into a hybrid Creative Director / Design Systems Lead role when it became clear that the team's growth was outpacing our ability to stay consistent. By the end, the design system work was the highest-leverage thing I did.
 
 <PullQuote cite="Mark Watterson, Chief Product Officer">Craig takes the shell of an idea and turns it into something that checks every box — and adds more.</PullQuote>
 
-## The real problem
+## The problem nobody named until it was expensive
 
-Most design system stories start with "we built a component library." That's the easy part. The hard part is what happens when two designers on different surfaces both need a card component and build slightly different versions because there's no shared token layer connecting them.
+The first sign of trouble was a bug report in 2017. A user reported that the "Start Workout" button on the bike looked different from the same button on the treadmill. Different corner radius. Slightly different shade of blue. Different font weight.
 
-Components without shared tokens create a different kind of inconsistency — one that's harder to see and harder to fix. The card looks the same on both surfaces until someone changes a border radius, and then one surface updates and the other doesn't, and nobody knows which is "right."
+By itself, trivial. But I pulled the thread and found 23 variants of what should have been one button. Across five surfaces, three designers had each built their own version, referencing slightly different specs, because there was no single source of truth.
 
-## How I approached it
+This is the failure mode nobody talks about in design system blog posts. It's not that designers are sloppy. It's that without shared infrastructure, consistency is maintained by memory and convention — and both break down as teams grow. Two designers can stay aligned through conversation. Twelve can't.
 
-I started with tokens, not components. Specifically: I built the decision architecture — color, spacing, typography, radius, elevation — as a semantic token layer that every component inherited from. Components were assemblies of decisions, not standalone artifacts.
+I audited the full product surface — every component, every color value, every type style, every spacing value — across all five platforms. The results:
 
-Three architectural decisions defined the system:
+<MetricsGrid>
+  <Metric label="Button variants found" value="23" />
+  <Metric label="Unique blue values" value="9" />
+  <Metric label="Type scale definitions" value="4 different" />
+  <Metric label="Spacing systems" value="3 different" />
+  <Metric label="Undocumented components" value="~80%" />
+</MetricsGrid>
 
-<ImagePlaceholder alt="Token architecture diagram showing primitive → semantic → component token inheritance chain across five product surfaces" caption="The token inheritance chain: primitives feed semantics, semantics feed components. Every surface inherits from the same source." />
+The cost wasn't just visual inconsistency. Engineering was maintaining five parallel implementations of the same components. A design change that should take a day took a week because it had to be replicated across surfaces independently. QA was catching visual regressions that were actually "correct" implementations of different specs.
 
-**Tokens first, components second.** I built the shared atoms before anyone touched molecules. This meant the first two weeks felt slow — no visible UI — but it meant every component built afterward was automatically consistent across surfaces. The alternative (build components, extract tokens later) creates the exact fragmentation I was trying to prevent.
+<ImagePlaceholder alt="Audit results showing the same 'Start Workout' button rendered 23 different ways across five product surfaces, with annotated differences in radius, color, and typography" caption="The button audit. 23 variants of one button. This is what consistency looks like when it's maintained by convention instead of infrastructure." />
 
-**Shared atoms, not shared molecules.** Each product surface had different layout needs — a treadmill screen is landscape, the app is portrait, the web dashboard is wide. Sharing high-level components across these contexts would have been forced. Instead, I shared the atomic layer (buttons, inputs, type styles, color) and let each surface compose its own layouts from shared pieces.
+## The architectural decision that defined everything
 
-**Documentation as a forcing function.** I required every new component to be documented before it could be used in production. Not because documentation is inherently valuable — because the act of writing usage guidelines forces the designer to think about edge cases, variants, and boundaries before they're discovered in production.
+I had two paths forward:
 
-<ImagePlaceholder alt="iFIT component documentation page showing button variants, usage guidelines, and do/don't examples across surfaces" caption="Every component documented before production use. The documentation is the quality gate." />
+**Path A: Build a component library.** Start with the most-used components (buttons, inputs, cards, navigation), design canonical versions, document them, and roll them out. This is what most design system initiatives do. It's fast, visible, and produces immediate results.
 
-## Building the org
+**Path B: Build a token layer first.** Before touching a single component, define the shared decision architecture — color, spacing, typography, radius, elevation — as a semantic token system that every component would inherit from. Then build components as assemblies of tokens, not standalone artifacts.
 
-The design system was also an organizational tool. When I started, designers worked in silos — one per product surface, limited cross-pollination. The shared token layer created a structural reason for designers to coordinate: if you change a token, everyone inherits the change.
+Path A would have shown results in two weeks. Path B took two months before anyone saw a visible change. I chose Path B, and I had to defend that choice to leadership multiple times during those two months.
 
-A designer joining in 2020 could get productive in days, not weeks, because the system carried institutional knowledge. They didn't need to ask "what shade of blue do we use?" — the token answered it. They didn't need to ask "how does a modal behave on the bike screen?" — the component documentation showed it.
+Here's why: component libraries without shared tokens create a *different* kind of inconsistency. The button looks the same on both surfaces until someone changes a border radius, and then one surface updates and the other doesn't, and nobody knows which is "right." The components are aligned, but the underlying decisions are still fragmented. You're treating the symptom (inconsistent components) without fixing the disease (inconsistent decisions).
+
+Tokens first means: when I change `--color-primary` from `#2563EB` to `#2554DB`, every component on every surface inherits the change. One decision, one update, universal propagation. That's not possible with a component library alone.
+
+<ImagePlaceholder alt="Token architecture diagram — three layers: primitive tokens (raw values), semantic tokens (named decisions), component tokens (surface-specific overrides). Arrows showing inheritance flow across five product surfaces." caption="The token architecture. Primitives feed semantics, semantics feed components. Every surface inherits from the same decision layer." />
+
+## The three architectural rules
+
+Three rules governed the system. Each one was a deliberate choice with a specific tradeoff.
+
+### Rule 1: Shared atoms, not shared molecules
+
+Each product surface had radically different layout needs. A treadmill screen is 22 inches, landscape, viewed from three feet away while running. The mobile app is 6 inches, portrait, held in one hand. The web dashboard is wide, data-dense, used at a desk.
+
+Sharing high-level components (a "workout card," a "stats dashboard") across these contexts would have been forced. The same information needs fundamentally different spatial relationships on different surfaces.
+
+Instead, I shared the atomic layer — buttons, inputs, type styles, color tokens, icon set — and let each surface team compose their own layouts from shared pieces. The atoms were universal. The molecules were local.
+
+The tradeoff: more design work per surface (each one has its own card component, its own navigation pattern). The benefit: no surface is forced into a layout that doesn't fit its physical constraints, and every surface still *feels* like iFIT because the color, type, and interaction patterns are identical.
+
+### Rule 2: Documentation before production
+
+Every new component required documentation before it could be used in a production build. Not comprehensive documentation — a one-page spec with: purpose, variants, states, usage guidelines, and one "don't do this" example.
+
+This wasn't bureaucracy for its own sake. Writing the spec forces the designer to think about edge cases *before* they're discovered in production. "What happens when the label is 40 characters?" "What's the loading state?" "Can this be used inside a scrolling container?"
+
+Every component that shipped without documentation — and there were a few in the early days when I was less strict about enforcement — generated at least one support question from another designer within two weeks. The documentation was faster than answering the same question five times.
+
+<ImagePlaceholder alt="iFIT component documentation page — button component showing all variants, states (default, hover, pressed, disabled, loading), usage guidelines, and a 'don't' example of buttons stacked vertically" caption="Every component documented before production. The spec forces edge-case thinking before edge cases happen." />
+
+### Rule 3: Designers own their surface
+
+I intentionally did *not* create a design system team that owned all component decisions. Each surface had a lead designer who owned their surface's components. The design system team (which was me and eventually one other person) owned the token layer, the documentation framework, and the review process.
+
+This was a bet on distributed ownership. The alternative — a centralized design system team that reviews and approves all component changes — creates a bottleneck. At 12 designers across 5 surfaces, a centralized approval process would have slowed everyone down.
+
+The distributed model meant occasional inconsistencies crept in. But because the token layer was shared, those inconsistencies were always at the molecule level (a card layout that's slightly different on web vs. mobile), never at the atomic level (the colors, type, and spacing are always consistent). That's the right tradeoff for a team moving fast.
+
+## How it changed the org
+
+The design system was also an organizational tool — maybe the most important one.
+
+**Onboarding.** When I started, a new designer took 2–3 weeks to become productive. They'd spend most of that time asking "What shade of blue do we use?" "What's the standard card padding?" "Where's the icon set?" By 2020, a new designer could start contributing in 2–3 days. The system carried the institutional knowledge that used to live in people's heads.
+
+**Cross-surface coordination.** The shared token layer created a structural reason for designers across surfaces to talk to each other. If the bike designer wanted to change the primary button style, that change propagated to all surfaces — so they'd need to coordinate with the treadmill and app designers. This wasn't a process I imposed. It emerged naturally from the architecture. The system created collaboration incentives that no amount of standups could have achieved.
+
+**Design reviews.** Before the system, design reviews were long and often derailed by foundational questions ("Why is this blue different?"). After, reviews focused on interaction design and product decisions — the higher-order work. The system resolved the lower-order questions before they reached the room.
+
+<ImagePlaceholder alt="Timeline showing design team growth (2→12), product surfaces (1→5), user base (20K→6M), and key system milestones: token layer shipped, documentation framework, distributed ownership model" caption="Five years compressed. The design system scaled the team faster than hiring alone could have." />
 
 <MetricsGrid>
   <Metric label="Users at start" value="20K" />
   <Metric label="Users at end" value="6M" />
   <Metric label="Product surfaces" value="5" />
-  <Metric label="Design team size" value="12" />
-  <Metric label="Onboarding time" value="Days, not weeks" />
+  <Metric label="Design team" value="2 → 12" />
+  <Metric label="New designer ramp time" value="3 weeks → 3 days" />
+  <Metric label="Component variants reduced" value="~60%" />
 </MetricsGrid>
+
+## What I got wrong
+
+The documentation-before-production rule was too rigid in the first year. I enforced it absolutely, which meant some time-sensitive features were delayed because the documentation wasn't ready. I should have had a "provisional" track — ship with minimal docs, full docs required within one sprint. I loosened this rule in year two, but the early rigidity cost some trust with the engineering team.
+
+I also waited too long to hire a second design systems person. For the first three years, I was the only one maintaining the token layer, running audits, reviewing components, and writing documentation — on top of my Creative Director responsibilities. The system's growth was limited by my bandwidth. When I finally got a second person dedicated to the system in 2019, our output tripled. That hire should have happened in 2018.
 
 ## What this proves
 
-Design at scale is infrastructure work. The decisions that matter most aren't visual — they're architectural. Token-first? Or component-first? Shared molecules? Or shared atoms? Document before or after production?
+Design at scale is infrastructure work. The decisions that matter most aren't visual — they're architectural. Token-first or component-first? Shared molecules or shared atoms? Centralized ownership or distributed? Document before or after production?
 
-Each of these decisions compounds over years. Get them right early, and the system accelerates the team. Get them wrong, and every sprint adds another layer of inconsistency that someone eventually has to unwind.
+Each of these decisions compounds over years. The token-first decision I made in 2017 was still paying dividends in 2020, long after I'd stopped thinking about it. That's what good infrastructure does — it makes future decisions easier by encoding past decisions into the system itself.
 
-The thing AI tools can't replace here: the judgment to know which architectural decisions will compound and which won't matter in three years. That comes from watching systems succeed and fail over time. There's no shortcut.
+The thing AI tools can't generate is the judgment to know which decisions will compound and which won't matter in three years. That comes from watching systems succeed and fail across multiple products, multiple team sizes, and multiple growth phases. There's no training data for your specific organizational context.
