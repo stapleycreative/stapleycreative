@@ -1,0 +1,61 @@
+---
+title: "Scaling a design org from 20K to 6M users"
+description: "iFIT grew from a niche hardware company to a connected fitness platform. The design challenge wasn't aesthetics — it was infrastructure. I built the token system, component architecture, and documentation framework that let the team scale without fragmenting."
+client: "iFIT"
+role: "Creative Director → Design Systems Lead"
+year: "2015–2020"
+tags: ["Design Systems", "Scale", "Infrastructure"]
+date: "2020-12-01"
+---
+
+## The setup
+
+When I joined iFIT, it was a hardware company with 20,000 users and a single product. When I left, it was a connected fitness platform with 6 million users, five product surfaces (treadmill, bike, rower, app, web), and a design team of twelve.
+
+The challenge wasn't making things look good. The challenge was making things stay consistent across five surfaces, three operating systems, and twelve designers — while the product evolved every sprint.
+
+<PullQuote cite="Mark Watterson, Chief Product Officer">Craig takes the shell of an idea and turns it into something that checks every box — and adds more.</PullQuote>
+
+## The real problem
+
+Most design system stories start with "we built a component library." That's the easy part. The hard part is what happens when two designers on different surfaces both need a card component and build slightly different versions because there's no shared token layer connecting them.
+
+Components without shared tokens create a different kind of inconsistency — one that's harder to see and harder to fix. The card looks the same on both surfaces until someone changes a border radius, and then one surface updates and the other doesn't, and nobody knows which is "right."
+
+## How I approached it
+
+I started with tokens, not components. Specifically: I built the decision architecture — color, spacing, typography, radius, elevation — as a semantic token layer that every component inherited from. Components were assemblies of decisions, not standalone artifacts.
+
+Three architectural decisions defined the system:
+
+<ImagePlaceholder alt="Token architecture diagram showing primitive → semantic → component token inheritance chain across five product surfaces" caption="The token inheritance chain: primitives feed semantics, semantics feed components. Every surface inherits from the same source." />
+
+**Tokens first, components second.** I built the shared atoms before anyone touched molecules. This meant the first two weeks felt slow — no visible UI — but it meant every component built afterward was automatically consistent across surfaces. The alternative (build components, extract tokens later) creates the exact fragmentation I was trying to prevent.
+
+**Shared atoms, not shared molecules.** Each product surface had different layout needs — a treadmill screen is landscape, the app is portrait, the web dashboard is wide. Sharing high-level components across these contexts would have been forced. Instead, I shared the atomic layer (buttons, inputs, type styles, color) and let each surface compose its own layouts from shared pieces.
+
+**Documentation as a forcing function.** I required every new component to be documented before it could be used in production. Not because documentation is inherently valuable — because the act of writing usage guidelines forces the designer to think about edge cases, variants, and boundaries before they're discovered in production.
+
+<ImagePlaceholder alt="iFIT component documentation page showing button variants, usage guidelines, and do/don't examples across surfaces" caption="Every component documented before production use. The documentation is the quality gate." />
+
+## Building the org
+
+The design system was also an organizational tool. When I started, designers worked in silos — one per product surface, limited cross-pollination. The shared token layer created a structural reason for designers to coordinate: if you change a token, everyone inherits the change.
+
+A designer joining in 2020 could get productive in days, not weeks, because the system carried institutional knowledge. They didn't need to ask "what shade of blue do we use?" — the token answered it. They didn't need to ask "how does a modal behave on the bike screen?" — the component documentation showed it.
+
+<MetricsGrid>
+  <Metric label="Users at start" value="20K" />
+  <Metric label="Users at end" value="6M" />
+  <Metric label="Product surfaces" value="5" />
+  <Metric label="Design team size" value="12" />
+  <Metric label="Onboarding time" value="Days, not weeks" />
+</MetricsGrid>
+
+## What this proves
+
+Design at scale is infrastructure work. The decisions that matter most aren't visual — they're architectural. Token-first? Or component-first? Shared molecules? Or shared atoms? Document before or after production?
+
+Each of these decisions compounds over years. Get them right early, and the system accelerates the team. Get them wrong, and every sprint adds another layer of inconsistency that someone eventually has to unwind.
+
+The thing AI tools can't replace here: the judgment to know which architectural decisions will compound and which won't matter in three years. That comes from watching systems succeed and fail over time. There's no shortcut.

@@ -1,0 +1,66 @@
+---
+title: "A form can't hold a relationship"
+description: "Gift officers captured donor relationships in a 15-field form that discarded meaning. I redesigned the system around how fundraisers actually think — notes first, AI translation second, human review always."
+client: "GiveCampus"
+role: "Lead Product Designer (solo)"
+year: "2025–2026"
+tags: ["AI Workflow", "B2B SaaS", "Behavioral Design"]
+date: "2026-01-15"
+---
+
+## The setup
+
+Everyone knew the problem. Gift officers hated filing contact reports. The form was clunky. Fifteen fields. Too much clicking. Too much time between meetings. The solution seemed obvious: streamline the form. Make it faster. Get them in and out in 90 seconds.
+
+## The diagnosis
+
+But that's not actually what was broken. I watched gift officers finish donor conversations — nuanced, contextual, full of subtext about family priorities and giving capacity — and then open a form that reduced all of it to checkboxes.
+
+A donor's shift from cultivation to pre-solicitation? Dropdown. The trust built over a lunch meeting? Checkbox: "met in person."
+
+The form captured data but discarded meaning. Gift officers knew it. They filed reports because compliance required it, not because the tool helped them work.
+
+## The principle
+
+I started from a different angle: what if the tool let gift officers capture the way they actually think? Not form-shaped. Relationship-shaped. Notes. Full sentences. Context preserved.
+
+The alternative was to optimize the existing form — fewer fields, smarter defaults, conditional logic. I rejected that approach because it treats the form as the right container and tries to make it less painful. The real insight was that the container itself was wrong. A form assumes the user already knows the structure of what they want to say. Gift officers don't. They know the story. Structure is what emerges after.
+
+So the design question became: what if AI did the translation work — from raw relationship memory to structured data — instead of making gift officers do it manually?
+
+<ImagePlaceholder alt="Contact report capture screen showing large textarea with voice toggle, notes-first interface" caption="The capture layer: notes take up 80% of the interface. Everything else is secondary." />
+
+## Notes-first, structure-later
+
+The interface inverts the traditional form. The textarea is the hero. Voice recording is there, but it's not forcing the choice — you adapt based on context. Walking between offices? Use voice. Sitting at a desk? Type.
+
+No visible structure prompts until after you save. That matters. Research on cognitive interviewing shows that structured questions asked too early suppress 25–40% of recoverable detail. Free recall first. Organization after.
+
+The moment you save, we show what the AI extracted: contact type, date, participants, next steps. Each piece marked with an AI badge and dashed border — visual signal that this is machine-inferred, not gospel. And each piece is editable. Accept, edit, or reject in context.
+
+<ImagePlaceholder alt="AI review screen showing structured fields with AI badges, confidence indicators, and source quotes" caption="After capture: AI organizes the mess into structure. All of it is editable. We show the source quote so you can verify." />
+
+## The confidence layer
+
+This is the behavioral design move that makes the whole system work. Every AI-generated field shows a confidence indicator and a source quote — the actual sentence from the notes that the inference came from.
+
+This matters because trust in AI isn't binary. Gift officers don't need to trust the system completely. They need to trust it enough to verify efficiently. The confidence layer turns review from "check every field" to "check the uncertain ones."
+
+## Progressive disclosure
+
+The full contact report is still there — all fifteen fields. But it unfolds based on what matters. High-confidence extractions are shown inline. Lower-confidence ones are flagged. Fields the AI couldn't infer are presented as optional additions.
+
+The result: most reports complete in 90 seconds with 3–4 edits. The old form took 8–12 minutes. The data quality is higher because gift officers are editing AI-organized content rather than reconstructing context from memory.
+
+<MetricsGrid>
+  <Metric label="Old completion time" value="8–12 min" />
+  <Metric label="New completion time" value="~90 sec" />
+  <Metric label="Typical edits needed" value="3–4" />
+  <Metric label="Fields auto-extracted" value="11 of 15" />
+</MetricsGrid>
+
+## What this proves
+
+The pattern here is transferable: expert input → machine translation → transparent review. It applies anywhere a human with domain knowledge needs to produce structured data — clinical documentation, legal intake, field service reports, customer success notes.
+
+The thing AI tools can't replace in this workflow: knowing that the form was the wrong container in the first place. That's not a prompting skill. That's diagnosis.
