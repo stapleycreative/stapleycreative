@@ -24,7 +24,7 @@ I sat in on three donor meetings (with permission) and then watched the officers
 
 The most revealing moment: one officer finished a meeting, pulled out her phone, and dictated a two-minute voice memo to herself. Detailed, contextual, full of the kind of relational intelligence that makes fundraising work. Then she opened the CRM, sighed, and spent eight minutes translating that richness into form fields. The voice memo had more useful information than the completed form.
 
-<ImagePlaceholder alt="Side-by-side comparison: a gift officer's raw voice memo transcript vs. the same interaction reduced to form fields" caption="The same donor interaction captured two ways. The voice memo preserves meaning. The form discards it." />
+<ImagePlaceholder alt="Side-by-side comparison: a gift officer's raw voice memo transcript vs. the same interaction reduced to form fields" caption="The same donor interaction captured two ways. The voice memo preserves meaning. The form discards it." brief="Split-screen layout. Left side: a text block styled like a voice transcription with highlighted rich details — donor's daughter starting college, estate plan rethinking, body language shifts. Right side: the same interaction compressed into checkboxes and dropdowns with those rich details visibly absent. Muted background, high contrast on the information loss. Think annotated side-by-side like Stripe case studies." priority="HIGH" style="Before/after comparison. Could be actual transcript text vs. actual form screenshot, or a designed recreation that exaggerates the contrast." />
 
 ## The diagnosis nobody asked for
 
@@ -38,7 +38,7 @@ A dropdown that says "Cultivation → Solicitation" tells you a stage changed. I
 
 I wrote a one-page diagnosis document and brought it to the product team: **the form is the wrong container for this information.** We don't need a faster form. We need a different capture paradigm entirely.
 
-<ImagePlaceholder alt="Craig's diagnosis document showing the translation loss framework — raw input quality vs. structured output quality across different capture methods" caption="The diagnosis: every form optimization improves speed but doesn't recover the meaning lost in translation. The capture method itself has to change." />
+<ImagePlaceholder alt="Translation loss framework — raw input quality vs. structured output quality across different capture methods" caption="The diagnosis: every form optimization improves speed but doesn't recover the meaning lost in translation. The capture method itself has to change." brief="A conceptual 2x2 or curve diagram. X-axis: speed/effort, Y-axis: information quality. Form optimizations cluster in the fast-but-low-quality quadrant. The blank canvas approach sits in the fast-AND-high-quality zone. Clean, minimal, could be drawn in Figma or styled as a whiteboard artifact. Think consultant-quality strategic diagram, not a wireframe." priority="MEDIUM" style="Research synthesis diagram. Could be a hand-drawn-feeling sketch on a light background, or a polished Figma diagram with labeled quadrants." />
 
 ## Three directions I explored
 
@@ -52,7 +52,7 @@ Once the team agreed the form wasn't sacred, I explored three fundamentally diff
 
 I built low-fidelity prototypes of all three and tested them with four gift officers over two days. Direction C won — not because officers preferred it in the abstract, but because the *quality of captured information* was measurably higher. Officers who used the blank canvas captured an average of 3.2 more meaningful details per report than those using the structured interview.
 
-<ImagePlaceholder alt="Three prototype directions side by side — structured interview, template notes, and blank canvas — with annotation showing information quality scores from user testing" caption="Three directions tested with real gift officers. The blank canvas captured the richest information — not because it was easier, but because it didn't constrain memory retrieval." />
+<ImagePlaceholder alt="Three prototype directions side by side — structured interview, template notes, and blank canvas — with information quality scores" caption="Three directions tested with real gift officers. The blank canvas captured the richest information — not because it was easier, but because it didn't constrain memory retrieval." brief="Three phone or tablet mockups in a row. Left: structured interview with conversational questions visible. Center: template with section headers (Context, Key Moments, Next Steps). Right: blank canvas with just a textarea and cursor. Below each, a small metric callout showing avg meaningful details captured — the blank canvas has the highest score, highlighted. Annotations point to specific design differences between the three." priority="HIGH" style="Multi-screen comparison with data overlay. Figma prototype screenshots with callout annotations. Low-fidelity wireframe feel is fine — this is about proving process, not polish." />
 
 ## The design: notes first, structure later
 
@@ -64,7 +64,7 @@ No visible structure until after the officer saves their notes. This is a delibe
 
 The voice toggle matters more than it looks. Gift officers are often walking between buildings, sitting in their car after a lunch meeting, or standing in a hallway. A voice-first capture option means they can file a report while the conversation is still fresh — 90 seconds of dictation captures more than 8 minutes of form-filling an hour later.
 
-<ImagePlaceholder alt="The capture screen — large textarea taking up most of the screen, minimal chrome, voice toggle, auto-filled date" caption="The capture layer. The textarea is the product. Everything else stays out of the way." />
+<ImagePlaceholder alt="The capture screen — large textarea, minimal chrome, voice toggle, auto-filled date" caption="The capture layer. The textarea is the product. Everything else stays out of the way." brief="A single clean product screen on a phone or tablet mockup. The textarea dominates — 80% of the viewport. Minimal chrome: just a small voice toggle icon in one corner, a date field pre-filled, and a contact name field with autocomplete suggestion showing. Could show a cursor blinking or partial text being typed. The visual should feel calm and spacious — the deliberate opposite of a 15-field form. Think Linear or Vercel product shots — lots of breathing room around a focused UI." priority="HIGH" style="Hero product shot on device mockup. Light or dark background, generous whitespace. This sets the visual standard for the entire case study." />
 
 ## The AI layer: translation, not automation
 
@@ -86,7 +86,7 @@ My solution was what I call the **confidence layer** — a visual system that co
 
 **Visual treatment.** High-confidence fields render as solid, settled UI. Low-confidence fields have a dashed border and an amber accent — visual weight that draws the eye to exactly the fields that need human attention.
 
-<ImagePlaceholder alt="The AI review screen showing extracted fields with confidence indicators, source quotes, and the visual distinction between high and low confidence extractions" caption="The confidence layer. Every AI inference shows its source. Officers review the uncertain ones and skip the obvious ones. Average review: 3–4 edits." />
+<ImagePlaceholder alt="AI review screen — extracted fields with confidence indicators, source quotes, and visual distinction between high and low confidence" caption="The confidence layer. Every AI inference shows its source. Officers review the uncertain ones and skip the obvious ones. Average review: 3–4 edits." brief="A scrollable product screen showing the notes at top and extracted fields below. Each field shows: the structured value, a small confidence badge (green/amber/gray), and a quoted source line from the original notes. Some fields have solid borders and settled styling (high confidence). Others have dashed borders with amber highlights and the source quote is more prominent (low confidence). Show at least one field being edited. Annotations could call out the three-part confidence model. This is the interaction design centerpiece — the most complex image in the case study." priority="HIGH" style="Annotated product screen with component state showcase. Show multiple states: high-confidence settled field, low-confidence flagged field, actively-being-edited field, rejected field. Could be a device mockup or a flat UI screenshot with callout overlays." />
 
 ## The decision I almost got wrong
 
