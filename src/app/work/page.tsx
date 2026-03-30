@@ -41,7 +41,19 @@ export default function WorkPage() {
                 {study.tags?.map((tag) => (
                   <span
                     key={tag}
-                    className="text-xs px-2 py-0.5 rounded-md bg-bg-subtle text-text-tertiary"
+                    className="text-sm rounded-lg"
+                    style={{
+                      padding: "0 10px",
+                      height: "32px",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      backgroundColor: "var(--color-bg-subtle)",
+                      border: "0.5px solid rgba(0,0,0,0.1)",
+                      color: "var(--color-text-secondary)",
+                      fontWeight: 430,
+                      fontSize: "14px",
+                      lineHeight: 1,
+                    }}
                   >
                     {tag}
                   </span>
