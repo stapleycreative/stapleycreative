@@ -43,15 +43,15 @@ export default function WorkPage() {
                     key={tag}
                     className="rounded"
                     style={{
-                      padding: "2px 8px",
+                      padding: "2px 6px",
                       display: "inline-flex",
                       alignItems: "center",
-                      backgroundColor: "rgba(20, 20, 19, 0.1)",
-                      color: "rgb(20, 20, 19)",
+                      backgroundColor: "rgba(20, 20, 19, 0.06)",
+                      color: "rgba(20, 20, 19, 0.5)",
                       fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
-                      fontSize: "13px",
+                      fontSize: "11px",
                       fontWeight: 400,
-                      lineHeight: "21px",
+                      lineHeight: "18px",
                       borderRadius: "4px",
                     }}
                   >
