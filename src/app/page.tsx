@@ -14,10 +14,30 @@ export default function Home() {
         </h1>
         <p className="mt-6 text-lg max-w-[520px] leading-relaxed"
           style={{ color: "var(--color-text-secondary)" }}>
-          Product designer who diagnoses the real problem, architects the
-          infrastructure, and builds the prototype. 20 years of turning
-          ambiguity into things that ship.
+          I diagnose the real problem, architect the decision layer, and
+          build the prototype. AI workflows, behavioral design, and systems
+          that compound — 20 years of turning ambiguity into shipped systems.
         </p>
+        <div className="mt-6 flex flex-wrap gap-2">
+          {["Staff Product Designer", "Principal Product Designer", "Design Systems Lead", "Design Technologist", "0→1 AI Product Design"].map((role) => (
+            <span key={role}
+              className="rounded"
+              style={{
+                padding: "2px 6px",
+                display: "inline-flex",
+                alignItems: "center",
+                backgroundColor: "rgba(20, 20, 19, 0.06)",
+                color: "rgba(20, 20, 19, 0.5)",
+                fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+                fontSize: "11px",
+                fontWeight: 400,
+                lineHeight: "18px",
+                borderRadius: "4px",
+              }}>
+              {role}
+            </span>
+          ))}
+        </div>
       </section>
 
       {/* Case Studies */}

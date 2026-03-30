@@ -158,6 +158,93 @@ const components = {
       {children}
     </div>
   ),
+
+  OutcomeBlock: ({
+    problem,
+    change,
+    result,
+  }: {
+    problem: string;
+    change: string;
+    result: string;
+  }) => (
+    <div
+      className="not-prose my-8 p-5 rounded-lg"
+      style={{
+        backgroundColor: "var(--color-bg-surface)",
+        border: "1px solid var(--color-border-subtle)",
+      }}
+    >
+      <div className="grid gap-3">
+        <div className="flex gap-3">
+          <span
+            className="rounded shrink-0"
+            style={{
+              padding: "2px 6px",
+              backgroundColor: "rgba(20, 20, 19, 0.06)",
+              color: "rgba(20, 20, 19, 0.5)",
+              fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+              fontSize: "11px",
+              fontWeight: 400,
+              lineHeight: "18px",
+              borderRadius: "4px",
+              display: "inline-flex",
+              alignItems: "center",
+            }}
+          >
+            Problem
+          </span>
+          <span className="text-sm" style={{ color: "var(--color-text-secondary)" }}>
+            {problem}
+          </span>
+        </div>
+        <div className="flex gap-3">
+          <span
+            className="rounded shrink-0"
+            style={{
+              padding: "2px 6px",
+              backgroundColor: "rgba(20, 20, 19, 0.06)",
+              color: "rgba(20, 20, 19, 0.5)",
+              fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+              fontSize: "11px",
+              fontWeight: 400,
+              lineHeight: "18px",
+              borderRadius: "4px",
+              display: "inline-flex",
+              alignItems: "center",
+            }}
+          >
+            Change
+          </span>
+          <span className="text-sm" style={{ color: "var(--color-text-secondary)" }}>
+            {change}
+          </span>
+        </div>
+        <div className="flex gap-3">
+          <span
+            className="rounded shrink-0"
+            style={{
+              padding: "2px 6px",
+              backgroundColor: "rgba(20, 20, 19, 0.08)",
+              color: "rgba(20, 20, 19, 0.65)",
+              fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+              fontSize: "11px",
+              fontWeight: 500,
+              lineHeight: "18px",
+              borderRadius: "4px",
+              display: "inline-flex",
+              alignItems: "center",
+            }}
+          >
+            Result
+          </span>
+          <span className="text-sm font-medium" style={{ color: "var(--color-text-primary)" }}>
+            {result}
+          </span>
+        </div>
+      </div>
+    </div>
+  ),
 };
 
 export function MdxContent({ source }: { source: string }) {
