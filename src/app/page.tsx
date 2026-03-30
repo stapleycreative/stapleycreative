@@ -50,18 +50,18 @@ export default function Home() {
                 <div className="flex gap-2 flex-shrink-0">
                   {study.tags?.slice(0, 3).map((tag) => (
                     <span key={tag}
-                      className="text-sm rounded-lg"
+                      className="rounded"
                       style={{
-                        padding: "0 10px",
-                        height: "32px",
+                        padding: "2px 8px",
                         display: "inline-flex",
                         alignItems: "center",
-                        backgroundColor: "var(--color-bg-subtle)",
-                        border: "0.5px solid rgba(0,0,0,0.1)",
-                        color: "var(--color-text-secondary)",
-                        fontWeight: 430,
-                        fontSize: "14px",
-                        lineHeight: 1,
+                        backgroundColor: "rgba(20, 20, 19, 0.1)",
+                        color: "rgb(20, 20, 19)",
+                        fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+                        fontSize: "13px",
+                        fontWeight: 400,
+                        lineHeight: "21px",
+                        borderRadius: "4px",
                       }}>
                       {tag}
                     </span>
