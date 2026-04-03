@@ -33,7 +33,7 @@ export function Nav() {
             alt="Craig Stapley"
             width={106}
             height={50}
-            className="h-5 w-auto"
+            className="h-[30px] w-auto"
             style={{ opacity: 0.85 }}
             priority
           />
