@@ -86,45 +86,63 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
       }
       // "Selected work" label — scroll reveal
       if (sectionLabelRef.current) {
-        gsap.from(sectionLabelRef.current, {
-          scrollTrigger: {
-            trigger: sectionLabelRef.current,
-            start: "top 90%",
-          },
-          opacity: 0,
-          y: 12,
-          duration: 0.5,
-          ease: "power2.out",
-        });
+        gsap.fromTo(
+          sectionLabelRef.current,
+          { opacity: 0, y: 12 },
+          {
+            scrollTrigger: {
+              trigger: sectionLabelRef.current,
+              start: "top 92%",
+              once: true,
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            ease: "power2.out",
+          }
+        );
       }
 
-      // Case study cards — stagger on scroll
+      // Case study cards — each card gets its own ScrollTrigger
       if (cardsRef.current) {
-        gsap.from(cardsRef.current.children, {
-          scrollTrigger: {
-            trigger: cardsRef.current,
-            start: "top 85%",
-          },
-          opacity: 0,
-          y: 24,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "power2.out",
+        const cards = Array.from(cardsRef.current.children);
+        cards.forEach((card, i) => {
+          gsap.fromTo(
+            card,
+            { opacity: 0, y: 24 },
+            {
+              scrollTrigger: {
+                trigger: card,
+                start: "top 92%",
+                once: true,
+              },
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              delay: i * 0.08,
+              ease: "power2.out",
+            }
+          );
         });
       }
 
       // Writing section — scroll reveal
       if (writingRef.current) {
-        gsap.from(writingRef.current, {
-          scrollTrigger: {
-            trigger: writingRef.current,
-            start: "top 85%",
-          },
-          opacity: 0,
-          y: 20,
-          duration: 0.6,
-          ease: "power2.out",
-        });
+        gsap.fromTo(
+          writingRef.current,
+          { opacity: 0, y: 20 },
+          {
+            scrollTrigger: {
+              trigger: writingRef.current,
+              start: "top 92%",
+              once: true,
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: "power2.out",
+          }
+        );
       }
     }, heroRef);
 
