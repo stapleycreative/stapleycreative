@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const links = [
@@ -25,10 +26,17 @@ export function Nav() {
         style={{ maxWidth: "var(--max-width-wide)" }}>
         <Link
           href="/"
-          className="font-semibold text-sm tracking-tight"
-          style={{ color: "var(--color-text-primary)" }}
+          className="flex items-center"
         >
-          Craig Stapley
+          <Image
+            src="/logo.svg"
+            alt="Craig Stapley"
+            width={106}
+            height={50}
+            className="h-5 w-auto"
+            style={{ opacity: 0.85 }}
+            priority
+          />
         </Link>
 
         <ul className="flex gap-1">
