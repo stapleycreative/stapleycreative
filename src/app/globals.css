@@ -2,7 +2,6 @@
 @import "lenis/dist/lenis.css";
 
 /* ─── Design Tokens via Tailwind v4 @theme ─── */
-
 @theme {
   --color-bg-primary: #fcfcfd;
   --color-bg-surface: #f9f9fb;
@@ -21,6 +20,7 @@
   --color-accent-hover: #0c5eb0;
 
   --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   --radius-sm: 6px;
   --radius-md: 8px;
@@ -39,10 +39,16 @@
 }
 
 /* ─── Base Styles ─── */
-
 body {
   color: var(--color-text-primary);
   background: var(--color-bg-primary);
+  /* Subconscious 8px grid — 1.8% opacity, barely visible. Pairs with the 4/8px spacing grid. */
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(28, 32, 36, 0.018) 0 1px,
+    transparent 1px 8px
+  );
+  background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -52,12 +58,10 @@ body {
 }
 
 /* ─── Prose (MDX content) ─── */
-
 .prose {
   color: var(--color-text-primary);
   line-height: 1.7;
 }
-
 .prose h2 {
   font-size: 1.5rem;
   font-weight: 600;
@@ -65,29 +69,24 @@ body {
   margin-bottom: 1rem;
   letter-spacing: -0.015em;
 }
-
 .prose h3 {
   font-size: 1.125rem;
   font-weight: 600;
   margin-top: 2rem;
   margin-bottom: 0.75rem;
 }
-
 .prose p {
   margin-bottom: 1.25rem;
 }
-
 .prose blockquote {
   border-left: 3px solid var(--color-border-strong);
   padding-left: 1.5rem;
   font-style: italic;
   color: var(--color-text-secondary);
 }
-
 .prose strong {
   font-weight: 600;
 }
-
 .prose a {
   color: var(--color-accent);
   text-decoration: underline;
