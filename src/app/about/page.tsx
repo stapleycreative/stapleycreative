@@ -10,6 +10,24 @@ export default function AboutPage() {
     <div className="max-w-content mx-auto px-6 pt-16 pb-24">
       <h1 className="text-3xl font-semibold tracking-tight">About</h1>
 
+      <p
+        className="mt-4 text-sm leading-relaxed max-w-[56ch]"
+        style={{ color: "var(--color-text-tertiary)" }}
+      >
+        Currently at GiveCampus. Open to staff, principal, and design-systems
+        leadership roles — particularly AI product design and 0→1 work.{" "}
+        <a
+          href="mailto:stapleycreative@gmail.com"
+          style={{
+            color: "var(--color-text-secondary)",
+            textDecoration: "underline",
+            textUnderlineOffset: "3px",
+          }}
+        >
+          stapleycreative@gmail.com
+        </a>
+      </p>
+
       <div className="mt-8 prose">
         <p>
           I'm a product designer who thinks at the system level and builds at

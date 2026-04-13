@@ -21,22 +21,6 @@ export default function AIPage() {
       className="mx-auto px-6 pt-10 pb-24"
       style={{ maxWidth: "var(--max-width-wide)" }}
     >
-      {/* Status badge */}
-      <div
-        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs mb-6"
-        style={{
-          fontFamily: "var(--font-mono)",
-          color: "var(--color-text-tertiary)",
-          border: "1px solid var(--color-border-subtle)",
-        }}
-      >
-        <span
-          className="inline-block w-1.5 h-1.5 rounded-full"
-          style={{ backgroundColor: "#c89b3c" }}
-        />
-        Draft · 2026-04-13 · work in progress
-      </div>
-
       {/* Hero */}
       <div className="max-w-[22ch]">
         <p

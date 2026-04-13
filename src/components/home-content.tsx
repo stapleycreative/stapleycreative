@@ -159,30 +159,35 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
           ref={headlineRef}
           className="text-4xl sm:text-5xl font-semibold tracking-tight leading-tight max-w-[600px]"
         >
-          I see the system underneath the screen.
+          Staff product designer for AI workflows and systems that compound.
         </h1>
         <p
           ref={subheadRef}
-          className="mt-6 text-lg max-w-[520px] leading-relaxed"
+          className="mt-6 text-lg max-w-[560px] leading-relaxed"
           style={{ color: "var(--color-text-secondary)" }}
         >
-          I diagnose the real problem, architect the decision layer, and
-          build the prototype. AI workflows, behavioral design, and systems
-          that compound — 20 years of turning ambiguity into shipped systems.
+          I diagnose the real problem, architect the decision layer, and build
+          the prototype. Twenty years of turning ambiguity into shipped systems
+          — most recently, a volunteer-management platform and an AI workflow
+          modeled on how brains actually produce good work.
         </p>
-        <div ref={rolesRef} className="mt-6 flex flex-wrap gap-2">
-          {["Staff Product Designer", "Principal Product Designer", "Design Systems Lead", "Design Technologist", "0→1 AI Product Design"].map((role) => (
-            <span key={role} className="rounded" style={monoTagStyle}>
-              {role}
-            </span>
-          ))}
+        <div ref={rolesRef} className="mt-6 flex flex-wrap gap-2 items-center">
+          <span className="rounded" style={monoTagStyle}>
+            Currently at GiveCampus
+          </span>
+          <span
+            className="text-sm"
+            style={{ color: "var(--color-text-tertiary)" }}
+          >
+            Open to staff, principal, and design-systems leadership roles.
+          </span>
         </div>
       </section>
       {/* Case Studies */}
       <section className="pb-16">
         <h2
           ref={sectionLabelRef}
-          className="text-xs font-medium uppercase tracking-wider mb-8"
+          className="text-xs font-medium tracking-wide mb-8"
           style={{ color: "var(--color-text-tertiary)" }}
         >
           Selected work
@@ -225,7 +230,7 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
       {posts.length > 0 && (
         <section ref={writingRef} className="pb-24">
           <h2
-            className="text-xs font-medium uppercase tracking-wider mb-8"
+            className="text-xs font-medium tracking-wide mb-8"
             style={{ color: "var(--color-text-tertiary)" }}
           >
             Recent writing

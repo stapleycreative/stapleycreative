@@ -5,100 +5,30 @@ const components = {
   ImagePlaceholder: ({
     alt,
     caption,
-    brief,
-    priority,
-    style: visualStyle,
     aspect = "16/9",
   }: {
     alt: string;
     caption?: string;
+    // Props retained for backwards compatibility with existing MDX; not rendered.
     brief?: string;
     priority?: string;
     style?: string;
     aspect?: string;
   }) => (
-    <figure className="my-8 not-prose">
+    <figure className="my-8 not-prose" aria-label={alt}>
       <div
         className="rounded-lg overflow-hidden"
         style={{
-          backgroundColor: "#1C2024",
-          border: "1px solid rgba(255,255,255,0.06)",
+          aspectRatio: aspect,
+          backgroundColor: "var(--color-bg-surface)",
+          border: "1px solid var(--color-border-subtle)",
+          backgroundImage:
+            "repeating-linear-gradient(135deg, rgba(28,32,36,0.025) 0px, rgba(28,32,36,0.025) 1px, transparent 1px, transparent 10px)",
         }}
-      >
-        {/* Visual placeholder area */}
-        <div
-          className="flex items-center justify-center px-6"
-          style={{
-            aspectRatio: aspect,
-            background: "linear-gradient(135deg, #1C2024 0%, #2A2E33 50%, #1C2024 100%)",
-          }}
-        >
-          <div className="text-center max-w-md">
-            <div
-              className="text-xs font-medium uppercase tracking-wider mb-2"
-              style={{ color: "rgba(255,255,255,0.25)" }}
-            >
-              Image needed
-            </div>
-            <div
-              className="text-sm leading-relaxed"
-              style={{ color: "rgba(255,255,255,0.5)" }}
-            >
-              {alt}
-            </div>
-          </div>
-        </div>
-
-        {/* Shot brief section */}
-        {brief && (
-          <div
-            className="px-5 py-4"
-            style={{
-              borderTop: "1px solid rgba(255,255,255,0.06)",
-              background: "rgba(255,255,255,0.02)",
-            }}
-          >
-            {priority && (
-              <span
-                className="inline-block text-xs font-medium px-2 py-0.5 rounded mb-2"
-                style={{
-                  backgroundColor:
-                    priority === "HIGH"
-                      ? "rgba(239,68,68,0.15)"
-                      : priority === "MEDIUM-HIGH"
-                      ? "rgba(245,158,11,0.15)"
-                      : "rgba(107,114,128,0.15)",
-                  color:
-                    priority === "HIGH"
-                      ? "#f87171"
-                      : priority === "MEDIUM-HIGH"
-                      ? "#fbbf24"
-                      : "#9ca3af",
-                }}
-              >
-                {priority} priority
-              </span>
-            )}
-            <p
-              className="text-xs leading-relaxed mt-1"
-              style={{ color: "rgba(255,255,255,0.45)" }}
-            >
-              {brief}
-            </p>
-            {visualStyle && (
-              <p
-                className="text-xs mt-2 italic"
-                style={{ color: "rgba(255,255,255,0.3)" }}
-              >
-                Visual approach: {visualStyle}
-              </p>
-            )}
-          </div>
-        )}
-      </div>
+      />
       {caption && (
         <figcaption
-          className="text-xs mt-2 text-center"
+          className="text-xs mt-3"
           style={{ color: "var(--color-text-tertiary)" }}
         >
           {caption}
