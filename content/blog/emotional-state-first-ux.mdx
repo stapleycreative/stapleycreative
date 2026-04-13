@@ -1,0 +1,76 @@
+---
+title: "Emotional state is the first UX primitive"
+description: "Most UX writing starts with user needs or jobs-to-be-done. That skips a layer. Before a user has a need, they have a nervous system state. If the interface doesn't know what state they arrived in, it can't get them somewhere better."
+date: "2026-04-14"
+tags: ["UX", "Design", "Emotional Design", "Neurodivergent"]
+---
+
+## The layer under the user need
+
+Jobs-to-be-done is useful. Personas are useful. User needs are useful.
+
+They all skip the layer underneath: the user arrives at your interface in a **nervous system state**. Anxious. Focused. Rushed. Grieving. Curious. Defensive. That state was set by what happened five minutes before they opened your product, and it shapes everything — what they can read, what they'll trust, what action they'll take.
+
+Most interfaces ignore this layer completely. The default assumption is a neutral, cognitively available, emotionally regulated user. That assumption is wrong for a significant fraction of the people who will use what you build.
+
+<ImagePlaceholder
+  alt="Diagram of a user journey with three states labeled: arrival state (anxious / overwhelmed), interface-induced state (varies by design), and exit state (relieved / in control). The arrow between the first two is labeled 'the interface's actual job.'"
+  caption="The interface's real job isn't a click. It's the state transition between arrival and exit."
+  aspect="16/9"
+/>
+
+## A contact report is not a form
+
+At GiveCampus, gift officers file contact reports after donor visits. The stated problem was always "the form is too slow — too many fields." The obvious fix: streamline the form.
+
+But that skipped the state. A gift officer filing a contact report is rarely in a neutral state. They've just had a high-stakes conversation, sometimes a long drive afterward, possibly a difficult exchange they're still processing. They open the form tired, emotionally loaded, possibly demoralized.
+
+A fifteen-field form in that state isn't slow. It's *punishing*. The user is already on a short fuse. The form drops their empathy battery to zero. They file the minimum and leave.
+
+The redesign didn't just shorten the form. It opened with a single free-text field asking "How was the visit?" Not "topics discussed." Not "next steps." *How was the visit?* That one question acknowledges the gift officer has a nervous system. It gives them a place to discharge the emotional residue of the meeting before the tool asks anything of them.
+
+Filing rates went up. Quality of notes went up. The fields didn't change much. The state-handling changed.
+
+## Hiki and the cost of default engagement
+
+<PullQuote>An infinite scroll isn't a neutral layout pattern. It's a dopamine exploit. Whether that's a feature depends entirely on the nervous system you're designing for.</PullQuote>
+
+When I designed Hiki — a social platform for neurodivergent adults — the standard engagement playbook was actively harmful. Push notifications? Many of our users have rejection sensitivity and surprise stimuli trigger fight-or-flight. Infinite scroll? Many have attention dysregulation and that pattern is a trap, not a delight. Social proof counters? Comparison spirals are a documented failure mode of this audience.
+
+The "best-practice" engagement pattern assumes a neurotypical user with intact self-regulation who can walk away when they want to. Many of our users could not. The pattern wasn't neutral — it exploited the specific nervous system shape we were trying to serve.
+
+Designing for the full range of nervous systems makes products better for everyone, not just the extremes. The neurotypical user you're "really" designing for also has panic days, grief days, deadline days. A product that works for them on their worst days is a product that works.
+
+## The emotional state audit
+
+Before any new screen or major redesign at GiveCampus, I run an **Emotional State Audit**. Three questions, answered in writing:
+
+1. **What state is the user in when they arrive?** Not a persona — a state. Anxious. Focused. Rushed. Numb. Whatever is actually true for this flow.
+2. **What state do they need to be in when they leave?** Again, not an outcome ("task complete"). A state. Relieved. Confident. Informed. Calm.
+3. **What is the interface's role in that transition?** This is the design brief. Most interfaces I see are trying to do Step 3 without ever having answered Steps 1 and 2.
+
+If the audit comes back blank, the design isn't ready to start.
+
+<ImagePlaceholder
+  alt="A filled-out Emotional State Audit for the contact report redesign. Arrival state: emotionally loaded, possibly drained. Exit state: acknowledged, unburdened, accurate. Interface's role: a pressure-release valve before it's an input form."
+  caption="A real audit. Three questions, one page. The answers changed every subsequent design decision."
+  aspect="16/9"
+/>
+
+## Why this gets skipped
+
+Because it's uncomfortable. Writing "the user arrives anxious and possibly demoralized" feels presumptuous. You don't know. How can you know?
+
+You can know enough. Watch five user sessions. Do five interviews. Read the support tickets. The state isn't a mystery — it's just a question nobody's been asking.
+
+Also: the emotional layer isn't billable in the same way a UI redesign is. "We cut the form by three fields" is a clean deliverable. "We restructured the flow around the user's arrival state" requires the stakeholder to care about the same layer you care about.
+
+That's a conversation, not a checklist. But it's the conversation that separates interfaces that feel *thoughtful* from interfaces that feel like they were designed for nobody in particular.
+
+## What to try this week
+
+Pick one flow you own. Answer the three audit questions honestly. Then open the actual screen and ask: **does any pixel on this page acknowledge the state I just described?**
+
+If not, that's your design brief.
+
+The full Emotional State skill — the prompts, the template, the audit format — [is here](#). Take it, adapt it, make it yours. The rigor is more important than the specific template.

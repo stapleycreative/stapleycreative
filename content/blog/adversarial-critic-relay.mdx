@@ -1,0 +1,78 @@
+---
+title: "Two minds are better than one: building an adversarial AI critic"
+description: "The first version of every design I ship is subtly wrong. So I built a system where Claude builds, ChatGPT critiques, and I referee. They don't share memory. They disagree. That's the feature."
+date: "2026-04-14"
+tags: ["AI", "Design Process", "Critique", "Cognitive Architecture"]
+---
+
+## One model in one context window is not a critic
+
+The first version of every design I ship is wrong. Not badly wrong. Subtly wrong — the direction looks reasonable, the details look polished, and I'm too close to notice what's missing.
+
+This used to be solved by design crits. A senior designer, a PM, an engineer — separate contexts, separate priors, separate blind spots. They'd see what I couldn't.
+
+AI broke that loop. For a while I was using one model for everything: build, evaluate, refine. And I kept shipping work that later reviewers would flag in thirty seconds.
+
+The reason is structural. **One model in one context window gets sycophantic.** It agrees with its own prior decisions. It pattern-matches to its own output. It congratulates you on the direction it suggested three turns ago. This is the AI equivalent of asking the designer to critique their own work.
+
+So I built a relay.
+
+<ImagePlaceholder
+  alt="Architecture diagram of the adversarial critic relay. Claude builds on one side. ChatGPT critiques on the other. A Python bridge passes artifacts. Four critic roles — Critic, Researcher, PM, Engineer — each with their own system prompts and knowledge base."
+  caption="Claude builds. ChatGPT critiques. Each critic role has its own system prompt, knowledge base, and toolset. Disagreement is the product."
+  aspect="16/9"
+/>
+
+## How the brain does critique
+
+Good critique in the human brain isn't one region agreeing with itself. It's adversarial.
+
+The prefrontal cortex generates a plan. The anterior cingulate cortex flags conflict between the plan and your actual goals. The insula flags emotional dissonance — that *wait, something is off* feeling you can't yet articulate.
+
+Three separate systems, each with its own job, each evaluating the same artifact from a different angle. The PFC doesn't get to overrule them. It has to listen.
+
+Single-model AI flattens all of that into one voice. The relay re-introduces the separation.
+
+## The architecture
+
+- **Builder (Claude).** Writes code. Builds Figma files. Drafts copy. Full creative responsibility for the artifact.
+- **Critic Panel (ChatGPT).** Four roles, each defined in a YAML config: **Critic** (adversarial challenge to the direction), **Researcher** (what does the literature / competitor landscape say), **PM** (does this ship? is it scoped?), **Engineer** (is this actually buildable?). Each role has its own system prompt. Each has its own file_search and web_search tools. None of them share context with the builder.
+- **Relay (Python bridge).** Passes artifacts between them. Claude produces. The relay hands the artifact to each critic in turn. Craig reads the critiques and decides what to accept.
+
+The asymmetry is the whole point. Claude doesn't know what ChatGPT will say. ChatGPT doesn't know what Claude was trying to do — only what Claude shipped. That's a real design crit.
+
+<PullQuote>The useful unit isn't "model." It's "role." A role is a model plus a system prompt plus a knowledge base plus a toolset. Treat roles as team members.</PullQuote>
+
+## A real example
+
+During a build on the GiveCampus Volunteer Management alpha, Claude produced a task card for a volunteer calling workflow. Clean layout. Good typography. Passed my eye.
+
+I sent it through the critic panel. ChatGPT-as-Critic came back with one line:
+
+> You're burying the action. The card's job is to get the volunteer into the call, but the call CTA is tertiary. You've elevated metadata that nobody acts on.
+
+That was correct. I'd inherited hierarchy from a prior pattern without earning it. Claude hadn't caught it because Claude had *built* it. I hadn't caught it because I was tired. An adversarial reviewer with no stake in the build caught it in one turn.
+
+This happens every time. Not because ChatGPT is smarter than Claude — it isn't, most days. Because it's *separate*.
+
+## What this taught me about designing with AI
+
+AI models are not fungible. Each has its own defaults, its own failure modes, its own blind spots. Claude is generous, thorough, a little over-eager. ChatGPT is terse, skeptical, prone to premature scope cuts. Gemini (when I use it) is a quiet validator — useful for catching when both of the others are wrong.
+
+You don't build an AI team by picking the best model. You build it by assigning roles to the model whose failure mode is *least costly* for that role.
+
+- Builder: a model that over-produces. You can always cut.
+- Critic: a model that under-validates. You want it skeptical.
+- Researcher: a model with strong tool use and source citation.
+
+And the roles need to be kept separate. The moment they share memory, they start agreeing. The moment they agree, you're back to one voice.
+
+## The takeaway
+
+If you're designing with one AI, you're designing with your own inner voice made louder. It agrees with you. It remembers your last three turns and builds on them. It does not, cannot, act as a reviewer.
+
+If you're designing with two — wired so they don't share context, don't share priors, don't share style — you have the beginning of a team.
+
+That's the distinction. Not "AI-assisted design." Designing with a small, specialized, adversarial cognitive team.
+
+[The relay config and role prompts are here.](#) Adapt them. Make them yours. The architecture is more valuable than the specific prompts — once you see the pattern, you can build it with whatever models are best this quarter.

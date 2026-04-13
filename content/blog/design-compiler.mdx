@@ -1,0 +1,98 @@
+---
+title: "The Design Compiler: earning hierarchy instead of pattern-matching it"
+description: "AI can generate a component in seconds. The compounding work is deciding what goes where and why. I built a tool that blocks rendering until hierarchy is earned from first principles."
+date: "2026-04-14"
+tags: ["Design Systems", "AI", "Hierarchy", "Design Process"]
+---
+
+## Cargo-cult hierarchy
+
+Here's a pattern I watched myself repeat across three projects before I could name it:
+
+I'd start a new screen. I'd look at the closest prior design — same product, similar surface. I'd copy its field order. I'd rearrange some spacing, swap a color, call the hierarchy "done."
+
+The field order had never been questioned. Not once. Not in the original design, not in the redesign, not in the redesign of the redesign. Every iteration inherited the hierarchy of its parent without asking whether the hierarchy was right.
+
+This is **cargo-cult hierarchy**. It looks like design work. It isn't.
+
+<ImagePlaceholder
+  alt="Two versions of the same screen side by side. Left: cargo-cult hierarchy — fields in the order they were coded, metadata elevated, primary action buried. Right: compiled hierarchy — user intent on top, action surfaces earliest, metadata demoted to a collapsible tray."
+  caption="Same data. Same screen. Two hierarchies. Only one of them was earned."
+  aspect="16/9"
+/>
+
+## What the compiler does
+
+The Design Compiler is a skill — a structured prompt pipeline — that blocks me (or Claude, when Claude is building) from rendering a screen until hierarchy has been earned through first-principles analysis.
+
+It has four stages. Each one produces an artifact. No artifact, no next stage.
+
+### Stage 1 — Inventory
+
+List every field, control, and piece of metadata that could appear on the screen. No opinions yet. Just everything.
+
+This catches a silent failure: designs that inherit only the fields that were on the prior screen, even when the use case has shifted. The compiler forces me to say out loud what's available, not just what was there before.
+
+### Stage 2 — Intent Mapping
+
+For each field, answer three questions:
+
+- **Whose job is this field serving?** Mine, the user's, the business's, or compliance's?
+- **When in the flow does it matter?** Before, during, or after the primary action?
+- **What would break if it weren't here?** (If the answer is "nothing," flag it for removal.)
+
+The answers are unflattering. Most screens have three or four fields serving the business or compliance that pretend to be serving the user. The compiler surfaces them.
+
+### Stage 3 — Rank
+
+<PullQuote>Rank by user intent, not by data model. The order the backend returns fields in is a reflection of schema design, not human priority. Most screens are still accidentally organized by schema.</PullQuote>
+
+Rank every field. Highest intent at top. Weakest at bottom. The ranking is explicit and comparative — "field A ranks higher than field B because [reason]." No ties allowed.
+
+Ties are where cargo-cult sneaks back in. "These feel about equal" means "I haven't decided." The compiler refuses ties.
+
+### Stage 4 — Render
+
+Now — and only now — you can start drawing. The hierarchy is a committed spec, not a vibe. The primary action lives where the highest-ranked element lives. Metadata lives below the interaction zone. Compliance-driven fields are either gated behind a disclosure or made invisible to the user until the moment they matter.
+
+## A real run
+
+The contact report form at GiveCampus is the cleanest example. The original hierarchy, inherited over three prior versions:
+
+1. Visit date
+2. Donor name
+3. Topics discussed (checkbox list)
+4. Next steps (text)
+5. Follow-up date
+6. *...nine more fields...*
+15. Notes (free text)
+
+The compiler run on this same form produced a different ranking:
+
+1. **Notes (free text)** — the gift officer's actual intent is capturing what happened. Everything else is structured exhaust.
+2. **Next steps** — the only field that changes downstream behavior.
+3. **Donor name** — identity context, pre-filled anyway.
+4. **Visit date** — pre-filled, rarely edited.
+5. *...everything else, deprioritized or moved to a secondary panel.*
+
+The redesigned form opens with the free-text field labeled "How was the visit?" Everything else is below. Compliance didn't lose a field. The form gained honesty about whose job each field was serving.
+
+## Why a tool and not a checklist
+
+I've tried design-hierarchy checklists before. They don't work. The checklist assumes you'll notice when you're skipping it, and the entire failure mode of cargo-cult hierarchy is that you *don't notice*. You're copying, not deciding.
+
+A compiler is different. It gates the output. You literally cannot produce a rendered screen until the hierarchy artifact exists. That changes the failure from "I didn't think about hierarchy" to "I have to think about hierarchy before I can move on."
+
+This is the whole theme of the work I'm doing right now: **turn mental discipline into mechanical gates**. Checklists require the mental discipline to run them. Gates don't.
+
+## Where AI sharpens this, not replaces it
+
+AI can generate a button, a card, a whole screen in seconds. What it cannot do — reliably, at all — is tell you whether the hierarchy it produced is the *right* hierarchy for this specific user, in this specific state, at this specific moment in the flow.
+
+If you hand a vague prompt to any generation tool, you'll get a screen whose hierarchy is a blend of everything similar that was in the training data. That hierarchy is not earned. It is averaged.
+
+The compiler is the pre-work that makes the generation useful. You run it first. You give the AI the ranked intent output. Now the generation has a target. Now you're collaborating with the model instead of hoping it reads your mind.
+
+## Grab the compiler
+
+The full Design Compiler skill — the stage prompts, the rubric, the artifact templates — [is here](#). Use it with whatever AI tool you're using, or run it manually in your own head. The mechanism is what matters. Hierarchy has to be earned. The tool just makes skipping the earning feel as wrong as it actually is.
