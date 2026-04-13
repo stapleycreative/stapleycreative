@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Cognitive Architecture for Design — Craig Stapley</title>
+<meta name="description" content="I design with AI the way a neuroscientist builds a mind — by modeling parts of human cognition that produce good work, then giving them to the machine." />
+<link rel="preconnect" href="https://rsms.me/" />
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+<style>
+  :root{
+    --sand-1:#fdfdfc; --sand-2:#f9f9f8; --sand-3:#f1f0ee; --sand-4:#e9e8e4;
+    --sand-5:#e2e1dc; --sand-6:#dad9d3; --sand-7:#cfcec7; --sand-8:#bcbbb2;
+    --sand-9:#8d8d86; --sand-10:#82827c; --sand-11:#63635e; --sand-12:#21201c;
+    --ink:#1c1b18; --accent:#2b2a25;
+    --serif:'Inter',ui-sans-serif,system-ui,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+    --grid: repeating-linear-gradient(90deg, rgba(28,27,24,.018) 0 1px, transparent 1px 8px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --sand-1:#111110; --sand-2:#181817; --sand-3:#1f1e1d; --sand-4:#26251f;
+      --sand-5:#2d2c27; --sand-6:#393832; --sand-7:#4a4944; --sand-8:#626159;
+      --sand-9:#7f7e74; --sand-10:#8b8a82; --sand-11:#b0afa8; --sand-12:#ededea;
+      --ink:#ededea; --accent:#c9c8c2;
+      --grid: repeating-linear-gradient(90deg, rgba(237,237,234,.025) 0 1px, transparent 1px 8px);
+    }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:var(--serif);
+    font-feature-settings:'ss01','cv11','tnum';
+    background:var(--sand-1);
+    color:var(--sand-12);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    background-image:var(--grid);
+    background-attachment:fixed;
+  }
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--sand-12);color:var(--sand-1)}
+
+  .wrap{max-width:1040px;margin:0 auto;padding:32px 28px 120px}
+  header.top{
+    display:flex;justify-content:space-between;align-items:center;
+    padding-bottom:64px;font-family:var(--mono);font-size:12px;color:var(--sand-11);
+    letter-spacing:.02em;
+  }
+  header.top a{border-bottom:1px solid transparent;transition:border-color .15s ease}
+  header.top a:hover{border-color:var(--sand-8)}
+  header.top .crest{color:var(--sand-12)}
+
+  .eyebrow{
+    font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+    color:var(--sand-10);text-transform:none;
+  }
+
+  h1.lede{
+    font-size:clamp(32px,5vw,56px);
+    line-height:1.08;letter-spacing:-.02em;font-weight:500;
+    margin:14px 0 28px;max-width:22ch;
+  }
+  h1.lede em{font-style:normal;color:var(--sand-11)}
+  .sub{
+    max-width:58ch;font-size:18px;line-height:1.55;color:var(--sand-11);
+  }
+  .sub strong{color:var(--sand-12);font-weight:500}
+
+  .rule{
+    border:0;border-top:1px solid var(--sand-6);
+    margin:64px 0;
+  }
+
+  /* Cognitive Map */
+  .mapwrap{margin:32px 0 48px;position:relative}
+  .map{
+    display:block;width:100%;height:auto;
+    max-width:880px;margin:0 auto;
+  }
+  .map text{font-family:var(--mono);font-size:11px;fill:var(--sand-12);letter-spacing:.02em}
+  .map .artifact{fill:var(--sand-10);font-size:10px;opacity:0;transition:opacity .2s ease}
+  .map .node:hover .artifact,.map .node:focus-within .artifact{opacity:1}
+  .map .node circle{fill:var(--sand-2);stroke:var(--sand-7);stroke-width:1;transition:stroke .15s ease, fill .15s ease}
+  .map .node:hover circle{stroke:var(--sand-12);fill:var(--sand-3)}
+  .map .link{stroke:var(--sand-6);stroke-width:1;stroke-dasharray:2 4}
+  .map .datum{stroke:var(--sand-8);stroke-width:1;opacity:0;transition:opacity .2s ease}
+  .map .node:hover .datum{opacity:1}
+
+  /* Pillars */
+  .pillars{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
+    margin:40px 0 16px;
+  }
+  @media(max-width:820px){.pillars{grid-template-columns:1fr}}
+  .pillar{
+    display:block;padding:24px 0 24px;
+    border-top:1px solid var(--sand-5);
+    position:relative;transition:border-color .2s ease;
+  }
+  .pillar:hover{border-top-color:var(--sand-12)}
+  .pillar .ey{font-family:var(--mono);font-size:11px;color:var(--sand-10);margin-bottom:14px;letter-spacing:.04em}
+  .pillar h3{font-size:22px;line-height:1.2;letter-spacing:-.01em;font-weight:500;margin:0 0 12px;color:var(--sand-12)}
+  .pillar p{font-size:15px;line-height:1.55;color:var(--sand-11);margin:0 0 20px}
+  .pillar .more{font-family:var(--mono);font-size:12px;color:var(--sand-12);display:inline-flex;align-items:center;gap:6px}
+  .pillar .more::after{content:'→';transition:transform .15s ease}
+  .pillar:hover .more::after{transform:translateX(3px)}
+
+  /* Article */
+  article{max-width:680px;margin:0 auto}
+  article h2{
+    font-size:28px;line-height:1.2;letter-spacing:-.015em;
+    font-weight:500;margin:72px 0 24px;color:var(--sand-12);
+  }
+  article h3{
+    font-size:17px;font-weight:500;margin:40px 0 12px;color:var(--sand-12);
+  }
+  article p{font-size:17px;line-height:1.65;color:var(--sand-11);margin:0 0 20px}
+  article p strong{color:var(--sand-12);font-weight:500}
+  article blockquote{
+    border-left:2px solid var(--sand-8);
+    padding:4px 0 4px 20px;margin:28px 0;
+    font-style:italic;color:var(--sand-11);font-size:17px;
+  }
+  article .code{
+    font-family:var(--mono);font-size:12.5px;line-height:1.55;
+    background:var(--sand-2);border:1px solid var(--sand-6);
+    border-radius:8px;padding:20px;margin:28px 0;
+    color:var(--sand-12);white-space:pre;overflow-x:auto;
+  }
+  article ul{padding-left:22px;margin:0 0 20px;color:var(--sand-11);font-size:17px;line-height:1.65}
+  article ul li{margin-bottom:8px}
+  article table{
+    width:100%;border-collapse:collapse;margin:28px 0;font-size:14px;
+  }
+  article th,article td{
+    text-align:left;padding:10px 12px;
+    border-bottom:1px solid var(--sand-5);color:var(--sand-11);
+    vertical-align:top;
+  }
+  article th{font-family:var(--mono);font-size:11px;color:var(--sand-10);font-weight:500;letter-spacing:.04em;border-bottom-color:var(--sand-7)}
+
+  /* Status badge */
+  .draft-tag{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--mono);font-size:11px;color:var(--sand-10);
+    padding:6px 10px;border:1px solid var(--sand-6);border-radius:999px;
+    margin-bottom:24px;
+  }
+  .draft-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:#c89b3c}
+
+  footer{
+    margin-top:96px;padding-top:32px;border-top:1px solid var(--sand-6);
+    font-family:var(--mono);font-size:11px;color:var(--sand-10);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;
+  }
+  footer a:hover{color:var(--sand-12)}
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;animation:none!important}
+    .map .artifact,.map .datum{opacity:1!important}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <a href="/" class="crest">Craig Stapley</a>
+  <nav>
+    <a href="/">Home</a>&nbsp;&nbsp;<a href="/work">Work</a>&nbsp;&nbsp;<a href="/about">About</a>
+  </nav>
+</header>
+
+<section>
+  <div class="draft-tag">Draft · 2026-04-13 · not yet shared</div>
+  <div class="eyebrow">Cognitive architecture for design</div>
+  <h1 class="lede">I design with AI the way a neuroscientist builds a mind.</h1>
+  <p class="sub">
+    <strong>I'm Craig.</strong> I design products and the AI systems that help me design them.
+    Not "AI-assisted design." Small cognitive systems — each one modeled on a specific part of
+    how human brains actually produce good work — plugged into my process as separate roles.
+    Recently: a volunteer-management platform at GiveCampus, and an AI workflow that mimics
+    the neural handoff behind novel thought.
+  </p>
+</section>
+
+<hr class="rule" />
+
+<section>
+  <div class="eyebrow">Fig. 1 / Six pieces of a designer's mind I gave to the machine</div>
+  <div class="mapwrap">
+    <svg class="map" viewBox="0 0 880 360" role="img" aria-label="Six cognitive functions externalized into AI systems">
+      <!-- connecting lines -->
+      <line class="link" x1="150" y1="90"  x2="440" y2="180" />
+      <line class="link" x1="440" y1="90"  x2="440" y2="180" />
+      <line class="link" x1="730" y1="90"  x2="440" y2="180" />
+      <line class="link" x1="150" y1="270" x2="440" y2="180" />
+      <line class="link" x1="440" y1="270" x2="440" y2="180" />
+      <line class="link" x1="730" y1="270" x2="440" y2="180" />
+
+      <!-- hub -->
+      <g class="node">
+        <circle cx="440" cy="180" r="50" />
+        <text x="440" y="177" text-anchor="middle">design</text>
+        <text x="440" y="191" text-anchor="middle">practice</text>
+      </g>
+
+      <!-- top row -->
+      <g class="node" tabindex="0">
+        <circle cx="150" cy="90" r="36" />
+        <text x="150" y="93" text-anchor="middle">bisociation</text>
+        <line class="datum" x1="100" y1="140" x2="200" y2="140" />
+        <text class="artifact" x="150" y="158" text-anchor="middle">→ Creativity Engine</text>
+      </g>
+      <g class="node" tabindex="0">
+        <circle cx="440" cy="90" r="36" />
+        <text x="440" y="88" text-anchor="middle">adversarial</text>
+        <text x="440" y="100" text-anchor="middle">review</text>
+        <line class="datum" x1="390" y1="140" x2="490" y2="140" />
+        <text class="artifact" x="440" y="158" text-anchor="middle">→ Claude ↔ ChatGPT relay</text>
+      </g>
+      <g class="node" tabindex="0">
+        <circle cx="730" cy="90" r="36" />
+        <text x="730" y="88" text-anchor="middle">procedural</text>
+        <text x="730" y="100" text-anchor="middle">memory</text>
+        <line class="datum" x1="680" y1="140" x2="780" y2="140" />
+        <text class="artifact" x="730" y="158" text-anchor="middle">→ Mode-based workflow</text>
+      </g>
+
+      <!-- bottom row -->
+      <g class="node" tabindex="0">
+        <circle cx="150" cy="270" r="36" />
+        <text x="150" y="273" text-anchor="middle">metacognition</text>
+        <line class="datum" x1="100" y1="220" x2="200" y2="220" />
+        <text class="artifact" x="150" y="212" text-anchor="middle">→ 5-Gate design process</text>
+      </g>
+      <g class="node" tabindex="0">
+        <circle cx="440" cy="270" r="36" />
+        <text x="440" y="268" text-anchor="middle">sensorimotor</text>
+        <text x="440" y="280" text-anchor="middle">loop</text>
+        <line class="datum" x1="390" y1="220" x2="490" y2="220" />
+        <text class="artifact" x="440" y="212" text-anchor="middle">→ Figma MCP bridge</text>
+      </g>
+      <g class="node" tabindex="0">
+        <circle cx="730" cy="270" r="36" />
+        <text x="730" y="268" text-anchor="middle">skill</text>
+        <text x="730" y="280" text-anchor="middle">chunking</text>
+        <line class="datum" x1="680" y1="220" x2="780" y2="220" />
+        <text class="artifact" x="730" y="212" text-anchor="middle">→ 25-skill plugin library</text>
+      </g>
+    </svg>
+    <p class="sub" style="max-width:70ch;margin-top:24px;font-size:15px">
+      <em style="color:var(--sand-10);font-style:normal">Hover each node.</em>
+      Each one is a specific cognitive function — already studied in neuroscience —
+      that I've externalized into an AI system sitting inside my design workflow.
+      The hub in the middle is what happens when they cooperate.
+    </p>
+  </div>
+</section>
+
+<hr class="rule" />
+
+<section>
+  <div class="eyebrow">Three deeper dives</div>
+  <div class="pillars">
+
+    <a class="pillar" href="#bisociation">
+      <div class="ey">01 / Bisociation</div>
+      <h3>Forcing an AI to think sideways instead of downhill.</h3>
+      <p>A four-phase engine modeled on the DMN→ECN handoff that neuroscience says
+         actually produces novel thought. Collides unrelated domains on purpose.</p>
+      <span class="more">Read the breakdown</span>
+    </a>
+
+    <a class="pillar" href="#adversarial">
+      <div class="ey">02 / Adversarial review</div>
+      <h3>Two minds are better than one.</h3>
+      <p>Claude builds. ChatGPT critiques. Separate context windows, separate prompts,
+         separate knowledge bases. Disagreement is the feature.</p>
+      <span class="more">Read the breakdown</span>
+    </a>
+
+    <a class="pillar" href="#procedural">
+      <div class="ey">03 / Procedural memory</div>
+      <h3>An external executive function for an ADHD brain.</h3>
+      <p>Five gates. Six modes (Dump, Collect, Scope, Craft, Explore, Refine).
+         A scaffold where depth and momentum stop being in opposition.</p>
+      <span class="more">Read the breakdown</span>
+    </a>
+
+  </div>
+</section>
+
+<hr class="rule" />
+
+<article id="bisociation">
+  <div class="eyebrow">Article / 01</div>
+  <h2>The Creativity Engine: forcing an AI to think sideways</h2>
+
+  <p>I kept noticing that when I asked an AI to brainstorm, it gave me the <em>average</em>
+     of everything it had ever read on the topic. Useful. Derivative. Obvious.</p>
+  <p>Which matches what neuroscience says about where novel ideas actually come from: not from
+     thinking harder about the problem, but from <strong>colliding the problem with something
+     that has no business being near it</strong>. So I built a system that forces those collisions.</p>
+
+  <h3>The neuroscience</h3>
+  <p>Arthur Koestler's <em>The Act of Creation</em> (1964) called this <strong>bisociation</strong> —
+     the moment of insight when two unrelated conceptual matrices suddenly share structure.
+     Modern fMRI backs him up. Novel idea production involves a handoff between the
+     <strong>Default Mode Network</strong> (DMN — mind-wandering, loose association) and the
+     <strong>Executive Control Network</strong> (ECN — focused evaluation).
+     Creative people aren't better at being in either state longer. They're better at
+     <strong>switching</strong> between them.</p>
+  <p>The salience network (anterior insula, anterior cingulate) is the referee. It decides which
+     loose association from the DMN is worth promoting to the ECN for evaluation. Most
+     brainstorming fails because it stays in the ECN the whole time. You're evaluating without
+     having diverged. You get the obvious answer, polished.</p>
+
+  <h3>The architecture — four phases mapped to the neural analog</h3>
+  <table>
+    <thead>
+      <tr><th>Phase</th><th>Cognitive analog</th><th>What the engine does</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Incubate</td><td>DMN — mind-wandering</td>
+          <td>Pulls signals from three unrelated domains (museum curation, archaeology, documentary film, and so on). Generates weak associations.</td></tr>
+      <tr><td>Diverge</td><td>DMN → ECN handoff</td>
+          <td>Produces 8+ bisociations, each scored on semantic distance (0 = obvious, 10 = unrelated). Targets the 5–7 zone — far enough to be novel, close enough to be coherent.</td></tr>
+      <tr><td>Switch</td><td>Salience network</td>
+          <td>Four-filter test: surprise, coherence, timing, zero-audience. Kills ideas that are novel-but-incoherent or coherent-but-stale.</td></tr>
+      <tr><td>Converge</td><td>ECN — focused evaluation</td>
+          <td>Builds concept cards for survivors. Deep dive on the top pick — competitive landscape, unit economics, risk map.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Why domains are rotated</h3>
+  <p>A Matrix B rotation log tracks which cross-domain inputs have been used. Jazz and
+     mycorrhizal networks get banned after three uses — because they become the new obvious.
+     This mirrors a real property of human creativity: the same metaphor stops producing
+     novelty after repeated use. The engine fights its own laziness.</p>
+
+  <h3>What I actually learned building it</h3>
+  <ul>
+    <li>AI brainstorming without forced divergence is useless. You will get the center of the distribution.</li>
+    <li>The referee function (salience) is the hardest part to encode. I ended up hardcoding it as explicit rubrics — asking the model to "be surprising but coherent" collapses to average.</li>
+    <li>The memory loop is essential. Without it the engine re-invents the same metaphors. With it, novelty compounds across sessions.</li>
+    <li>This is not a brainstorming app. It's a thinking prosthesis for someone (me) whose ADHD brain defaults to the first coherent direction.</li>
+  </ul>
+
+  <blockquote>
+    Most AI tools try to simulate a smart generalist. The Creativity Engine doesn't.
+    It simulates the specific neural handoff that, according to fMRI evidence,
+    actually produces novel thought. Not "AI that sounds creative." AI that models
+    how creativity works.
+  </blockquote>
+</article>
+
+<hr class="rule" />
+
+<article id="adversarial">
+  <div class="eyebrow">Article / 02</div>
+  <h2>Two minds are better than one: building an adversarial AI critic</h2>
+
+  <p>The first version of every design I ship is wrong. Not badly wrong — <em>subtly</em>
+     wrong, in the way that's hardest to see: the direction looks reasonable, the details
+     look polished, and I'm too close to notice what's missing.</p>
+  <p>So I built a system where Claude builds and ChatGPT critiques. They don't share memory.
+     They don't share style. They disagree, and I referee.</p>
+
+  <h3>The problem with single-model AI</h3>
+  <p>One model in one context window gets sycophantic. It agrees with its own prior decisions.
+     It pattern-matches to its own output. This is the AI equivalent of asking the designer
+     to critique their own work. You get better writing, not better thinking.</p>
+
+  <h3>How the human brain actually does critique</h3>
+  <p>The adversarial loop in the brain is distributed across <strong>separate</strong> systems:
+     the prefrontal cortex generates a plan, the anterior cingulate cortex flags conflict,
+     the insula flags emotional dissonance. Good design thinking requires separate systems
+     evaluating — not one system agreeing with itself.</p>
+
+  <h3>The architecture</h3>
+  <div class="code">        ┌─────────────┐
+        │   Craig     │  ← referees, makes final calls
+        │  (human)    │
+        └──────┬──────┘
+               │
+    ┌──────────┴──────────┐
+    │                     │
+┌───▼────┐          ┌─────▼──────┐
+│ Claude │ artifact │  ChatGPT   │
+│ builds │─────────▶│ critiques  │
+│ (code, │          │ (4 roles:  │
+│ Figma) │◀─────────│  critic,   │
+└────────┘ critique │  researcher│
+                    │  PM, ENG)  │
+                    └────────────┘
+    Different weights, different contexts,
+    different tools. Disagreement is the feature.</div>
+  <p>Each critic role has its own system prompt, its own knowledge base (via OpenAI Assistants
+     <code>file_search</code>), and its own tool set. A Python relay passes artifacts between
+     them. The useful unit isn't "model" — it's <strong>role</strong>: model + system prompt +
+     knowledge base + tool set. Treat roles as team members.</p>
+
+  <h3>What it catches that I don't</h3>
+  <p>Real example. GC Volunteer Management 2.0, a task card component. Claude's build passed
+     my eye. The ChatGPT critic surfaced: <em>"You're burying the action. The card's job is
+     to get the volunteer into the call, but the call CTA is tertiary."</em> That was correct.
+     I'd inherited hierarchy from a prior pattern without earning it.</p>
+
+  <h3>What designing with AI this way teaches you</h3>
+  <ul>
+    <li>AI models aren't fungible. Each has its own defaults, its own failure modes, its own blind spots.</li>
+    <li>Context-window asymmetry is the mechanism. The critic <em>must not</em> share the builder's context. That's the whole point.</li>
+    <li>The referee (you) is still load-bearing. The system surfaces disagreement; a human decides which disagreement matters.</li>
+  </ul>
+
+  <blockquote>
+    If you're designing with one AI, you're designing with your own inner voice made louder.
+    Designing with two is the beginning of having a team.
+  </blockquote>
+</article>
+
+<hr class="rule" />
+
+<article id="procedural">
+  <div class="eyebrow">Article / 03</div>
+  <h2>Design process as external executive function</h2>
+
+  <p>I have ADHD. My working memory is limited, my default mode is perfectionism, and the
+     thing I'm best at — seeing connections others miss — is also the thing that makes it
+     hardest for me to finish. So I built a design process that treats these traits as
+     engineering constraints, not character flaws.</p>
+
+  <h3>Five gates</h3>
+  <p>Every piece of design work passes through five checkpoints: <strong>Orient</strong>
+     (read docs, state plan), <strong>Think</strong> (hierarchy, emotional state, patterns),
+     <strong>Build</strong>, <strong>Critique</strong> (adversarial review — see Article 02),
+     <strong>Present</strong>. Skipping Gate 4 is my most common failure mode. Naming the
+     gate made the failure mode visible. Making the gate mandatory made it fixable.</p>
+
+  <h3>Six modes</h3>
+  <p>Inside the gates, work happens in one of six modes: <strong>Dump</strong> (brain off,
+     everything out), <strong>Collect</strong> (pull references), <strong>Scope</strong>
+     (decide what matters), <strong>Craft</strong> (execute), <strong>Explore</strong>
+     (diverge), <strong>Refine</strong> (polish). Only one mode at a time. The cost of
+     switching is real — naming the modes made the switching cost visible, which made it
+     negotiable.</p>
+
+  <h3>Why this is the same architecture as the brain's executive function</h3>
+  <p>The prefrontal cortex's job is task-switching, working-memory management, and inhibitory
+     control. In an ADHD brain, that system is noisier. What I built — gates for attention
+     allocation, modes for task switching, written plans for working-memory offload — is a
+     direct analog. It doesn't fix the noise. It moves the scaffolding outside the skull
+     where it's harder to lose.</p>
+
+  <blockquote>
+    The lesson: if your brain is the problem, don't argue with it. Give the problem to a system.
+  </blockquote>
+</article>
+
+<hr class="rule" />
+
+<footer>
+  <div>Craig Stapley · Senior Product Designer · GiveCampus</div>
+  <div><a href="mailto:craig.stapley@givecampus.com">craig.stapley@givecampus.com</a> · <a href="https://www.linkedin.com/in/stapley/" target="_blank" rel="noopener">LinkedIn</a></div>
+</footer>
+
+</div>
+</body>
+</html>
