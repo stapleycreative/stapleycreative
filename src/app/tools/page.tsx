@@ -138,7 +138,7 @@ export default function ToolsPage() {
                       backgroundColor:
                         tool.status === "live"
                           ? "rgba(13, 116, 206, 0.08)"
-                          : "rgba(20, 20, 19, 0.06)",
+                          : "rgba(33, 31, 38, 0.06)",
                       color:
                         tool.status === "live"
                           ? "var(--color-accent)"

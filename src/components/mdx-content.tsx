@@ -23,7 +23,7 @@ const components = {
           backgroundColor: "var(--color-bg-surface)",
           border: "1px solid var(--color-border-subtle)",
           backgroundImage:
-            "repeating-linear-gradient(135deg, rgba(28,32,36,0.025) 0px, rgba(28,32,36,0.025) 1px, transparent 1px, transparent 10px)",
+            "repeating-linear-gradient(135deg, rgba(33,31,38,0.025) 0px, rgba(33,31,38,0.025) 1px, transparent 1px, transparent 10px)",
         }}
       />
       {caption && (
@@ -111,8 +111,8 @@ const components = {
             className="rounded shrink-0"
             style={{
               padding: "2px 6px",
-              backgroundColor: "rgba(20, 20, 19, 0.06)",
-              color: "rgba(20, 20, 19, 0.5)",
+              backgroundColor: "rgba(33, 31, 38, 0.06)",
+              color: "rgba(33, 31, 38, 0.5)",
               fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
               fontSize: "11px",
               fontWeight: 400,
@@ -133,8 +133,8 @@ const components = {
             className="rounded shrink-0"
             style={{
               padding: "2px 6px",
-              backgroundColor: "rgba(20, 20, 19, 0.06)",
-              color: "rgba(20, 20, 19, 0.5)",
+              backgroundColor: "rgba(33, 31, 38, 0.06)",
+              color: "rgba(33, 31, 38, 0.5)",
               fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
               fontSize: "11px",
               fontWeight: 400,
@@ -155,8 +155,8 @@ const components = {
             className="rounded shrink-0"
             style={{
               padding: "2px 6px",
-              backgroundColor: "rgba(20, 20, 19, 0.08)",
-              color: "rgba(20, 20, 19, 0.65)",
+              backgroundColor: "rgba(33, 31, 38, 0.08)",
+              color: "rgba(33, 31, 38, 0.65)",
               fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
               fontSize: "11px",
               fontWeight: 500,
