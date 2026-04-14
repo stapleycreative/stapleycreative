@@ -165,14 +165,14 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
       <section className="pt-32 pb-20 relative">
         <h1
           ref={headlineRef}
-          className="text-4xl sm:text-5xl lg:text-[56px] font-semibold tracking-tight leading-[1.1] max-w-[700px]"
+          className="text-4xl sm:text-5xl lg:text-[56px] font-semibold tracking-tight leading-[1.1] max-w-[860px]"
           style={{ color: "var(--color-text-primary)" }}
         >
           I figure out the real problem. Then I build the system that fixes it.
         </h1>
         <p
           ref={subheadRef}
-          className="mt-8 text-lg max-w-[600px] leading-relaxed"
+          className="mt-8 text-lg max-w-[760px] leading-relaxed"
           style={{ color: "var(--color-text-secondary)" }}
         >
           Product designer. Twenty years turning ambiguity into systems
