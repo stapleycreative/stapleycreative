@@ -10,10 +10,8 @@ date: "2022-06-01"
 
 <OutcomeBlock
   problem="Standard engagement patterns, notifications, infinite scroll, social proof, harmed neurodivergent users."
-
   change="Nervous-system-aware interaction model. Opt-in everything. Energy-organized spaces."
   result="Users reported feeling safe, the only social platform where they could unmask."
-
 />
 
 ## What Hiki was
@@ -22,20 +20,17 @@ A social platform for autistic and ADHD adults. A community space built specific
 
 I joined as the first product designer. The app existed in rough form, chat-based community with profiles and group conversations. My job was to rebuild the interaction model from scratch.
 
-
 ## Why the standard playbook fails
 
 Every consumer social platform runs the same playbook: push notifications drive opens, infinite scroll extends session time, social proof mechanics (likes, follower counts, activity indicators) create FOMO, friction-free sharing grows the network.
 
-These patterns optimize for neurotypical attention and motivation. For neurodivergent users, they fail in specific, predictable ways:
+These patterns optimize for neurotypical attention and motivation. For neurodivergent users, they fail in specific, predictable ways.
 
-**Push notifications and rejection sensitivity.** ADHD and autism both correlate with rejection sensitive dysphoria, an intense emotional response to perceived social rejection. "3 people are talking in your group" sounds innocent. For someone with RSD, it triggers: *Are they talking about me? Did I miss something? Will they judge me for not being there?* The notification is designed to create urgency. For this group, it creates dread.
-
+**Push notifications and rejection sensitivity.** ADHD and autism both correlate with rejection sensitive dysphoria, an intense emotional response to perceived social rejection. "3 people are talking in your group" sounds innocent. For someone with RSD, it triggers: Are they talking about me? Did I miss something? Will they judge me for not being there? The notification is designed to create urgency. For this group, it creates dread.
 
 **Infinite scroll and dopamine dysregulation.** ADHD involves dysregulated dopamine signaling. Infinite scroll exploits this directly. The variable-reward pattern of "maybe the next post will be interesting" is the same mechanic that makes slot machines addictive. For users who already struggle with task-switching and time perception, infinite scroll isn't a convenience. It's a trap.
 
 **Social proof and masking pressure.** Autistic adults in mainstream social spaces often mask, suppress their natural communication style to fit neurotypical norms. Likes, follower counts, engagement metrics create performance pressure that reinforces masking. In a community designed for unmasking, these mechanics actively harm.
-
 
 I documented these failure modes in a research brief. Specific references to clinical literature on RSD, dopamine dysregulation, autistic masking. Not theoretical. I mapped each standard UI pattern to the neurological mechanism it exploits. Showed how the intended behavior (engagement) and the actual behavior (anxiety, avoidance, masking) diverged completely.
 
@@ -51,7 +46,7 @@ Default state: no push notifications. Zero. Users could opt in during onboarding
 
 Hardest sell internally. The founding team understood the reasoning. But social apps live and die by DAU, and push notifications are the strongest DAU driver in the industry.
 
-I argued that DAU was the wrong metric for this product. **The right metric is return rate.** Do users come back voluntarily, without being summoned? A user who opens the app because they want to is in a fundamentally different psychological state than one who opens it because anxiety forced them. The first leads to genuine connection. The second leads to a quick check and an exit.
+I argued that DAU was the wrong metric for this product. The right metric is return rate. Do users come back voluntarily, without being summoned? A user who opens the app because they want to is in a fundamentally different psychological state than one who opens it because anxiety forced them. The first leads to genuine connection. The second leads to a quick check and an exit.
 
 Notification control was explicit in onboarding. Not buried in settings. Not a permissions dialog users dismiss reflexively. A dedicated screen: "You control when this app talks to you. Here's what we can notify you about. Everything is off by default. Turn on what you want."
 
@@ -61,21 +56,19 @@ Notification control was explicit in onboarding. Not buried in settings. Not a p
 
 Every screen has a visible, single-tap exit. No confirmation dialogs. No "Are you sure you want to leave this conversation?" No modal traps.
 
-This sounds minor. It's not. Confirmation dialogs are a retention pattern, they create friction to reduce abandonment. For users experiencing sensory overwhelm or social anxiety mid-conversation, friction becomes a wall. If leaving requires a two-tap confirmation, some users won't leave. They'll freeze. Others will force-close the app entirely, which is worse than a clean exit.
+This sounds minor. It's not. Confirmation dialogs are a retention pattern. They create friction to reduce abandonment. For users experiencing sensory overwhelm or social anxiety mid-conversation, friction becomes a wall. If leaving requires a two-tap confirmation, some users won't leave. They'll freeze. Others will force-close the app entirely, which is worse than a clean exit.
 
-
-When a user leaves, other participants see "stepped away." Not "left." Tested this language with 12 beta users. "Left" felt final and triggered worry ("Did I say something wrong?"). "Stepped away" felt temporary and neutral. Small word choice. Meaningful impact on group anxiety.
+When a user leaves, other participants see "stepped away." Not "left." Tested this language with 12 beta users. "Left" felt final and triggered worry. Did I say something wrong? "Stepped away" felt temporary and neutral. Small word choice. Meaningful impact on group anxiety.
 
 ### 3. Spaces organized by energy, not just topic
 
 Most novel design decision. The one I'm most proud of.
 
-Standard organization: channels named by topic (Gaming, Movies, Cooking). Works fine for neurotypical users who can context-switch. For neurodivergent users, the topic is less important than the *interaction modality.* How much energy does this space require? What's the communication style? Voice? Video? Rapid-fire messages?
+Standard organization: channels named by topic (Gaming, Movies, Cooking). Works fine for neurotypical users who can context-switch. For neurodivergent users, the topic is less important than the interaction modality. How much energy does this space require? What's the communication style? Voice? Video? Rapid-fire messages?
 
-I redesigned group spaces with two-axis filtering: **topic** and **energy profile.**
+I redesigned group spaces with two-axis filtering: topic and energy profile.
 
 Energy profiles: "Low-energy text only" (slow-paced, async-friendly, no voice), "Casual voice" (voice chat, cameras optional, comfortable silences expected), "Active discussion" (faster-paced, more back-and-forth, still text-optional), and "Co-working" (shared presence with minimal interaction, just knowing someone else is there).
-
 
 Users could filter by energy level before entering. The space preview showed not just topic and member count, but the current pace (messages per hour), whether voice was active, and expected communication norms.
 
@@ -83,12 +76,7 @@ Users could filter by energy level before entering. The space preview showed not
 
 ### 4. Sensory defaults favor calm
 
-The app's default sensory profile:
-- All animations respect `prefers-reduced-motion`. Reduced motion detected, transitions are instant.
-- No auto-playing media. Ever. Audio, video, GIFs all require a tap.
-- Color contrast meets WCAG AAA, not AA. The difference between 4.5:1 and 7:1 matters for users with visual processing differences common in autism.
-- Sound is off by default. Haptics are off by default. Both can be enabled in settings.
-- Color palette uses low-saturation, muted tones. No bright accent colors competing for attention.
+The app's default sensory profile: all animations respect prefers-reduced-motion. Reduced motion detected, transitions are instant. No auto-playing media. Ever. Audio, video, GIFs all require a tap. Color contrast meets WCAG AAA, not AA. The difference between 4.5:1 and 7:1 matters for users with visual processing differences common in autism. Sound is off by default. Haptics are off by default. Both can be enabled in settings. Color palette uses low-saturation, muted tones. No bright accent colors competing for attention.
 
 Not accessibility accommodations bolted onto a standard app. The foundation. The app was designed calm-first and could be made more stimulating via user preference. Not the other way around.
 
@@ -96,8 +84,7 @@ Not accessibility accommodations bolted onto a standard app. The foundation. The
 
 I'm AuDHD. Autistic and ADHD. Not sharing this for sympathy. It's a methodological advantage and I want to be transparent about it.
 
-Lived experience of sensory overwhelm, rejection sensitivity, executive function challenges, that informed design decisions user research alone wouldn't surface. Not because the research was bad. Users often can't articulate what their nervous system needs until they experience the alternative.
-
+Lived experience of sensory overwhelm, rejection sensitivity, executive function challenges informed design decisions user research alone wouldn't surface. Not because the research was bad. Users often can't articulate what their nervous system needs until they experience the alternative.
 
 The co-working space is the clearest example. No user in research asked for a space where people are present but not interacting. But I know from lived experience that one of the hardest parts of neurodivergent social life is the gap between "I want to be alone" and "I want company." There's a middle state. Shared presence without social obligation. When we built co-working spaces, they became one of the most-used features. Users said "I didn't know I needed this."
 
@@ -109,16 +96,13 @@ You can't find that in an interview. You find it by understanding the nervous sy
 
 The energy-level system was ahead of its time but too rigid in v1. Energy levels were set by space creators and couldn't adapt dynamically. A "low-energy" space that got an influx of messages felt like a broken contract. I designed a dynamic energy indicator that would adjust the label based on actual activity, truth-in-advertising for the current state. Didn't ship it. Should have been in v1.
 
-
 I also wish I'd pushed harder on onboarding. The notification control screen was good. The broader onboarding was still too linear, a sequence of screens to click through. For users with executive function challenges, a long linear onboarding is its own kind of overwhelm. A progressive onboarding that introduced features in context, over the first week, would have been better.
-
 
 ## Why this matters beyond Hiki
 
 Every interface triggers a nervous system response. Most designers ignore that because the default user is assumed to be neurotypical, emotionally neutral, cognitively available.
 
-Designing for neurodivergent users strips away that assumption and forces you to design for the full range of human cognitive states, depleted attention, heightened anxiety, sensory sensitivity, executive function constraints. The resulting designs aren't just accessible. They're better for everyone.
-
+Designing for neurodivergent users strips away that assumption and forces you to design for the full range of human cognitive states. Depleted attention. Heightened anxiety. Sensory sensitivity. Executive function constraints. The resulting designs aren't just accessible. They're better for everyone.
 
 The quiet notification defaults are better for all users. The escape routes are better. The energy-level filtering helps anyone who's ever joined a group chat and immediately felt overwhelmed.
 

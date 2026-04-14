@@ -168,7 +168,7 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
           className="text-4xl sm:text-5xl lg:text-[56px] font-semibold tracking-tight leading-[1.1] max-w-[700px]"
           style={{ color: "var(--color-text-primary)" }}
         >
-          Staff product designer. AI workflows, design systems, and the judgment that makes both work.
+          I&apos;m Craig. I design products and build the AI systems that make designing them better.
         </h1>
         <p
           ref={subheadRef}
@@ -176,9 +176,9 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
           style={{ color: "var(--color-text-secondary)" }}
         >
           I figure out the real problem, build the decision layer, and ship
-          the prototype. Twenty years of turning ambiguity into systems that
-          actually work. Most recently: a volunteer-management platform at
-          GiveCampus and an AI workflow modeled on how brains produce good work.
+          the prototype. Twenty years turning ambiguity into systems that
+          work. Most recently: a volunteer-management platform at GiveCampus
+          and an AI workflow modeled on how brains actually produce good work.
         </p>
         <div ref={rolesRef} className="mt-8 flex flex-wrap gap-3 items-center">
           <span className="rounded" style={monoTagStyle}>

@@ -1,6 +1,6 @@
 ---
 title: "A form can't hold a relationship"
-description: "A 15-field form killed the nuance in donor relationships. I built a notes-first system that lets AI extract structure, but gift officers stay in control."
+description: "A 15-field form killed relationships. I built a notes-first system that lets AI extract structure, but gift officers stay in control."
 client: "GiveCampus"
 role: "Lead Product Designer (solo)"
 year: "2025–2026"
@@ -18,7 +18,6 @@ date: "2026-01-15"
 
 GiveCampus had a contact report problem. Gift officers, fundraisers who spend 45 minutes in donor meetings, were supposed to file a report afterward. Fifteen fields. Contact type, date, participants, topics discussed, next steps, solicitation stage, giving capacity signals. The usual.
 
-
 Completion rates were in the basement. The ones that got filed? Thin. Checkboxes. One-word answers. Useless to the next person who'd meet that donor. Leadership said: redesign it, make it faster, get people to actually use it.
 
 That was my brief.
@@ -27,8 +26,7 @@ That was my brief.
 
 I didn't start by redesigning the form. I started by watching gift officers work.
 
-Sat in on three donor meetings. Watched what happened after. The pattern was immediate and consistent: 45 minutes of conversation with actual texture to it, a daughter starting college, estate plan questions, body language shifting when the ask got near, followed by a gift officer opening a form to compress all that into dropdowns and checkboxes.
-
+Sat in on three donor meetings. Watched what happened after. The pattern was immediate and consistent: 45 minutes of conversation with actual texture to it. A daughter starting college. Estate plan questions. Body language shifting when the ask got near. Then the gift officer opened a form to compress all that into dropdowns and checkboxes.
 
 One moment stuck with me. An officer finished a meeting, pulled out her phone, dictated a two-minute voice memo. Detailed. Contextual. The kind of relational intelligence that actually drives fundraising. Then she opened the CRM, sighed, and spent eight minutes translating that memo into form fields. The memo was better. Richer. Everything the voice memo contained got flattened in those eight minutes.
 
@@ -40,8 +38,7 @@ The obvious fix: better form design. Conditional logic, smart defaults, fewer fi
 
 Then killed them all.
 
-Here's what I learned: every form optimization made filing faster without fixing the actual problem. Translation loss. That was the problem. The form asked gift officers to compress meaning into structure, and meaning doesn't compress. You'd take a 45-minute conversation full of signals, the donor's tone shift, a offhand comment about estate planning, body language that changed when capital came up, and try to fit it into "Cultivation → Solicitation" on a dropdown.
-
+Here's what I learned: every form optimization made filing faster without fixing the actual problem. Translation loss. That was the problem. The form asked gift officers to compress meaning into structure, and meaning doesn't compress. You take a 45-minute conversation full of signals, the donor's tone shift, an offhand comment about estate planning, body language that changed when capital came up, and try to fit it into "Cultivation → Solicitation" on a dropdown.
 
 A dropdown tells you the stage changed. It doesn't tell you why the officer thinks the donor is ready, what specifically they saw, or what they think will work next. The VP of advancement needs that. The next gift officer needs that. The AI that's supposed to extract strategy from data definitely needs that.
 
@@ -51,12 +48,11 @@ I wrote up the diagnosis and took it to the product team. The form isn't the pro
 
 ## Three directions I explored
 
-Three fundamentally different approaches to capture, once the team stopped treating the form as gospel:
+Three fundamentally different approaches to capture, once the team stopped treating the form as gospel.
 
-**Direction A: Structured interview.** The system asks conversational questions: "How did the meeting feel?" "Did anything surprise you?" Then builds structured data from the answers. Problem: structure too early. The questions shape what gets remembered. Research in cognitive interviewing shows structured prompts suppress 25–40% of recoverable detail compared to free recall.
+**Direction A: Structured interview.** The system asks conversational questions. "How did the meeting feel?" "Did anything surprise you?" Then builds structured data from the answers. Problem: structure too early. The questions shape what gets remembered. Research in cognitive interviewing shows structured prompts suppress 25–40% of recoverable detail compared to free recall.
 
-**Direction B: Template notes.** Rich text editor with lightweight headers. Context, Key Moments, Next Steps, that officers fill in naturally. AI extracts afterward. Problem: templates still bias the output. Officers write to the template, not what they saw.
-
+**Direction B: Template notes.** Rich text editor with lightweight headers. Context, Key Moments, Next Steps. Officers fill in naturally. AI extracts afterward. Problem: templates still bias the output. Officers write to the template, not what they saw.
 
 **Direction C: Blank canvas.** A single text area. No structure. No prompts. Officers write or dictate whatever they remember in whatever order it surfaces. AI processes raw input, produces structured record. Officer reviews and corrects.
 
@@ -70,9 +66,9 @@ Inverted the form hierarchy. When a gift officer opens a contact report, they se
 
 A large textarea. About 80% of the viewport. A small voice toggle. A date field pre-filled to today. A contact name field with autocomplete. That's the entire interface.
 
-No structure. Not until after the notes are saved. That's intentional. The absence of structure is the feature. It says: *tell us what happened, in your own words, in the order it comes.*
+No structure. Not until after the notes are saved. That's intentional. The absence of structure is the feature. It says: tell us what happened, in your own words, in the order it comes.
 
-The voice toggle is more important than it appears. Gift officers are in hallways, sitting in cars after meetings, walking between buildings. A voice-first option means they can file while the conversation is still fresh in memory. 90 seconds of dictation beats 8 minutes of form-filling an hour later, when the detail is already fading.
+The voice toggle is more important than it appears. Gift officers are in hallways, sitting in cars after meetings, walking between buildings. A voice-first option means they can file while the conversation is still fresh in memory. Ninety seconds of dictation beats eight minutes of form-filling an hour later, when the detail is already fading.
 
 <ImagePlaceholder alt="The capture screen — large textarea, minimal chrome, voice toggle, auto-filled date" caption="The capture layer. The textarea is the product. Everything else stays out of the way." brief="A single clean product screen on a phone or tablet mockup. The textarea dominates — 80% of the viewport. Minimal chrome: just a small voice toggle icon in one corner, a date field pre-filled, and a contact name field with autocomplete suggestion showing. Could show a cursor blinking or partial text being typed. The visual should feel calm and spacious — the deliberate opposite of a 15-field form. Think Linear or Vercel product shots — lots of breathing room around a focused UI." priority="HIGH" style="Hero product shot on device mockup. Light or dark background, generous whitespace. This sets the visual standard for the entire case study." />
 
@@ -84,20 +80,17 @@ Three problems to solve simultaneously:
 
 **Problem 1: Trust.** Gift officers are domain experts. They know their donors better than any model will. If the AI extracts something wrong, calls a meeting "solicitation" when it's obviously still "cultivation", and the officer misses it, downstream data is corrupted. Worse, trust erodes. Officers stop using it.
 
-
 **Problem 2: Effort.** The whole point is to reduce work. If officers have to review every field with equal attention, we've just moved the labor from "fill 15 fields" to "verify 15 fields." That's not better.
 
-**Problem 3: Transparency.** Officers need to see *why* the AI made each inference. Without that, review is guessing.
+**Problem 3: Transparency.** Officers need to see why the AI made each inference. Without that, review is guessing.
 
-I built what I call the **confidence layer**. Three pieces of information for every AI extraction:
+I built what I call the confidence layer. Three pieces of information for every AI extraction.
 
 **Confidence level.** High, medium, or low. High means the AI found explicit matching text. Low means the inference required interpretation.
 
-**Source quote.** The exact phrase from the officer's notes that the AI used. This is the trust mechanism. It changes review from "is this right?" to "does this sentence support this?", much easier.
-
+**Source quote.** The exact phrase from the officer's notes that the AI used. This is the trust mechanism. It changes review from "is this right?" to "does this sentence support this?" Much easier.
 
 **Visual treatment.** High-confidence fields render solid and settled. Low-confidence fields get a dashed border and amber highlight, visual weight that pulls the eye to exactly what needs human attention.
-
 
 <ImagePlaceholder alt="AI review screen — extracted fields with confidence indicators, source quotes, and visual distinction between high and low confidence" caption="The confidence layer. Every AI inference shows its source. Officers review the uncertain ones and skip the obvious ones. Average review: 3–4 edits." brief="A scrollable product screen showing the notes at top and extracted fields below. Each field shows: the structured value, a small confidence badge (green/amber/gray), and a quoted source line from the original notes. Some fields have solid borders and settled styling (high confidence). Others have dashed borders with amber highlights and the source quote is more prominent (low confidence). Show at least one field being edited. Annotations could call out the three-part confidence model. This is the interaction design centerpiece — the most complex image in the case study." priority="HIGH" style="Annotated product screen with component state showcase. Show multiple states: high-confidence settled field, low-confidence flagged field, actively-being-edited field, rejected field. Could be a device mockup or a flat UI screenshot with callout overlays." />
 
@@ -109,16 +102,13 @@ In testing, officers skipped it. Captured notes, saw "Review AI Extractions" and
 
 Redesigned it inline. After saving, the structured fields appear below the notes on the same screen. Same scroll context. No navigation. The transition is animated, fields slide in one by one, top to bottom, so officers see extraction happening in real time. Makes the AI's work visible instead of hidden behind a page change.
 
-
-Review completion went from ~40% to ~90%. Same information, same effort. Different spatial relationship. The page transition was creating a psychological break, a permission to disengage. Removing the break removed the exit.
-
+Review completion went from 40% to 90%. Same information, same effort. Different spatial relationship. The page transition was creating a psychological break, a permission to disengage. Removing the break removed the exit.
 
 ## Progressive disclosure of the full form
 
 The form isn't gone. All 15 fields still exist. But they unfold based on what the AI couldn't extract.
 
 Typical case: the AI confidently extracts 11 of 15. The officer sees those 11 inline with confidence indicators. The remaining 4 live in an expandable "Add more details" section, present but not demanding.
-
 
 Harder case: the AI only confidently extracts 6. More form surface becomes visible by default. The interface scales its demands based on what still needs human input.
 
@@ -135,16 +125,14 @@ Two goals met: speed (most reports done in 90 seconds with 3–4 edits) and comp
 
 ## What I'd do differently
 
-Voice capture needs work. The current version is just audio + speech-to-text. Doesn't handle the context, background noise in hallways, proper nouns that models butcher. A fine-tuned model trained on the institution's vocabulary would help significantly. Scoped it but got cut for v1.
+Voice capture needs work. The current version is just audio and speech-to-text. Doesn't handle context, background noise in hallways, proper nouns that models butcher. A fine-tuned model trained on the institution's vocabulary would help significantly. I scoped it but got cut for v1.
 
-
-I underestimated how much the blank canvas intimidates on first use. About 15% of early testers stared at the empty textarea and froze. Added a single onboarding hint, "Just tell us what happened, like you'd tell a colleague", that appears once and fades after 4 seconds. It helped. A better first-use experience with a sample report would have been stronger.
-
+I underestimated how much the blank canvas intimidates on first use. About 15% of early testers stared at the empty textarea and froze. Added a single onboarding hint: "Just tell us what happened, like you'd tell a colleague." It appears once and fades after 4 seconds. It helped. A better first-use experience with a sample report would have been stronger.
 
 ## What this proves
 
-The pattern works elsewhere. **Expert input → machine translation → transparent review.** Clinical documentation. Legal intake. Field service reports. Customer success notes. Anywhere someone with domain knowledge needs to produce structured data: capture in their natural modality, translate with AI, make the translation transparent enough that experts can catch errors.
+The pattern works elsewhere. Expert input. Machine translation. Transparent review. Clinical documentation. Legal intake. Field service reports. Customer success notes. Anywhere someone with domain knowledge needs to produce structured data: capture in their natural modality, translate with AI, make the translation transparent enough that experts can catch errors.
 
-But the pattern isn't the insight. The diagnosis was. The form was the wrong container. No form optimization surfaces that. You have to watch people work. Notice what they do *before* opening your tool. Ask why those two things don't match.
+But the pattern isn't the insight. The diagnosis was. The form was the wrong container. No form optimization surfaces that. You have to watch people work. Notice what they do before opening your tool. Ask why those two things don't match.
 
 That's fieldwork. Not design.

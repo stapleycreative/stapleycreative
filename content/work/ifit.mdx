@@ -22,7 +22,7 @@ date: "2020-12-01"
 
 My job changed shape three times. Started as Creative Director overseeing brand and product. Shifted into a hybrid Creative Director / Design Systems Lead role when team growth started outpacing our ability to stay consistent. By the end, design system work was the highest-leverage thing I did.
 
-<PullQuote cite="Mark Watterson, Chief Product Officer">Craig takes the shell of an idea and turns it into something that checks every box — and adds more.</PullQuote>
+<PullQuote cite="Mark Watterson, Chief Product Officer">Craig takes the shell of an idea and turns it into something that checks every box. And adds more.</PullQuote>
 
 ## The problem nobody named until it was expensive
 
@@ -33,7 +33,6 @@ By itself, trivial. I pulled the thread and found 23 variants of what should hav
 This is the failure mode nobody talks about in design system blog posts. Not that designers are sloppy. It's that without shared infrastructure, consistency is maintained by memory and convention. Both break down as teams grow. Two designers can stay aligned through conversation. Twelve can't.
 
 I audited the full product surface, every component, every color value, every type style, every spacing value, across all five platforms. The results:
-
 
 <MetricsGrid>
   <Metric label="Button variants found" value="23" />
@@ -49,12 +48,11 @@ The cost wasn't just visual inconsistency. Engineering was maintaining five para
 
 ## The architectural decision that defined everything
 
-Two paths forward:
+I had two paths forward.
 
 **Path A: Build a component library.** Start with the most-used components (buttons, inputs, cards, navigation), design canonical versions, document them, roll them out. This is what most design system initiatives do. Fast, visible, immediate results.
 
-**Path B: Build a token layer first.** Before touching a component, define the shared decision architecture, color, spacing, typography, radius, elevation, as a semantic token system that every component would inherit from. Then build components as assemblies of tokens, not standalone artifacts.
-
+**Path B: Build a token layer first.** Before touching a component, define the shared decision architecture. Color, spacing, typography, radius, elevation. As a semantic token system that every component would inherit from. Then build components as assemblies of tokens, not standalone artifacts.
 
 Path A shows results in two weeks. Path B took two months before anything visible changed. I chose Path B and had to defend that choice to leadership multiple times during those two months.
 
@@ -74,20 +72,17 @@ Each product surface had radically different layout needs. A treadmill screen is
 
 Sharing high-level components (a "workout card," a "stats dashboard") across these contexts would have been forced. The same information needs fundamentally different spatial relationships on different surfaces.
 
-Instead, I shared the atomic layer, buttons, inputs, type styles, color tokens, icon set, and let each surface team compose their own layouts from shared pieces. The atoms were universal. The molecules were local.
-
+Instead, I shared the atomic layer. Buttons, inputs, type styles, color tokens, icon set. Each surface team composed their own layouts from shared pieces. The atoms were universal. The molecules were local.
 
 The tradeoff: more design work per surface (each one has its own card component, its own navigation pattern). The benefit: no surface is forced into a layout that doesn't fit its physical constraints. And every surface still feels like iFIT because color, type, and interaction patterns are identical.
 
 ### Rule 2: Documentation before production
 
-Every new component required documentation before production use. Not comprehensive, a one-page spec with purpose, variants, states, usage guidelines, and one "don't do this" example.
+Every new component required documentation before production use. Not comprehensive. A one-page spec with purpose, variants, states, usage guidelines, and one "don't do this" example.
 
+Not bureaucracy for its own sake. Writing the spec forces the designer to think about edge cases before production surfaces them. What happens when the label is 40 characters? What's the loading state? Can this be used inside a scrolling container?
 
-Not bureaucracy for its own sake. Writing the spec forces the designer to think about edge cases before production surfaces them. "What happens when the label is 40 characters?" "What's the loading state?" "Can this be used inside a scrolling container?"
-
-Every component that shipped without documentation, and there were a few early on when I was less strict, generated at least one support question from another designer within two weeks. The documentation was faster than answering the same question five times.
-
+Every component that shipped without documentation (and there were a few early on when I was less strict) generated at least one support question from another designer within two weeks. The documentation was faster than answering the same question five times.
 
 <ImagePlaceholder alt="Component documentation page — button variants, states, usage guidelines, do/don't examples" caption="Every component documented before production. The spec forces edge-case thinking before edge cases happen." brief="A screenshot-style image of a documentation page for the button component. Top section: component name, description, and when-to-use guidance. Middle: a grid showing all variants (Primary, Secondary, Ghost, Destructive) across all states (Default, Hover, Pressed, Disabled, Loading — with a spinner). Bottom: a usage section with a green-checkmark 'Do' example (buttons with proper spacing in a toolbar) and a red-X 'Don't' example (buttons stacked vertically without spacing, or a destructive button used for a non-destructive action). The visual should look like something a designer would actually open and reference daily — not a wireframe of documentation, but real documentation with real components rendered in it." priority="MEDIUM-HIGH" style="Documentation screenshot / design system page. Study zeroheight, Storybook, or Supernova docs pages. Could also reference Figma's own component documentation layout." />
 
@@ -97,30 +92,23 @@ I intentionally did not create a design system team that owned all component dec
 
 A bet on distributed ownership. The alternative, a centralized design system team that reviews and approves all component changes, creates a bottleneck. At 12 designers across 5 surfaces, a centralized approval process would have slowed everyone down.
 
-
 The distributed model meant occasional inconsistencies crept in. But because the token layer was shared, those inconsistencies were always at the molecule level (a card layout that's slightly different on web vs. mobile), never at the atomic level (colors, type, and spacing are always consistent). The right tradeoff for a team moving fast.
 
 ## How it changed the org
 
 The system wasn't a design deliverable. It was organizational infrastructure, a decision architecture that changed how the company made product decisions across five surfaces and twelve designers.
 
-
-**Decision architecture.** Tokens encoded decisions that used to live in individual memory: "we use this blue," "this is our spacing rhythm," "buttons look like this." Once encoded, those decisions stopped being re-litigated in every project. The system moved debate upward, from "what color" to "what experience", which is where staff-level design conversation should happen.
-
+**Decision architecture.** Tokens encoded decisions that used to live in individual memory: "we use this blue," "this is our spacing rhythm," "buttons look like this." Once encoded, those decisions stopped being re-litigated in every project. The system moved debate upward, from "what color" to "what experience," which is where staff-level design conversation should happen.
 
 **Governance without bottlenecks.** I rejected a centralized model where one team approves all component changes. Instead, the systems team owned the token layer, documentation framework, and review process. Surface leads owned their own components within that frame. Governance lived in the architecture, not in a queue. Kept twelve designers shipping without compromising consistency.
 
-**Cross-functional alignment.** The token layer gave design and engineering a shared source of truth. When product changed the primary color, designers didn't file tickets, the change propagated through engineering automatically. That structural alignment cut coordination overhead in half and removed an entire class of "is this the right blue" back-and-forth.
-
+**Cross-functional alignment.** The token layer gave design and engineering a shared source of truth. When product changed the primary color, designers didn't file tickets. The change propagated through engineering automatically. That structural alignment cut coordination overhead in half and removed an entire class of "is this the right blue" back-and-forth.
 
 **Onboarding acceleration.** When I started, a new designer took 2–3 weeks to become productive, most of that time asking "What shade of blue do we use?" "What's the standard card padding?" "Where's the icon set?" By 2020, a new designer could contribute in 2–3 days. The system carried institutional knowledge that used to live in people's heads. That's organizational leverage: one artifact, every hire faster.
 
-
 **Cross-surface coordination emerged from structure.** The shared token layer created a structural reason for designers across surfaces to talk to each other. If the bike designer wanted to change the primary button style, that change propagated to all surfaces, so they'd need to coordinate with the treadmill and app designers. I didn't impose this. The architecture created the incentive.
 
-
-**Design reviews moved up a level.** Before the system, reviews were derailed by foundational questions ("Why is this blue different?"). After, reviews focused on interaction design and product decisions, the higher-order work. The system resolved the lower-order questions before they reached the room.
-
+**Design reviews moved up a level.** Before the system, reviews were derailed by foundational questions. "Why is this blue different?" After, reviews focused on interaction design and product decisions, the higher-order work. The system resolved the lower-order questions before they reached the room.
 
 <ImagePlaceholder alt="Timeline — team growth, product surfaces, user base, and key system milestones from 2015 to 2020" caption="Five years compressed. The design system scaled the team faster than hiring alone could have." brief="A horizontal timeline spanning 2015–2020. Three parallel swim lanes tracking: Design team size (2→4→8→12, shown as growing avatar rows), Product surfaces (1→2→3→5, shown as device icons appearing over time), User base (20K→100K→1M→6M, shown as a growth curve). Key milestone markers at inflection points: 'Token layer shipped' (2017), 'Documentation framework launched' (2018), 'Distributed ownership model' (2018), 'Second systems hire' (2019), 'Component variants reduced 60%' (2020). Small icons for each surface type (treadmill, bike, rower, phone, browser). The visual should feel like a compressed five-year history — showing how the system grew alongside the company." priority="MEDIUM" style="Data visualization / infographic timeline. Think about how Stripe or Vercel blog posts visualize scale and timeline together. Clean, horizontal, with clear progression and milestone callouts." />
 
@@ -135,17 +123,14 @@ The system wasn't a design deliverable. It was organizational infrastructure, a 
 
 ## What I got wrong
 
-The documentation-before-production rule was too rigid in year one. I enforced it absolutely, which meant some time-sensitive features were delayed because the documentation wasn't ready. I should have had a "provisional" track, ship with minimal docs, full docs required within one sprint. I loosened it in year two, but early rigidity cost trust with engineering.
-
+The documentation-before-production rule was too rigid in year one. I enforced it absolutely, which meant some time-sensitive features were delayed because the documentation wasn't ready. I should have had a "provisional" track. Ship with minimal docs, full docs required within one sprint. I loosened it in year two, but early rigidity cost trust with engineering.
 
 I also waited too long to hire a second design systems person. For the first three years, I was the only one maintaining the token layer, running audits, reviewing components, writing documentation, on top of Creative Director responsibilities. The system's growth was limited by my bandwidth. When I finally got a second person dedicated to systems in 2019, output tripled. That hire should have happened in 2018.
-
 
 ## What this proves
 
 Design at scale is infrastructure work. The decisions that matter most aren't visual. They're architectural. Token-first or component-first? Shared molecules or shared atoms? Centralized ownership or distributed? Document before or after production?
 
-Each decision compounds over years. The token-first decision I made in 2017 was still paying dividends in 2020, long after I'd stopped thinking about it. That's what good infrastructure does, it makes future decisions easier by encoding past decisions into the system.
-
+Each decision compounds over years. The token-first decision I made in 2017 was still paying dividends in 2020, long after I'd stopped thinking about it. That's what good infrastructure does. It makes future decisions easier by encoding past decisions into the system.
 
 AI tools can't generate the judgment to know which decisions will compound and which won't matter in three years. That comes from watching systems succeed and fail across multiple products, multiple team sizes, multiple growth phases. There's no training data for your specific organizational context.
