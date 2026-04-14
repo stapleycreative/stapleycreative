@@ -1,136 +1,120 @@
 ---
-title: "Scaling a design org from 20K to 6M users"
-description: "iFIT grew from niche hardware to connected fitness platform. Design challenge wasn't aesthetics. It was infrastructure. I built token systems, component architecture, documentation framework that let the team scale."
+title: "Eleven years inside a company that went from 20K users to 6M"
+description: "iFIT grew from niche hardware to a $1.7B connected fitness platform. I built the design infrastructure, redesigned the checkout that processed hundreds of millions, created the IPO documentation, and grew the creative team from just me to 20 people."
 client: "iFIT"
-role: "Creative Director"
+role: "Creative Director → Principal Designer"
 year: "2011–2022"
-tags: ["Design Systems", "Scale", "Infrastructure"]
+tags: ["Scale", "Design Systems", "Revenue", "Leadership"]
 date: "2022-12-01"
 ---
 
 <OutcomeBlock
-  problem="23 button variants. 9 blues. Zero shared infrastructure across 5 product surfaces."
-  change="Token-first architecture. Shared decisions before shared components."
-  result="One design system. Five surfaces. 20-person creative team shipping consistently."
+  problem="A hardware company with 5 product surfaces, no shared design infrastructure, and a checkout flow that hadn't been touched in years."
+  change="Token-first design system across all surfaces. Rebuilt the DTC checkout. Created all IPO investor documentation. Grew the creative team from 1 to 20."
+  result="20K users to 6M. Revenue hit $1.7B. Checkout A/B tests showed immediate conversion lifts. New designers productive in 3 days instead of 3 weeks."
 />
 
-## What iFIT was when I arrived
+## What this was
 
-2011. iFIT was a hardware company. Treadmills with small screens. Workout videos. One product, one screen size, one OS. 20,000 users.
+2011. iFIT was a hardware company. Treadmills with small screens. Workout videos on a disc. One product surface, one screen size, one OS. 20,000 users.
 
-2022. Connected fitness platform. Treadmills, bikes, rowers, mobile app, web dashboard. Five product surfaces, three operating systems, 6 million users, a 20-person creative team across video, UI/UX, social, animation, and brand. The company had done a rebrand, an IPO push, multiple product acquisitions.
+By 2022, connected fitness platform. Treadmills, bikes, rowers, mobile app, web dashboard. Five product surfaces, three operating systems, 6 million users, $1.7 billion in annual revenue. A 20-person creative team I'd built from scratch. The company had done a rebrand, an IPO push, multiple product acquisitions.
 
-My job changed shape across those eleven years. Started as Creative Director overseeing brand and product. As the team grew, design system work became the highest-leverage thing I did.
+I was there for all eleven years. My job changed shape constantly, and the work I'm proudest of isn't any single screen. It's the infrastructure, the revenue impact, and the organizational decisions that compounded over time.
 
 <PullQuote cite="Mark Watterson, Chief Product Officer">In my time working with Craig, I was always impressed by his ability to work in ambiguity; taking the shell of an idea or concept and truly turning it into a masterpiece that checked every box and added more.</PullQuote>
 
-## The problem nobody named until it was expensive
+<MetricsGrid>
+  <Metric label="Users at start" value="20K" />
+  <Metric label="Users at end" value="6M+" />
+  <Metric label="Revenue (FY2021)" value="$1.7B" />
+  <Metric label="Product surfaces" value="5" />
+  <Metric label="Creative team" value="20 people" />
+  <Metric label="Tenure" value="11 years" />
+</MetricsGrid>
+
+## The infrastructure that made everything else possible
 
 2017. A user reported that the "Start Workout" button on the bike looked different from the same button on the treadmill. Different corner radius. Slightly different blue. Different font weight.
 
-By itself, trivial. I pulled the thread and found 23 variants of what should have been one button. Across five surfaces, three designers had each built their own version, referencing slightly different specs, because there was no single source of truth.
-
-This is the failure mode nobody talks about in design system blog posts. Not that designers are sloppy. It's that without shared infrastructure, consistency is maintained by memory and convention. Both break down as teams grow. Two designers can stay aligned through conversation. Twelve can't.
-
-I audited the full product surface, every component, every color value, every type style, every spacing value, across all five platforms. The results:
+I pulled the thread and found 23 variants of what should have been one button. Across five surfaces, three designers had each built their own version because there was no single source of truth.
 
 <MetricsGrid>
-  <Metric label="Button variants found" value="23" />
-  <Metric label="Unique blue values" value="9" />
-  <Metric label="Type scale definitions" value="4 different" />
-  <Metric label="Spacing systems" value="3 different" />
+  <Metric label="Button variants" value="23" />
+  <Metric label="Unique blues" value="9" />
+  <Metric label="Type scales" value="4 different" />
   <Metric label="Undocumented components" value="~80%" />
 </MetricsGrid>
 
-The cost wasn't just visual inconsistency. Engineering was maintaining five parallel implementations of the same components. A design change that should take a day took a week because it had to be replicated across surfaces independently. QA was catching visual regressions that were actually correct implementations of different specs.
+<ImagePlaceholder alt="The same Start Workout button rendered 23 different ways across five product surfaces" caption="23 variants of one button. This is what consistency looks like when it's maintained by convention instead of infrastructure." brief="A specimen-style grid showing button variants across product surfaces (Treadmill, Bike, Rower, Mobile, Web). Annotations pointing to specific differences: radius, color hex values, font-weight, padding. Should feel like a real design audit artifact." priority="HIGH" style="Component audit grid. Clinical, specimen-like layout." />
 
-<ImagePlaceholder alt="The same Start Workout button rendered 23 different ways across five product surfaces" caption="The button audit. 23 variants of one button. This is what consistency looks like when it's maintained by convention instead of infrastructure." brief="A specimen-style grid — like a biologist's classification chart but for buttons. Each row is a product surface (Treadmill, Bike, Rower, Mobile App, Web Dashboard), labeled. Each column shows the button in a key state (Default, Hover/Pressed, Disabled). Annotations point to specific differences between variants: 'radius: 4px vs 8px vs 12px,' 'blue: #2563EB vs #2554DB vs #1E40AF,' 'font-weight: 500 vs 600 vs 700,' 'padding: 12px vs 16px.' The visual should feel almost absurd — a wall of nearly-identical-but-not-quite buttons that makes the scale of the problem visceral. Could be on a light background like a design audit document." priority="HIGH" style="Component inventory / audit grid. Think design system audit documentation — a clinical, specimen-like layout that makes the inconsistency undeniable. Not a wireframe — this should look like a real audit artifact." />
+I had two paths forward. Build a component library (fast, visible, immediate results) or build a token layer first (slower, invisible for two months, but every decision encoded once and inherited everywhere). I chose tokens. Had to defend that choice to leadership multiple times during those two months of nothing visible changing.
 
-## The architectural decision that defined everything
+Why: component libraries without shared tokens create a different kind of inconsistency. The button looks the same until someone changes a border radius. Then one surface updates and the other doesn't. Nobody knows which is right. Tokens first means one decision, one update, universal propagation.
 
-I had two paths forward.
+<ImagePlaceholder alt="Token architecture diagram showing primitives feeding semantics feeding components across all five surfaces" caption="Primitives feed semantics, semantics feed components. Every surface inherits from the same decision layer." brief="Three-layer system diagram. Top: primitive tokens (raw values). Middle: semantic tokens (named decisions). Bottom: component tokens branching to five product surfaces. Arrows flow downward." priority="HIGH" style="System architecture diagram. Clean lines, clear hierarchy, labeled examples at each level." />
 
-**Path A: Build a component library.** Start with the most-used components (buttons, inputs, cards, navigation), design canonical versions, document them, roll them out. This is what most design system initiatives do. Fast, visible, immediate results.
+Three rules governed the system.
 
-**Path B: Build a token layer first.** Before touching a component, define the shared decision architecture. Color, spacing, typography, radius, elevation. As a semantic token system that every component would inherit from. Then build components as assemblies of tokens, not standalone artifacts.
+**Shared atoms, not shared molecules.** A treadmill screen (22 inches, landscape, viewed while running) and a mobile app (6 inches, portrait, held in one hand) need fundamentally different layouts. I shared the atomic layer (buttons, inputs, type, color, icons) and let each surface compose its own layouts. The atoms were universal. The molecules were local.
 
-Path A shows results in two weeks. Path B took two months before anything visible changed. I chose Path B and had to defend that choice to leadership multiple times during those two months.
+**Documentation before production.** Every new component required a one-page spec before it could be used. The spec forced edge-case thinking before production surfaced the edge cases. Every component that shipped without documentation generated a support question from another designer within two weeks.
 
-Why: component libraries without shared tokens create a different kind of inconsistency. The button looks the same until someone changes a border radius. Then one surface updates and the other doesn't. Nobody knows which is "right." The components are aligned but the underlying decisions are still fragmented. You're treating the symptom (inconsistent components) without fixing the disease (inconsistent decisions).
+**Distributed ownership.** Each surface had a lead designer who owned their components. The systems team (me and eventually one other person) owned the token layer and review process. Governance lived in the architecture, not in a queue.
 
-Tokens first means: when I change `--color-primary` from `#2563EB` to `#2554DB`, every component on every surface inherits the change. One decision, one update, universal propagation. Not possible with a component library alone.
+Result: new designers went from needing 2 to 3 weeks to become productive down to 2 to 3 days. The system carried institutional knowledge that used to live in people's heads. That's organizational leverage. One artifact, every hire faster.
 
-<ImagePlaceholder alt="Token architecture — primitives feed semantics, semantics feed components, all five surfaces inherit" caption="The token architecture. Primitives feed semantics, semantics feed components. Every surface inherits from the same decision layer." brief="A clean three-layer system diagram. Top layer: Primitive tokens — raw values shown as small swatches and numbers (blue-500: #2563EB, spacing-4: 16px, radius-md: 8px). Middle layer: Semantic tokens — named decisions pointing to primitives (color-primary: blue-500, spacing-component: spacing-4, radius-button: radius-md). Bottom layer: Component tokens — surface-specific assemblies (button-bg: color-primary, button-padding: spacing-component). Arrows flow downward from primitive → semantic → component. At the component layer, the arrow fans out into five branches, one for each product surface (treadmill icon, bike icon, rower icon, phone icon, browser icon). The diagram should feel architectural and precise — like a technical system diagram, not a marketing infographic." priority="HIGH" style="System architecture diagram. Study how Figma Variables, Material Design 3, and Shopify Polaris document their token inheritance layers. Clean lines, clear hierarchy, labeled examples at each level." />
+## The checkout that processed hundreds of millions
 
-## The three architectural rules
+This is the part that matters most to anyone who cares about business impact.
 
-Three rules. Each one was a deliberate choice with a specific tradeoff.
+I redesigned the NordicTrack checkout flow. The direct-to-consumer purchase experience on nordictrack.com for hardware that started at $1,000 and went up from there. Treadmills, bikes, rowers. High-ticket, high-friction purchases.
 
-### Rule 1: Shared atoms, not shared molecules
+In fiscal year 2021, 44% of iFIT's interactive hardware revenue flowed through DTC channels. The company's total revenue that year was $1.7 billion. That checkout flow was a significant piece of how the company made money.
 
-Each product surface had radically different layout needs. A treadmill screen is 22 inches, landscape, viewed from three feet while running. The mobile app is 6 inches, portrait, held in one hand. The web dashboard is wide, data-dense, used at a desk.
+<ImagePlaceholder alt="NordicTrack checkout flow redesign showing the purchase journey" caption="The checkout redesign. High-ticket fitness hardware, every step designed to reduce friction without sacrificing trust." brief="Screenshots or wireframes of the NordicTrack checkout flow showing the full purchase journey: product selection, configuration, cart, payment, confirmation. Should look like a real e-commerce checkout for $1K+ products." priority="HIGH" style="E-commerce UI showcase. Clean, conversion-focused." />
 
-Sharing high-level components (a "workout card," a "stats dashboard") across these contexts would have been forced. The same information needs fundamentally different spatial relationships on different surfaces.
+We A/B tested the old checkout against the new. The results, confirmed publicly in a Contentstack case study about the NordicTrack platform, showed immediate improvements in revenue, conversions, and site performance across the board.
 
-Instead, I shared the atomic layer. Buttons, inputs, type styles, color tokens, icon set. Each surface team composed their own layouts from shared pieces. The atoms were universal. The molecules were local.
-
-The tradeoff: more design work per surface (each one has its own card component, its own navigation pattern). The benefit: no surface is forced into a layout that doesn't fit its physical constraints. And every surface still feels like iFIT because color, type, and interaction patterns are identical.
-
-### Rule 2: Documentation before production
-
-Every new component required documentation before production use. Not comprehensive. A one-page spec with purpose, variants, states, usage guidelines, and one "don't do this" example.
-
-Not bureaucracy for its own sake. Writing the spec forces the designer to think about edge cases before production surfaces them. What happens when the label is 40 characters? What's the loading state? Can this be used inside a scrolling container?
-
-Every component that shipped without documentation (and there were a few early on when I was less strict) generated at least one support question from another designer within two weeks. The documentation was faster than answering the same question five times.
-
-<ImagePlaceholder alt="Component documentation page — button variants, states, usage guidelines, do/don't examples" caption="Every component documented before production. The spec forces edge-case thinking before edge cases happen." brief="A screenshot-style image of a documentation page for the button component. Top section: component name, description, and when-to-use guidance. Middle: a grid showing all variants (Primary, Secondary, Ghost, Destructive) across all states (Default, Hover, Pressed, Disabled, Loading — with a spinner). Bottom: a usage section with a green-checkmark 'Do' example (buttons with proper spacing in a toolbar) and a red-X 'Don't' example (buttons stacked vertically without spacing, or a destructive button used for a non-destructive action). The visual should look like something a designer would actually open and reference daily — not a wireframe of documentation, but real documentation with real components rendered in it." priority="MEDIUM-HIGH" style="Documentation screenshot / design system page. Study zeroheight, Storybook, or Supernova docs pages. Could also reference Figma's own component documentation layout." />
-
-### Rule 3: Designers own their surface
-
-I intentionally did not create a design system team that owned all component decisions. Each surface had a lead designer who owned their surface's components. The design system team (me and eventually one other person) owned the token layer, the documentation framework, and the review process.
-
-A bet on distributed ownership. The alternative, a centralized design system team that reviews and approves all component changes, creates a bottleneck. Across 5 surfaces and a growing team, a centralized approval process would have slowed everyone down.
-
-The distributed model meant occasional inconsistencies crept in. But because the token layer was shared, those inconsistencies were always at the molecule level (a card layout that's slightly different on web vs. mobile), never at the atomic level (colors, type, and spacing are always consistent). The right tradeoff for a team moving fast.
-
-## How it changed the org
-
-The system wasn't a design deliverable. It was organizational infrastructure, a decision architecture that changed how the company made product decisions across five surfaces and a 20-person creative team.
-
-**Decision architecture.** Tokens encoded decisions that used to live in individual memory: "we use this blue," "this is our spacing rhythm," "buttons look like this." Once encoded, those decisions stopped being re-litigated in every project. The system moved debate upward, from "what color" to "what experience," which is where staff-level design conversation should happen.
-
-**Governance without bottlenecks.** I rejected a centralized model where one team approves all component changes. Instead, the systems team owned the token layer, documentation framework, and review process. Surface leads owned their own components within that frame. Governance lived in the architecture, not in a queue. Kept the full creative team shipping without compromising consistency.
-
-**Cross-functional alignment.** The token layer gave design and engineering a shared source of truth. When product changed the primary color, designers didn't file tickets. The change propagated through engineering automatically. That structural alignment cut coordination overhead in half and removed an entire class of "is this the right blue" back-and-forth.
-
-**Onboarding acceleration.** When I started, a new designer took 2–3 weeks to become productive, most of that time asking "What shade of blue do we use?" "What's the standard card padding?" "Where's the icon set?" By 2020, a new designer could contribute in 2–3 days. The system carried institutional knowledge that used to live in people's heads. That's organizational leverage: one artifact, every hire faster.
-
-**Cross-surface coordination emerged from structure.** The shared token layer created a structural reason for designers across surfaces to talk to each other. If the bike designer wanted to change the primary button style, that change propagated to all surfaces, so they'd need to coordinate with the treadmill and app designers. I didn't impose this. The architecture created the incentive.
-
-**Design reviews moved up a level.** Before the system, reviews were derailed by foundational questions. "Why is this blue different?" After, reviews focused on interaction design and product decisions, the higher-order work. The system resolved the lower-order questions before they reached the room.
-
-<ImagePlaceholder alt="Timeline — team growth, product surfaces, user base, and key system milestones from 2015 to 2020" caption="Five years compressed. The design system scaled the team faster than hiring alone could have." brief="A horizontal timeline spanning 2015–2020. Three parallel swim lanes tracking: Design team size (2→4→8→12, shown as growing avatar rows), Product surfaces (1→2→3→5, shown as device icons appearing over time), User base (20K→100K→1M→6M, shown as a growth curve). Key milestone markers at inflection points: 'Token layer shipped' (2017), 'Documentation framework launched' (2018), 'Distributed ownership model' (2018), 'Second systems hire' (2019), 'Component variants reduced 60%' (2020). Small icons for each surface type (treadmill, bike, rower, phone, browser). The visual should feel like a compressed five-year history — showing how the system grew alongside the company." priority="MEDIUM" style="Data visualization / infographic timeline. Think about how Stripe or Vercel blog posts visualize scale and timeline together. Clean, horizontal, with clear progression and milestone callouts." />
+The context tells the story: 44% of hardware revenue for a company doing $1.7 billion annually. The design decisions in that checkout (reducing steps, building trust signals for high-ticket purchases, optimizing the mobile-to-desktop handoff that most buyers went through) had direct, measurable financial consequences.
 
 <MetricsGrid>
-  <Metric label="Users at start" value="20K" />
-  <Metric label="Users at end" value="6M" />
-  <Metric label="Product surfaces" value="5" />
-  <Metric label="Creative team" value="20 people" />
-  <Metric label="New designer ramp time" value="3 weeks → 3 days" />
-  <Metric label="Component variants reduced" value="~60%" />
+  <Metric label="DTC revenue share" value="44%" />
+  <Metric label="Company revenue" value="$1.7B" />
+  <Metric label="Revenue growth" value="$700M→$1.7B" />
+  <Metric label="Subscriber CAGR" value="81.3%" />
 </MetricsGrid>
 
-## What I got wrong
+## Beyond product surfaces
 
-The documentation-before-production rule was too rigid in year one. I enforced it absolutely, which meant some time-sensitive features were delayed because the documentation wasn't ready. I should have had a "provisional" track. Ship with minimal docs, full docs required within one sprint. I loosened it in year two, but early rigidity cost trust with engineering.
+Most designers don't create IPO documentation. I did.
 
-I also waited too long to hire a second design systems person. For the first three years, I was the only one maintaining the token layer, running audits, reviewing components, writing documentation, on top of Creative Director responsibilities. The system's growth was limited by my bandwidth. When I finally got a second person dedicated to systems in 2019, output tripled. That hire should have happened in 2018.
+When iFIT pushed for its public offering, I created all of it. Every investor deck. The official public offering documentation. The materials that would go in front of institutional investors deciding whether this company was worth billions. This was translating a company's entire story (growth trajectory, competitive position, future vision) into a format that convinces the most skeptical audience there is.
 
-## What this proves
+The IPO ultimately didn't close. The whole SPAC and IPO market collapsed in late 2021. Peloton's stock cratered around the same time. That doesn't change the work. I was trusted at the executive level to shape how the company presented itself to the capital markets.
 
-Design at scale is infrastructure work. The decisions that matter most aren't visual. They're architectural. Token-first or component-first? Shared molecules or shared atoms? Centralized ownership or distributed? Document before or after production?
+<ImagePlaceholder alt="iFIT investor materials and presentation design" caption="Investor-facing design. The scope extended well beyond product surfaces." brief="Abstract representation of investor materials. Deck layouts, data visualization, financial storytelling design. Should NOT show confidential content. Zoomed-out view of multiple deck pages or a tasteful scope representation." priority="MEDIUM" style="Professional, corporate. Not startup-cute." />
 
-Each decision compounds over years. The token-first decision I made in 2017 was still paying dividends in 2020, long after I'd stopped thinking about it. That's what good infrastructure does. It makes future decisions easier by encoding past decisions into the system.
+### Building the team
 
-AI tools can't generate the judgment to know which decisions will compound and which won't matter in three years. That comes from watching systems succeed and fail across multiple products, multiple team sizes, multiple growth phases. There's no training data for your specific organizational context.
+I didn't inherit a team. I built one. Started as the only designer. By the end: 20 people across product design, marketing design, social media, animation, and copywriting.
+
+The structure decisions mattered more than the headcount. I built empathy into the operating model, not the workshop calendar. Put a gym on site and gave designers dedicated time to use it, because you can't design workout software you've never sweated through. Set up call shadowing so designers heard real customer frustration firsthand. Ran internal fitness competitions that forced designers to use the product as actual users, not testers. Required real data in every mockup because placeholder data teaches you to ignore the information layer.
+
+<ImagePlaceholder alt="iFIT team building and empathy programs" caption="Empathy wasn't a workshop. It was how the team operated." brief="Photo of Craig running on a NordicTrack treadmill (from interview deck), or a collage showing empathy programs: gym setup, call shadowing notes, competition boards." priority="MEDIUM" style="Documentary / behind-the-scenes." />
+
+### The profile hub
+
+After leaving iFIT full-time, I came back as a freelancer to redesign the user profile. The brief: users lacked a sense of progress. The app showed workout data but nothing about the experience said "you're getting better." People opened the profile, saw numbers, and closed it.
+
+I turned the profile into a personalized hub. Summary stats with 7-day, 30-day, and 12-month views. Visual data exploration, not just data display. Streaks and achievements that surfaced patterns you wouldn't notice on your own. Workout history that actually worked as a history. Avatar customization with a QR code for photo upload. The whole thing built for both the 22-inch treadmill screen and the 10-inch tablet.
+
+<ImagePlaceholder alt="iFIT Profile hub redesign with personalized dashboard and data visualization" caption="The profile hub. Summary stats, data exploration, streaks, workout history, avatar customization. Built for 22-inch and 10-inch screens." brief="Hi-fi screenshots of the iFIT profile redesign showing the dashboard with stat cards (Time, Vertical Gain, Calorie Burn, Distance, Avg Pace), streaks, recent activity, and workout history view. Dark mode UI with data visualization." priority="HIGH" style="Product UI gallery. Dark theme, data-rich." />
+
+<ImagePlaceholder alt="iFIT data visualization showing 7-day, 30-day, and 12-month workout trends" caption="V1 was data visualization. V2 was data exploration. Users needed to feel their progress, not just read it." brief="Data viz detail showing three time period views (7-day, 30-day, 12-month) for Time, Calories, Vertical Gain, Distance, Pace. Color-coded gradient bars." priority="MEDIUM" style="Data visualization showcase. Dark background, colored charts." />
+
+## What eleven years teaches you
+
+The decisions that mattered most weren't visual. They were architectural and organizational. Token-first or component-first. Shared molecules or shared atoms. Centralized ownership or distributed. Document before or after production. Put a gym in the office or assume your designers will figure out empathy on their own.
+
+Each decision compounded over years. The token-first choice I made in 2017 was still paying dividends in 2020, long after I'd stopped thinking about it. The checkout work proved design decisions have direct revenue consequences when the stakes are high enough. The IPO work proved design leadership extends beyond product screens when the trust is there. And the team proved that empathy baked into the operating model outperforms empathy workshops every single time.

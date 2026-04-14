@@ -61,18 +61,6 @@ const tools = [
     href: "/tools/creativity-engine",
     cta: "Try it",
   },
-  {
-    title: "Santa\u2019s Red Letter",
-    desc: "\u201CWhat if Santa wrote back?\u201D Personalized letters from Santa. Built for my kids, then opened up.",
-    href: "/work/santas-red-letter",
-    cta: "View",
-  },
-  {
-    title: "Stuff You Missed in Sunday School",
-    desc: "Social advocacy platform promoting truth and transparency in religion. Personal project.",
-    href: "/work/sunday-school",
-    cta: "View",
-  },
 ];
 
 const brand = [
