@@ -25,31 +25,26 @@ const projects = [
     title: "NordicTrack PDP",
     desc: "Product detail page redesign. Conversion-focused layout for a $2K+ hardware purchase.",
     type: "UI",
-    href: "https://www.stapleycreative.com/projects/nordictrack-pdp",
   },
   {
     title: "iFIT Workout UI",
     desc: "In-workout interface across treadmill, bike, and rower. Real-time metrics at a glance while moving.",
     type: "UI",
-    href: "https://www.stapleycreative.com/projects/ifitinworkout",
   },
   {
     title: "NordicTrack Checkout",
     desc: "Checkout flow redesign for high-ticket fitness hardware. Reduced friction, increased conversion.",
     type: "UI",
-    href: "https://www.stapleycreative.com/projects/nordictrack-checkout",
   },
   {
     title: "NordicTrack Ad Campaign",
     desc: "Digital ad campaign for connected fitness hardware. Creative direction across channels.",
     type: "Creative",
-    href: "https://www.stapleycreative.com/projects/nordictrack-ads",
   },
   {
     title: "iFIT Vision Deck",
     desc: "Internal strategy deck that aligned five product surfaces under one design language.",
     type: "Strategy",
-    href: "https://www.stapleycreative.com/projects/ifitvisiondeck",
   },
 ];
 
@@ -69,13 +64,13 @@ const tools = [
   {
     title: "Santa\u2019s Red Letter",
     desc: "\u201CWhat if Santa wrote back?\u201D Personalized letters from Santa. Built for my kids, then opened up.",
-    href: "https://www.stapleycreative.com/projects/branding",
+    href: "/work/santas-red-letter",
     cta: "View",
   },
   {
     title: "Stuff You Missed in Sunday School",
     desc: "Social advocacy platform promoting truth and transparency in religion. Personal project.",
-    href: "https://www.stapleycreative.com/projects/branding",
+    href: "/work/sunday-school",
     cta: "View",
   },
 ];
@@ -84,22 +79,18 @@ const brand = [
   {
     title: "Found Resume",
     desc: "Identity for a resume optimization service. Beat the bots, impress employers.",
-    href: "https://www.stapleycreative.com/projects/branding",
   },
   {
     title: "Shundahai",
     desc: "Brand and identity for an affluent community development in Bear Lake, Utah.",
-    href: "https://www.stapleycreative.com/projects/branding",
   },
   {
     title: "Alpine Orthopaedic Specialists",
     desc: "Brand system for a group orthopaedic practice. Logan, Utah.",
-    href: "https://www.stapleycreative.com/projects/branding",
   },
   {
     title: "Milieu",
     desc: "Print brochure design. Layout, typography, production.",
-    href: "https://www.stapleycreative.com/projects/milieu",
   },
 ];
 
@@ -162,12 +153,9 @@ export default function WorkPage() {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {projects.map((p) => (
-            <a
+            <div
               key={p.title}
-              href={p.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group block p-5 rounded-lg border border-[var(--color-border-subtle)] hover:border-[#1c2024] transition-all duration-200 bg-[#fcfcfd]"
+              className="block p-5 rounded-lg border border-[var(--color-border-subtle)] bg-[#fcfcfd]"
             >
               <div className="flex items-start justify-between gap-3">
                 <div>
@@ -176,7 +164,7 @@ export default function WorkPage() {
                 </div>
                 <span className="rounded flex-shrink-0" style={monoTagStyle}>{p.type}</span>
               </div>
-            </a>
+            </div>
           ))}
         </div>
       </section>
@@ -219,16 +207,13 @@ export default function WorkPage() {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {brand.map((b) => (
-            <a
+            <div
               key={b.title}
-              href={b.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group block p-5 rounded-lg border border-[var(--color-border-subtle)] hover:border-[#1c2024] transition-all duration-200 bg-[#fcfcfd]"
+              className="block p-5 rounded-lg border border-[var(--color-border-subtle)] bg-[#fcfcfd]"
             >
               <h3 className="text-sm font-semibold" style={{ color: "var(--color-text-primary)" }}>{b.title}</h3>
               <p className="mt-1.5 text-[13px] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>{b.desc}</p>
-            </a>
+            </div>
           ))}
         </div>
       </section>
@@ -238,11 +223,8 @@ export default function WorkPage() {
         <h2 className="text-xs font-medium tracking-wide mb-6" style={{ color: "var(--color-text-tertiary)" }}>
           Illustration
         </h2>
-        <a
-          href="https://www.stapleycreative.com/projects/illustration"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group block p-6 rounded-lg border border-[var(--color-border-subtle)] hover:border-[#1c2024] transition-all duration-200 bg-[#fcfcfd]"
+        <div
+          className="block p-6 rounded-lg border border-[var(--color-border-subtle)] bg-[#fcfcfd]"
         >
           <div className="flex items-start justify-between gap-4">
             <div>
@@ -256,7 +238,7 @@ export default function WorkPage() {
             </div>
             <span className="rounded flex-shrink-0" style={monoTagStyle}>Gallery</span>
           </div>
-        </a>
+        </div>
       </section>
     </div>
   );

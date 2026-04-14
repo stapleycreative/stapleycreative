@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Cognitive Architecture for Design",
   description:
-    "I design with AI the way a neuroscientist builds a mind. Model the specific cognitive function. Give it to the machine. Keep the judgment.",
+    "I build small minds and put them to work. Each one modeled on a specific cognitive function. The judgment stays with me.",
 };
 
 const nodes = [
@@ -35,7 +35,7 @@ export default function AIPage() {
             Cognitive architecture for design
           </p>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight leading-tight sm:-ml-[1px] md:max-w-[18ch]">
-            I design with AI the way a neuroscientist builds a mind.
+            I build small minds. Then I put them to work.
           </h1>
         </div>
 
