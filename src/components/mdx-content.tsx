@@ -1,7 +1,10 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
+import { LottieAnimation } from "./lottie-animation";
 
 /* Custom components available inside MDX files */
 const components = {
+  LottieAnimation,
+
   ImagePlaceholder: ({
     alt,
     caption,
