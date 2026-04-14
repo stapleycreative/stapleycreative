@@ -1,6 +1,6 @@
 ---
 title: "Designing for nervous systems, not just user flows"
-description: "Hiki was a social platform for neurodivergent adults. As the sole designer, I tackled the full redesign, rebrand, accessibility overhaul, and monetization for 200k+ users."
+description: "Hiki was a social and dating platform for neurodivergent adults. As the sole designer, I rebuilt the product from the ground up: rebrand, design system, 700+ screens across iOS and Android, and a monetization model that didn't betray its users."
 client: "Hiki"
 role: "Product Designer / Marketing Lead (sole designer)"
 year: "2023–2025"
@@ -9,101 +9,95 @@ date: "2025-04-01"
 ---
 
 <OutcomeBlock
-  problem="Standard engagement patterns, notifications, infinite scroll, social proof, harmed neurodivergent users."
-  change="Nervous-system-aware interaction model. Opt-in everything. Energy-organized spaces."
-  result="Users reported feeling safe, the only social platform where they could unmask."
+  problem="A Tinder clone with an autism label. Nothing in the product was actually built for neurodivergent people."
+  change="Full redesign: rebrand, accessible design system, ND-specific filtering, consent-first interactions, and a monetization model that made the free experience better, not worse."
+  result="3.9x user growth. 2.6x revenue. 10:1 LTV:CAC ratio."
 />
 
-## What Hiki was
+## The before
 
-A social platform for autistic and ADHD adults. A community space built specifically for neurodivergent users who'd been damaged by mainstream apps. The founding insight: existing platforms aren't just poorly suited for neurodivergent people. They're actively hostile. And the hostility is structural, not aesthetic.
+The app I walked into was a Tinder clone with an autism sticker on it. Swipe-based matching. Generic profiles. No design system. No accessibility considerations beyond the legal minimum. The UX was, to put it plainly, atrocious.
 
-I joined as the first product designer. The app existed in rough form, chat-based community with profiles and group conversations. My job was to rebuild the interaction model from scratch.
+Nothing about it reflected how neurodivergent people actually connect. The swiping mechanic punishes deliberate decision-makers. The profiles were shallow by design, optimized for snap judgments that most autistic users can't and shouldn't make. The whole interaction model assumed neurotypical social processing: fast, intuitive, pattern-matched. For a user base where communication styles vary wildly and sensory overwhelm is a daily reality, it wasn't just bad design. It was hostile design wearing a friendly skin.
 
-## Why the standard playbook fails
+I was the first dedicated designer. Worked directly with the founder and dev team. My scope was everything: product strategy, UX, UI, design systems, copy, animation, branding. When I say "sole designer," I mean there was no one to hand a wireframe to. I was the wireframe, the prototype, the pixel-perfect comp, and the redline spec.
 
-Every consumer social platform runs the same playbook: push notifications drive opens, infinite scroll extends session time, social proof mechanics (likes, follower counts, activity indicators) create FOMO, friction-free sharing grows the network.
+<ImagePlaceholder alt="Hiki app before redesign — generic Tinder-style swipe interface" caption="The before. A dating app for autistic people that borrowed every interaction pattern from apps built to exploit neurotypical dopamine loops." brief="Side-by-side screenshots of the old Hiki app showing the generic swipe-based card interface, minimal profile information, and standard dating app UI patterns. Should look dated and generic compared to the redesign." priority="HIGH" style="Before/after comparison anchor. The 'before' needs to look clearly inferior but not mocked — factual, not editorial." />
 
-These patterns optimize for neurotypical attention and motivation. For neurodivergent users, they fail in specific, predictable ways.
+## Discovery
 
-**Push notifications and rejection sensitivity.** ADHD and autism both correlate with rejection sensitive dysphoria, an intense emotional response to perceived social rejection. "3 people are talking in your group" sounds innocent. For someone with RSD, it triggers: Are they talking about me? Did I miss something? Will they judge me for not being there? The notification is designed to create urgency. For this group, it creates dread.
+My first instinct was "how the hell do you plan to make money off this thing?" A community-only social app for a niche audience isn't a business. Dating would be. But before touching anything, I needed to understand why users were leaving and what would bring them back.
 
-**Infinite scroll and dopamine dysregulation.** ADHD involves dysregulated dopamine signaling. Infinite scroll exploits this directly. The variable-reward pattern of "maybe the next post will be interesting" is the same mechanic that makes slot machines addictive. For users who already struggle with task-switching and time perception, infinite scroll isn't a convenience. It's a trap.
+I designed a three-segment survey targeting the users who mattered most: churned users (why did you leave?), power users (what keeps you here?), and potential users from neurodivergent communities on other platforms (what would make you switch?). The questions weren't satisfaction surveys. They were diagnostic. What did you expect when you downloaded this? What made you stop opening it? What features would you actually pay for? Do you want community, dating, or both?
 
-**Social proof and masking pressure.** Autistic adults in mainstream social spaces often mask, suppress their natural communication style to fit neurotypical norms. Likes, follower counts, engagement metrics create performance pressure that reinforces masking. In a community designed for unmasking, these mechanics actively harm.
+Then I ran interviews. One that stuck: a churned user I'll call Jake. He'd downloaded Hiki hoping to find people who understood how his brain worked. He left because the app felt like every other dating app, just with fewer people on it. No sense that it was built for him. No reason to stay. That gap between expectation and experience was the core problem. Users came looking for something built for neurodivergent connection. They found a reskinned template.
 
-I documented these failure modes in a research brief. Specific references to clinical literature on RSD, dopamine dysregulation, autistic masking. Not theoretical. I mapped each standard UI pattern to the neurological mechanism it exploits. Showed how the intended behavior (engagement) and the actual behavior (anxiety, avoidance, masking) diverged completely.
+The research confirmed what I suspected: the community features alone wouldn't sustain the product. But the dating side had real potential if the interactions were redesigned around how neurodivergent people actually form connections. Slower. More deliberate. With more information upfront and more control over the pace.
 
-<ImagePlaceholder alt="Research brief mapping standard social app patterns to neurodivergent failure modes" caption="The failure mode map. Each standard engagement pattern paired with the specific neurological mechanism it exploits in neurodivergent users." brief="A mapping diagram — left column shows standard patterns with icons (bell for notifications, scroll arrow for infinite scroll, heart/star for social proof, share icon for friction-free sharing). Right column shows neurological mechanisms (Rejection Sensitive Dysphoria, Dopamine Dysregulation, Masking Pressure, Overstimulation). Arrows connecting them with brief labels explaining the causal link. Could be a table, matrix, or flow diagram. Clean, clinical, almost academic in tone — a research artifact, not a product screen." priority="HIGH" style="Research synthesis / experience map. Tighter and more focused than a typical affinity diagram. Think: a clear, decisive mapping that establishes credibility for every design decision that follows." />
+## The redesign
 
-## The design principles (and the specific decisions they drove)
+I rebuilt everything. 700+ screens across iOS and Android. New brand. New design system. New interaction model.
 
-Principles are easy. What matters is where they forced hard tradeoffs. Four principles. Each one required killing a feature a PM would normally defend.
+### Accessibility as foundation, not accommodation
 
-### 1. Notifications are opt-in: and we lost DAU metrics to get there
+Three theme modes: light, dark, and high-contrast. Not as a toggle buried in settings, but as a first-class design decision that shaped every component. The design system was built from the ground up with all three modes as equal citizens.
 
-Default state: no push notifications. Zero. Users could opt in during onboarding. The default was silence.
+Beyond color: no fast or sudden movements anywhere in the UI. Every animation respects `prefers-reduced-motion`. No auto-playing media. Interactions are consensual by default, meaning nothing happens to your profile, your visibility, or your notifications without you explicitly opting in. For users who are sensitive to change, this matters. Unexpected UI shifts aren't just annoying for this audience. They can trigger genuine distress.
 
-Hardest sell internally. The founding team understood the reasoning. But social apps live and die by DAU, and push notifications are the strongest DAU driver in the industry.
+### Profile redesign: scroll and engage, not swipe and judge
 
-I argued that DAU was the wrong metric for this product. The right metric is return rate. Do users come back voluntarily, without being summoned? A user who opens the app because they want to is in a fundamentally different psychological state than one who opens it because anxiety forced them. The first leads to genuine connection. The second leads to a quick check and an exit.
+I killed the swipe mechanic entirely. Replaced it with a scroll-based browsing model where profiles are richer, longer, and designed to be read rather than snap-judged. You scroll through someone's profile at your own pace. If you're interested, you like them. A like triggers the ability to message. No unsolicited DMs. No pressure to respond instantly.
 
-Notification control was explicit in onboarding. Not buried in settings. Not a permissions dialog users dismiss reflexively. A dedicated screen: "You control when this app talks to you. Here's what we can notify you about. Everything is off by default. Turn on what you want."
+This was a deliberate inversion of the Tinder model. Swiping optimizes for volume and speed. Neurodivergent users (especially autistic users) tend to need more information before making social decisions, not less. The scroll model gives them that space.
 
-<ImagePlaceholder alt="Hiki onboarding notification screen — all toggles off by default, clear language about emotional impact" caption="Notifications onboarding. Everything off by default. Each toggle explains not just what it does, but how it might feel." brief="Phone mockup showing a dedicated onboarding screen. Large, calm header: 'You control when this app talks to you.' Below: a list of notification types (New message, Group activity, Friend request, Weekly digest) each with a toggle switch set to OFF and a subline explaining the emotional dimension — e.g. 'New messages: This may feel urgent. Turn on only if you want real-time alerts.' or 'Group activity: Shows when people are chatting. Can create pressure to participate.' Calm color palette, generous spacing, muted toggles. The screen should feel safe and transparent, not transactional." priority="MEDIUM-HIGH" style="UI showcase on phone device mockup. Emphasize the emotional tone — this screen should feel like a conversation, not a settings panel. Study calm onboarding flows from meditation/wellness apps but applied to social." />
+### ND filtering: four categories filled during onboarding
 
-### 2. Escape routes everywhere: and we removed 'Are you sure?' dialogs
+The matching system uses four neurodivergent-specific filter categories: identity (how you identify within the ND spectrum), communication styles (how you prefer to interact), special considerations (things a potential match should know), and special needs (specific accommodations or boundaries). Users fill these out during onboarding, not as an afterthought in settings.
 
-Every screen has a visible, single-tap exit. No confirmation dialogs. No "Are you sure you want to leave this conversation?" No modal traps.
+This lets users find people whose neurotype, communication preferences, and boundaries are compatible before a single message is exchanged. It reduces the social guesswork that makes dating apps exhausting for ND users. You're not just matching on age and location. You're matching on how your brains work.
 
-This sounds minor. It's not. Confirmation dialogs are a retention pattern. They create friction to reduce abandonment. For users experiencing sensory overwhelm or social anxiety mid-conversation, friction becomes a wall. If leaving requires a two-tap confirmation, some users won't leave. They'll freeze. Others will force-close the app entirely, which is worse than a clean exit.
+<ImagePlaceholder alt="Hiki profile redesign — scroll-based profile with ND filtering categories" caption="Profiles designed to be read, not swiped. Four ND-specific filter categories visible upfront." brief="Phone mockup showing the redesigned Hiki profile view. A scroll-based layout with rich profile content, visible ND filter badges or tags (identity, communication style, special considerations, special needs), and a like/message CTA at the bottom. Should feel calm, spacious, and information-rich compared to a typical dating card." priority="HIGH" style="Product UI showcase. The key contrast is density of meaningful information vs. the shallow swipe card it replaced." />
 
-When a user leaves, other participants see "stepped away." Not "left." Tested this language with 12 beta users. "Left" felt final and triggered worry. Did I say something wrong? "Stepped away" felt temporary and neutral. Small word choice. Meaningful impact on group anxiety.
+### Safety and control
 
-### 3. Spaces organized by energy, not just topic
+Blocking and snoozing built into every interaction point. If someone makes you uncomfortable, one tap and they're gone. Snooze mode lets you take a break from the app without losing your matches or conversations. Privacy controls let you manage exactly who sees what on your profile. For a user base that includes people with trauma histories, sensory processing differences, and social anxiety, these aren't features. They're prerequisites.
 
-Most novel design decision. The one I'm most proud of.
+## Monetization without betrayal
 
-Standard organization: channels named by topic (Gaming, Movies, Cooking). Works fine for neurotypical users who can context-switch. For neurodivergent users, the topic is less important than the interaction modality. How much energy does this space require? What's the communication style? Voice? Video? Rapid-fire messages?
+The hardest design problem wasn't the UI. It was the business model. How do you monetize a dating app for people who've been exploited by every other dating app's monetization?
 
-I redesigned group spaces with two-axis filtering: topic and energy profile.
+The principle I landed on: never take something away to sell it back. The mutual fear in dating app monetization is that the free experience gets deliberately degraded to push upgrades. I designed it the opposite way.
 
-Energy profiles: "Low-energy text only" (slow-paced, async-friendly, no voice), "Casual voice" (voice chat, cameras optional, comfortable silences expected), "Active discussion" (faster-paced, more back-and-forth, still text-optional), and "Co-working" (shared presence with minimal interaction, just knowing someone else is there).
+The free experience is actually better because of its constraints. Limited likes per day means you're forced to be more deliberate about who you engage with. For neurodivergent users, that constraint maps to how they already want to connect: slowly, with intention, based on real compatibility rather than volume. The limitation isn't a punishment. It's a design decision that aligns with how the audience actually behaves.
 
-Users could filter by energy level before entering. The space preview showed not just topic and member count, but the current pace (messages per hour), whether voice was active, and expected communication norms.
+Paid features are shortcuts, not unlocks. More likes, priority visibility, advanced filters. Things that save time for users who want to move faster, but don't degrade the experience for users who don't pay. Community features stay free. Period.
 
-<ImagePlaceholder alt="Hiki spaces browser — energy-level filtering, pace indicators, communication norms" caption="Spaces organized by energy, not just topic. A user with social battery at 20% can find a space that matches without trial and error." brief="Phone or tablet mockup showing a list/grid of community spaces. Each space card shows: topic name (Gaming, Nature, Music), an energy tag color-coded by level (green for Low-energy, yellow for Casual, orange for Active, blue for Co-working), member count, a pace indicator like '~3 msgs/hr' or '~20 msgs/hr', voice status icon (on/off), and a one-line communication norm ('Text only, async-friendly' or 'Voice chat, cameras optional'). Filter bar at top with energy-level pills that can be tapped to filter. Some space cards should feel visually calmer (muted colors, lighter weight) and some more active (denser info, slightly brighter accents). This should look like a real, shippable product — not a wireframe or concept sketch." priority="HIGH" style="Product UI showcase. This is the most novel design in the case study and needs to demonstrate that it's a real, functional system, not just a principle. Think about how Discord or Slack shows channels, but with the energy dimension added." />
+<ImagePlaceholder alt="Hiki monetization model — free vs paid feature comparison" caption="Free users get the better experience by design. Paid features are accelerators, not hostage negotiations." brief="A clean comparison or diagram showing the free tier (limited likes, full community, scroll-based profiles, ND filtering, all safety features) vs paid tier (more likes, priority visibility, advanced filters). The visual should make it clear that the free tier is complete and intentional, not stripped down. Could be a feature matrix, side-by-side, or a simple tier diagram." priority="MEDIUM" style="Information design. Should feel honest and transparent, not like a marketing upsell chart." />
 
-### 4. Sensory defaults favor calm
+## The rollout
 
-The app's default sensory profile: all animations respect prefers-reduced-motion. Reduced motion detected, transitions are instant. No auto-playing media. Ever. Audio, video, GIFs all require a tap. Color contrast meets WCAG AAA, not AA. The difference between 4.5:1 and 7:1 matters for users with visual processing differences common in autism. Sound is off by default. Haptics are off by default. Both can be enabled in settings. Color palette uses low-saturation, muted tones. No bright accent colors competing for attention.
+I considered a gradual rollout. Phased features, A/B tests, slow migration. Then I chose the opposite: rip the bandaid.
 
-Not accessibility accommodations bolted onto a standard app. The foundation. The app was designed calm-first and could be made more stimulating via user preference. Not the other way around.
+For this audience, a gradual rollout creates the exact kind of unpredictability that triggers anxiety. Half the app looks new, half looks old. Features appear and disappear. The interface you learned yesterday changed today. For users who are sensitive to environmental changes, that's worse than a clean break.
 
-## The personal dimension (and why it's methodologically relevant)
+So we shipped everything at once and over-communicated the hell out of it. In-app education explaining what changed and why. Messaging framed as forward momentum, not disruption. Built onboarding initiatives that walked existing users through the new system at their own pace. The framing mattered: this isn't change for the sake of change. This is the app finally becoming what it was supposed to be.
 
-I'm AuDHD. Autistic and ADHD. Not sharing this for sympathy. It's a methodological advantage and I want to be transparent about it.
+## Results
 
-Lived experience of sensory overwhelm, rejection sensitivity, executive function challenges informed design decisions user research alone wouldn't surface. Not because the research was bad. Users often can't articulate what their nervous system needs until they experience the alternative.
+3.9x user growth. 2.6x revenue. 10:1 lifetime value to customer acquisition cost ratio. 700+ screens designed and shipped across iOS and Android.
 
-The co-working space is the clearest example. No user in research asked for a space where people are present but not interacting. But I know from lived experience that one of the hardest parts of neurodivergent social life is the gap between "I want to be alone" and "I want company." There's a middle state. Shared presence without social obligation. When we built co-working spaces, they became one of the most-used features. Users said "I didn't know I needed this."
+The numbers tell one story. The user feedback tells a better one. People said this was the first app that felt like it was built for how their brain works. Not adapted. Not accommodated. Built.
 
-You can't find that in an interview. You find it by understanding the nervous system from the inside.
+## The personal dimension
 
-<ImagePlaceholder alt="Co-working space — shared presence, ambient status indicators, quiet visual design" caption="Co-working: shared presence without social obligation. Users didn't ask for this. They didn't know they could." brief="Phone mockup of the most minimal, calm screen in the app. A few user avatars arranged in a loose, non-hierarchical layout with ambient status lines ('reading,' 'just here,' 'working on something,' 'listening to music'). Maybe a small shared ambient element — a lo-fi music toggle or a 'room mood' indicator. No chat messages visible. No active conversation. Just the visual sense of other people being present. The design should feel like sitting in a library with other people — warm, quiet, non-demanding. Think: the anti-Slack. Muted palette, generous whitespace, soft edges." priority="MEDIUM-HIGH" style="Concept illustration / product UI. Study calm ambient app designs — meditation apps (Headspace, Calm), focus apps (Forest, Centered) — but applied to social presence rather than solo productivity." />
+I'm AuDHD. Autistic and ADHD. I'm not sharing that for sympathy or to perform relatability. It's a methodological fact. I designed this product from inside the experience it serves.
 
-## What I'd change
+Lived experience of sensory overwhelm, rejection sensitivity, and executive function challenges informed decisions that user research alone wouldn't surface. Not because the research was bad. Because users often can't articulate what their nervous system needs until they experience the alternative. You can't find "I need scroll-based profiles instead of swipe cards" in an interview. You find it by understanding that snap judgments under time pressure are fundamentally incompatible with how autistic social cognition works.
 
-The energy-level system was ahead of its time but too rigid in v1. Energy levels were set by space creators and couldn't adapt dynamically. A "low-energy" space that got an influx of messages felt like a broken contract. I designed a dynamic energy indicator that would adjust the label based on actual activity, truth-in-advertising for the current state. Didn't ship it. Should have been in v1.
+The ND filtering categories came from the same place. No user asked for four-axis neurodivergent matching. But I know from lived experience that "are you neurodivergent?" is a useless binary. The question that matters is: how does your neurodivergence show up in relationships? That's what the filtering system answers.
 
-I also wish I'd pushed harder on onboarding. The notification control screen was good. The broader onboarding was still too linear, a sequence of screens to click through. For users with executive function challenges, a long linear onboarding is its own kind of overwhelm. A progressive onboarding that introduced features in context, over the first week, would have been better.
+## What I'd do differently
 
-## Why this matters beyond Hiki
+The survey design was solid but I'd push harder on longitudinal follow-up. We captured why users left but didn't systematically track whether the redesign brought them back. Anecdotally, yes. Structurally, I wish I'd built that feedback loop into the product itself.
 
-Every interface triggers a nervous system response. Most designers ignore that because the default user is assumed to be neurotypical, emotionally neutral, cognitively available.
-
-Designing for neurodivergent users strips away that assumption and forces you to design for the full range of human cognitive states. Depleted attention. Heightened anxiety. Sensory sensitivity. Executive function constraints. The resulting designs aren't just accessible. They're better for everyone.
-
-The quiet notification defaults are better for all users. The escape routes are better. The energy-level filtering helps anyone who's ever joined a group chat and immediately felt overwhelmed.
-
-What AI tools can't replace: understanding that infinite scroll isn't a layout pattern. It's a dopamine exploit. That distinction requires a model of human behavior, not a model of pixels.
+I'd also reconsider the all-at-once rollout for certain user segments. The over-communication strategy worked, but some power users still felt disoriented. A hybrid approach (full redesign for new users, guided migration for existing) might have reduced that friction without the anxiety of a phased rollout.
