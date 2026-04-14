@@ -316,16 +316,16 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
               cta: "Read more",
             },
             {
-              title: "Missed in Sunday",
-              desc: "A weekly letter about the things that slipped past while I was busy surviving the week.",
-              href: "#",
-              cta: "Coming soon",
+              title: "Stuff You Missed in Sunday School",
+              desc: "Social advocacy platform promoting truth and transparency in religion. Personal project.",
+              href: "https://www.stapleycreative.com/projects/branding",
+              cta: "View",
             },
             {
-              title: "Santa\u2019s Letter",
-              desc: "Personalized letters from Santa, generated with AI and printed with care. Built for my kids, then opened up.",
-              href: "#",
-              cta: "Coming soon",
+              title: "Santa\u2019s Red Letter",
+              desc: "\u201CWhat if Santa wrote back?\u201D Personalized letters from Santa, built for my kids, then opened up.",
+              href: "https://www.stapleycreative.com/projects/branding",
+              cta: "View",
             },
           ].map((demo) => (
             <Link
