@@ -17,7 +17,7 @@ export default function AboutPage() {
           style={{ color: "var(--color-text-tertiary)" }}
         >
           Currently at GiveCampus. Open to staff, principal, and design-systems
-          leadership roles — particularly AI product design and 0→1 work.{" "}
+          leadership roles, particularly AI product design and 0→1 work.{" "}
           <a
             href="mailto:stapleycreative@gmail.com"
             style={{
@@ -32,17 +32,16 @@ export default function AboutPage() {
 
         <div className="mt-8 prose pt-6" style={{ borderTop: "1px solid var(--color-border-subtle)" }}>
           <p>
-            I'm a product designer who thinks at the system level and builds at
-            the prototype level. I use AI as a design material, not a replacement
-            for design judgment.
+            I think at the system level and build at the prototype level.
+            AI is a design material in my workflow, not a replacement for
+            design judgment.
           </p>
           <p>
-            For the past 20 years, I've worked across consumer products, B2B
-            SaaS, and ed-tech — always at the intersection of complex systems
-            and human behavior. I've shipped design systems that scaled from
-            20,000 to 6 million users, built AI-augmented workflows that
-            preserve expert judgment, and designed interfaces informed by how
-            nervous systems actually process information.
+            Twenty years across consumer products, B2B SaaS, and ed-tech.
+            Always at the intersection of complex systems and human behavior.
+            Design systems that scaled from 20,000 to 6 million users.
+            AI workflows that preserve expert judgment. Interfaces informed
+            by how nervous systems actually process information.
           </p>
           
           <StereoPortrait />
@@ -51,7 +50,7 @@ export default function AboutPage() {
           <p>
             I diagnose the real problem underneath the stated problem. I
             architect systems that compound good decisions over time. And I
-            build — not just mockups, but interactive prototypes in React and
+            build. Not just mockups. Interactive prototypes in React and
             Tailwind that close the gap between design intent and shipped
             product.
           </p>

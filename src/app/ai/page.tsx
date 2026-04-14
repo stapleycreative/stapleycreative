@@ -149,9 +149,7 @@ export default function AIPage() {
             Hover each node.
           </em>{" "}
           Each one is a specific cognitive function, already studied in
-
           neuroscience, that I&apos;ve externalized into an AI system sitting
-
           inside my design workflow. The hub in the middle is what happens when
           they cooperate.
         </p>
@@ -542,7 +540,6 @@ export default function AIPage() {
           (via OpenAI Assistants <code>file_search</code>), and its own tool
           set. A Python relay passes artifacts between them. The useful unit
           isn&apos;t &quot;model&quot;, it&apos;s <strong>role</strong>: model
-
           + system prompt + knowledge base + tool set. Treat roles as team
           members.
         </p>
