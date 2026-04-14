@@ -1,21 +1,21 @@
 ---
 title: "Two minds are better than one: building an adversarial AI critic"
-description: "The first version of every design I ship is subtly wrong. So I built a system where Claude builds, ChatGPT critiques, and I referee. They don't share memory. They disagree. That's the feature."
+description: "The first version of every design I ship is wrong. So I built a system where Claude builds, ChatGPT critiques, and I referee. They don't share memory. Disagreement is the product."
 date: "2026-04-14"
 tags: ["AI", "Design Process", "Critique", "Cognitive Architecture"]
 ---
 
 ## One model in one context window is not a critic
 
-The first version of every design I ship is wrong. Not badly wrong. Subtly wrong — the direction looks reasonable, the details look polished, and I'm too close to notice what's missing.
+The first version of every design I ship is wrong. Not badly wrong. Just wrong in a way I can't see from inside it.
 
-This used to be solved by design crits. A senior designer, a PM, an engineer — separate contexts, separate priors, separate blind spots. They'd see what I couldn't.
+This used to be solved by design crits. A senior designer, a PM, an engineer. Each with different blind spots. Each seeing what the others missed.
 
-AI broke that loop. For a while I was using one model for everything: build, evaluate, refine. And I kept shipping work that later reviewers would flag in thirty seconds.
+AI broke that loop. I spent a while using one model for everything: build, evaluate, refine. Ship it. Later someone would flag the problem in thirty seconds.
 
-The reason is structural. **One model in one context window gets sycophantic.** It agrees with its own prior decisions. It pattern-matches to its own output. It congratulates you on the direction it suggested three turns ago. This is the AI equivalent of asking the designer to critique their own work.
+The structural issue is clear now. **One model in one context window becomes sycophantic.** It agrees with what it just built because it *just built it*. It pattern-matches to its own output. It's the AI version of asking the designer to critique their own work. Of course they like it. They made it.
 
-So I built a relay.
+So I built a relay that refuses to do that.
 
 <ImagePlaceholder
   alt="Architecture diagram of the adversarial critic relay. Claude builds on one side. ChatGPT critiques on the other. A Python bridge passes artifacts. Four critic roles — Critic, Researcher, PM, Engineer — each with their own system prompts and knowledge base."
@@ -25,54 +25,53 @@ So I built a relay.
 
 ## How the brain does critique
 
-Good critique in the human brain isn't one region agreeing with itself. It's adversarial.
+Real critique isn't one region checking itself. It's adversarial.
 
-The prefrontal cortex generates a plan. The anterior cingulate cortex flags conflict between the plan and your actual goals. The insula flags emotional dissonance — that *wait, something is off* feeling you can't yet articulate.
+The prefrontal cortex generates a plan. The anterior cingulate cortex flags when the plan contradicts what you actually want. The insula produces that *something is off* feeling you can't name yet.
 
-Three separate systems, each with its own job, each evaluating the same artifact from a different angle. The PFC doesn't get to overrule them. It has to listen.
+Three systems. Each one has its own job. Each one is looking at the same thing from a different angle. The PFC can't overrule the others. It has to listen.
 
-Single-model AI flattens all of that into one voice. The relay re-introduces the separation.
+Single-model AI flattens all that into one voice. The relay splits it apart.
 
 ## The architecture
 
-- **Builder (Claude).** Writes code. Builds Figma files. Drafts copy. Full creative responsibility for the artifact.
-- **Critic Panel (ChatGPT).** Four roles, each defined in a YAML config: **Critic** (adversarial challenge to the direction), **Researcher** (what does the literature / competitor landscape say), **PM** (does this ship? is it scoped?), **Engineer** (is this actually buildable?). Each role has its own system prompt. Each has its own file_search and web_search tools. None of them share context with the builder.
-- **Relay (Python bridge).** Passes artifacts between them. Claude produces. The relay hands the artifact to each critic in turn. Craig reads the critiques and decides what to accept.
+- **Builder (Claude).** Writes code. Builds Figma. Drafts copy. Owns the artifact.
+- **Critic Panel (ChatGPT).** Four roles defined in YAML. **Critic** shoots holes in the direction. **Researcher** checks what the literature and competitors actually say. **PM** answers "does this ship, or is it scope creep?" **Engineer** checks whether it's actually buildable. Each role has its own system prompt, its own file search, its own web access. None of them share context with the builder.
+- **Relay (Python bridge).** Ferries artifacts between them. Claude produces. The relay hands the output to each critic in turn. I read the critiques and decide what lands.
 
-The asymmetry is the whole point. Claude doesn't know what ChatGPT will say. ChatGPT doesn't know what Claude was trying to do — only what Claude shipped. That's a real design crit.
+The asymmetry is the whole point. Claude doesn't know what ChatGPT will say. ChatGPT only sees what Claude shipped, not what Claude was thinking. That's the design crit. That's the gap.
 
 <PullQuote>The useful unit isn't "model." It's "role." A role is a model plus a system prompt plus a knowledge base plus a toolset. Treat roles as team members.</PullQuote>
 
 ## A real example
 
-During a build on the GiveCampus Volunteer Management alpha, Claude produced a task card for a volunteer calling workflow. Clean layout. Good typography. Passed my eye.
+GiveCampus Volunteer Management alpha. Claude built a task card for a calling workflow. Clean layout. Good typography. It passed my eye.
 
-I sent it through the critic panel. ChatGPT-as-Critic came back with one line:
+Sent it through the critic panel. ChatGPT came back with one line:
 
-> You're burying the action. The card's job is to get the volunteer into the call, but the call CTA is tertiary. You've elevated metadata that nobody acts on.
+> You're burying the action. The card exists to get the volunteer into the call. The call button is tertiary. You've made metadata louder than the thing that matters.
 
-That was correct. I'd inherited hierarchy from a prior pattern without earning it. Claude hadn't caught it because Claude had *built* it. I hadn't caught it because I was tired. An adversarial reviewer with no stake in the build caught it in one turn.
+That was correct. I'd copied hierarchy from an older pattern without questioning whether that pattern was right. Claude didn't catch it because Claude built it. I didn't catch it because I was depleted. Someone with no stake in the build, only tasked with finding the gap, caught it in one turn.
 
-This happens every time. Not because ChatGPT is smarter than Claude — it isn't, most days. Because it's *separate*.
+Happens every time. Not because ChatGPT is smarter than Claude (it isn't, most days). Because it's separate.
 
 ## What this taught me about designing with AI
 
-AI models are not fungible. Each has its own defaults, its own failure modes, its own blind spots. Claude is generous, thorough, a little over-eager. ChatGPT is terse, skeptical, prone to premature scope cuts. Gemini (when I use it) is a quiet validator — useful for catching when both of the others are wrong.
+Models aren't fungible. Claude has its own defaults, failure modes, blind spots. Claude is generous, over-complete, a little too eager. ChatGPT is terse, skeptical, cuts scope too fast. Gemini (when I reach for it) is a quiet validator. Useful for catching when the other two are both wrong.
 
-You don't build an AI team by picking the best model. You build it by assigning roles to the model whose failure mode is *least costly* for that role.
+You don't build an AI team by picking the smartest model. You assign roles based on which failure mode hurts *least* for that job.
 
-- Builder: a model that over-produces. You can always cut.
-- Critic: a model that under-validates. You want it skeptical.
-- Researcher: a model with strong tool use and source citation.
+Builder needs a model that over-produces. You can always cut. Critic needs a model that under-validates. You want skeptical. Researcher needs strong tool use and citation discipline.
 
-And the roles need to be kept separate. The moment they share memory, they start agreeing. The moment they agree, you're back to one voice.
+And they stay separate. Share memory once, they start agreeing. Agree once, you're back to one voice in your head.
 
-## The takeaway
+## The distinction
 
-If you're designing with one AI, you're designing with your own inner voice made louder. It agrees with you. It remembers your last three turns and builds on them. It does not, cannot, act as a reviewer.
+One AI model is your own inner voice bounced back louder. It agrees. It remembers what you said three turns ago and builds on it. It cannot review anything. It can only applaud.
 
-If you're designing with two — wired so they don't share context, don't share priors, don't share style — you have the beginning of a team.
+Two models, wired so they never share context, never see each other's work, never align on style, now you have the beginning of a team.
 
-That's the distinction. Not "AI-assisted design." Designing with a small, specialized, adversarial cognitive team.
 
-[The relay config and role prompts are on the tools page.](/tools) Adapt them. Make them yours. The architecture is more valuable than the specific prompts — once you see the pattern, you can build it with whatever models are best this quarter.
+Not "AI-assisted design." Designing alongside a small, specialized, adversarial cognitive team.
+
+The relay config and role prompts are on the tools page. Adapt them. Make them yours. The architecture matters more than the specific wording. Once you see the pattern, you can build it with whatever models are strongest this quarter.

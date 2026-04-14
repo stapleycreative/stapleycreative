@@ -23,7 +23,7 @@ const components = {
           backgroundColor: "var(--color-bg-surface)",
           border: "1px solid var(--color-border-subtle)",
           backgroundImage:
-            "repeating-linear-gradient(135deg, rgba(33,31,38,0.025) 0px, rgba(33,31,38,0.025) 1px, transparent 1px, transparent 10px)",
+            "repeating-linear-gradient(135deg, rgba(28,32,36,0.025) 0px, rgba(28,32,36,0.025) 1px, transparent 1px, transparent 10px)",
         }}
       />
       {caption && (
@@ -98,88 +98,43 @@ const components = {
     change: string;
     result: string;
   }) => (
-    <div
-      className="not-prose my-8 p-5 rounded-lg"
-      style={{
-        backgroundColor: "var(--color-bg-surface)",
-        border: "1px solid var(--color-border-subtle)",
-      }}
-    >
-      <div className="grid gap-3">
-        <div className="flex gap-3">
-          <span
-            className="rounded shrink-0"
-            style={{
-              padding: "2px 6px",
-              backgroundColor: "rgba(33, 31, 38, 0.06)",
-              color: "rgba(33, 31, 38, 0.5)",
-              fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
-              fontSize: "11px",
-              fontWeight: 400,
-              lineHeight: "18px",
-              borderRadius: "4px",
-              display: "inline-flex",
-              alignItems: "center",
-            }}
-          >
-            Problem
-          </span>
-          <span className="text-sm" style={{ color: "var(--color-text-secondary)" }}>
-            {problem}
-          </span>
-        </div>
-        <div className="flex gap-3">
-          <span
-            className="rounded shrink-0"
-            style={{
-              padding: "2px 6px",
-              backgroundColor: "rgba(33, 31, 38, 0.06)",
-              color: "rgba(33, 31, 38, 0.5)",
-              fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
-              fontSize: "11px",
-              fontWeight: 400,
-              lineHeight: "18px",
-              borderRadius: "4px",
-              display: "inline-flex",
-              alignItems: "center",
-            }}
-          >
-            Change
-          </span>
-          <span className="text-sm" style={{ color: "var(--color-text-secondary)" }}>
-            {change}
-          </span>
-        </div>
-        <div className="flex gap-3">
-          <span
-            className="rounded shrink-0"
-            style={{
-              padding: "2px 6px",
-              backgroundColor: "rgba(33, 31, 38, 0.08)",
-              color: "rgba(33, 31, 38, 0.65)",
-              fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
-              fontSize: "11px",
-              fontWeight: 500,
-              lineHeight: "18px",
-              borderRadius: "4px",
-              display: "inline-flex",
-              alignItems: "center",
-            }}
-          >
-            Result
-          </span>
-          <span className="text-sm font-medium" style={{ color: "var(--color-text-primary)" }}>
-            {result}
-          </span>
-        </div>
-      </div>
+    <div className="not-prose mb-16 mt-0 grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-10 pt-8" 
+         style={{ borderTop: "1px solid var(--color-border-subtle)" }}>
+       {/* Problem */}
+       <div className="flex flex-col gap-3 relative">
+         <div className="flex items-center gap-2">
+           <div className="w-[5px] h-[5px] rounded-full" style={{ backgroundColor: "var(--color-text-tertiary)", opacity: 0.4 }} />
+           <span className="text-[11px] font-mono tracking-[0.15em] uppercase" style={{ color: "var(--color-text-tertiary)" }}>Problem</span>
+         </div>
+         <p className="text-sm sm:text-[15px] leading-[1.65]" style={{ color: "var(--color-text-secondary)" }}>{problem}</p>
+       </div>
+
+       {/* Change */}
+       <div className="flex flex-col gap-3 relative">
+         <div className="hidden md:block w-px h-12 absolute -left-6 lg:-left-8 top-1" style={{ backgroundColor: "var(--color-border-subtle)" }} />
+         <div className="flex items-center gap-2">
+           <div className="w-[5px] h-[5px] rounded-full" style={{ backgroundColor: "var(--color-text-tertiary)", opacity: 0.4 }} />
+           <span className="text-[11px] font-mono tracking-[0.15em] uppercase" style={{ color: "var(--color-text-tertiary)" }}>Change</span>
+         </div>
+         <p className="text-sm sm:text-[15px] leading-[1.65]" style={{ color: "var(--color-text-secondary)" }}>{change}</p>
+       </div>
+
+       {/* Result */}
+       <div className="flex flex-col gap-3 relative">
+         <div className="hidden md:block w-px h-12 absolute -left-6 lg:-left-8 top-1" style={{ backgroundColor: "var(--color-border-subtle)" }} />
+         <div className="flex items-center gap-2">
+           <div className="w-[5px] h-[5px] rounded-full" style={{ backgroundColor: "var(--color-text-primary)" }} />
+           <span className="text-[11px] font-mono tracking-[0.15em] uppercase font-semibold" style={{ color: "var(--color-text-primary)" }}>Result</span>
+         </div>
+         <p className="text-sm sm:text-[15px] font-medium leading-[1.65]" style={{ color: "var(--color-text-primary)" }}>{result}</p>
+       </div>
     </div>
   ),
 };
 
 export function MdxContent({ source }: { source: string }) {
   return (
-    <div className="prose" style={{ maxWidth: "var(--max-width-content)" }}>
+    <div className="prose max-w-none">
       <MDXRemote source={source} components={components} />
     </div>
   );

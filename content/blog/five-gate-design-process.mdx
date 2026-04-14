@@ -1,116 +1,116 @@
 ---
 title: "The 5-Gate Design Process: forcing AI (and me) to earn each step"
-description: "Most 'design process' posts are aspirational. Mine is forensic. Nineteen specific ways Claude — and I — skip verification, and the safeguards that catch each one."
+description: "Most design process posts are aspirational. Mine catalogs nineteen ways I fail and the safeguards that catch each one."
 date: "2026-04-14"
 tags: ["Design Process", "AI", "Quality", "Verification"]
 ---
 
 ## Why I wrote this down
 
-I kept shipping work that wasn't ready. Not visibly bad — subtly bad. Hierarchy that didn't earn itself. Components that looked like they used the design system but didn't. Screenshots that matched the intent but not the reality.
+I kept shipping work that wasn't ready. Not obviously broken, but subtly. Hierarchy that didn't earn its place. Components pretending to use the design system but not actually using it. Screenshots that looked like the intent but weren't the reality.
 
-Every time, in the post-mortem, there was a moment I'd skipped. A gate I hadn't passed. A verification step I'd self-certified as "looks good" instead of running mechanically.
+Post-mortems showed the pattern. There was always a gate I'd skipped. A step I'd skipped. A verification I'd eyeballed instead of running mechanically.
 
-So I wrote the process down. Not as an aspiration — as a forcing function. Five gates. Each has to be passed before the next starts. Each has a mechanical output, not a vibe check.
+So I documented it. Not as aspiration. As a forcing function. Five gates. Can't start the next one until this one is done. Each gate produces something measurable, not a vibe.
 
-The process is the same whether I'm building or whether Claude is building for me. That's the point — it's not a style guide, it's a cognitive architecture.
+Same process whether I'm building or whether Claude is. That's the point. It's not a style guide. It's a cognitive architecture.
 
 ## The five gates
 
 <ImagePlaceholder
-  alt="Five gates laid out horizontally — ORIENT, THINK, BUILD, CRITIQUE, PRESENT — with arrows showing that each gate has a required artifact before the next can start."
+  alt="Five gates laid out horizontally. ORIENT, THINK, BUILD, CRITIQUE, PRESENT. Arrows show each gate requires an artifact before the next starts."
   caption="Each gate produces an artifact. No artifact, no next gate. No exceptions."
   aspect="16/9"
 />
 
-### Gate 1 — ORIENT
+### Gate 1. ORIENT
 
-*What I read. What I understood. What I'm going to do.*
+*Read. Understand. Declare the plan.*
 
-Before writing a line of code, produce a **Context Receipt**: every source document I read (not skimmed, not remembered from last session — actually opened), with one specific fact from each that proves comprehension.
+Before code. Produce a **Context Receipt**: every document you actually opened (not skimmed, not from memory), one specific fact from each that proves you read it.
 
-This exists because Claude — and I — love to jump straight to building. The Context Receipt is an anti-skip mechanism. If it's blank, the build can't start.
+This exists because I jump straight to building. Claude jumps straight to building. The Context Receipt is the blocker. Blank receipt = no build.
 
-### Gate 2 — THINK
+### Gate 2. THINK
 
-*Hierarchy, emotional state, user context, patterns.*
+*Hierarchy. Emotional state. User context. Patterns.*
 
-Run the **Design Compiler** skill. Force first-principles ranking of every field on the screen. Each element has to earn its position. "This is how the prior design did it" is not a reason.
+Run the **Design Compiler** skill. Rank every field from first principles. Each element earns its position. "The old design had it here" is not a reason.
 
-Run the **Emotional State** audit. What state does the user arrive in? What state should they leave in? If the screen doesn't know, it won't get there by accident.
+Run the **Emotional State** audit. User arrives in what state. User leaves in what state. Screen won't accidentally deliver the right state. You have to build it in.
 
-### Gate 3 — BUILD
+### Gate 3. BUILD
 
-*Mobile-first. No unnecessary decisions. Patch mode by default.*
+*Mobile-first. No unnecessary choices. Patch mode.*
 
-The default edit mode is **patch** — surgical changes via the Edit tool, not the Write tool. Rewrites require escalation because rewrites silently drop features. (I learned this the hard way: three critical feature systems went missing in one visual overhaul.)
+Default mode is **patch**. Surgical edits via Edit tool, not Write tool. Rewrites need escalation. Rewrites kill features silently. I learned that the hard way. Three critical systems vanished in one visual rework.
 
-Every modification gets a screenshot of the specific node that changed. Not a zoomed-out canvas view — the individual component. The screenshot has to appear in the conversation or the verification didn't happen.
+Every change gets a screenshot of the node that changed. Not a canvas overview. The single component. Screenshot has to appear in the message or it didn't happen.
 
-### Gate 4 — CRITIQUE
+### Gate 4. CRITIQUE
 
-*Mechanical audits, not vibe checks.*
+*Mechanical audits. Not vibes.*
 
-This is the gate I skip most. It is also the most important gate.
+This is the gate I skip. Also the most important one.
 
 <PullQuote>Self-certifying "looks polished" catches nothing. Scanning for <code>#fff</code>, counting uppercase, greppping focus-visible rules catches everything.</PullQuote>
 
-The mechanical checklist runs every time:
+The checklist runs every time.
 
-- Zero pure black (`#000`) or pure white (`#fff`). All neutrals tinted.
-- Zero uppercase labels (unless it's an acronym).
-- Every interactive element has a `:focus-visible` rule.
-- No bounce / elastic easing.
+- Zero pure black (`#000`) or pure white (`#fff`). Tinted neutrals only.
+- Zero uppercase labels unless it's an acronym.
+- Every interactive element has `:focus-visible`.
+- No bounce or elastic easing.
 - Touch targets ≥ 44px.
-- Reduced-motion media query present and honored.
+- Reduced-motion media query exists and works.
 
-Then the **adversarial relay**: Claude builds, ChatGPT critiques. If they disagree on whether something is ready, it isn't ready.
+Then **adversarial relay**: Claude builds, ChatGPT critiques. If they disagree, it's not ready.
 
-### Gate 5 — PRESENT
+### Gate 5. PRESENT
 
-*With rationale and critique summary.*
+*With rationale. With critique.*
 
-The work is shown to the human reviewer with:
+Show the work with:
 
-- What I changed (the diff).
-- Why I changed it (reference back to the Context Receipt and hierarchy analysis).
-- What the critic panel flagged and how I resolved it.
-- What I'm *unsure* about, explicitly.
+- What changed. The diff.
+- Why. Back to the Context Receipt and hierarchy.
+- What critics flagged and how it was fixed.
+- What's uncertain. Explicitly.
 
-No "ta-da." No "done." Just the work and the rationale.
+No "ta-da." No "done." Work plus rationale.
 
 ## Nineteen failure modes
 
-The gates exist because I have nineteen documented ways of breaking them. A partial list:
+The gates exist because I have nineteen documented failures. Partial list:
 
-1. Skipping Gates 1–2 and going straight to code.
-2. Treating all UI elements equally (no hierarchy analysis).
-3. Not reading existing project documentation.
-4. Not invoking skills or agents.
-5. Resisting external critique.
-6. Rewriting entire files from memory instead of surgical edits.
-7. Cargo-cult UI hierarchy — copying field order from prior designs without earning it.
-8. Not running verification before presenting work.
-9. Speed-running sessions to inflate a count. (Three deep sessions beat seven shallow ones.)
-10. Building before installing quality tools.
-11. Self-certifying visual quality without mechanical audit.
-12. Building containers with plain frames instead of component instances.
-13. Skipping post-build screenshot verification.
-14. Resizing auto-layout parents before children.
-15. Binding variables with value=0.
-16. Not repositioning cloned variants.
-17. "This is just a test" rationale for lowering the bar.
-18. Batching all screenshots to "the end."
-19. Assuming last session's state still applies this session.
+1. Skip Gates 1–2 and code straight.
+2. Treat all UI elements the same. No hierarchy.
+3. Don't read existing docs.
+4. Don't invoke skills.
+5. Resist external critique.
+6. Rewrite files from memory instead of surgical edits.
+7. Copy field order from old designs without earning it.
+8. Don't verify before presenting.
+9. Speed-run sessions for output count. Three deep beats seven shallow.
+10. Build before installing quality tools.
+11. Eyeball quality instead of mechanically auditing.
+12. Build containers from frames instead of component instances.
+13. Skip screenshot verification after building.
+14. Resize auto-layout parents before children.
+15. Bind variables with value=0.
+16. Don't reposition cloned variants.
+17. Use "it's just a test" to lower standards.
+18. Batch screenshots for "later."
+19. Assume last session's state carries over.
 
-The list grows. Every new failure mode that shows up gets logged and the gate that would have caught it gets a new mechanical check.
+The list grows. New failures get logged. The gate that should have caught it gets a new check.
 
 ## What this is really about
 
-The 5-Gate process isn't project management. It's **externalized metacognition**. I have ADHD. I get excited about building. I will absolutely skip Gate 4 if there isn't a forcing function that stops me.
+The 5-Gate process isn't project management. It's externalized thinking. I have ADHD. I get excited about building. I will skip Gate 4 without a forcing function that stops me cold.
 
-The gates are that function. They don't make me a better designer in the moment. They make the *system* — me plus Claude plus ChatGPT plus the mechanical checklist — produce better work than any of us would alone.
+The gates are that function. They don't make me a better designer in the moment. They make the system (me plus Claude plus ChatGPT plus the mechanical checklist) produce better work than any of us would alone.
 
-Design process posts usually read like aspiration. This one is a ledger. Here are the ways I fail. Here are the checks that catch each one. Here is the artifact each check produces.
+Most design process posts are aspirational. This is a ledger. Ways I fail. Checks that catch each one. Artifact each check produces.
 
-If you want the full process file — CLAUDE.md, the review checklist, the gate-by-gate artifacts — [it's on the tools page](/tools). Copy it, gut it, rebuild it around your own failure modes. The specific rules matter less than the pattern: **name your failures, name the check that catches each one, don't let the next gate start until the check has run**.
+The full process file (CLAUDE.md, review checklist, gate artifacts) is [on the tools page](/tools). Fork it. Gut it. Rebuild it for your own failures. The specific rules matter less than the pattern. Name failures. Name the check that catches each. Don't start the next gate until the check runs.

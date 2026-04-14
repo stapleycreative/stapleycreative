@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Cognitive Architecture for Design",
   description:
-    "I design with AI the way a neuroscientist builds a mind — by modeling parts of human cognition that produce good work, then giving them to the machine.",
+    "I design with AI the way a neuroscientist builds a mind. Model the specific cognitive function. Give it to the machine. Keep the judgment.",
 };
 
 const nodes = [
@@ -22,36 +22,38 @@ export default function AIPage() {
       style={{ maxWidth: "var(--max-width-wide)" }}
     >
       {/* Hero */}
-      <div className="max-w-[22ch]">
-        <p
-          className="text-xs tracking-wide mb-3"
-          style={{
-            fontFamily: "var(--font-mono)",
-            color: "var(--color-text-tertiary)",
-            letterSpacing: "0.08em",
-          }}
-        >
-          Cognitive architecture for design
-        </p>
-        <h1 className="text-4xl sm:text-5xl md:text-[56px] font-medium tracking-tight leading-[1.08]">
-          I design with AI the way a neuroscientist builds a mind.
-        </h1>
-      </div>
+      <div>
+        <div>
+          <p
+            className="text-xs tracking-wide mb-3"
+            style={{
+              fontFamily: "var(--font-mono)",
+              color: "var(--color-text-tertiary)",
+              letterSpacing: "0.08em",
+            }}
+          >
+            Cognitive architecture for design
+          </p>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight leading-tight sm:-ml-[1px] md:max-w-[18ch]">
+            I design with AI the way a neuroscientist builds a mind.
+          </h1>
+        </div>
 
-      <p
-        className="mt-7 text-lg leading-relaxed max-w-[58ch]"
-        style={{ color: "var(--color-text-secondary)" }}
-      >
-        <strong style={{ color: "var(--color-text-primary)", fontWeight: 500 }}>
-          I&apos;m Craig.
-        </strong>{" "}
-        I design products and the AI systems that help me design them. Not
-        &quot;AI-assisted design.&quot; Small cognitive systems — each one
-        modeled on a specific part of how human brains actually produce good
-        work — plugged into my process as separate roles. Recently: a
-        volunteer-management platform at GiveCampus, and an AI workflow that
-        mimics the neural handoff behind novel thought.
-      </p>
+        <p
+          className="mt-8 text-lg leading-relaxed max-w-[70ch]"
+          style={{ color: "var(--color-text-secondary)" }}
+        >
+          <strong style={{ color: "var(--color-text-primary)", fontWeight: 500 }}>
+            I&apos;m Craig.
+          </strong>{" "}
+          I design products and the AI systems that help me design them. Not
+          &quot;AI-assisted design.&quot; Small cognitive systems, each one
+          modeled on a specific part of how human brains actually produce good
+          work, plugged into my process as separate roles. Recently: a
+          volunteer-management platform at GiveCampus, and an AI workflow that
+          models the neural handoff behind novel thought.
+        </p>
+      </div>
 
       <hr
         className="my-16"
@@ -60,20 +62,23 @@ export default function AIPage() {
 
       {/* Cognitive map */}
       <div>
-        <p
-          className="text-xs mb-4"
-          style={{
-            fontFamily: "var(--font-mono)",
-            color: "var(--color-text-tertiary)",
-            letterSpacing: "0.08em",
-          }}
-        >
-          Fig. 1 / Six pieces of a designer&apos;s mind I gave to the machine
-        </p>
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-8 gap-4 border-b pb-4" style={{ borderColor: "var(--color-border-subtle)" }}>
+          <h2 className="text-xl font-medium tracking-tight">The Cognitive Handoff Model</h2>
+          <p
+            className="text-xs"
+            style={{
+              fontFamily: "var(--font-mono)",
+              color: "var(--color-text-tertiary)",
+              letterSpacing: "0.08em",
+            }}
+          >
+            Fig. 1 / Six pieces of a designer&apos;s mind I gave to the machine
+          </p>
+        </div>
 
         <svg
           viewBox="0 0 880 360"
-          className="block w-full max-w-[880px] mx-auto cognitive-map"
+          className="block w-full max-w-[1000px] mx-auto cognitive-map"
           role="img"
           aria-label="Six cognitive functions externalized into AI systems"
         >
@@ -90,41 +95,42 @@ export default function AIPage() {
 
           {/* hub */}
           <g className="node hub">
-            <circle cx={440} cy={180} r={50} />
-            <text x={440} y={177} textAnchor="middle">
-              design
-            </text>
-            <text x={440} y={191} textAnchor="middle">
-              practice
+            <circle cx={440} cy={180} r={6} style={{ fill: "var(--color-text-primary)", stroke: "var(--color-text-primary)" }} />
+            <text x={440} y={162} textAnchor="middle" style={{ fill: "var(--color-text-primary)", fontWeight: 500, letterSpacing: "0.04em" }}>
+              design practice
             </text>
           </g>
 
           {nodes.map((n) => (
-            <g className="node" tabIndex={0} key={`${n.cx}-${n.cy}`}>
-              <circle cx={n.cx} cy={n.cy} r={36} />
+            <g className="node cursor-pointer outline-none" tabIndex={0} key={`${n.cx}-${n.cy}`}>
+              <circle cx={n.cx} cy={n.cy} r={5} />
               <text
                 x={n.cx}
-                y={n.label2 ? n.cy - 2 : n.cy + 3}
+                y={n.label2 ? (n.cy < 180 ? n.cy - 18 : n.cy + 22) : (n.cy < 180 ? n.cy - 12 : n.cy + 18)}
                 textAnchor="middle"
               >
                 {n.label1}
               </text>
               {n.label2 && (
-                <text x={n.cx} y={n.cy + 10} textAnchor="middle">
+                <text 
+                  x={n.cx} 
+                  y={n.cy < 180 ? n.cy - 7 : n.cy + 33} 
+                  textAnchor="middle"
+                >
                   {n.label2}
                 </text>
               )}
               <line
                 className="datum"
-                x1={n.cx - 50}
-                y1={n.cy < 180 ? n.cy + 50 : n.cy - 50}
-                x2={n.cx + 50}
-                y2={n.cy < 180 ? n.cy + 50 : n.cy - 50}
+                x1={n.cx - 40}
+                y1={n.cy < 180 ? n.cy + 18 : n.cy - 18}
+                x2={n.cx + 40}
+                y2={n.cy < 180 ? n.cy + 18 : n.cy - 18}
               />
               <text
                 className="artifact"
                 x={n.cx}
-                y={n.artifactY}
+                y={n.cy < 180 ? n.cy + 13 : n.cy - 23}
                 textAnchor="middle"
               >
                 {n.artifact}
@@ -142,8 +148,10 @@ export default function AIPage() {
           >
             Hover each node.
           </em>{" "}
-          Each one is a specific cognitive function — already studied in
-          neuroscience — that I&apos;ve externalized into an AI system sitting
+          Each one is a specific cognitive function, already studied in
+
+          neuroscience, that I&apos;ve externalized into an AI system sitting
+
           inside my design workflow. The hub in the middle is what happens when
           they cooperate.
         </p>
@@ -167,8 +175,8 @@ export default function AIPage() {
           Three deeper dives
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <a href="#bisociation" className="pillar group block py-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 sm:gap-8">
+          <a href="#bisociation" className="pillar group flex flex-col justify-between py-6 h-full">
             <div
               className="text-xs mb-3"
               style={{
@@ -198,7 +206,7 @@ export default function AIPage() {
             </span>
           </a>
 
-          <a href="#adversarial" className="pillar group block py-6">
+          <a href="#adversarial" className="pillar group flex flex-col justify-between py-6 h-full">
             <div
               className="text-xs mb-3"
               style={{
@@ -228,7 +236,7 @@ export default function AIPage() {
             </span>
           </a>
 
-          <a href="#procedural" className="pillar group block py-6">
+          <a href="#procedural" className="pillar group flex flex-col justify-between py-6 h-full">
             <div
               className="text-xs mb-3"
               style={{
@@ -268,31 +276,34 @@ export default function AIPage() {
       {/* Article 1: Bisociation */}
       <article
         id="bisociation"
-        className="mx-auto prose scroll-mt-20"
-        style={{ maxWidth: "var(--max-width-content)" }}
+        className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-16 scroll-mt-20"
       >
-        <p
-          className="text-xs mb-3"
-          style={{
-            fontFamily: "var(--font-mono)",
-            color: "var(--color-text-tertiary)",
-            letterSpacing: "0.08em",
-          }}
-        >
-          Article / 01
-        </p>
-        <h2 className="!mt-0 text-3xl font-medium tracking-tight">
-          The Creativity Engine: forcing an AI to think sideways
-        </h2>
+        <div className="md:col-span-4 lg:col-span-4 pt-2">
+          <p
+            className="text-xs mb-3"
+            style={{
+              fontFamily: "var(--font-mono)",
+              color: "var(--color-text-tertiary)",
+              letterSpacing: "0.08em",
+            }}
+          >
+            Article / 01
+          </p>
+          <h2 className="text-2xl lg:text-3xl font-medium tracking-tight leading-tight">
+            The Creativity Engine: forcing an AI to think sideways
+          </h2>
+        </div>
+
+        <div className="md:col-span-8 lg:col-span-8 prose max-w-none">
 
         <p>
-          I kept noticing that when I asked an AI to brainstorm, it gave me the{" "}
+          I kept asking AI to brainstorm and getting back the{" "}
           <em>average</em> of everything it had ever read on the topic. Useful.
           Derivative. Obvious.
         </p>
         <p>
-          Which matches what neuroscience says about where novel ideas actually
-          come from: not from thinking harder about the problem, but from{" "}
+          The thing is, neuroscience says novel ideas don&apos;t come from
+          thinking harder about the problem. They come from{" "}
           <strong>
             colliding the problem with something that has no business being near
             it
@@ -303,12 +314,12 @@ export default function AIPage() {
         <h3>The neuroscience</h3>
         <p>
           Arthur Koestler&apos;s <em>The Act of Creation</em> (1964) called this{" "}
-          <strong>bisociation</strong> — the moment of insight when two
+          <strong>bisociation</strong>. The moment of insight when two
           unrelated conceptual matrices suddenly share structure. Modern fMRI
           backs him up. Novel idea production involves a handoff between the{" "}
-          <strong>Default Mode Network</strong> (DMN — mind-wandering, loose
-          association) and the <strong>Executive Control Network</strong> (ECN
-          — focused evaluation). Creative people aren&apos;t better at being in
+          <strong>Default Mode Network</strong> (DMN, mind-wandering, loose
+          association) and the <strong>Executive Control Network</strong> (ECN,
+          focused evaluation). Creative people aren&apos;t better at being in
           either state longer. They&apos;re better at <strong>switching</strong>{" "}
           between them.
         </p>
@@ -316,48 +327,45 @@ export default function AIPage() {
           The salience network (anterior insula, anterior cingulate) is the
           referee. It decides which loose association from the DMN is worth
           promoting to the ECN for evaluation. Most brainstorming fails because
-          it stays in the ECN the whole time. You&apos;re evaluating without
-          having diverged. You get the obvious answer, polished.
+          it never leaves the ECN. You evaluate before you&apos;ve diverged.
+          You get the obvious answer, polished.
         </p>
 
-        <h3>The architecture — four phases mapped to the neural analog</h3>
-        <div className="overflow-x-auto my-8">
-          <table className="w-full text-sm">
-            <thead>
-              <tr
-                style={{
-                  borderBottom: "1px solid var(--color-border-strong)",
-                }}
-              >
+        <h3>The architecture, four phases mapped to the neural analog</h3>
+
+        <div className="overflow-x-auto my-8 rounded-lg border border-[var(--color-border-subtle)]" style={{ backgroundColor: "var(--color-bg-surface)" }}>
+          <table className="w-full text-sm text-left">
+            <thead className="bg-[#1c2024]">
+              <tr>
                 <th
-                  className="text-left py-2 pr-3 font-medium"
+                  className="py-3 px-4 font-medium"
                   style={{
                     fontFamily: "var(--font-mono)",
                     fontSize: "11px",
                     letterSpacing: "0.04em",
-                    color: "var(--color-text-tertiary)",
+                    color: "white",
                   }}
                 >
                   Phase
                 </th>
                 <th
-                  className="text-left py-2 pr-3 font-medium"
+                  className="py-3 px-4 font-medium"
                   style={{
                     fontFamily: "var(--font-mono)",
                     fontSize: "11px",
                     letterSpacing: "0.04em",
-                    color: "var(--color-text-tertiary)",
+                    color: "white",
                   }}
                 >
                   Cognitive analog
                 </th>
                 <th
-                  className="text-left py-2 font-medium"
+                  className="py-3 px-4 font-medium"
                   style={{
                     fontFamily: "var(--font-mono)",
                     fontSize: "11px",
                     letterSpacing: "0.04em",
-                    color: "var(--color-text-tertiary)",
+                    color: "white",
                   }}
                 >
                   What the engine does
@@ -365,45 +373,39 @@ export default function AIPage() {
               </tr>
             </thead>
             <tbody style={{ color: "var(--color-text-secondary)" }}>
-              <tr
-                style={{ borderBottom: "1px solid var(--color-border-subtle)" }}
-              >
-                <td className="py-3 pr-3 align-top">Incubate</td>
-                <td className="py-3 pr-3 align-top">DMN — mind-wandering</td>
-                <td className="py-3 align-top">
+              <tr className="border-b border-[var(--color-border-subtle)]">
+                <td className="py-4 px-4 align-top font-medium" style={{ color: "var(--color-text-primary)" }}>Incubate</td>
+                <td className="py-4 px-4 align-top">DMN, mind-wandering</td>
+                <td className="py-4 px-4 align-top">
                   Pulls signals from three unrelated domains (museum curation,
                   archaeology, documentary film, and so on). Generates weak
                   associations.
                 </td>
               </tr>
-              <tr
-                style={{ borderBottom: "1px solid var(--color-border-subtle)" }}
-              >
-                <td className="py-3 pr-3 align-top">Diverge</td>
-                <td className="py-3 pr-3 align-top">DMN → ECN handoff</td>
-                <td className="py-3 align-top">
+              <tr className="border-b border-[var(--color-border-subtle)]">
+                <td className="py-4 px-4 align-top font-medium" style={{ color: "var(--color-text-primary)" }}>Diverge</td>
+                <td className="py-4 px-4 align-top">DMN → ECN handoff</td>
+                <td className="py-4 px-4 align-top">
                   Produces 8+ bisociations, each scored on semantic distance (0
-                  = obvious, 10 = unrelated). Targets the 5–7 zone — far enough
+                  = obvious, 10 = unrelated). Targets the 5–7 zone, far enough
                   to be novel, close enough to be coherent.
                 </td>
               </tr>
-              <tr
-                style={{ borderBottom: "1px solid var(--color-border-subtle)" }}
-              >
-                <td className="py-3 pr-3 align-top">Switch</td>
-                <td className="py-3 pr-3 align-top">Salience network</td>
-                <td className="py-3 align-top">
+              <tr className="border-b border-[var(--color-border-subtle)]">
+                <td className="py-4 px-4 align-top font-medium" style={{ color: "var(--color-text-primary)" }}>Switch</td>
+                <td className="py-4 px-4 align-top">Salience network</td>
+                <td className="py-4 px-4 align-top">
                   Four-filter test: surprise, coherence, timing, zero-audience.
                   Kills ideas that are novel-but-incoherent or
                   coherent-but-stale.
                 </td>
               </tr>
               <tr>
-                <td className="py-3 pr-3 align-top">Converge</td>
-                <td className="py-3 pr-3 align-top">ECN — focused evaluation</td>
-                <td className="py-3 align-top">
-                  Builds concept cards for survivors. Deep dive on the top pick
-                  — competitive landscape, unit economics, risk map.
+                <td className="py-4 px-4 align-top font-medium" style={{ color: "var(--color-text-primary)" }}>Converge</td>
+                <td className="py-4 px-4 align-top">ECN, focused evaluation</td>
+                <td className="py-4 px-4 align-top">
+                  Builds concept cards for survivors. Full dive on the top pick:
+                  competitive landscape, unit economics, risk map.
                 </td>
               </tr>
             </tbody>
@@ -413,21 +415,21 @@ export default function AIPage() {
         <h3>Why domains are rotated</h3>
         <p>
           A Matrix B rotation log tracks which cross-domain inputs have been
-          used. Jazz and mycorrhizal networks get banned after three uses —
+          used. Jazz and mycorrhizal networks get banned after three uses
           because they become the new obvious. This mirrors a real property of
           human creativity: the same metaphor stops producing novelty after
           repeated use. The engine fights its own laziness.
         </p>
 
         <h3>What I actually learned building it</h3>
-        <ul className="list-disc pl-6 mb-5 space-y-2">
+        <ul>
           <li>
             AI brainstorming without forced divergence is useless. You will get
             the center of the distribution.
           </li>
           <li>
             The referee function (salience) is the hardest part to encode. I
-            ended up hardcoding it as explicit rubrics — asking the model to
+            ended up hardcoding it as explicit rubrics, asking the model to
             &quot;be surprising but coherent&quot; collapses to average.
           </li>
           <li>
@@ -448,6 +450,7 @@ export default function AIPage() {
           &quot;AI that sounds creative.&quot; AI that models how creativity
           works.
         </blockquote>
+        </div>
       </article>
 
       <hr
@@ -458,41 +461,44 @@ export default function AIPage() {
       {/* Article 2: Adversarial */}
       <article
         id="adversarial"
-        className="mx-auto prose scroll-mt-20"
-        style={{ maxWidth: "var(--max-width-content)" }}
+        className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-16 scroll-mt-20"
       >
-        <p
-          className="text-xs mb-3"
-          style={{
-            fontFamily: "var(--font-mono)",
-            color: "var(--color-text-tertiary)",
-            letterSpacing: "0.08em",
-          }}
-        >
-          Article / 02
-        </p>
-        <h2 className="!mt-0 text-3xl font-medium tracking-tight">
-          Two minds are better than one: building an adversarial AI critic
-        </h2>
+        <div className="md:col-span-4 lg:col-span-4 pt-2">
+          <p
+            className="text-xs mb-3"
+            style={{
+              fontFamily: "var(--font-mono)",
+              color: "var(--color-text-tertiary)",
+              letterSpacing: "0.08em",
+            }}
+          >
+            Article / 02
+          </p>
+          <h2 className="text-2xl lg:text-3xl font-medium tracking-tight leading-tight">
+            Two minds are better than one: building an adversarial AI critic
+          </h2>
+        </div>
+
+        <div className="md:col-span-8 lg:col-span-8 prose max-w-none">
 
         <p>
-          The first version of every design I ship is wrong. Not badly wrong —{" "}
-          <em>subtly</em> wrong, in the way that&apos;s hardest to see: the
+          The first version of every design I ship is wrong. Not obviously
+          wrong. Just wrong in a way I can&apos;t see from inside it. The
           direction looks reasonable, the details look polished, and I&apos;m
           too close to notice what&apos;s missing.
         </p>
         <p>
           So I built a system where Claude builds and ChatGPT critiques. They
-          don&apos;t share memory. They don&apos;t share style. They disagree,
-          and I referee.
+          don&apos;t share memory. They don&apos;t share style. They disagree.
+          I referee.
         </p>
 
         <h3>The problem with single-model AI</h3>
         <p>
           One model in one context window gets sycophantic. It agrees with its
-          own prior decisions. It pattern-matches to its own output. This is
+          own prior decisions. It pattern-matches to its own output. That&apos;s
           the AI equivalent of asking the designer to critique their own work.
-          You get better writing, not better thinking.
+          You get better writing. Not better thinking.
         </p>
 
         <h3>How the human brain actually does critique</h3>
@@ -501,17 +507,16 @@ export default function AIPage() {
           <strong>separate</strong> systems: the prefrontal cortex generates a
           plan, the anterior cingulate cortex flags conflict, the insula flags
           emotional dissonance. Good design thinking requires separate systems
-          evaluating — not one system agreeing with itself.
+          evaluating. Not one system agreeing with itself.
         </p>
 
         <h3>The architecture</h3>
         <pre
-          className="my-7 p-5 rounded-lg text-xs leading-relaxed overflow-x-auto"
+          className="my-7 p-6 rounded-lg text-[11.5px] leading-relaxed overflow-x-auto shadow-md"
           style={{
             fontFamily: "var(--font-mono)",
-            backgroundColor: "var(--color-bg-surface)",
-            border: "1px solid var(--color-border-subtle)",
-            color: "var(--color-text-primary)",
+            backgroundColor: "#1c2024",
+            color: "rgba(255, 255, 255, 0.9)",
           }}
         >
 {`        ┌─────────────┐
@@ -536,7 +541,8 @@ export default function AIPage() {
           Each critic role has its own system prompt, its own knowledge base
           (via OpenAI Assistants <code>file_search</code>), and its own tool
           set. A Python relay passes artifacts between them. The useful unit
-          isn&apos;t &quot;model&quot; — it&apos;s <strong>role</strong>: model
+          isn&apos;t &quot;model&quot;, it&apos;s <strong>role</strong>: model
+
           + system prompt + knowledge base + tool set. Treat roles as team
           members.
         </p>
@@ -544,7 +550,7 @@ export default function AIPage() {
         <h3>What it catches that I don&apos;t</h3>
         <p>
           Real example. GC Volunteer Management 2.0, a task card component.
-          Claude&apos;s build passed my eye. The ChatGPT critic surfaced:{" "}
+          Claude&apos;s build passed my eye. The ChatGPT critic came back with:{" "}
           <em>
             &quot;You&apos;re burying the action. The card&apos;s job is to get
             the volunteer into the call, but the call CTA is tertiary.&quot;
@@ -554,7 +560,7 @@ export default function AIPage() {
         </p>
 
         <h3>What designing with AI this way teaches you</h3>
-        <ul className="list-disc pl-6 mb-5 space-y-2">
+        <ul>
           <li>
             AI models aren&apos;t fungible. Each has its own defaults, its own
             failure modes, its own blind spots.
@@ -574,6 +580,7 @@ export default function AIPage() {
           own inner voice made louder. Designing with two is the beginning of
           having a team.
         </blockquote>
+        </div>
       </article>
 
       <hr
@@ -584,29 +591,32 @@ export default function AIPage() {
       {/* Article 3: Procedural */}
       <article
         id="procedural"
-        className="mx-auto prose scroll-mt-20"
-        style={{ maxWidth: "var(--max-width-content)" }}
+        className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-16 scroll-mt-20"
       >
-        <p
-          className="text-xs mb-3"
-          style={{
-            fontFamily: "var(--font-mono)",
-            color: "var(--color-text-tertiary)",
-            letterSpacing: "0.08em",
-          }}
-        >
-          Article / 03
-        </p>
-        <h2 className="!mt-0 text-3xl font-medium tracking-tight">
-          Design process as external executive function
-        </h2>
+        <div className="md:col-span-4 lg:col-span-4 pt-2">
+          <p
+            className="text-xs mb-3"
+            style={{
+              fontFamily: "var(--font-mono)",
+              color: "var(--color-text-tertiary)",
+              letterSpacing: "0.08em",
+            }}
+          >
+            Article / 03
+          </p>
+          <h2 className="text-2xl lg:text-3xl font-medium tracking-tight leading-tight">
+            Design process as external executive function
+          </h2>
+        </div>
+
+        <div className="md:col-span-8 lg:col-span-8 prose max-w-none">
 
         <p>
           I have ADHD. My working memory is limited, my default mode is
-          perfectionism, and the thing I&apos;m best at — seeing connections
-          others miss — is also the thing that makes it hardest for me to
+          perfectionism, and the thing I&apos;m best at (seeing connections
+          others miss) is also the thing that makes it hardest for me to
           finish. So I built a design process that treats these traits as
-          engineering constraints, not character flaws.
+          engineering constraints. Not character flaws.
         </p>
 
         <h3>Five gates</h3>
@@ -614,8 +624,8 @@ export default function AIPage() {
           Every piece of design work passes through five checkpoints:{" "}
           <strong>Orient</strong> (read docs, state plan),{" "}
           <strong>Think</strong> (hierarchy, emotional state, patterns),{" "}
-          <strong>Build</strong>, <strong>Critique</strong> (adversarial review
-          — see Article 02), <strong>Present</strong>. Skipping Gate 4 is my
+          <strong>Build</strong>, <strong>Critique</strong> (adversarial review,
+          see Article 02), <strong>Present</strong>. Skipping Gate 4 is my
           most common failure mode. Naming the gate made the failure mode
           visible. Making the gate mandatory made it fixable.
         </p>
@@ -627,7 +637,7 @@ export default function AIPage() {
           <strong>Collect</strong> (pull references), <strong>Scope</strong>{" "}
           (decide what matters), <strong>Craft</strong> (execute),{" "}
           <strong>Explore</strong> (diverge), <strong>Refine</strong> (polish).
-          Only one mode at a time. The cost of switching is real — naming the
+          Only one mode at a time. The cost of switching is real. Naming the
           modes made the switching cost visible, which made it negotiable.
         </p>
 
@@ -635,8 +645,8 @@ export default function AIPage() {
         <p>
           The prefrontal cortex&apos;s job is task-switching, working-memory
           management, and inhibitory control. In an ADHD brain, that system is
-          noisier. What I built — gates for attention allocation, modes for
-          task switching, written plans for working-memory offload — is a
+          noisier. What I built (gates for attention allocation, modes for
+          task switching, written plans for working-memory offload) is a
           direct analog. It doesn&apos;t fix the noise. It moves the
           scaffolding outside the skull where it&apos;s harder to lose.
         </p>
@@ -645,6 +655,7 @@ export default function AIPage() {
           The lesson: if your brain is the problem, don&apos;t argue with it.
           Give the problem to a system.
         </blockquote>
+        </div>
       </article>
 
       {/* Styles specific to this page */}
@@ -673,14 +684,14 @@ export default function AIPage() {
           fill: var(--color-bg-subtle);
         }
         .cognitive-map .link {
-          stroke: var(--color-border-subtle);
-          stroke-width: 1;
+          stroke: var(--color-border-strong);
+          stroke-width: 1.5;
           stroke-dasharray: 2 4;
         }
         .cognitive-map .datum {
           stroke: var(--color-border-strong);
           stroke-width: 1;
-          opacity: 0;
+          opacity: 0.2;
           transition: opacity 200ms var(--ease-out);
         }
         .cognitive-map .node:hover .artifact,
@@ -694,8 +705,8 @@ export default function AIPage() {
         }
 
         .pillar {
-          border-top: 1px solid var(--color-border-subtle);
-          transition: border-color 200ms var(--ease-out);
+          border-top: 1px solid var(--color-border-strong);
+          transition: border-color 200ms var(--ease-out), border-top-width 200ms;
         }
         .pillar:hover {
           border-top-color: var(--color-text-primary);
