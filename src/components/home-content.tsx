@@ -240,6 +240,124 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
           ))}
         </div>
       </section>
+      {/* Projects — visual grid, lighter weight than case studies */}
+      <section className="pb-16">
+        <h2
+          className="text-xs font-medium tracking-wide mb-8"
+          style={{ color: "var(--color-text-tertiary)" }}
+        >
+          Projects
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {[
+            {
+              title: "NordicTrack PDP",
+              desc: "Product detail page redesign. Conversion-focused layout for a $2K+ hardware purchase.",
+              type: "UI",
+              href: "https://www.stapleycreative.com/projects/nordictrack-pdp",
+            },
+            {
+              title: "iFIT Workout UI",
+              desc: "In-workout interface across treadmill, bike, and rower. Real-time metrics at a glance while moving.",
+              type: "UI",
+              href: "https://www.stapleycreative.com/projects/ifitinworkout",
+            },
+            {
+              title: "iFIT Vision Deck",
+              desc: "Internal strategy deck that aligned five product surfaces under one design language.",
+              type: "Strategy",
+              href: "https://www.stapleycreative.com/projects/ifitvisiondeck",
+            },
+            {
+              title: "Branding selects",
+              desc: "Identity systems, logo work, and brand guidelines across ten years of client work.",
+              type: "Brand",
+              href: "https://www.stapleycreative.com/projects/branding",
+            },
+          ].map((project) => (
+            <a
+              key={project.title}
+              href={project.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block p-5 rounded-lg border border-[var(--color-border-subtle)] hover:border-[#1c2024] transition-all duration-200 bg-[#fcfcfd]"
+            >
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <h3 className="text-sm font-semibold" style={{ color: "var(--color-text-primary)" }}>
+                    {project.title}
+                  </h3>
+                  <p className="mt-1.5 text-[13px] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
+                    {project.desc}
+                  </p>
+                </div>
+                <span className="rounded flex-shrink-0" style={monoTagStyle}>
+                  {project.type}
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+      {/* Live — interactive demos and tools */}
+      <section className="pb-16">
+        <h2
+          className="text-xs font-medium tracking-wide mb-8"
+          style={{ color: "var(--color-text-tertiary)" }}
+        >
+          Live
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {[
+            {
+              title: "Signal",
+              desc: "Chrome extension that reads the emotional body language of a web page.",
+              href: "/blog/signal-emotional-audit",
+              cta: "Read more",
+            },
+            {
+              title: "Missed in Sunday",
+              desc: "A weekly letter about the things that slipped past while I was busy surviving the week.",
+              href: "#",
+              cta: "Coming soon",
+            },
+            {
+              title: "Santa\u2019s Letter",
+              desc: "Personalized letters from Santa, generated with AI and printed with care. Built for my kids, then opened up.",
+              href: "#",
+              cta: "Coming soon",
+            },
+          ].map((demo) => (
+            <Link
+              key={demo.title}
+              href={demo.href}
+              className="group block p-5 rounded-lg transition-all duration-200 relative"
+              style={{
+                border: "1px solid var(--color-border-subtle)",
+                background: "linear-gradient(135deg, #fcfcfd 0%, rgba(255,161,153,0.04) 100%)",
+              }}
+            >
+              <div className="flex items-start justify-between gap-2">
+                <h3 className="text-sm font-semibold" style={{ color: "var(--color-text-primary)" }}>
+                  {demo.title}
+                </h3>
+                <span
+                  className="text-[10px] font-mono tracking-wider uppercase px-1.5 py-0.5 rounded flex-shrink-0"
+                  style={{
+                    color: "var(--color-accent)",
+                    backgroundColor: "rgba(255,161,153,0.1)",
+                  }}
+                >
+                  {demo.cta}
+                </span>
+              </div>
+              <p className="mt-1.5 text-[13px] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
+                {demo.desc}
+              </p>
+            </Link>
+          ))}
+        </div>
+      </section>
       {/* Recent Writing */}
       {posts.length > 0 && (
         <section ref={writingRef} className="pb-24">
