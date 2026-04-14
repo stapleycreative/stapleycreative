@@ -32,21 +32,23 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <article className="mx-auto px-6 pt-16 pb-24"
       style={{ maxWidth: "var(--max-width-content)" }}>
-      <Link href="/blog" className="text-sm transition-colors"
-        style={{ color: "var(--color-text-tertiary)" }}>
-        ← Writing
-      </Link>
-      <h1 className="mt-6 text-3xl font-semibold tracking-tight leading-tight">
-        {meta.title}
-      </h1>
-      <div className="mt-3 flex gap-4 text-sm"
-        style={{ color: "var(--color-text-tertiary)" }}>
-        <time>{meta.date}</time>
-        <span>{meta.readingTime}</span>
-      </div>
+      <div>
+        <Link href="/blog" className="text-sm transition-colors"
+          style={{ color: "var(--color-text-tertiary)" }}>
+          ← Writing
+        </Link>
+        <h1 className="mt-6 text-3xl sm:text-4xl font-semibold tracking-tight leading-tight">
+          {meta.title}
+        </h1>
+        <div className="mt-4 flex gap-4 text-sm"
+          style={{ color: "var(--color-text-tertiary)" }}>
+          <time>{meta.date}</time>
+          <span>{meta.readingTime}</span>
+        </div>
 
-      <div className="mt-10">
-        <MdxContent source={content} />
+        <div className="mt-12">
+          <MdxContent source={content} />
+        </div>
       </div>
     </article>
   );

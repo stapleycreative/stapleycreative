@@ -18,7 +18,7 @@ export function Footer() {
         <div className="flex gap-4 text-sm" style={{ color: "var(--color-text-secondary)" }}>
           <Link href="/work" className="hover:opacity-80 transition-opacity">Work</Link>
           <Link href="/blog" className="hover:opacity-80 transition-opacity">Writing</Link>
-          <a href="https://linkedin.com/in/craigstapley"
+          <a href="https://www.linkedin.com/in/stapleycreative/"
             target="_blank" rel="noopener noreferrer"
             className="hover:opacity-80 transition-opacity">
             LinkedIn

@@ -102,29 +102,29 @@ export default function ToolsPage() {
       className="mx-auto px-6 pt-16 pb-24"
       style={{ maxWidth: "var(--max-width-content)" }}
     >
-      <h1 className="text-3xl font-semibold tracking-tight">Tools</h1>
-      <p
-        className="mt-3 text-sm leading-relaxed"
-        style={{ color: "var(--color-text-secondary)" }}
-      >
-        Artifacts from my work on cognitive architecture for design. Some are
-        usable right now. Some are still being written up. All of them came
-        from real projects, not thought experiments.
-      </p>
+      <div>
+        <h1 className="text-3xl font-semibold tracking-tight">Tools</h1>
+        <p
+          className="mt-3 text-[15px] leading-relaxed"
+          style={{ color: "var(--color-text-secondary)" }}
+        >
+          Artifacts from my work on cognitive architecture for design. Some are
+          usable right now. Some are still being written up. All of them came
+          from real projects, not thought experiments.
+        </p>
 
       <div className="mt-12 flex flex-col gap-1">
         {tools.map((tool) => (
           <Link
             key={tool.slug}
             href={tool.href}
-            className="group flex items-start justify-between gap-6 py-5 transition-colors"
-            style={{
-              borderBottom: "1px solid var(--color-border-subtle)",
-            }}
+            className="group flex items-start justify-between gap-6 py-5 relative transition-all duration-300 border-b border-[var(--color-border-subtle)] hover:border-[#1c2024]"
           >
+
+
             <div className="min-w-0 flex-1">
               <div className="flex items-baseline gap-3">
-                <span className="font-medium transition-colors group-hover:text-[var(--color-accent)]">
+                <span className="font-medium transition-colors block group-hover:text-[#1c2024]">
                   {tool.title}
                 </span>
                 {tool.status && (
@@ -137,8 +137,8 @@ export default function ToolsPage() {
                       fontSize: "10px",
                       backgroundColor:
                         tool.status === "live"
-                          ? "rgba(13, 116, 206, 0.08)"
-                          : "rgba(33, 31, 38, 0.06)",
+                          ? "rgba(255, 161, 153, 0.12)"
+                          : "rgba(20, 20, 19, 0.06)",
                       color:
                         tool.status === "live"
                           ? "var(--color-accent)"
@@ -156,12 +156,20 @@ export default function ToolsPage() {
                 {tool.description}
               </p>
             </div>
-            <span
-              className="mt-1 flex-shrink-0 text-xs whitespace-nowrap"
-              style={{ color: "var(--color-text-tertiary)" }}
-            >
-              {tool.cta} →
-            </span>
+            <div className="relative mt-1 sm:ml-4 flex-shrink-0 flex justify-end h-fit sm:min-w-[130px]">
+              {/* Default State */}
+              <span
+                className="text-xs whitespace-nowrap transition-opacity duration-[75ms] group-hover:opacity-0"
+                style={{ color: "var(--color-text-tertiary)" }}
+              >
+                {tool.cta} <span className="opacity-70 font-mono text-[10px] ml-0.5">→</span>
+              </span>
+
+              {/* Hover State */}
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 px-2.5 py-[5px] text-[10px] font-mono tracking-wider uppercase bg-[#1c2024] text-white rounded shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-[120ms] ease-out flex items-center gap-1.5 pointer-events-none scale-[0.97] group-hover:scale-100">
+                View Tool <span className="opacity-70">↗</span>
+              </div>
+            </div>
           </Link>
         ))}
       </div>
@@ -180,6 +188,7 @@ export default function ToolsPage() {
         </a>
         .
       </p>
+      </div>
     </div>
   );
 }

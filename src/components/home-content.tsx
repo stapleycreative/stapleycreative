@@ -14,8 +14,8 @@ const monoTagStyle = {
   padding: "2px 6px",
   display: "inline-flex" as const,
   alignItems: "center" as const,
-  backgroundColor: "rgba(33, 31, 38, 0.06)",
-  color: "rgba(33, 31, 38, 0.5)",
+  backgroundColor: "rgba(20, 20, 19, 0.06)",
+  color: "rgba(20, 20, 19, 0.5)",
   fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
   fontSize: "11px",
   fontWeight: 400,
@@ -49,20 +49,46 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
     requestAnimationFrame(raf);
 
     const ctx = gsap.context(() => {
-      // Hero headline — split into words, stagger reveal
+      // Hero headline, split into words, stagger reveal
+
       if (headlineRef.current) {
+        // "Stereographic RGB Pull" reveal (Sharp, Zero Blur)
         const split = new SplitText(headlineRef.current, { type: "words" });
-        gsap.from(split.words, {
-          opacity: 0,
-          y: 20,
-          duration: 0.6,
-          stagger: 0.04,
-          ease: "power3.out",
-          delay: 0.1,
+        
+        // 1. Initial Load Lock-in
+        gsap.fromTo(split.words, 
+          { 
+            opacity: 0, 
+            y: 8,
+            textShadow: "0px -8px 0px rgba(255,0,0,0.8), 0px 8px 0px rgba(0,255,255,0.8)"
+          },
+          { 
+            opacity: 1, 
+            y: 0, 
+            textShadow: "0px 0px 0px rgba(255,0,0,0), 0px 0px 0px rgba(0,255,255,0)",
+            duration: 1.0, 
+            stagger: 0.04, 
+            ease: "power3.out", 
+            delay: 0.1 
+          }
+        );
+
+        // 2. Velocity-based Scroll Deconstruction
+        lenis.on('scroll', (e: any) => {
+          let v = e.velocity * 0.5;
+          v = Math.max(-50, Math.min(50, v));
+
+          gsap.to(split.words, {
+            textShadow: `0px ${-v}px 0px rgba(255,0,0,0.25), 0px ${v}px 0px rgba(0,255,255,0.25)`,
+            duration: 0.3,
+            ease: "power2.out",
+            overwrite: "auto"
+          });
         });
       }
 
-      // Subhead — fade up after headline
+      // Subhead, fade up after headline
+
       if (subheadRef.current) {
         gsap.from(subheadRef.current, {
           opacity: 0,
@@ -73,18 +99,20 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
         });
       }
 
-      // Role tags — stagger in after subhead
+      // Role tags, stagger in after subhead
+
       if (rolesRef.current) {
         gsap.from(rolesRef.current.children, {
           opacity: 0,
-          y: 10,
-          duration: 0.4,
-          stagger: 0.06,
+          x: -12,
+          duration: 0.5,
+          stagger: 0.15,
           ease: "power2.out",
           delay: 0.8,
         });
       }
-      // "Selected work" label — scroll reveal
+      // "Selected work" label, scroll reveal
+
       if (sectionLabelRef.current) {
         gsap.fromTo(
           sectionLabelRef.current,
@@ -103,30 +131,10 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
         );
       }
 
-      // Case study cards — each card gets its own ScrollTrigger
-      if (cardsRef.current) {
-        const cards = Array.from(cardsRef.current.children);
-        cards.forEach((card, i) => {
-          gsap.fromTo(
-            card,
-            { opacity: 0, y: 24 },
-            {
-              scrollTrigger: {
-                trigger: card,
-                start: "top 92%",
-                once: true,
-              },
-              opacity: 1,
-              y: 0,
-              duration: 0.6,
-              delay: i * 0.08,
-              ease: "power2.out",
-            }
-          );
-        });
-      }
 
-      // Writing section — scroll reveal
+
+      // Writing section, scroll reveal
+
       if (writingRef.current) {
         gsap.fromTo(
           writingRef.current,
@@ -154,24 +162,25 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
   return (
     <div ref={heroRef} className="mx-auto px-6" style={{ maxWidth: "var(--max-width-wide)" }}>
       {/* Hero */}
-      <section className="pt-24 pb-16">
+      <section className="pt-32 pb-20 relative">
         <h1
           ref={headlineRef}
-          className="text-4xl sm:text-5xl font-semibold tracking-tight leading-tight max-w-[600px]"
+          className="text-4xl sm:text-5xl lg:text-[56px] font-semibold tracking-tight leading-[1.1] max-w-[700px]"
+          style={{ color: "var(--color-text-primary)" }}
         >
-          Staff product designer for AI workflows and systems that compound.
+          Staff product designer. AI workflows, design systems, and the judgment that makes both work.
         </h1>
         <p
           ref={subheadRef}
-          className="mt-6 text-lg max-w-[560px] leading-relaxed"
+          className="mt-8 text-lg max-w-[600px] leading-relaxed"
           style={{ color: "var(--color-text-secondary)" }}
         >
-          I diagnose the real problem, architect the decision layer, and build
-          the prototype. Twenty years of turning ambiguity into shipped systems
-          — most recently, a volunteer-management platform and an AI workflow
-          modeled on how brains actually produce good work.
+          I figure out the real problem, build the decision layer, and ship
+          the prototype. Twenty years of turning ambiguity into systems that
+          actually work. Most recently: a volunteer-management platform at
+          GiveCampus and an AI workflow modeled on how brains produce good work.
         </p>
-        <div ref={rolesRef} className="mt-6 flex flex-wrap gap-2 items-center">
+        <div ref={rolesRef} className="mt-8 flex flex-wrap gap-3 items-center">
           <span className="rounded" style={monoTagStyle}>
             Currently at GiveCampus
           </span>
@@ -197,10 +206,14 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
             <Link
               key={study.slug}
               href={`/work/${study.slug}`}
-              className="group block p-6 rounded-lg transition-all"
-              style={{ border: "1px solid var(--color-border-subtle)" }}
+              className="group block p-6 rounded-lg transition-all duration-300 relative bg-[#fcfcfd] border border-[var(--color-border-subtle)] hover:border-[#1c2024]"
             >
-              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+              {/* Utility Badge - Clean execution */}
+              <div className="absolute -top-2.5 right-6 px-2.5 py-0.5 text-[10px] font-mono tracking-wider uppercase bg-[#1c2024] text-white rounded shadow-sm z-30 opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 transition-all duration-[250ms] ease-out flex items-center gap-1.5 pointer-events-none">
+                View Study <span className="opacity-70">↗</span>
+              </div>
+
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 relative z-20">
                 <div>
                   <h3
                     className="text-lg font-semibold transition-colors"
@@ -209,14 +222,16 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
                     {study.title}
                   </h3>
                   <p
-                    className="text-sm mt-1 max-w-[480px]"
+                    className="mt-2 text-sm max-w-[480px] leading-relaxed"
                     style={{ color: "var(--color-text-secondary)" }}
                   >
                     {study.description}
                   </p>
-                </div>                <div className="flex gap-2 flex-shrink-0">
+                </div>
+                
+                <div className="flex gap-2 flex-shrink-0 mt-3 sm:mt-0">
                   {study.tags?.slice(0, 3).map((tag) => (
-                    <span key={tag} className="rounded" style={monoTagStyle}>
+                    <span key={tag} className="rounded mono-tag" style={monoTagStyle}>
                       {tag}
                     </span>
                   ))}

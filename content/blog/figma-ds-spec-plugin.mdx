@@ -1,21 +1,21 @@
 ---
 title: "Teaching AI to respect your design system: building the DS Spec plugin"
-description: "Claude, Cursor, and Copilot invent their own tokens. They miss the rules. They drift further from your design system every commit. I'm building a Figma plugin that exports a structured spec the AI has to read — making the design system ground truth instead of a suggestion."
+description: "AI coding tools invent their own tokens. They drift your design system with every commit. I'm building a plugin that makes the design system ground truth, not a suggestion."
 date: "2026-04-14"
 tags: ["Design Systems", "AI", "Figma", "Tools"]
 ---
 
 ## The problem every AI build reveals
 
-Hand Claude, Cursor, or Copilot a task in a real codebase and watch what happens.
+Hand Claude, Cursor, or Copilot a task in a real codebase and watch what happens. It invents tokens. Fabricates colors close to yours but never exact. Builds a button that looks right but bypasses your `Button` component. It respects half your typography scale and makes up the other half.
 
-It invents its own tokens. It produces colors close to — but not exactly — your palette. It writes a button that looks like your button but doesn't use your `Button` component. It respects half your typography scale and fabricates the other half.
+The code passes review. It looks fine. Merge it. The design system drifts further.
 
-The code looks "fine." It passes a cursory review. Merge it, and the design system drifts a little further away from itself. Do this for six months and you don't have a design system anymore — you have a design system's ghost, overwritten by whatever the AI defaulted to in each PR.
+Do this for six months and you don't have a design system. You have a ghost of one. Overwritten by whatever the AI defaulted to.
 
-This is not a prompt problem. You can write "use the design system" in your `CLAUDE.md` and it doesn't help. The AI doesn't know what's in the design system. It's inferring from variable names, component names, and training data — all of which are fuzzier than your actual design rules.
+Better prompts don't fix this. Writing "use the design system" in `CLAUDE.md` is just noise if the AI can't see the actual rules. It's inferring from variable names, component names, training data. All of which are fuzzier than what you actually have locked down.
 
-**The AI needs ground truth, and no one has been giving it to them.**
+The AI needs ground truth. Nobody's been giving it that.
 
 <ImagePlaceholder
   alt="Diagram of the current broken loop: Designer → Figma (tokens, rules) → [no connection] ← AI coding tool ← Developer. An X is drawn over the missing link."
@@ -25,20 +25,22 @@ This is not a prompt problem. You can write "use the design system" in your `CLA
 
 ## The insight: your Figma file already has the answer
 
-Your Figma library already contains the tokens. Your design system already has rules ("use `--color-action-primary` for primary CTAs, never for destructive actions"). Your components already have recipes ("a Button requires these states, prohibits these variants, must meet these contrast ratios").
+Your Figma library has the tokens. Your design system has rules already written somewhere. "Use `--color-action-primary` for primary CTAs, never for destructive actions." Your components have recipes. Required states, prohibited variants, contrast minimums.
 
-All of this is documented — scattered across Figma annotations, Notion pages, Slack threads. None of it makes it into the AI's context when the AI writes code.
+But it's scattered. Figma annotations. Notion. Slack. None of it reaches the AI when code is being written.
 
-So I'm building the bridge.
+I'm building the bridge.
 
 ## What the plugin does
 
-A Figma plugin reads your local variables, lets you author rules and component recipes directly in the plugin UI, and exports two files:
+The plugin reads your Figma variables, lets you author rules and recipes right in the UI, exports two files:
 
-- A **markdown spec** — for pasting into `CLAUDE.md`, `.cursorrules`, Copilot instructions, or any AI context window.
-- A **JSON spec** — W3C DTCG-inspired format with `$rules` extensions, for tooling.
+- **Markdown spec** for pasting into `CLAUDE.md`, `.cursorrules`, Copilot instructions, anywhere the AI will see it.
+- **JSON spec** in W3C DTCG format with `$rules` extensions, for tooling downstream.
 
-That's it. One workflow. Figma variables → rules + recipes → exported spec file. No GitHub integration, no CSS export, no bidirectional sync, no linter. The v1 scope is deliberately small because **one workflow done well is worth more than five half-built.**
+One workflow. Figma variables → rules + recipes → spec files.
+
+No GitHub integration. No CSS export. No bidirectional sync. No linter. The scope is small on purpose. One workflow done well beats five half-finished ones.
 
 <PullQuote>The moat isn't "AI context files." The moat is build reliability. Every team with AI coding tools and a design system is losing ground. This closes the leak.</PullQuote>
 
@@ -46,52 +48,62 @@ That's it. One workflow. Figma variables → rules + recipes → exported spec f
 
 <ImagePlaceholder
   alt="The repaired loop: Designer → Figma → DS Spec Plugin exports structured markdown+JSON → AI coding tool reads spec as ground truth → Developer reviews code. The previously missing link is now solid."
-  caption="The loop, closed. The AI no longer has to guess — it has a spec."
+  caption="The loop, closed. The AI no longer has to guess. It has a spec."
   aspect="16/9"
 />
 
-Four moving parts:
+Four moving parts.
 
-1. **Read tokens from Figma** — the plugin reads local variables, resolves aliases, builds a group tree, and handles Figma's 100KB-per-key storage limit by chunking rule data by collection.
-2. **Let the designer author rules and recipes** — a React UI with four tabs: Tokens (browse + search), Rules (5 types: usage, dont-use, states, responsive, accessibility), Recipes (structured component specs), Export.
-3. **Export structured spec files** — markdown for AI context, JSON for tooling. Both carry the same source of truth.
-4. **Feed the spec into the AI** — paste into the project's AI instructions file, or point the AI's `file_search` at it.
+**1. Read tokens from Figma.** Plugin reads variables, resolves aliases, builds the tree. Figma's storage limit is brutal (100KB per key). Rule data gets chunked by collection.
+
+**2. Let the designer author.** React UI with four tabs. Tokens with browse and search. Rules (five types: usage, dont-use, states, responsive, accessibility). Recipes for components. Export.
+
+**3. Export structured specs.** Markdown for AI, JSON for tooling. Same source of truth in both.
+
+**4. Feed specs to the AI.** Paste into instructions or point `file_search` at the file.
 
 ## Three critics before any code
 
-Before I wrote a line of code, I ran the concept through three independent reviewers:
+Before touching code, I ran this through three independent reviewers.
 
-- **ChatGPT (commercial viability)** — forced the scope from "design systems platform" down to "AI build reliability tool." Cut Tailwind export, GitHub integration, QA scanner. Introduced component recipes as the *real* unit of value — more useful to AI than isolated token rules.
-- **Gemini (independent validation)** — 8.5/10 conviction. Added smart scaffolding (LLM-suggested rules the designer confirms), mode maps, and `$reasoning` fields that explain *why* a token exists.
-- **ChatGPT, deep review of the brief** — cut MVP scope in half *again*. Flagged the Figma storage constraint before I hit it. Reframed positioning.
+**ChatGPT (commercial viability):** Forced scope down from "design systems platform" to "AI build reliability tool." Cut Tailwind export. Cut GitHub integration. Cut the QA scanner. Pushed component recipes as the real value unit. recipes matter more to AI than floating token rules.
 
-All three reviewers, working independently, pushed toward the same cut. That convergence was the signal to lock scope and start building.
+**Gemini (independent validation):** 8.5/10. Added smart scaffolding for rules the designer just confirms. Added mode maps. Added `$reasoning` fields that explain why a token exists.
 
-This is the [adversarial critic relay](/blog/adversarial-critic-relay) in action — and the reason the plugin is being built with a scope guard instead of my normal urge to add "just one more feature."
+**ChatGPT again (deep scope review):** Cut MVP in half again. Flagged the Figma storage constraint before I hit it. Repositioned everything.
+
+Three reviewers. No coordination. Same conclusions. That alignment was the signal. Lock scope. Build.
+
+This is the [adversarial critic relay](/blog/adversarial-critic-relay) happening for real. And why the plugin has a scope guard instead of my usual instinct to add one more feature.
 
 ## Why this matters beyond my own use case
 
-Every design team with AI coding tools is losing ground to drift. The drift is invisible week to week. Over months, it's catastrophic.
+Every design team with AI coding tools is losing ground to drift. Week to week it's invisible. Month to month it's catastrophic.
 
-The fix isn't "use the design system better in your prompts." The fix is giving the AI a **readable, structured, authoritative spec** it cannot miss. Then every PR either uses the spec or fails review for a concrete, cite-able reason.
+Better prompts don't fix this. The fix is a readable, structured, authoritative spec the AI can't miss. Then every PR either uses the spec or fails review for a real, cite-able reason.
 
-This is the work I think design systems teams should be doing *now*. The first team to make their design system legible to AI tools doesn't just win the next year — they compound. Every AI-written PR in their codebase uses their system. Every AI-written PR in a system-free codebase drifts further.
+This is the work design systems teams should be doing now. The first team to make their system legible to AI compounds that advantage. Every AI-written PR in their codebase respects the system. Every AI PR in a system-free codebase drifts further.
 
-## Current status — honest build log
+## Current status: honest build log
 
-This post is being written while the plugin is being built, not after. Where things stand:
+Writing this while building, not after. Where it stands:
 
-- **Phase 1 (skeleton) complete.** Full type system, variable reading with alias resolution, markdown + JSON export engines, 4-tab React UI. Build passes clean.
-- **Plugin imported into Figma.** Against a copy of a real design system library.
-- **Phase 2–4 pending.** Browser polish, rules persistence, export preview refinement.
-- **Phase 5 is the proof.** Export the spec, feed it into Claude Code on a real task, measure whether the resulting PR actually uses the design system.
+**Phase 1 (skeleton): done.** Type system. Variable reading with alias resolution. Markdown and JSON export. Four-tab React UI. Build is clean.
 
-If Phase 5 proves out, the plugin becomes the mechanism I wish I'd had at every previous company I worked at. If it doesn't, the failure will teach me something about where the AI–design-system bridge actually breaks.
+**Plugin in Figma.** Running against a real design system library.
 
-Either way, the build log is open. I'll publish the Phase 5 results — [with numbers, not vibes](/blog/five-gate-design-process).
+**Phase 2–4: pending.** Polish. Rules persistence. Export preview work.
+
+**Phase 5 is the test.** Export the spec. Feed it to Claude Code on a real task. Measure whether the resulting PR actually uses the system.
+
+Phase 5 succeeds, the plugin becomes what I wish I'd had at every previous company. Phase 5 fails, I learn where the bridge actually breaks.
+
+Either way, the log is open. I'll publish Phase 5 results. [with numbers, not vibes](/blog/five-gate-design-process).
 
 ## Want to follow along
 
-I'll post the plugin publicly when it's past Phase 5 — free for individual designers, with a hosted version for teams that want collaborative rules authoring. If you want to be notified, [the signup is here](/tools).
+Plugin goes public after Phase 5. Free for individual designers. Hosted version for teams that want collaborative authoring.
 
-In the meantime, the architecture doc — scope, decisions, critic notes — [is available on the tools page](/tools) for anyone building something similar. Don't wait for me. Every design system team should be building this bridge.
+[Signup is here](/tools) if you want the notification.
+
+The architecture doc. scope, decisions, critic notes. is [on the tools page](/tools) now. For anyone building something similar. Don't wait for me. Every design system team should be building this bridge.

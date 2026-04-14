@@ -1,17 +1,18 @@
 ---
 title: "The Creativity Engine: forcing an AI to think sideways"
-description: "Most AI brainstorming gives you the average of everything it's ever read. I built a four-phase pipeline that models how the brain actually produces novel ideas — and forces the AI to collide concepts that don't belong near each other."
+description: "AI brainstorming gives you the average of everything in its training data. I built a four-phase system that mimics how the brain actually generates novel ideas, collision of unrelated domains, brutal filtering, no mercy."
+
 date: "2026-04-14"
 tags: ["AI", "Creativity", "Neuroscience", "Cognitive Architecture"]
 ---
 
-## The problem with a clever AI
+## The problem with asking a model to brainstorm
 
-Ask any modern language model to brainstorm and you get the same thing: the center of the distribution. A polished, confident summary of everything the internet already thinks about your problem. Useful. Derivative. Obvious.
+Ask any language model to brainstorm and you get one thing: the center. A polished, confident answer that is literally the average of everything it learned. Useful. Derivative. Obvious.
 
-Which matches what neuroscience says about where novel ideas actually come from. They don't come from thinking harder about the problem. They come from colliding the problem with something that has no business being near it.
+Neuroscience says that's not how humans make novel ideas. Novel ideas come from colliding the problem with something that shouldn't be anywhere near it. A musician and a mycologist see a pattern together. A conversation between disciplines. Not deeper thinking. Different thinking.
 
-So I built a system that forces those collisions.
+So I built a system that forces that collision.
 
 <ImagePlaceholder
   alt="Diagram of the Creativity Engine's four phases — Incubate, Diverge, Switch, Converge — mapped to corresponding brain networks: Default Mode Network, DMN→ECN handoff, Salience Network, Executive Control Network."
@@ -21,37 +22,47 @@ So I built a system that forces those collisions.
 
 ## What the brain actually does
 
-Arthur Koestler named it in 1964: **bisociation**. The moment of insight is when two unrelated conceptual matrices collide and suddenly share structure. A poem isn't a clever sentence. It's two semantic domains that weren't speaking to each other, fused.
+Arthur Koestler, 1964: **bisociation**. Insight happens when two unrelated ideas collide and suddenly share structure. A poem isn't a clever sentence. It's two semantic domains that had no business meeting, fused at one point.
 
-Modern fMRI work backs this up in specific detail. Producing a novel idea involves a handoff between two large-scale brain networks:
+fMRI confirms this. Novel ideas involve a handoff between two brain networks:
 
-- The **Default Mode Network** (DMN) — active during mind-wandering and loose association. This is where unlikely pairings surface.
-- The **Executive Control Network** (ECN) — active during focused evaluation. This is where an idea gets pressure-tested.
+- The **Default Mode Network**, fires when you're daydreaming, free-associating, letting thoughts wander. Unlikely pairings surface here.
 
-The **Salience Network** (anterior insula, anterior cingulate) is the referee. It decides which loose association from the DMN is worth promoting to the ECN for real evaluation.
+- The **Executive Control Network**, fires when you're focused, evaluating, testing. Ideas get pressure-tested here.
 
-Creative people aren't better at staying in one of these states longer. They're better at *switching* between them. That's the whole trick.
+
+The **Salience Network** (insula, anterior cingulate) is the referee. It picks which loose association from the first network is worth hauling into the second one.
+
+Creative people aren't better at staying in one state. They're better at switching between them. That's the whole skill.
 
 Most brainstorming fails because it never leaves the ECN. You evaluate before you've diverged. You get the obvious answer, polished.
 
-## The engine, in four phases
+## Four phases
 
-<PullQuote>Most AI tools simulate a smart generalist. This one simulates the specific neural handoff that produces insight.</PullQuote>
+<PullQuote>Most AI tools pretend to be a smart generalist. This one mimics the specific neural handoff that produces a real idea.</PullQuote>
 
-**Phase 1 — Incubate (DMN).** The engine pulls signals from three unrelated domains: museum curation, archaeology, documentary filmmaking, mycorrhizal networks, jazz improvisation. It generates weak associations to the design problem, on purpose. No evaluation allowed.
+**Phase 1. Incubate.** Pull signals from unrelated domains: museum curation, archaeology, documentary filmmaking, mycorrhizal networks, jazz improvisation. Generate weak associations to the problem on purpose. Zero evaluation. Just collision material.
 
-**Phase 2 — Diverge (DMN → ECN handoff).** Now it produces bisociations — forced pairings between the problem and one of the incubated domains. Each one is scored on semantic distance. 0 is obvious (already in the dataset). 10 is nonsense. The engine targets the 5–7 zone: far enough to be novel, close enough to be coherent.
 
-**Phase 3 — Switch (Salience Network).** A four-filter test kills weak candidates:
+**Phase 2. Diverge.** Now produce bisociations. Force pairings between the problem and one domain. Score each on semantic distance. 0 = obvious (already in the data). 10 = nonsense. Target 5-7. Novel enough to be surprising. Close enough to actually work.
 
-- **Surprise** — would this make a senior reviewer sit up?
-- **Coherence** — does it actually solve the problem, or is it just clever?
-- **Timing** — does it match the moment, the team, the constraints?
-- **Zero-Audience** — would this still be valuable if no one clapped?
 
-**Phase 4 — Converge (ECN).** For the few survivors, the engine builds Concept Cards: user story, implementation sketch, unit economics, risk map, competitive landscape. The top pick gets a deep dive.
+**Phase 3. Switch.** Kill weak ideas with four filters:
 
-The engine is auditable. You can see *why* it killed ideas. That's load-bearing — it prevents you from quietly reverting to the first coherent option your own brain found.
+
+- **Surprise**, would this wake up a senior reviewer?
+
+- **Coherence**, does it solve the problem or just sound clever?
+
+- **Timing**, does it fit this moment, this team, these constraints?
+
+- **Zero-Audience**, would this still be good if no one ever knew you did it?
+
+
+**Phase 4. Converge.** Survivors get Concept Cards. User story. Build sketch. Unit economics. Risk map. Competitive context. The winner gets a full dive.
+
+
+The engine is transparent. You see why it killed each idea. That matters. Without it, you drift back toward the first coherent direction your brain found. The system prevents quiet reversion.
 
 <ImagePlaceholder
   alt="A real engine run: eight bisociations generated, four killed by the salience filter, one hybrid concept emerging as the winner."
@@ -59,25 +70,25 @@ The engine is auditable. You can see *why* it killed ideas. That's load-bearing 
   aspect="16/9"
 />
 
-## Why the engine has a memory
+## The memory problem
 
-The first thing I noticed running the engine across sessions: it kept inventing the same metaphors. Jazz improvisation. Mycorrhizal networks. Sourdough starters.
+First sessions with the engine: it cycled the same metaphors. Jazz. Fungal networks. Fermentation.
 
-This mirrors a real property of human creativity. The same metaphor stops producing novelty after repeated use. So the engine now tracks a rotation log. After three uses, a cross-domain input gets banned for a while. The engine fights its own laziness.
+Human creativity has this exact problem. A metaphor works once. Works twice. Third time, it's just a habit. So the engine tracks what it's used. After three runs, a domain gets benched. The engine beats its own laziness down.
 
-## What I actually learned
+## What actually matters
 
-- AI brainstorming without forced divergence is useless. You will get the center of the distribution, every time.
-- The referee is the hardest part. Asking a model to "be surprising but coherent" collapses to average. It has to be an explicit rubric with explicit filters.
-- Memory matters. Without it, novelty doesn't compound across sessions — it resets.
-- This isn't a brainstorming app. It's a thinking prosthesis for a brain (mine) that defaults to the first coherent direction it finds.
+- AI brainstorming without forced divergence is useless. You get the center every time. Period.
+- The filter is the hard part. Ask a model to "be surprising but coherent" and it averages. It needs explicit rubric. Explicit kill criteria.
+- Memory compounds novelty. Without it, you reset to the obvious every session.
+- This isn't a brainstorming app. It's a prosthesis for a brain that naturally reaches for the first sensible answer and stops there. Mine does. Yours probably does too.
 
-## Try it
+## The engine is live
 
-A small public version of the engine is live. You paste a design problem. You click one button. The output reveals in four stages — labeled — so you can watch the pipeline work.
+Paste a design problem. Click. The output unfolds in four labeled stages so you see the pipeline work.
 
 [Run the Creativity Engine →](/tools/creativity-engine)
 
-The engine itself is open. The full system prompts, the rubric, the rotation log — all of it. Adapt it to your own work.
+It's open. System prompts, rubric, rotation log. Adapt it. Make it yours.
 
-The tools are interesting. The architecture is the point.
+The tool is interesting. The architecture is the whole thing.

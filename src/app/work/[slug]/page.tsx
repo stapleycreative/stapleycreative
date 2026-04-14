@@ -33,15 +33,14 @@ export default async function CaseStudyPage({ params }: Props) {
   return (
     <article className="mx-auto px-6 pt-16 pb-24"
       style={{ maxWidth: "var(--max-width-wide)" }}>
-      <div style={{ maxWidth: "var(--max-width-content)" }}>
-        <Link href="/work" className="text-sm transition-colors"
+        <Link href="/work" className="text-sm transition-colors block mb-6"
           style={{ color: "var(--color-text-tertiary)" }}>
           ← Work
         </Link>
-        <h1 className="mt-6 text-3xl sm:text-4xl font-semibold tracking-tight leading-tight">
+        <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight leading-tight">
           {meta.title}
         </h1>
-        <p className="mt-4 text-lg leading-relaxed"
+        <p className="mt-4 text-lg leading-relaxed max-w-[60ch]"
           style={{ color: "var(--color-text-secondary)" }}>
           {meta.description}
         </p>
@@ -56,9 +55,8 @@ export default async function CaseStudyPage({ params }: Props) {
           {extra.year ? <span>Year: <span style={{ color: "var(--color-text-secondary)" }}>{String(extra.year)}</span></span> : null}
           <span>{meta.readingTime}</span>
         </div>
-      </div>
 
-      <div className="mt-12">
+      <div className="mt-6">
         <MdxContent source={content} />
       </div>
 

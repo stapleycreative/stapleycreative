@@ -1,6 +1,6 @@
 ---
 title: "Designing for nervous systems, not just user flows"
-description: "Hiki was a social platform for neurodivergent adults. The standard engagement playbook — notifications, infinite scroll, social pressure — was actively harmful. I redesigned the interaction model from first principles."
+description: "Hiki was a social platform for neurodivergent adults. Standard engagement patterns were actively harmful. I rebuilt the interaction model from the nervous system up."
 client: "Hiki"
 role: "Lead Product Designer"
 year: "2021–2022"
@@ -9,106 +9,117 @@ date: "2022-06-01"
 ---
 
 <OutcomeBlock
-  problem="Standard engagement patterns — notifications, infinite scroll, social proof — harmed neurodivergent users."
+  problem="Standard engagement patterns, notifications, infinite scroll, social proof, harmed neurodivergent users."
+
   change="Nervous-system-aware interaction model. Opt-in everything. Energy-organized spaces."
-  result="Users reported feeling safe — the only social platform where they could unmask."
+  result="Users reported feeling safe, the only social platform where they could unmask."
+
 />
 
 ## What Hiki was
 
-Hiki was a social platform for autistic and ADHD adults — a community space designed specifically for neurodivergent users who'd been burned by mainstream social apps. The founding insight was simple: existing platforms aren't just poorly suited for neurodivergent users, they're actively hostile. And that hostility is architectural, not cosmetic.
+A social platform for autistic and ADHD adults. A community space built specifically for neurodivergent users who'd been damaged by mainstream apps. The founding insight: existing platforms aren't just poorly suited for neurodivergent people. They're actively hostile. And the hostility is structural, not aesthetic.
 
-I was brought in as the first product designer. The app existed in a basic form — essentially a chat-based community app with profiles and group conversations. My job was to redesign the interaction model from scratch.
+I joined as the first product designer. The app existed in rough form, chat-based community with profiles and group conversations. My job was to rebuild the interaction model from scratch.
+
 
 ## Why the standard playbook fails
 
-Every consumer social platform runs some version of the same engagement playbook: push notifications to drive daily opens, infinite scroll to extend session time, social proof mechanics (likes, follower counts, activity indicators) to create FOMO, and friction-free sharing to grow the network.
+Every consumer social platform runs the same playbook: push notifications drive opens, infinite scroll extends session time, social proof mechanics (likes, follower counts, activity indicators) create FOMO, friction-free sharing grows the network.
 
-These patterns are optimized for neurotypical attention and motivation systems. For neurodivergent users, they fail in specific, predictable ways:
+These patterns optimize for neurotypical attention and motivation. For neurodivergent users, they fail in specific, predictable ways:
 
-**Push notifications and rejection sensitivity.** ADHD and autism both correlate with rejection sensitive dysphoria — an intense emotional response to perceived social rejection. A push notification that says "3 people are talking in your group" can trigger anxiety: *Are they talking about me? Did I miss something important? Will they judge me for not being there?* The notification is designed to create urgency. For this population, it creates dread.
+**Push notifications and rejection sensitivity.** ADHD and autism both correlate with rejection sensitive dysphoria, an intense emotional response to perceived social rejection. "3 people are talking in your group" sounds innocent. For someone with RSD, it triggers: *Are they talking about me? Did I miss something? Will they judge me for not being there?* The notification is designed to create urgency. For this group, it creates dread.
 
-**Infinite scroll and dopamine dysregulation.** ADHD involves dysregulated dopamine signaling. Infinite scroll exploits this directly — the variable-reward pattern of "maybe the next post will be interesting" is the same mechanic that makes slot machines addictive. For users who already struggle with task-switching and time perception, infinite scroll isn't a convenience. It's a trap.
 
-**Social proof and masking pressure.** Autistic adults in mainstream social spaces often "mask" — suppress their natural communication style to match neurotypical norms. Likes, follower counts, and visible engagement metrics create performance pressure that reinforces masking. In a community designed for unmasking, these mechanics are directly counterproductive.
+**Infinite scroll and dopamine dysregulation.** ADHD involves dysregulated dopamine signaling. Infinite scroll exploits this directly. The variable-reward pattern of "maybe the next post will be interesting" is the same mechanic that makes slot machines addictive. For users who already struggle with task-switching and time perception, infinite scroll isn't a convenience. It's a trap.
 
-I documented these failure modes in a research brief with specific references to clinical literature on RSD, dopamine dysregulation, and autistic masking. This wasn't theoretical — I mapped each standard UI pattern to a specific neurological mechanism and showed how the intended behavior (engagement) and the actual behavior (anxiety, avoidance, masking) diverged.
+**Social proof and masking pressure.** Autistic adults in mainstream social spaces often mask, suppress their natural communication style to fit neurotypical norms. Likes, follower counts, engagement metrics create performance pressure that reinforces masking. In a community designed for unmasking, these mechanics actively harm.
+
+
+I documented these failure modes in a research brief. Specific references to clinical literature on RSD, dopamine dysregulation, autistic masking. Not theoretical. I mapped each standard UI pattern to the neurological mechanism it exploits. Showed how the intended behavior (engagement) and the actual behavior (anxiety, avoidance, masking) diverged completely.
 
 <ImagePlaceholder alt="Research brief mapping standard social app patterns to neurodivergent failure modes" caption="The failure mode map. Each standard engagement pattern paired with the specific neurological mechanism it exploits in neurodivergent users." brief="A mapping diagram — left column shows standard patterns with icons (bell for notifications, scroll arrow for infinite scroll, heart/star for social proof, share icon for friction-free sharing). Right column shows neurological mechanisms (Rejection Sensitive Dysphoria, Dopamine Dysregulation, Masking Pressure, Overstimulation). Arrows connecting them with brief labels explaining the causal link. Could be a table, matrix, or flow diagram. Clean, clinical, almost academic in tone — a research artifact, not a product screen." priority="HIGH" style="Research synthesis / experience map. Tighter and more focused than a typical affinity diagram. Think: a clear, decisive mapping that establishes credibility for every design decision that follows." />
 
 ## The design principles (and the specific decisions they drove)
 
-Principles are easy to write. What matters is where they forced hard tradeoffs. Four principles governed the redesign, and each one required killing a feature that a product manager would normally fight to keep.
+Principles are easy. What matters is where they forced hard tradeoffs. Four principles. Each one required killing a feature a PM would normally defend.
 
-### 1. Notifications are opt-in — and we lost DAU metrics to get there
+### 1. Notifications are opt-in: and we lost DAU metrics to get there
 
-Default state: no push notifications. Zero. Users could opt in to specific notification types during onboarding, but the default was silence.
+Default state: no push notifications. Zero. Users could opt in during onboarding. The default was silence.
 
-This was the hardest sell internally. The founding team understood the reasoning but worried about engagement metrics. Social apps live and die by daily active users, and push notifications are the single strongest DAU driver in the industry.
+Hardest sell internally. The founding team understood the reasoning. But social apps live and die by DAU, and push notifications are the strongest DAU driver in the industry.
 
-I made the argument that DAU is the wrong metric for this product. **The right metric is return rate** — do users come back voluntarily, without being summoned? A user who opens the app because they want to is in a fundamentally different psychological state than one who opens it because a notification made them anxious. The first state leads to genuine connection. The second leads to a quick check and an exit.
+I argued that DAU was the wrong metric for this product. **The right metric is return rate.** Do users come back voluntarily, without being summoned? A user who opens the app because they want to is in a fundamentally different psychological state than one who opens it because anxiety forced them. The first leads to genuine connection. The second leads to a quick check and an exit.
 
-The onboarding flow made notification control explicit. Not buried in settings. Not a permissions dialog that users dismiss reflexively. A dedicated screen that said: "You control when this app talks to you. Here's what we can notify you about. Everything is off by default. Turn on what you want."
+Notification control was explicit in onboarding. Not buried in settings. Not a permissions dialog users dismiss reflexively. A dedicated screen: "You control when this app talks to you. Here's what we can notify you about. Everything is off by default. Turn on what you want."
 
 <ImagePlaceholder alt="Hiki onboarding notification screen — all toggles off by default, clear language about emotional impact" caption="Notifications onboarding. Everything off by default. Each toggle explains not just what it does, but how it might feel." brief="Phone mockup showing a dedicated onboarding screen. Large, calm header: 'You control when this app talks to you.' Below: a list of notification types (New message, Group activity, Friend request, Weekly digest) each with a toggle switch set to OFF and a subline explaining the emotional dimension — e.g. 'New messages: This may feel urgent. Turn on only if you want real-time alerts.' or 'Group activity: Shows when people are chatting. Can create pressure to participate.' Calm color palette, generous spacing, muted toggles. The screen should feel safe and transparent, not transactional." priority="MEDIUM-HIGH" style="UI showcase on phone device mockup. Emphasize the emotional tone — this screen should feel like a conversation, not a settings panel. Study calm onboarding flows from meditation/wellness apps but applied to social." />
 
-### 2. Escape routes everywhere — and we removed 'Are you sure?' dialogs
+### 2. Escape routes everywhere: and we removed 'Are you sure?' dialogs
 
-Every screen has a visible, single-tap exit. No confirmation dialogs on leaving. No "Are you sure you want to leave this conversation?" No modal traps.
+Every screen has a visible, single-tap exit. No confirmation dialogs. No "Are you sure you want to leave this conversation?" No modal traps.
 
-This sounds minor. It's not. Confirmation dialogs on exit are a retention pattern — they create friction to reduce abandonment. For users experiencing sensory overwhelm or social anxiety mid-conversation, that friction isn't a speedbump. It's a wall. If leaving requires a two-tap confirmation, some users won't leave — they'll freeze. Others will force-close the app entirely, which is a worse experience than a clean exit.
+This sounds minor. It's not. Confirmation dialogs are a retention pattern, they create friction to reduce abandonment. For users experiencing sensory overwhelm or social anxiety mid-conversation, friction becomes a wall. If leaving requires a two-tap confirmation, some users won't leave. They'll freeze. Others will force-close the app entirely, which is worse than a clean exit.
 
-When a user leaves a conversation, the other participants see "stepped away" — not "left." This language was tested with 12 users in our beta group. "Left" felt final and triggered concern ("Did I say something wrong?"). "Stepped away" felt temporary and neutral. Small word choice. Meaningful impact on group anxiety.
+
+When a user leaves, other participants see "stepped away." Not "left." Tested this language with 12 beta users. "Left" felt final and triggered worry ("Did I say something wrong?"). "Stepped away" felt temporary and neutral. Small word choice. Meaningful impact on group anxiety.
 
 ### 3. Spaces organized by energy, not just topic
 
-This was the most novel design decision and the one I'm most proud of.
+Most novel design decision. The one I'm most proud of.
 
-Standard group chat organization: channels named by topic (Gaming, Movies, Cooking). This works fine for neurotypical users who can context-switch into any conversation. For neurodivergent users, the topic is less important than the *interaction modality* — how much energy does this space require? What's the communication style? Will there be voice? Video? Rapid-fire messages?
+Standard organization: channels named by topic (Gaming, Movies, Cooking). Works fine for neurotypical users who can context-switch. For neurodivergent users, the topic is less important than the *interaction modality.* How much energy does this space require? What's the communication style? Voice? Video? Rapid-fire messages?
 
 I redesigned group spaces with two-axis filtering: **topic** and **energy profile.**
 
-Energy profiles included: "Low-energy text only" (slow-paced, async-friendly, no voice), "Casual voice" (voice chat, cameras optional, comfortable silences expected), "Active discussion" (faster-paced, more back-and-forth, still text-optional), and "Co-working" (shared presence with minimal interaction — just knowing someone else is there).
+Energy profiles: "Low-energy text only" (slow-paced, async-friendly, no voice), "Casual voice" (voice chat, cameras optional, comfortable silences expected), "Active discussion" (faster-paced, more back-and-forth, still text-optional), and "Co-working" (shared presence with minimal interaction, just knowing someone else is there).
 
-Users could filter by energy level before entering. The space preview showed not just the topic and member count, but the current pace (messages per hour), whether voice was active, and the expected communication norms.
+
+Users could filter by energy level before entering. The space preview showed not just topic and member count, but the current pace (messages per hour), whether voice was active, and expected communication norms.
 
 <ImagePlaceholder alt="Hiki spaces browser — energy-level filtering, pace indicators, communication norms" caption="Spaces organized by energy, not just topic. A user with social battery at 20% can find a space that matches without trial and error." brief="Phone or tablet mockup showing a list/grid of community spaces. Each space card shows: topic name (Gaming, Nature, Music), an energy tag color-coded by level (green for Low-energy, yellow for Casual, orange for Active, blue for Co-working), member count, a pace indicator like '~3 msgs/hr' or '~20 msgs/hr', voice status icon (on/off), and a one-line communication norm ('Text only, async-friendly' or 'Voice chat, cameras optional'). Filter bar at top with energy-level pills that can be tapped to filter. Some space cards should feel visually calmer (muted colors, lighter weight) and some more active (denser info, slightly brighter accents). This should look like a real, shippable product — not a wireframe or concept sketch." priority="HIGH" style="Product UI showcase. This is the most novel design in the case study and needs to demonstrate that it's a real, functional system, not just a principle. Think about how Discord or Slack shows channels, but with the energy dimension added." />
 
 ### 4. Sensory defaults favor calm
 
 The app's default sensory profile:
-- All animations respect `prefers-reduced-motion`. When reduced motion is detected, transitions are instant instead of animated.
-- No auto-playing media. Ever. Audio, video, and GIFs all require a tap.
-- Color contrast meets WCAG AAA, not just AA. The difference between AA (4.5:1) and AAA (7:1) matters for users with visual processing differences common in autism.
+- All animations respect `prefers-reduced-motion`. Reduced motion detected, transitions are instant.
+- No auto-playing media. Ever. Audio, video, GIFs all require a tap.
+- Color contrast meets WCAG AAA, not AA. The difference between 4.5:1 and 7:1 matters for users with visual processing differences common in autism.
 - Sound is off by default. Haptics are off by default. Both can be enabled in settings.
-- The color palette uses low-saturation, muted tones. No bright accent colors competing for attention.
+- Color palette uses low-saturation, muted tones. No bright accent colors competing for attention.
 
-These aren't accessibility accommodations bolted onto a standard app. They're the foundation. The app was designed calm-first and could be made more stimulating via user preference — not the other way around.
+Not accessibility accommodations bolted onto a standard app. The foundation. The app was designed calm-first and could be made more stimulating via user preference. Not the other way around.
 
 ## The personal dimension (and why it's methodologically relevant)
 
-I'm AuDHD — the intersection of autistic and ADHD neurotypes. This isn't a personal detail I'm sharing for sympathy. It's a methodological advantage I want to be transparent about.
+I'm AuDHD. Autistic and ADHD. Not sharing this for sympathy. It's a methodological advantage and I want to be transparent about it.
 
-Lived experience of sensory overwhelm, rejection sensitivity, and executive function challenges informed design decisions that user research alone wouldn't have surfaced. Not because the research was bad, but because users often can't articulate what their nervous system needs until they experience the alternative.
+Lived experience of sensory overwhelm, rejection sensitivity, executive function challenges, that informed design decisions user research alone wouldn't surface. Not because the research was bad. Users often can't articulate what their nervous system needs until they experience the alternative.
 
-Example: the "co-working" space type. No user in our research sessions asked for a space where people are present but not actively interacting. But I know from my own experience that one of the hardest things about neurodivergent social life is the gap between "I want to be alone" and "I want company" — there's a middle state where you want shared presence without social obligation. When we added co-working spaces, they became one of the most-used space types. Users said things like "I didn't know I needed this."
 
-You can't find that in a user interview. You find it by understanding the nervous system from the inside.
+The co-working space is the clearest example. No user in research asked for a space where people are present but not interacting. But I know from lived experience that one of the hardest parts of neurodivergent social life is the gap between "I want to be alone" and "I want company." There's a middle state. Shared presence without social obligation. When we built co-working spaces, they became one of the most-used features. Users said "I didn't know I needed this."
+
+You can't find that in an interview. You find it by understanding the nervous system from the inside.
 
 <ImagePlaceholder alt="Co-working space — shared presence, ambient status indicators, quiet visual design" caption="Co-working: shared presence without social obligation. Users didn't ask for this. They didn't know they could." brief="Phone mockup of the most minimal, calm screen in the app. A few user avatars arranged in a loose, non-hierarchical layout with ambient status lines ('reading,' 'just here,' 'working on something,' 'listening to music'). Maybe a small shared ambient element — a lo-fi music toggle or a 'room mood' indicator. No chat messages visible. No active conversation. Just the visual sense of other people being present. The design should feel like sitting in a library with other people — warm, quiet, non-demanding. Think: the anti-Slack. Muted palette, generous whitespace, soft edges." priority="MEDIUM-HIGH" style="Concept illustration / product UI. Study calm ambient app designs — meditation apps (Headspace, Calm), focus apps (Forest, Centered) — but applied to social presence rather than solo productivity." />
 
 ## What I'd change
 
-The energy-level system was ahead of its time but too rigid in v1. Energy levels were set by space creators and couldn't adapt dynamically. A "low-energy" space that got an influx of messages felt like a violated contract. I designed but didn't ship a dynamic energy indicator that would adjust the label based on actual activity — essentially truth-in-advertising for the current state of the space. That should have been in v1.
+The energy-level system was ahead of its time but too rigid in v1. Energy levels were set by space creators and couldn't adapt dynamically. A "low-energy" space that got an influx of messages felt like a broken contract. I designed a dynamic energy indicator that would adjust the label based on actual activity, truth-in-advertising for the current state. Didn't ship it. Should have been in v1.
 
-I also wish I'd pushed harder on the onboarding flow. The notification control screen was good, but the broader onboarding was still too linear — a sequence of screens to click through. For users with executive function challenges, a long linear onboarding is its own kind of overwhelm. A progressive onboarding that introduced features in context, over the first week of use, would have been better.
+
+I also wish I'd pushed harder on onboarding. The notification control screen was good. The broader onboarding was still too linear, a sequence of screens to click through. For users with executive function challenges, a long linear onboarding is its own kind of overwhelm. A progressive onboarding that introduced features in context, over the first week, would have been better.
+
 
 ## Why this matters beyond Hiki
 
-Every interface triggers a nervous system response. Most designers don't account for that because the default user is assumed to be neurotypical, emotionally neutral, and cognitively available.
+Every interface triggers a nervous system response. Most designers ignore that because the default user is assumed to be neurotypical, emotionally neutral, cognitively available.
 
-Designing for neurodivergent users strips away that assumption and forces you to design for the full range of human cognitive states — depleted attention, heightened anxiety, sensory sensitivity, executive function constraints. The resulting designs aren't just accessible. They're better for everyone.
+Designing for neurodivergent users strips away that assumption and forces you to design for the full range of human cognitive states, depleted attention, heightened anxiety, sensory sensitivity, executive function constraints. The resulting designs aren't just accessible. They're better for everyone.
 
-The quiet notification defaults are better for all users. The escape routes are better for all users. The energy-level filtering helps anyone who's ever joined a group chat and immediately felt overwhelmed.
 
-The thing AI tools can't replace here: understanding that an infinite scroll isn't a layout pattern. It's a dopamine exploit. That distinction requires a model of human behavior, not a model of pixels.
+The quiet notification defaults are better for all users. The escape routes are better. The energy-level filtering helps anyone who's ever joined a group chat and immediately felt overwhelmed.
+
+What AI tools can't replace: understanding that infinite scroll isn't a layout pattern. It's a dopamine exploit. That distinction requires a model of human behavior, not a model of pixels.
