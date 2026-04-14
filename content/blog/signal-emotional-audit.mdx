@@ -1,0 +1,112 @@
+---
+title: "Signal: reading the emotional body language of a web page"
+description: "Every interface projects a personality whether you designed one or not. I built a Chrome extension that reads visual properties and tells you what your page is actually saying."
+date: "2026-04-14"
+tags: ["AI", "Design Tools", "Emotional Design", "Chrome Extension"]
+---
+
+## Your page has a personality. You probably didn't choose it.
+
+Every interface projects an emotional signal. Color temperature, type scale, spacing rhythm, contrast ratios, motion behavior. These aren't aesthetic choices. They're signals. And they land on a nervous system before the user reads a single word.
+
+Most designers think about this intuitively. "It feels clean." "It feels heavy." "Something is off." But intuition doesn't scale, doesn't transfer between team members, and doesn't survive a 2am deploy.
+
+I wanted something that reads the page the way a nervous system does. Not a linter. Not an accessibility checker. A tool that looks at what the page is actually projecting and tells you whether it matches what you intended.
+
+So I built Signal.
+
+
+<ImagePlaceholder
+  alt="Signal Chrome extension side panel showing a tone profile for a web page. Eleven dimensions displayed as horizontal bars: Warm/Cool, Calm/Energetic, Minimal/Dense, Formal/Casual, Playful/Serious, Soft/Sharp, Open/Closed, Light/Heavy, Organic/Geometric, Static/Dynamic, Accessible/Exclusive."
+  caption="Signal reads the page and produces a tone profile across eleven dimensions. Not a score. A reading."
+  aspect="16/9"
+/>
+
+## Why this isn't Lighthouse for feelings
+
+Lighthouse measures performance. Axe measures accessibility. Both are binary: pass or fail against a spec.
+
+Emotional signal doesn't work that way. A page that reads as "cool, minimal, serious" isn't wrong. It might be exactly right for a legal services firm. It's catastrophically wrong for a children's hospital.
+
+There's no universal correct answer. There's only congruence: does the page project what you intended it to project?
+
+That's what Signal measures. You declare your target (1 to 3 intended tones). Signal reads the page. Then it tells you where the gap is.
+
+## Six layers of evidence
+
+Signal doesn't guess. It reads computed CSS, layout metrics, and visual properties across six layers:
+
+**Perceptual.** Color temperature, saturation levels, contrast ratios, luminance distribution. The raw sensory input before cognition kicks in.
+
+**Cognitive.** Type scale, information density, reading complexity, scan patterns. How hard the page makes your brain work.
+
+**Trust.** Visual consistency, alignment precision, spacing regularity, professional signals. The subconscious "can I trust this?" read.
+
+
+**Tone.** The aggregate personality read. Warm or cool? Playful or serious? Minimal or dense? Eleven dimensions, each derived from measurable properties, not vibes.
+
+**Motion.** Animation presence, easing curves, transition density. Whether the page moves to guide or moves to perform.
+
+**Congruence.** The hero output. You said you wanted "calm, professional, approachable." The page reads as "cool, dense, exclusive." That gap is the finding. That gap is the design brief.
+
+## Rules first. AI second.
+
+I built this deterministic. Fifteen rules across six layers in v0.1. Every score traces back to a specific CSS property, a specific threshold, a specific citation.
+
+Not because AI couldn't do this. Because AI would hide the reasoning. A model says "this page feels cold" and you're left guessing why. A rule says "color temperature averages 7200K, saturation is below 15%, and the dominant hue falls in the 200-240 range." Now you know what to change.
+
+Rules are auditable. Rules are debatable. Rules build trust with designers who (correctly) don't want a black box telling them their work "feels wrong."
+
+AI comes later. Narrative synthesis, pattern recognition across pages, screenshot-based visual analysis. Those layers are planned. But the foundation is deterministic. You can disagree with a rule. You can't argue with a model that won't show its work.
+
+<PullQuote>The page has an opinion about who should use it. Signal reads that opinion back to you. Whether it matches your intent is the only question that matters.</PullQuote>
+
+## The intent-first pattern
+
+Signal doesn't open with a scan. It opens with a question: what are you trying to project?
+
+Pick 1 to 3 target tones. "Calm." "Professional." "Warm." Whatever you're designing toward. Then scan. The tone profile renders. The congruence score tells you where you hit and where you missed.
+
+This matters because a page without declared intent can only be measured against averages. Averages are useless. "Your page is 62% warm" means nothing. "You targeted warm but the page reads cool because your grays are blue-shifted and your type scale is tight" means everything.
+
+Intent first. Evidence second. Diagnosis third. Same pattern I use in every design project, just automated.
+
+## What Signal can't do yet
+
+Honest list. v0.1 shipped with Type A variables only: properties that can be read directly from computed styles. No screenshot analysis. No runtime motion observation (CSS transitions are read statically, but JS-driven animation isn't caught). No page-type classifier to adjust expectations (a dashboard and a marketing page have different baselines).
+
+The reading diary is local only. Chrome storage, never leaves the browser. No accounts, no analytics, no telemetry. Privacy page is at [/signal/privacy](/signal/privacy) and it's short because there's nothing to disclose.
+
+Next priorities: screenshot-based computer vision pass, calibrated thresholds from a benchmark set of 50+ pages, and the Figma plugin surface so I can run the same engine during design, not just after deploy.
+
+## Why I built this
+
+Two reasons. One practical, one strategic.
+
+**Practical:** I needed it. I run an [emotional state audit](/blog/emotional-state-first-ux) before every design project. Three questions about the user's arrival state, exit state, and the interface's role in the shift. But after the design ships, I had no way to verify whether the page actually delivers what the audit prescribed. Signal closes that loop. Declare intent. Build. Scan. Compare.
+
+**Strategic:** I wanted a portfolio artifact that demonstrates how I think, not just what I've shipped. Recruiters who don't have access to my Figma files or codebase can install a Chrome extension in thirty seconds and see the framework in action. The extension is the demo. The framework underneath it is the work.
+
+<ImagePlaceholder
+  alt="Signal reading diary showing three scanned pages with their tone profiles compared side by side. Each shows the declared target tones vs. the actual reading, with congruence scores."
+  caption="The reading diary. Scan pages over time, compare tone profiles, track whether redesigns actually moved the signal."
+  aspect="16/9"
+/>
+
+## The connection to everything else on this site
+
+Signal is the [emotional state audit](/blog/emotional-state-first-ux) made mechanical. The audit asks "what should this page feel like?" Signal answers "what does it actually feel like?"
+
+The [design compiler](/blog/design-compiler) earns hierarchy from first principles. Signal verifies that the hierarchy produces the intended emotional read.
+
+The [adversarial critic relay](/blog/adversarial-critic-relay) catches what the builder can't see. Signal is another critic, one that reads the page the way a nervous system would, not the way a designer hopes it will.
+
+Same pattern. Every tool on this site externalizes a cognitive function I can't reliably perform in my own head. Signal externalizes perceptual judgment.
+
+## Get Signal
+
+Chrome extension. Free. Click "Read this page" on anything. See what it's projecting.
+
+[Install Signal →](/tools)
+
+The framework doc, all fifteen rules with citations and thresholds, is on the tools page. If you're building something similar or want to extend the rule set, take it. The architecture matters more than my specific thresholds.
