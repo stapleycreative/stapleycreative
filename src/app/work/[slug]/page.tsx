@@ -78,7 +78,41 @@ export default async function CaseStudyPage({ params }: Props) {
           <span>{meta.readingTime}</span>
         </div>
 
-      <div className="mt-10">
+        {extra.cover ? (
+          <div className="mt-12 overflow-hidden rounded-xl"
+            style={{
+              aspectRatio: "16 / 10",
+              backgroundColor: "var(--color-bg-surface)",
+              border: "1px solid var(--color-border-subtle)",
+            }}>
+            <Image
+              src={String(extra.cover)}
+              alt={String(meta.title)}
+              width={1600}
+              height={1000}
+              className="w-full h-full object-cover"
+              priority
+            />
+          </div>
+        ) : extra.coverBrief ? (
+          <div className="mt-12 rounded-xl flex flex-col items-center justify-center px-8 text-center"
+            style={{
+              aspectRatio: "16 / 10",
+              backgroundColor: "var(--color-bg-surface)",
+              border: "1px dashed var(--color-border-subtle)",
+            }}>
+            <span className="text-[10px] font-medium tracking-[0.22em] uppercase mb-4"
+              style={{ color: "var(--color-text-tertiary)" }}>
+              Cover · placeholder
+            </span>
+            <p className="text-sm leading-relaxed max-w-[48ch]"
+              style={{ color: "var(--color-text-secondary)" }}>
+              {String(extra.coverBrief)}
+            </p>
+          </div>
+        ) : null}
+
+      <div className="mt-12">
         <MdxContent source={content} />
       </div>
 
