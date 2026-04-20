@@ -21,11 +21,14 @@ function GalleryBase({
 }) {
   return (
     <figure className="not-prose my-12" aria-label={alt}>
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-6">
         {images.map((src, i) => (
           <div
             key={src}
             className="relative aspect-[975/2113] overflow-hidden rounded-[28px]"
+            style={{
+              boxShadow: "0 1px 3px rgba(28, 32, 36, 0.06), 0 0 1px rgba(28, 32, 36, 0.04)",
+            }}
           >
             <Image
               src={src}

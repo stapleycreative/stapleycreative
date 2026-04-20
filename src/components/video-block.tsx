@@ -56,6 +56,77 @@ export function VideoBlock({
 }
 
 /**
+ * 2x2 checkerboard of videos and static images — matches the rollout
+ * section layout on the original Hiki case study. Position convention:
+ *   [topLeft]     [topRight]
+ *   [bottomLeft]  [bottomRight]
+ * Each cell takes either an image path or a video path (.mp4). Cells render
+ * stacked on mobile, 2x2 on tablet+.
+ */
+export function MediaGrid2x2({
+  topLeft,
+  topRight,
+  bottomLeft,
+  bottomRight,
+  caption,
+  aspect = "4/5",
+}: {
+  topLeft: string;
+  topRight: string;
+  bottomLeft: string;
+  bottomRight: string;
+  caption?: string;
+  aspect?: string;
+}) {
+  const cells = [topLeft, topRight, bottomLeft, bottomRight];
+  return (
+    <figure
+      className="my-8 not-prose mx-auto"
+      aria-label={caption || "Rollout media grid"}
+    >
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 max-w-[700px] mx-auto">
+        {cells.map((src, i) => {
+          const isVideo = /\.(mp4|webm|mov)$/i.test(src);
+          return (
+            <div
+              key={i}
+              className="overflow-hidden rounded-[20px]"
+              style={{ aspectRatio: aspect }}
+            >
+              {isVideo ? (
+                <video
+                  src={src}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={src}
+                  alt=""
+                  className="w-full h-full object-cover"
+                />
+              )}
+            </div>
+          );
+        })}
+      </div>
+      {caption && (
+        <figcaption
+          className="text-xs mt-3 text-center"
+          style={{ color: "var(--color-text-tertiary)" }}
+        >
+          {caption}
+        </figcaption>
+      )}
+    </figure>
+  );
+}
+
+/**
  * Two videos side by side on desktop, stacked on mobile. Use for paired
  * before/after or complementary views where both are meant to be seen together.
  */

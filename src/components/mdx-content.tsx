@@ -3,7 +3,7 @@ import Image from "next/image";
 import { LottieAnimation } from "./lottie-animation";
 import { ResearchSegments } from "./research-segments";
 import { HikiScreenshots } from "./screenshot-gallery";
-import { VideoBlock, VideoPair } from "./video-block";
+import { MediaGrid2x2, VideoBlock, VideoPair } from "./video-block";
 
 /* Custom components available inside MDX files */
 const components = {
@@ -12,6 +12,7 @@ const components = {
   HikiScreenshots,
   VideoBlock,
   VideoPair,
+  MediaGrid2x2,
 
   /**
    * Dual-mode image component.
