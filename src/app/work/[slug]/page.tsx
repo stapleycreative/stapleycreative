@@ -61,10 +61,10 @@ export default async function CaseStudyPage({ params }: Props) {
           </div>
         ) : null}
 
-        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight leading-[1.05] max-w-[22ch]">
+        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight leading-[1.05]">
           {meta.title}
         </h1>
-        <p className="mt-5 text-base sm:text-lg leading-relaxed max-w-[58ch]"
+        <p className="mt-5 text-base sm:text-lg leading-relaxed"
           style={{ color: "var(--color-text-secondary)" }}>
           {meta.description}
         </p>
