@@ -1,6 +1,12 @@
 "use client";
 
-import { Player } from "@lottiefiles/react-lottie-player";
+import dynamic from "next/dynamic";
+
+const Player = dynamic(
+  () =>
+    import("@lottiefiles/react-lottie-player").then((mod) => mod.Player),
+  { ssr: false }
+);
 
 export function LottieAnimation({
   src,
