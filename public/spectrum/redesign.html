@@ -843,7 +843,7 @@ body {
   text-align: center;
   color: white;
   background: linear-gradient(135deg, var(--coral-5) 0%, var(--coral-6) 50%, var(--ink-2) 100%);
-  margin-bottom: 40px;
+  margin-bottom: 16px;
   position: relative;
   overflow: hidden;
 }
@@ -870,6 +870,235 @@ body {
   font-size: 13px;
   opacity: 0.65;
   margin-top: 12px;
+}
+.share-card .share-misread {
+  font-size: 14px;
+  opacity: 0.8;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  line-height: 1.55;
+}
+
+/* Share actions row */
+.share-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  border: 1px solid var(--cream-3);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.share-btn:hover {
+  border-color: var(--coral-3);
+  background: var(--coral-1);
+  color: var(--coral-6);
+}
+.share-btn.copied {
+  background: var(--sage-1);
+  border-color: var(--sage-3);
+  color: var(--sage-4);
+}
+
+/* Send-to-someone section (promoted) */
+.send-section {
+  background: var(--bg-card);
+  border: 2px solid var(--coral-3);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  margin-bottom: 40px;
+  position: relative;
+}
+.send-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--coral-4);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+.send-section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.send-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--coral-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.send-section h3 {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 2px;
+  color: var(--ink-1);
+}
+.send-section .send-sub {
+  font-size: 14px;
+  color: var(--ink-4);
+  line-height: 1.5;
+}
+
+.send-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.send-tab {
+  padding: 7px 14px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid var(--cream-3);
+  background: var(--cream-1);
+  color: var(--ink-4);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.send-tab:hover, .send-tab.active {
+  background: var(--coral-1);
+  border-color: var(--coral-4);
+  color: var(--coral-6);
+}
+
+.send-message {
+  background: var(--cream-1);
+  border: 1px solid var(--cream-3);
+  border-radius: var(--radius);
+  padding: 20px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-2);
+  margin-bottom: 12px;
+  position: relative;
+}
+.send-message-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-5);
+  margin-bottom: 8px;
+}
+.send-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  background: var(--coral-5);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.send-copy-btn:hover { background: var(--coral-6); }
+.send-copy-btn.copied {
+  background: var(--sage-4);
+}
+
+/* Quiz checkpoint */
+.quiz-checkpoint {
+  max-width: 520px;
+  margin: 32px auto;
+  padding: 20px 24px;
+  border-radius: var(--radius);
+  background: var(--gold-1);
+  border: 1px solid var(--gold-2);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.quiz-checkpoint-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--gold-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 12px;
+}
+.quiz-checkpoint-text {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-3);
+}
+.quiz-checkpoint-text strong {
+  color: var(--ink-1);
+}
+
+/* What you'll get module */
+.youll-get {
+  max-width: 560px;
+  width: 100%;
+  margin-top: 48px;
+  z-index: 1;
+}
+.youll-get-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-5);
+  margin-bottom: 16px;
+  text-align: center;
+}
+.youll-get-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.youll-get-item {
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  border: 1px solid var(--cream-3);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+.youll-get-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  .youll-get-grid { grid-template-columns: 1fr; }
+  .send-tabs { gap: 6px; }
+  .share-actions { flex-direction: column; align-items: stretch; }
 }
 
 /* Disclaimer */
@@ -1133,15 +1362,15 @@ body {
       48 questions · 11 dimensions · 10 profiles
     </div>
 
-    <h1>Why does your mind work like this?</h1>
+    <h1>You're not inconsistent.<br>You're running a pattern.</h1>
 
     <p class="landing-sub">
-      Not a screener. Not a diagnosis. A map of how your attention, energy, and
-      wiring actually operate — and why the usual advice keeps failing.
+      12 minutes. 48 questions. A map of why opposite things feel true inside
+      you — and language you can finally send to someone who doesn't get it.
     </p>
 
     <button class="landing-cta" onclick="showScreen('quiz')">
-      Map your pattern
+      Find your pattern
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
         <path d="M5 12h14M12 5l7 7-7 7"/>
       </svg>
@@ -1198,6 +1427,37 @@ body {
         </div>
       </div>
     </div>
+
+    <!-- What you'll get -->
+    <div class="youll-get">
+      <div class="youll-get-title">What you'll get</div>
+      <div class="youll-get-grid">
+        <div class="youll-get-item">
+          <div class="youll-get-icon" style="background:var(--coral-1);">🐙</div>
+          Your profile + animal anchor
+        </div>
+        <div class="youll-get-item">
+          <div class="youll-get-icon" style="background:var(--gold-1);">⚡</div>
+          Your core contradictions
+        </div>
+        <div class="youll-get-item">
+          <div class="youll-get-icon" style="background:var(--sage-1);">💬</div>
+          Language to send to others
+        </div>
+        <div class="youll-get-item">
+          <div class="youll-get-icon" style="background:var(--cream-2);">🔄</div>
+          Your stress loop explained
+        </div>
+        <div class="youll-get-item">
+          <div class="youll-get-icon" style="background:var(--coral-1);">👥</div>
+          What people misread about you
+        </div>
+        <div class="youll-get-item">
+          <div class="youll-get-icon" style="background:var(--gold-1);">⚙️</div>
+          Work, relationships, energy
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1235,6 +1495,15 @@ body {
           <div class="quiz-option" onclick="selectOption(this)">
             <div class="option-letter">D</div>
             <div class="option-text">I get frustrated but I don't show it. I've learned to perform flexibility because the alternative gets you labeled "difficult."</div>
+          </div>
+        </div>
+
+        <!-- Mid-quiz checkpoint (shows every ~12 questions) -->
+        <div class="quiz-checkpoint">
+          <div class="quiz-checkpoint-icon">◉</div>
+          <div class="quiz-checkpoint-text">
+            <strong>A routine ↔ novelty tension is emerging.</strong>
+            You may need predictability and get bored inside it. That's not inconsistency — it's a real structural contradiction.
           </div>
         </div>
 
@@ -1342,13 +1611,90 @@ body {
     </div>
 
     <div class="results-body">
-      <!-- Primary tier -->
-      <div class="tier-label">Primary — The pattern</div>
+
+      <!-- ═══ SHARE CARD (promoted to top) ═══ -->
+      <div class="share-card">
+        <span style="font-size:40px;display:block;margin-bottom:8px;">🐙</span>
+        <h3>The Bridge</h3>
+        <div class="share-tagline">"Both systems running. Both real. Neither optional."</div>
+        <div class="share-dims">Attention 78% · Initiation 85% · Monotropic 72% · Routine 70%</div>
+        <div style="font-size:14px;color:var(--ink-4);margin-top:12px;font-style:italic;">People think you're inconsistent. You're running two systems.</div>
+      </div>
+
+      <!-- Share action buttons -->
+      <div class="share-actions">
+        <button class="share-btn" onclick="copyShareCard(this)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copy link
+        </button>
+        <button class="share-btn" onclick="shareNative(this)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+          Share
+        </button>
+        <button class="share-btn" onclick="saveImage(this)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          Save image
+        </button>
+      </div>
+
+      <!-- ═══ SEND TO SOMEONE (promoted section) ═══ -->
+      <div class="send-section">
+        <div class="send-section-header">
+          <div class="send-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--coral-5)" stroke-width="2" stroke-linecap="round"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
+          </div>
+          <div>
+            <h3>Send this to someone</h3>
+            <div class="send-sub">Pre-written messages you can copy and send right now. Pick who needs to understand your pattern.</div>
+          </div>
+        </div>
+
+        <div class="send-tabs">
+          <button class="send-tab active" onclick="switchSendTab(this, 'partner')">Partner</button>
+          <button class="send-tab" onclick="switchSendTab(this, 'boss')">Boss / Manager</button>
+          <button class="send-tab" onclick="switchSendTab(this, 'therapist')">Therapist</button>
+          <button class="send-tab" onclick="switchSendTab(this, 'friend')">Friend</button>
+        </div>
+
+        <div class="send-message" id="send-partner">
+          <div class="send-message-label">Message to your partner</div>
+          I took this assessment and the result really nailed something I've been struggling to explain. I'm what they call "The Bridge" — it means I'm running two systems at once. One needs routine and predictability. The other craves novelty and stimulation. When I seem inconsistent, it's because both are real and they take turns. The most helpful thing you can do is ask me which system is louder today instead of trying to simplify me into one thing.
+        </div>
+
+        <div class="send-message" id="send-boss" style="display:none;">
+          <div class="send-message-label">Message to your boss / manager</div>
+          I wanted to share something that might help us work together better. I recently learned my cognitive pattern is called "The Bridge" — I process through two different systems. I do my best work when I can have blocks of deep focus time AND some variety. Mode-switching between very different types of tasks is the most expensive thing for my productivity. If I can batch similar work together and protect transition time, you'll get significantly better output from me.
+        </div>
+
+        <div class="send-message" id="send-therapist" style="display:none;">
+          <div class="send-message-label">Message to your therapist</div>
+          I took a neurodivergence pattern-mapping assessment and the results matched my experience closely. It identified a combined ADHD + autistic pattern they call "The Bridge." The core tension is between two genuine needs — routine vs. novelty, deep focus vs. initiation — that are in constant conflict. I'm not looking for a diagnosis from this, but I think it could be a useful starting point for exploring whether formal evaluation makes sense.
+        </div>
+
+        <div class="send-message" id="send-friend" style="display:none;">
+          <div class="send-message-label">Message to a friend</div>
+          Hey — I took this thing called Spectrum and it kind of blew my mind. Turns out my brain runs two operating systems that want different things at the same time. That's why I'm sometimes hyper-organized and sometimes a total mess. It's not random — it's a pattern. You should take it too, it's pretty wild: [link]
+        </div>
+
+        <button class="send-copy-btn" onclick="copySendMessage(this)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copy message
+        </button>
+      </div>
+
+      <!-- ═══ PRIMARY — The pattern ═══ -->
+      <div class="tier-label">Your pattern — The depth</div>
 
       <div class="r-section-card">
         <div class="r-section-label">Your profile</div>
         <p>You live at the intersection of two operating systems that want different things. One craves novelty; the other needs routine. One locks onto interests for hours; the other can't start the task that actually matters. The contradiction isn't a bug in your wiring. It IS your wiring.</p>
         <p style="margin-top:12px;font-weight:500;color:var(--ink-1);">You manage the chaos through scaffolding. Systems, lists, rituals — they're not preferences, they're load-bearing infrastructure. You appear organized because the alternative is freefall.</p>
+      </div>
+
+      <div class="r-section">
+        <div class="r-section-label">What others misread about you</div>
+        <div class="misread-card">People think you're inconsistent. You're not. You're running two systems that take turns at the controls.</div>
+        <div class="misread-card">People assume that because you can hyperfocus on the wrong thing, you could focus on the right thing if you just tried harder.</div>
       </div>
 
       <div class="r-section">
@@ -1366,23 +1712,6 @@ body {
       </div>
 
       <div class="r-section">
-        <div class="r-section-label">What others misread about you</div>
-        <div class="misread-card">People think you're inconsistent. You're not. You're running two systems that take turns at the controls.</div>
-        <div class="misread-card">People assume that because you can hyperfocus on the wrong thing, you could focus on the right thing if you just tried harder.</div>
-      </div>
-
-      <!-- Share card -->
-      <div class="share-card">
-        <span style="font-size:40px;display:block;margin-bottom:8px;">🐙</span>
-        <h3>The Bridge</h3>
-        <div class="share-tagline">"Both systems running. Both real. Neither optional."</div>
-        <div class="share-dims">Attention 78% · Initiation 85% · Monotropic 72% · Routine 70%</div>
-      </div>
-
-      <!-- Secondary tier -->
-      <div class="tier-label">Secondary — The depth</div>
-
-      <div class="r-section">
         <div class="r-section-label">Your stress loop</div>
         <h3>The cycle that keeps repeating</h3>
         <div class="stress-step"><span class="stress-arrow">→</span><span class="stress-text">A demand arrives that requires switching modes</span></div>
@@ -1398,15 +1727,8 @@ body {
         <div class="quote-block">I need structure and freedom in the same life, and I know that sounds contradictory. It is. That's the point.</div>
       </div>
 
-      <div class="r-section">
-        <div class="r-section-label">Say this to someone</div>
-        <p style="font-size:14px;color:var(--ink-5);margin-bottom:12px;">Ready-made explanations you can send to a partner, boss, friend, or therapist.</p>
-        <div class="say-block">When I seem like two different people, it's because I kind of am. One part needs routine and predictability. The other needs novelty and stimulation. They're both real.</div>
-        <div class="say-block">If you want to help me, don't try to simplify me. Ask me which system is louder today.</div>
-      </div>
-
-      <!-- Tertiary tier -->
-      <div class="tier-label">Tertiary — Life sections</div>
+      <!-- ═══ TERTIARY — Life sections ═══ -->
+      <div class="tier-label">How this plays out</div>
 
       <div class="r-section-card">
         <div class="r-section-label">Relationships</div>
@@ -1451,6 +1773,65 @@ function showScreen(name) {
 function selectOption(el) {
   el.parentElement.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
   el.classList.add('selected');
+}
+
+// Send-to-someone tab switching
+function switchSendTab(btn, target) {
+  btn.parentElement.querySelectorAll('.send-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  ['partner','boss','therapist','friend'].forEach(id => {
+    const el = document.getElementById('send-' + id);
+    if (el) el.style.display = id === target ? 'block' : 'none';
+  });
+  // Reset copy button
+  const copyBtn = btn.closest('.send-section').querySelector('.send-copy-btn');
+  if (copyBtn) { copyBtn.classList.remove('copied'); copyBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy message'; }
+}
+
+// Copy send message
+function copySendMessage(btn) {
+  const section = btn.closest('.send-section');
+  const visible = section.querySelector('.send-message[style*="display: none"]') ?
+    section.querySelector('.send-message:not([style*="display: none"])') :
+    section.querySelector('.send-message:not([style])') || section.querySelector('.send-message');
+
+  // Get just the message text (skip the label)
+  const label = visible.querySelector('.send-message-label');
+  let text = visible.textContent;
+  if (label) text = text.replace(label.textContent, '').trim();
+
+  navigator.clipboard.writeText(text).then(() => {
+    btn.classList.add('copied');
+    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy message';
+    }, 2000);
+  });
+}
+
+// Share card actions
+function copyShareCard(btn) {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    btn.classList.add('copied');
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+    setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = orig; }, 2000);
+  });
+}
+
+function shareNative(btn) {
+  if (navigator.share) {
+    navigator.share({ title: 'My Spectrum Result — The Bridge', url: window.location.href });
+  } else {
+    copyShareCard(btn);
+  }
+}
+
+function saveImage(btn) {
+  // Placeholder — would use html2canvas in production
+  btn.textContent = 'Coming soon';
+  setTimeout(() => { btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Save image'; }, 2000);
 }
 </script>
 
