@@ -37,7 +37,7 @@ export function CaseStudyCover({
 
   return (
     <div
-      className="mt-12 rounded-xl overflow-hidden relative"
+      className="mt-2 rounded-xl overflow-hidden relative"
       style={{
         aspectRatio: "16 / 10",
         backgroundColor: ground,
@@ -94,8 +94,8 @@ export function CaseStudyCover({
             </div>
           )}
 
-          {/* Headline — commands the cover */}
-          <h2
+          {/* Headline — commands the cover, serves as the page h1 */}
+          <h1
             className="font-semibold"
             style={{
               fontFamily: "var(--font-sans)",
@@ -124,7 +124,7 @@ export function CaseStudyCover({
               </em>
             )}
             {headline.after && <span>{headline.after}</span>}
-          </h2>
+          </h1>
 
           {/* Byline block — rule + metadata */}
           <div>

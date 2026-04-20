@@ -62,39 +62,27 @@ export default async function CaseStudyPage({ params }: Props) {
           </div>
         ) : null}
 
-        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight leading-[1.05]">
-          {meta.title}
-        </h1>
-        <p className="mt-5 text-base sm:text-lg leading-relaxed"
-          style={{ color: "var(--color-text-secondary)" }}>
-          {meta.description}
-        </p>
-
-        <div className="mt-7 flex flex-wrap gap-x-6 gap-y-1 text-xs"
-          style={{ color: "var(--color-text-tertiary)" }}>
-          {extra.role ? <span>{String(extra.role)}</span> : null}
-          {extra.year ? <span aria-hidden="true">·</span> : null}
-          {extra.year ? <span>{String(extra.year)}</span> : null}
-          <span aria-hidden="true">·</span>
-          <span>{meta.readingTime}</span>
-        </div>
-
         {extra.cover ? (
-          <div className="mt-12 overflow-hidden rounded-xl"
-            style={{
-              aspectRatio: "16 / 10",
-              backgroundColor: "var(--color-bg-surface)",
-              border: "1px solid var(--color-border-subtle)",
-            }}>
-            <Image
-              src={String(extra.cover)}
-              alt={String(meta.title)}
-              width={1600}
-              height={1000}
-              className="w-full h-full object-cover"
-              priority
-            />
-          </div>
+          <>
+            <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight leading-[1.05]">
+              {meta.title}
+            </h1>
+            <div className="mt-8 overflow-hidden rounded-xl"
+              style={{
+                aspectRatio: "16 / 10",
+                backgroundColor: "var(--color-bg-surface)",
+                border: "1px solid var(--color-border-subtle)",
+              }}>
+              <Image
+                src={String(extra.cover)}
+                alt={String(meta.title)}
+                width={1600}
+                height={1000}
+                className="w-full h-full object-cover"
+                priority
+              />
+            </div>
+          </>
         ) : (
           <CaseStudyCover
             title={String(meta.title)}
@@ -108,6 +96,20 @@ export default async function CaseStudyPage({ params }: Props) {
             accentColor={extra.coverAccentColor ? String(extra.coverAccentColor) : undefined}
           />
         )}
+
+        <p className="mt-10 text-lg sm:text-xl leading-relaxed max-w-[68ch]"
+          style={{ color: "var(--color-text-secondary)" }}>
+          {meta.description}
+        </p>
+
+        <div className="mt-6 flex flex-wrap gap-x-6 gap-y-1 text-xs"
+          style={{ color: "var(--color-text-tertiary)" }}>
+          {extra.role ? <span>{String(extra.role)}</span> : null}
+          {extra.year ? <span aria-hidden="true">·</span> : null}
+          {extra.year ? <span>{String(extra.year)}</span> : null}
+          <span aria-hidden="true">·</span>
+          <span>{meta.readingTime}</span>
+        </div>
 
       <div className="mt-12">
         <MdxContent source={content} />
