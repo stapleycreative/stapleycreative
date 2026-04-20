@@ -80,13 +80,9 @@ export default async function CaseStudyPage({ params }: Props) {
           {meta.description}
         </p>
 
-        <div className="mt-6 flex flex-wrap gap-x-6 gap-y-1 text-xs"
+        <div className="mt-6 text-xs"
           style={{ color: "var(--color-text-tertiary)" }}>
-          {extra.role ? <span>{String(extra.role)}</span> : null}
-          {extra.year ? <span aria-hidden="true">·</span> : null}
-          {extra.year ? <span>{String(extra.year)}</span> : null}
-          <span aria-hidden="true">·</span>
-          <span>{meta.readingTime}</span>
+          {meta.readingTime}
         </div>
 
       <div className="mt-12">
