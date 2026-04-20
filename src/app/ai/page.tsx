@@ -333,7 +333,7 @@ export default function AIPage() {
 
         <div className="overflow-x-auto my-8 rounded-lg border border-[var(--color-border-subtle)]" style={{ backgroundColor: "var(--color-bg-surface)" }}>
           <table className="w-full text-sm text-left">
-            <thead className="bg-[#1c2024]">
+            <thead className="bg-[#211f26]">
               <tr>
                 <th
                   className="py-3 px-4 font-medium"
@@ -513,7 +513,7 @@ export default function AIPage() {
           className="my-7 p-6 rounded-lg text-[11.5px] leading-relaxed overflow-x-auto shadow-md"
           style={{
             fontFamily: "var(--font-mono)",
-            backgroundColor: "#1c2024",
+            backgroundColor: "#211f26",
             color: "rgba(255, 255, 255, 0.9)",
           }}
         >

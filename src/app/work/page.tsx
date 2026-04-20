@@ -106,9 +106,9 @@ export default function WorkPage() {
             <Link
               key={study.slug}
               href={`/work/${study.slug}`}
-              className="group block p-6 rounded-lg transition-all duration-300 relative bg-[#fcfcfd] border border-[var(--color-border-subtle)] hover:border-[#1c2024]"
+              className="group block p-6 rounded-lg transition-all duration-300 relative bg-[#fdfcfd] border border-[var(--color-border-subtle)] hover:border-[#211f26]"
             >
-              <div className="absolute -top-2.5 right-6 px-2.5 py-0.5 text-[10px] font-mono tracking-wider uppercase bg-[#1c2024] text-white rounded shadow-sm z-30 opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 transition-all duration-[250ms] ease-out flex items-center gap-1.5 pointer-events-none">
+              <div className="absolute -top-2.5 right-6 px-2.5 py-0.5 text-[10px] font-mono tracking-wider uppercase bg-[#211f26] text-white rounded shadow-sm z-30 opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 transition-all duration-[250ms] ease-out flex items-center gap-1.5 pointer-events-none">
                 View Study <span className="opacity-70">↗</span>
               </div>
               <article className="relative z-20">
@@ -143,7 +143,7 @@ export default function WorkPage() {
           {projects.map((p) => (
             <div
               key={p.title}
-              className="block p-5 rounded-lg border border-[var(--color-border-subtle)] bg-[#fcfcfd]"
+              className="block p-5 rounded-lg border border-[var(--color-border-subtle)] bg-[#fdfcfd]"
             >
               <div className="flex items-start justify-between gap-3">
                 <div>
@@ -170,7 +170,7 @@ export default function WorkPage() {
               className="group block p-5 rounded-lg transition-all duration-200"
               style={{
                 border: "1px solid var(--color-border-subtle)",
-                background: "linear-gradient(135deg, #fcfcfd 0%, rgba(255,161,153,0.04) 100%)",
+                background: "linear-gradient(135deg, #fdfcfd 0%, rgba(255,161,153,0.04) 100%)",
               }}
             >
               <div className="flex items-start justify-between gap-2">
@@ -197,7 +197,7 @@ export default function WorkPage() {
           {brand.map((b) => (
             <div
               key={b.title}
-              className="block p-5 rounded-lg border border-[var(--color-border-subtle)] bg-[#fcfcfd]"
+              className="block p-5 rounded-lg border border-[var(--color-border-subtle)] bg-[#fdfcfd]"
             >
               <h3 className="text-sm font-semibold" style={{ color: "var(--color-text-primary)" }}>{b.title}</h3>
               <p className="mt-1.5 text-[13px] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>{b.desc}</p>
@@ -212,7 +212,7 @@ export default function WorkPage() {
           Illustration
         </h2>
         <div
-          className="block p-6 rounded-lg border border-[var(--color-border-subtle)] bg-[#fcfcfd]"
+          className="block p-6 rounded-lg border border-[var(--color-border-subtle)] bg-[#fdfcfd]"
         >
           <div className="flex items-start justify-between gap-4">
             <div>

@@ -23,12 +23,12 @@ export default function BlogPage() {
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="group flex flex-col sm:flex-row sm:items-start justify-between py-6 border-b border-[var(--color-border-subtle)] hover:border-[#1c2024] relative transition-all duration-300 gap-3"
+              className="group flex flex-col sm:flex-row sm:items-start justify-between py-6 border-b border-[var(--color-border-subtle)] hover:border-[#211f26] relative transition-all duration-300 gap-3"
             >
 
 
               <div>
-                <span className="font-semibold text-lg text-text-primary transition-colors block group-hover:text-[#1c2024]">
+                <span className="font-semibold text-lg text-text-primary transition-colors block group-hover:text-[#211f26]">
                   {post.title}
                 </span>
                 <p className="text-[15px] leading-relaxed text-text-secondary mt-1.5 max-w-[600px]">
@@ -42,7 +42,7 @@ export default function BlogPage() {
                 </span>
                 
                 {/* Hover State */}
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 px-2.5 py-[5px] text-[10px] font-mono tracking-wider uppercase bg-[#1c2024] text-white rounded shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-[120ms] ease-out flex items-center gap-1.5 pointer-events-none scale-[0.97] group-hover:scale-100">
+                <div className="absolute right-0 top-1/2 -translate-y-1/2 px-2.5 py-[5px] text-[10px] font-mono tracking-wider uppercase bg-[#211f26] text-white rounded shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-[120ms] ease-out flex items-center gap-1.5 pointer-events-none scale-[0.97] group-hover:scale-100">
                   Read <span className="opacity-70">↗</span>
                 </div>
               </div>

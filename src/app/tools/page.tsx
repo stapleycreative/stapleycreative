@@ -118,13 +118,13 @@ export default function ToolsPage() {
           <Link
             key={tool.slug}
             href={tool.href}
-            className="group flex items-start justify-between gap-6 py-5 relative transition-all duration-300 border-b border-[var(--color-border-subtle)] hover:border-[#1c2024]"
+            className="group flex items-start justify-between gap-6 py-5 relative transition-all duration-300 border-b border-[var(--color-border-subtle)] hover:border-[#211f26]"
           >
 
 
             <div className="min-w-0 flex-1">
               <div className="flex items-baseline gap-3">
-                <span className="font-medium transition-colors block group-hover:text-[#1c2024]">
+                <span className="font-medium transition-colors block group-hover:text-[#211f26]">
                   {tool.title}
                 </span>
                 {tool.status && (
@@ -166,7 +166,7 @@ export default function ToolsPage() {
               </span>
 
               {/* Hover State */}
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 px-2.5 py-[5px] text-[10px] font-mono tracking-wider uppercase bg-[#1c2024] text-white rounded shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-[120ms] ease-out flex items-center gap-1.5 pointer-events-none scale-[0.97] group-hover:scale-100">
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 px-2.5 py-[5px] text-[10px] font-mono tracking-wider uppercase bg-[#211f26] text-white rounded shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-[120ms] ease-out flex items-center gap-1.5 pointer-events-none scale-[0.97] group-hover:scale-100">
                 View Tool <span className="opacity-70">↗</span>
               </div>
             </div>

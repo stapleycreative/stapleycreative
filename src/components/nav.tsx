@@ -197,7 +197,7 @@ export function Nav() {
         <div 
           className="md:hidden absolute top-14 left-0 w-full border-b shadow-sm flex flex-col py-4 px-6 gap-4"
           style={{
-            backgroundColor: "#fcfcfd",
+            backgroundColor: "#fdfcfd",
             borderColor: "var(--color-border-subtle)"
           }}
         >

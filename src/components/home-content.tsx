@@ -205,10 +205,10 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
             <Link
               key={study.slug}
               href={`/work/${study.slug}`}
-              className="group block p-6 rounded-lg transition-all duration-300 relative bg-[#fcfcfd] border border-[var(--color-border-subtle)] hover:border-[#1c2024]"
+              className="group block p-6 rounded-lg transition-all duration-300 relative bg-[#fdfcfd] border border-[var(--color-border-subtle)] hover:border-[#211f26]"
             >
               {/* Utility Badge - Clean execution */}
-              <div className="absolute -top-2.5 right-6 px-2.5 py-0.5 text-[10px] font-mono tracking-wider uppercase bg-[#1c2024] text-white rounded shadow-sm z-30 opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 transition-all duration-[250ms] ease-out flex items-center gap-1.5 pointer-events-none">
+              <div className="absolute -top-2.5 right-6 px-2.5 py-0.5 text-[10px] font-mono tracking-wider uppercase bg-[#211f26] text-white rounded shadow-sm z-30 opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 transition-all duration-[250ms] ease-out flex items-center gap-1.5 pointer-events-none">
                 View Study <span className="opacity-70">↗</span>
               </div>
 
