@@ -14,7 +14,8 @@ export function LottieAnimation({
   autoplay = true,
   loop = true,
   speed = 1,
-  aspect = "16/9",
+  aspect = "1/1",
+  size = 360,
 }: {
   src: string;
   caption?: string;
@@ -22,16 +23,18 @@ export function LottieAnimation({
   loop?: boolean;
   speed?: number;
   aspect?: string;
+  /** Max width in px. Default 360px keeps the animation illustrative rather than full-bleed. */
+  size?: number;
 }) {
   return (
-    <figure className="my-8 not-prose" aria-label={caption || "Animation"}>
+    <figure
+      className="my-6 not-prose mx-auto"
+      style={{ maxWidth: `${size}px` }}
+      aria-label={caption || "Animation"}
+    >
       <div
-        className="rounded-lg overflow-hidden flex items-center justify-center"
-        style={{
-          aspectRatio: aspect,
-          backgroundColor: "var(--color-bg-surface)",
-          border: "1px solid var(--color-border-subtle)",
-        }}
+        className="flex items-center justify-center"
+        style={{ aspectRatio: aspect }}
       >
         <Player
           autoplay={autoplay}
@@ -43,7 +46,7 @@ export function LottieAnimation({
       </div>
       {caption && (
         <figcaption
-          className="text-xs mt-3"
+          className="text-xs mt-3 text-center"
           style={{ color: "var(--color-text-tertiary)" }}
         >
           {caption}
