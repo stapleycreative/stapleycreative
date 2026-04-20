@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { StereoPortrait } from "@/components/stereo-portrait";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "About",
@@ -44,7 +44,18 @@ export default function AboutPage() {
             by how nervous systems actually process information.
           </p>
           
-          <StereoPortrait />
+          <figure className="not-prose w-full flex justify-center py-16 my-0">
+            <div className="relative w-full max-w-[360px] aspect-square overflow-hidden rounded-[20px]">
+              <Image
+                src="/craig.webp"
+                alt="Craig Stapley portrait"
+                fill
+                sizes="(min-width: 768px) 360px, 80vw"
+                className="object-cover"
+                priority
+              />
+            </div>
+          </figure>
 
           <h2>What I do</h2>
           <p>
