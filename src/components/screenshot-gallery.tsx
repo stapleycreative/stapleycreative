@@ -21,18 +21,18 @@ function GalleryBase({
 }) {
   return (
     <figure className="not-prose my-12" aria-label={alt}>
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-3">
         {images.map((src, i) => (
           <div
             key={src}
-            className="relative aspect-[9/16] overflow-hidden rounded-xl"
+            className="relative aspect-[975/2113] overflow-hidden rounded-[28px]"
           >
             <Image
               src={src}
               alt={`${alt} ${i + 1}`}
               fill
               sizes="(min-width: 1024px) 260px, (min-width: 640px) 30vw, 45vw"
-              className="object-contain"
+              className="object-cover"
             />
           </div>
         ))}
