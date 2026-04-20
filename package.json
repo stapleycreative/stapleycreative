@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "compress-images": "node scripts/compress-images.mjs",
     "prepare": "git config core.hooksPath .githooks 2>/dev/null || true"
   },
   "dependencies": {
@@ -22,6 +23,7 @@
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "reading-time": "^1.5.0",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4.2.2"
   },
   "devDependencies": {

@@ -1,18 +1,27 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
+import Image from "next/image";
 import { LottieAnimation } from "./lottie-animation";
 
 /* Custom components available inside MDX files */
 const components = {
   LottieAnimation,
 
+  /**
+   * Dual-mode image component.
+   * - No `src`: renders a neutral placeholder box (for work-in-progress case studies).
+   * - With `src`: renders an optimized next/image with the same figure + caption chrome.
+   * `src` should be an absolute path rooted at /public, e.g. "/work/hiki/before.jpg".
+   */
   ImagePlaceholder: ({
+    src,
     alt,
     caption,
     aspect = "16/9",
   }: {
+    src?: string;
     alt: string;
     caption?: string;
-    // Props retained for backwards compatibility with existing MDX; not rendered.
+    // Briefing props — ignored at render, kept so MDX stays stable during the image-upload pass.
     brief?: string;
     priority?: string;
     style?: string;
@@ -20,13 +29,23 @@ const components = {
   }) => (
     <figure className="my-8 not-prose" aria-label={alt}>
       <div
-        className="rounded-lg overflow-hidden"
+        className="rounded-lg overflow-hidden relative"
         style={{
           aspectRatio: aspect,
           backgroundColor: "var(--color-bg-surface)",
           border: "1px solid var(--color-border-subtle)",
         }}
-      />
+      >
+        {src && (
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            sizes="(min-width: 1024px) 1080px, 100vw"
+            className="object-cover"
+          />
+        )}
+      </div>
       {caption && (
         <figcaption
           className="text-xs mt-3"

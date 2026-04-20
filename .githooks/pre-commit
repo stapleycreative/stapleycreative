@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Pre-commit hook: compress any images staged under public/ before they're
+# committed. Raw exports go in, web-optimized files come out — idempotent,
+# no-op if nothing image-y is staged.
+#
+# Bypass: git commit --no-verify
+
+set -e
+
+# Quick check: anything image-like staged?
+staged=$(git diff --cached --name-only --diff-filter=ACM | grep -E '^public/.*\.(jpg|jpeg|png|webp)$' || true)
+
+if [ -z "$staged" ]; then
+  exit 0
+fi
+
+echo "→ Compressing staged images..."
+node scripts/compress-images.mjs --staged
+
+exit 0
