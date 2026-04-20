@@ -137,7 +137,7 @@ export default function ToolsPage() {
                       fontSize: "10px",
                       backgroundColor:
                         tool.status === "live"
-                          ? "rgba(255, 161, 153, 0.12)"
+                          ? "rgba(249, 128, 119, 0.12)"
                           : "rgba(20, 20, 19, 0.06)",
                       color:
                         tool.status === "live"

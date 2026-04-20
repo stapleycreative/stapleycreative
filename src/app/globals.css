@@ -17,8 +17,8 @@
   --color-border-subtle: #eae7ec;   /* Mauve 4  */
   --color-border-strong: #bcbac7;   /* Mauve 8  */
 
-  --color-accent: #FFA199;
-  --color-accent-hover: #FF8A80;
+  --color-accent: #F98077;
+  --color-accent-hover: #E66B62;
 
   --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
@@ -48,7 +48,7 @@ body {
 }
 
 ::selection {
-  background: rgba(255, 161, 153, 0.25);
+  background: rgba(249, 128, 119, 0.25);
 }
 
 /* ─── Prose (MDX content) ─── */

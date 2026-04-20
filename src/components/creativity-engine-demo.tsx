@@ -450,7 +450,7 @@ function SwitchPanel({ data }: { data: EngineResult["switch"] }) {
                     fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
                     backgroundColor: killed
                       ? "rgba(181, 71, 8, 0.08)"
-                      : "rgba(255, 161, 153, 0.12)",
+                      : "rgba(249, 128, 119, 0.12)",
                     color: killed ? "#b54708" : "var(--color-accent)",
                     flexShrink: 0,
                     padding: "2px 6px",

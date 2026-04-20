@@ -170,14 +170,14 @@ export default function WorkPage() {
               className="group block p-5 rounded-lg transition-all duration-200"
               style={{
                 border: "1px solid var(--color-border-subtle)",
-                background: "linear-gradient(135deg, #fdfcfd 0%, rgba(255,161,153,0.04) 100%)",
+                background: "linear-gradient(135deg, #fdfcfd 0%, rgba(249,128,119,0.04) 100%)",
               }}
             >
               <div className="flex items-start justify-between gap-2">
                 <h3 className="text-sm font-semibold" style={{ color: "var(--color-text-primary)" }}>{t.title}</h3>
                 <span
                   className="text-[10px] font-mono tracking-wider uppercase px-1.5 py-0.5 rounded flex-shrink-0"
-                  style={{ color: "var(--color-accent)", backgroundColor: "rgba(255,161,153,0.1)" }}
+                  style={{ color: "var(--color-accent)", backgroundColor: "rgba(249,128,119,0.1)" }}
                 >
                   {t.cta}
                 </span>
