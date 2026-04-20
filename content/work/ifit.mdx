@@ -1,26 +1,26 @@
 ---
-title: "Eleven years inside a company that went from 20K users to 6M"
-description: "iFIT grew from niche hardware to a $1.7B connected fitness platform. I built the design infrastructure, redesigned the checkout that processed hundreds of millions, created the IPO documentation, and grew the creative team from just me to 20 people."
+title: "Eleven years, one proposal"
+description: "I wrote a deck showing NordicTrack's checkout could go from seven steps to four. Leadership put me on the project because of it. 44% of iFIT's $1.7B in hardware revenue flowed through the funnel I redesigned."
 client: "iFIT"
 role: "Creative Director → Principal Designer"
 year: "2011–2022"
-tags: ["Scale", "Design Systems", "Revenue", "Leadership"]
+tags: ["Scale", "Revenue", "Leadership"]
 date: "2022-12-01"
 ---
 
 <OutcomeBlock
-  problem="A hardware company with 5 product surfaces, no shared design infrastructure, and a checkout flow that hadn't been touched in years."
-  change="Token-first design system across all surfaces. Rebuilt the DTC checkout. Created all IPO investor documentation. Grew the creative team from 1 to 20."
-  result="20K users to 6M. Revenue hit $1.7B. Checkout A/B tests showed immediate conversion lifts. New designers productive in 3 days instead of 3 weeks."
+  problem="A seven-step DTC checkout for $1,000+ fitness hardware where iFIT read as a third-party add-on and the subscription clock started before the machine was ever plugged in."
+  change="Pitched a four-step single-page configurator with iFIT integrated into the cart, financing frontloaded, FAQ inline, and billing deferred until activation. Got put on the project because of the proposal."
+  result="Contentstack-confirmed conversion lift. 44% of iFIT's $1.7B hardware revenue flowed through this funnel. Eleven-year arc from a 3-person team to a 14-person team I built and ran across product, marketing, and social."
 />
 
 ## What this was
 
-2011. iFIT was a hardware company. Treadmills with small screens. Workout videos on a disc. One product surface, one screen size, one OS. 20,000 users.
+2011. Icon Health & Fitness was a hardware company. Treadmills with small screens. Workout videos on a disc. One product surface, 20,000 users, a creative team of three that I was one of.
 
-By 2022, connected fitness platform. Treadmills, bikes, rowers, mobile app, web dashboard. Five product surfaces, three operating systems, 6 million users, $1.7 billion in annual revenue. A 20-person creative team I'd built from scratch. The company had done a rebrand, an IPO push, multiple product acquisitions.
+By 2022, connected fitness platform. Treadmills, bikes, rowers, mobile app, web dashboard. Six million users, $1.7 billion in annual revenue. 300+ people in the iFIT sector alone. The company had renamed itself from Icon Health & Fitness to iFIT because the subscription business had become the business. I ran a 14-person creative team — 12 designers and 2 copywriters — across product, marketing, and social.
 
-I was there for all eleven years. My job changed shape constantly, and the work I'm proudest of isn't any single screen. It's the infrastructure, the revenue impact, and the organizational decisions that compounded over time.
+I stayed eleven years. My job changed shape constantly. Some years I was a hands-on product designer working on treadmill UI or subscription onboarding. Some years I was a creative director running the team, hiring, reviewing work. Often both in the same week. The pattern that emerged: leadership pulled me onto whatever was high-priority and ambiguous. The NordicTrack checkout was one of those projects.
 
 <PullQuote cite="Mark Watterson, Chief Product Officer">In my time working with Craig, I was always impressed by his ability to work in ambiguity; taking the shell of an idea or concept and truly turning it into a masterpiece that checked every box and added more.</PullQuote>
 
@@ -28,93 +28,75 @@ I was there for all eleven years. My job changed shape constantly, and the work 
   <Metric label="Users at start" value="20K" />
   <Metric label="Users at end" value="6M+" />
   <Metric label="Revenue (FY2021)" value="$1.7B" />
-  <Metric label="Product surfaces" value="5" />
-  <Metric label="Creative team" value="20 people" />
+  <Metric label="Team I ran" value="14 people" />
+  <Metric label="DTC revenue share" value="44%" />
   <Metric label="Tenure" value="11 years" />
 </MetricsGrid>
 
-## The infrastructure that made everything else possible
+## The proposal that became the project
 
-2017. A user reported that the "Start Workout" button on the bike looked different from the same button on the treadmill. Different corner radius. Slightly different blue. Different font weight.
+2021. I wasn't on the NordicTrack DTC team. But I'd been watching the funnel and saw something specific: seven checkout steps for a $3,797 treadmill, with the iFIT subscription living as its own forced interstitial that made the customer pick a membership tier before they could even configure their machine.
 
-I pulled the thread and found 23 variants of what should have been one button. Across five surfaces, three designers had each built their own version because there was no single source of truth.
+So I made a deck. Not a request. Just the deck.
 
-<MetricsGrid>
-  <Metric label="Button variants" value="23" />
-  <Metric label="Unique blues" value="9" />
-  <Metric label="Type scales" value="4 different" />
-  <Metric label="Undocumented components" value="~80%" />
-</MetricsGrid>
+Current flow: Sales page → Select iFIT Membership → Cart: Shipping → Cart: Options → Cart: Payment → Cart: iFIT → Cart: Confirmation.
 
-<ImagePlaceholder alt="The same Start Workout button rendered 23 different ways across five product surfaces" caption="23 variants of one button. This is what consistency looks like when it's maintained by convention instead of infrastructure." brief="A specimen-style grid showing button variants across product surfaces (Treadmill, Bike, Rower, Mobile, Web). Annotations pointing to specific differences: radius, color hex values, font-weight, padding. Should feel like a real design audit artifact." priority="HIGH" style="Component audit grid. Clinical, specimen-like layout." />
+Recommended: Sales page → Cart: Shipping → Cart: Payment → Cart: Confirmation.
 
-I had two paths forward. Build a component library (fast, visible, immediate results) or build a token layer first (slower, invisible for two months, but every decision encoded once and inherited everywhere). I chose tokens. Had to defend that choice to leadership multiple times during those two months of nothing visible changing.
+Three screens disappeared. The "Select iFIT Membership" gate died. The "Cart: Options" and "Cart: iFIT" screens collapsed into the main cart as grouped configuration tiers. The deck opened with one sentence:
 
-Why: component libraries without shared tokens create a different kind of inconsistency. The button looks the same until someone changes a border radius. Then one surface updates and the other doesn't. Nobody knows which is right. Tokens first means one decision, one update, universal propagation.
+> Simplification is the emphasis here, without entirely abandoning marketing. The design lifts liberally from competitor content, leveraging the market research they've already done.
 
-<ImagePlaceholder alt="Token architecture diagram showing primitives feeding semantics feeding components across all five surfaces" caption="Primitives feed semantics, semantics feed components. Every surface inherits from the same decision layer." brief="Three-layer system diagram. Top: primitive tokens (raw values). Middle: semantic tokens (named decisions). Bottom: component tokens branching to five product surfaces. Arrows flow downward." priority="HIGH" style="System architecture diagram. Clean lines, clear hierarchy, labeled examples at each level." />
+Leadership read it and put me on the project.
 
-Three rules governed the system.
+<ImagePlaceholder alt="Current vs Recommended checkout flow comparison: seven steps collapsing to four" caption="The opening slide of the proposal. Seven steps to four. The forced iFIT interstitial gone. The iFIT upsell moved from a gate to a selectable tier in the main cart." brief="Flow comparison slide from the 2021 proposal deck. Current flow shown as 7 boxes (Sales page, Select iFIT Membership, Cart: Shipping, Cart: Options, Cart: Payment, Cart: iFIT, Cart: Confirmation, Done). Recommended flow shown as 4 boxes (Sales page, Cart: Shipping, Cart: Payment, Cart: Confirmation, Done). Dark navy background, white text, highlighted cuts." priority="HIGH" style="Presentation slide, dark background, flow diagram." />
 
-**Shared atoms, not shared molecules.** A treadmill screen (22 inches, landscape, viewed while running) and a mobile app (6 inches, portrait, held in one hand) need fundamentally different layouts. I shared the atomic layer (buttons, inputs, type, color, icons) and let each surface compose its own layouts. The atoms were universal. The molecules were local.
+## The redesign
 
-**Documentation before production.** Every new component required a one-page spec before it could be used. The spec forced edge-case thinking before production surfaced the edge cases. Every component that shipped without documentation generated a support question from another designer within two weeks.
+Six moves. Each one has a current-vs-recommended slide in the deck.
 
-**Distributed ownership.** Each surface had a lead designer who owned their components. The systems team (me and eventually one other person) owned the token layer and review process. Governance lived in the architecture, not in a queue.
+**Wizard → single-page configurator.** The current cart was a multi-step form. The recommendation turned it into one page: product image on the left, configuration panel on the right. The customer could see the treadmill the whole time they configured it. That sounds obvious. It wasn't happening.
 
-Result: new designers went from needing 2 to 3 weeks to become productive down to 2 to 3 days. The system carried institutional knowledge that used to live in people's heads. That's organizational leverage. One artifact, every hire faster.
+<ImagePlaceholder alt="Recommended cart design: single-page configurator with product, config panel, inline FAQ" caption="One page. Product always visible. Configuration grouped into three decisions. FAQ below the fold, handling objections before they surfaced." brief="The 'Recommended' screen from the Select iFIT Membership slide. NordicTrack page with treadmill image on left. Configuration panel on right grouping Interactive virtual training (iFIT 30 Day / 1 Year tiers), Equipment protection (Manufacturer's / 3 Year Extended / 3 Year Maintenance), Delivery (Threshold / Room of Choice). Price summary reads '$3,797 or $89/mo'. Add to cart button. Chat with a sales expert link. 30-day return policy and free shipping trust signals. FAQ section below." priority="HIGH" style="Product UI, light theme, e-commerce detail page." />
 
-## The checkout that processed hundreds of millions
+**Integrated iFIT, not bolted-on.** The current flow forced a separate iFIT account-creation interstitial that turned the subscription into its own obstacle. The recommended flow integrated iFIT as a selectable tier inside the main cart. 30-day included. 1-year adds $324 (saves $72). Same decision, a fraction of the friction. This was the explicit ask from leadership: make iFIT feel like a reason to buy the treadmill, not a third-party add-on.
 
-This is the part that matters most to anyone who cares about business impact.
+**Inline FAQ as objection handling.** Seven embedded questions — *Is an iFIT Membership required? If I don't renew can I still use my machine? How do I cancel? What's covered under the warranty?* — placed directly below the configurator instead of hidden in a help center. The objections silently killing conversion got answered in the purchase flow itself.
 
-I redesigned the NordicTrack checkout flow. The direct-to-consumer purchase experience on nordictrack.com for hardware that started at $1,000 and went up from there. Treadmills, bikes, rowers. High-ticket, high-friction purchases.
+**Financing frontloaded.** Every price in the flow read "$3,797 or $89/mo. 0% APR for 39 mos." together. Not hidden behind a "learn more" link. A $3,797 treadmill read as a $90/month decision.
 
-In fiscal year 2021, 44% of iFIT's interactive hardware revenue flowed through DTC channels. The company's total revenue that year was $1.7 billion. That checkout flow was a significant piece of how the company made money.
+**Grouped, modular add-on tiers.** Instead of a flat list of upsells, three clean comparisons: Interactive training (30-day / 1-year). Equipment protection (Manufacturer's / 3-Yr Extended / 3-Yr Maintenance). Delivery (Threshold / Room of Choice). Every add-on had explicit pricing. Nothing hidden, nothing sprung at the confirmation step.
 
-<ImagePlaceholder alt="NordicTrack checkout flow redesign showing the purchase journey" caption="The checkout redesign. High-ticket fitness hardware, every step designed to reduce friction without sacrificing trust." brief="Screenshots or wireframes of the NordicTrack checkout flow showing the full purchase journey: product selection, configuration, cart, payment, confirmation. Should look like a real e-commerce checkout for $1K+ products." priority="HIGH" style="E-commerce UI showcase. Clean, conversion-focused." />
+**Activation-based billing.** The sharp one. The subscription clock doesn't start when the customer orders. It starts when they plug the treadmill in and turn it on. One design decision solved four problems at once: delivery-delay anxiety, subscription-without-use frustration, activation drop-off, and return rates. This tied to the on-device first-run flow I'd also designed. The web checkout and the treadmill activation are one commercial system, not two.
 
-We A/B tested the old checkout against the new. The results, confirmed publicly in a Contentstack case study about the NordicTrack platform, showed immediate improvements in revenue, conversions, and site performance across the board.
+## The outcome
 
-The context tells the story: 44% of hardware revenue for a company doing $1.7 billion annually. The design decisions in that checkout (reducing steps, building trust signals for high-ticket purchases, optimizing the mobile-to-desktop handoff that most buyers went through) had direct, measurable financial consequences.
+Contentstack-confirmed conversion lift across revenue, conversion rate, and site performance after the redesign shipped. 44% of iFIT's hardware revenue flowed through the DTC channel. Company revenue that year was $1.7 billion. The design decisions in this funnel moved real money.
 
 <MetricsGrid>
+  <Metric label="Checkout steps before" value="7" />
+  <Metric label="Checkout steps after" value="4" />
   <Metric label="DTC revenue share" value="44%" />
-  <Metric label="Company revenue" value="$1.7B" />
-  <Metric label="Revenue growth" value="$700M→$1.7B" />
-  <Metric label="Subscriber CAGR" value="81.3%" />
 </MetricsGrid>
 
-## Beyond product surfaces
+## Beyond the checkout
 
-Most designers don't create IPO documentation. I did.
+Eleven years at one company means a lot of work that isn't any single screen.
 
-When iFIT pushed for its public offering, I created all of it. Every investor deck. The official public offering documentation. The materials that would go in front of institutional investors deciding whether this company was worth billions. This was translating a company's entire story (growth trajectory, competitive position, future vision) into a format that convinces the most skeptical audience there is.
-
-The IPO ultimately didn't close. The whole SPAC and IPO market collapsed in late 2021. Peloton's stock cratered around the same time. That doesn't change the work. I was trusted at the executive level to shape how the company presented itself to the capital markets.
+I did the S1 documentation when iFIT pushed for its IPO. Every investor deck. Every page of the public offering materials that went in front of institutional investors deciding whether the company was worth billions. Translating the company's entire story — growth trajectory, competitive position, future vision — into a format that convinces the most skeptical audience there is. The offering didn't close. The SPAC and IPO market collapsed in late 2021, Peloton's stock cratered around the same time. That doesn't change the work. I was trusted at the executive level to shape how the company presented itself to the capital markets.
 
 <ImagePlaceholder alt="iFIT investor materials and presentation design" caption="Investor-facing design. The scope extended well beyond product surfaces." brief="Abstract representation of investor materials. Deck layouts, data visualization, financial storytelling design. Should NOT show confidential content. Zoomed-out view of multiple deck pages or a tasteful scope representation." priority="MEDIUM" style="Professional, corporate. Not startup-cute." />
 
-### Building the team
+I built and ran the creative team. Started as one of three designers. By year eleven, 12 designers and 2 copywriters stretched across product, marketing, and social. I didn't inherit the team. I hired every role. The structure decisions mattered more than the headcount. I put a gym on site and gave designers dedicated time to use it, because you can't design workout software you've never sweated through. Set up call shadowing so designers heard real customer frustration firsthand. Ran internal fitness competitions that forced designers to use the product as actual users, not testers. Required real data in every mockup. Placeholder data teaches you to ignore the information layer.
 
-I didn't inherit a team. I built one. Started as the only designer. By the end: 20 people across product design, marketing design, social media, animation, and copywriting.
+<ImagePlaceholder alt="iFIT team building and empathy programs" caption="Empathy wasn't a workshop. It was how the team operated." brief="Photo of Craig running on a NordicTrack treadmill, or a collage showing the empathy programs: gym setup, call shadowing notes, competition boards." priority="MEDIUM" style="Documentary / behind-the-scenes." />
 
-The structure decisions mattered more than the headcount. I built empathy into the operating model, not the workshop calendar. Put a gym on site and gave designers dedicated time to use it, because you can't design workout software you've never sweated through. Set up call shadowing so designers heard real customer frustration firsthand. Ran internal fitness competitions that forced designers to use the product as actual users, not testers. Required real data in every mockup because placeholder data teaches you to ignore the information layer.
+I did the work beyond product UI. Storyboarded TV commercials. Directed photo shoots for the product line. Modeled and rendered 3D animations for an iFIT wearable that went to China for press-check before the line got shelved. Designed packaging for iFIT Nourish, the nutrition spinoff. Shepherded a design-system rebuild with an outside agency as the internal owner driving adoption across surfaces.
 
-<ImagePlaceholder alt="iFIT team building and empathy programs" caption="Empathy wasn't a workshop. It was how the team operated." brief="Photo of Craig running on a NordicTrack treadmill (from interview deck), or a collage showing empathy programs: gym setup, call shadowing notes, competition boards." priority="MEDIUM" style="Documentary / behind-the-scenes." />
-
-### The profile hub
-
-After leaving iFIT full-time, I came back as a freelancer to redesign the user profile. The brief: users lacked a sense of progress. The app showed workout data but nothing about the experience said "you're getting better." People opened the profile, saw numbers, and closed it.
-
-I turned the profile into a personalized hub. Summary stats with 7-day, 30-day, and 12-month views. Visual data exploration, not just data display. Streaks and achievements that surfaced patterns you wouldn't notice on your own. Workout history that actually worked as a history. Avatar customization with a QR code for photo upload. The whole thing built for both the 22-inch treadmill screen and the 10-inch tablet.
-
-<ImagePlaceholder alt="iFIT Profile hub redesign with personalized dashboard and data visualization" caption="The profile hub. Summary stats, data exploration, streaks, workout history, avatar customization. Built for 22-inch and 10-inch screens." brief="Hi-fi screenshots of the iFIT profile redesign showing the dashboard with stat cards (Time, Vertical Gain, Calorie Burn, Distance, Avg Pace), streaks, recent activity, and workout history view. Dark mode UI with data visualization." priority="HIGH" style="Product UI gallery. Dark theme, data-rich." />
-
-<ImagePlaceholder alt="iFIT data visualization showing 7-day, 30-day, and 12-month workout trends" caption="V1 was data visualization. V2 was data exploration. Users needed to feel their progress, not just read it." brief="Data viz detail showing three time period views (7-day, 30-day, 12-month) for Time, Calories, Vertical Gain, Distance, Pace. Color-coded gradient bars." priority="MEDIUM" style="Data visualization showcase. Dark background, colored charts." />
+Some of this was me hands-on. Some was me concepting and handing off to the team. By year eight, the job was player-coach. I'd do the first round of high-priority work myself, then hand it off. When a project was high-priority and ambiguous, it ended up on my desk.
 
 ## What eleven years teaches you
 
-The decisions that mattered most weren't visual. They were architectural and organizational. Token-first or component-first. Shared molecules or shared atoms. Centralized ownership or distributed. Document before or after production. Put a gym in the office or assume your designers will figure out empathy on their own.
+Stay at one company long enough and you stop optimizing for the individual screen. The work that compounded was the proposal that got me onto NordicTrack, the team I hired and trusted, the IPO documentation the exec team signed off on, the design-system adoption I drove after someone else built it. None of that was any single artifact.
 
-Each decision compounded over years. The token-first choice I made in 2017 was still paying dividends in 2020, long after I'd stopped thinking about it. The checkout work proved design decisions have direct revenue consequences when the stakes are high enough. The IPO work proved design leadership extends beyond product screens when the trust is there. And the team proved that empathy baked into the operating model outperforms empathy workshops every single time.
+The NordicTrack checkout is the piece I point to when someone asks what I've shipped with a number attached. But the real story is that the trust to parachute into it was earned over a decade of being the person leadership called when they didn't want the project to fail.

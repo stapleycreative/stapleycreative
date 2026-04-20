@@ -150,8 +150,8 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
           className="mt-8 text-lg max-w-[760px] leading-relaxed"
           style={{ color: "var(--color-text-secondary)" }}
         >
-          Product designer. Twenty years turning ambiguity into systems
-          that work. The AI tools and design process on this site are the
+          Product designer. Twenty years turning ambiguity into work
+          that ships. The AI tools and design process on this site are the
           same ones I ship with every day.
         </p>
         <div className="mt-8 flex flex-wrap gap-3 items-center">
@@ -162,7 +162,7 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
             className="text-sm"
             style={{ color: "var(--color-text-tertiary)" }}
           >
-            Open to staff, principal, and design-systems leadership roles.
+            Open to staff, principal, and creative leadership roles.
           </span>
         </div>
       </section>

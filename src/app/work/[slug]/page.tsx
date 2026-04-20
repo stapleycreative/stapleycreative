@@ -31,32 +31,42 @@ export default async function CaseStudyPage({ params }: Props) {
   const extra = meta as Record<string, unknown>;
 
   return (
-    <article className="mx-auto px-6 pt-16 pb-24"
+    <article className="mx-auto px-6 pt-12 pb-24"
       style={{ maxWidth: "var(--max-width-wide)" }}>
-        <Link href="/work" className="text-sm transition-colors block mb-6"
+        <Link href="/work" className="text-sm transition-colors block mb-10"
           style={{ color: "var(--color-text-tertiary)" }}>
           ← Work
         </Link>
-        <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight leading-tight">
+
+        {extra.client ? (
+          <div className="mb-5 text-xs font-medium"
+            style={{
+              color: "var(--color-text-tertiary)",
+              letterSpacing: "0.24em",
+              textTransform: "uppercase",
+            }}>
+            {String(extra.client)}
+          </div>
+        ) : null}
+
+        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight leading-[1.05] max-w-[22ch]">
           {meta.title}
         </h1>
-        <p className="mt-4 text-lg leading-relaxed max-w-[60ch]"
+        <p className="mt-5 text-base sm:text-lg leading-relaxed max-w-[58ch]"
           style={{ color: "var(--color-text-secondary)" }}>
           {meta.description}
         </p>
 
-        <div className="mt-8 flex flex-wrap gap-x-8 gap-y-2 text-sm pt-6"
-          style={{
-            color: "var(--color-text-tertiary)",
-            borderTop: "1px solid var(--color-border-subtle)",
-          }}>
-          {extra.client ? <span>Client: <span style={{ color: "var(--color-text-secondary)" }}>{String(extra.client)}</span></span> : null}
-          {extra.role ? <span>Role: <span style={{ color: "var(--color-text-secondary)" }}>{String(extra.role)}</span></span> : null}
-          {extra.year ? <span>Year: <span style={{ color: "var(--color-text-secondary)" }}>{String(extra.year)}</span></span> : null}
+        <div className="mt-7 flex flex-wrap gap-x-6 gap-y-1 text-xs"
+          style={{ color: "var(--color-text-tertiary)" }}>
+          {extra.role ? <span>{String(extra.role)}</span> : null}
+          {extra.year ? <span aria-hidden="true">·</span> : null}
+          {extra.year ? <span>{String(extra.year)}</span> : null}
+          <span aria-hidden="true">·</span>
           <span>{meta.readingTime}</span>
         </div>
 
-      <div className="mt-6">
+      <div className="mt-10">
         <MdxContent source={content} />
       </div>
 
