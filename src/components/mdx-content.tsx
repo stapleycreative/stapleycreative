@@ -2,11 +2,14 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import Image from "next/image";
 import { LottieAnimation } from "./lottie-animation";
 import { ResearchSegments } from "./research-segments";
+import { VideoBlock, VideoPair } from "./video-block";
 
 /* Custom components available inside MDX files */
 const components = {
   LottieAnimation,
   ResearchSegments,
+  VideoBlock,
+  VideoPair,
 
   /**
    * Dual-mode image component.
