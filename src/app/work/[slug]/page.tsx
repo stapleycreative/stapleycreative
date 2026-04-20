@@ -40,28 +40,6 @@ export default async function CaseStudyPage({ params }: Props) {
           ← Work
         </Link>
 
-        {extra.logo ? (
-          <div className="mb-6">
-            <Image
-              src={String(extra.logo)}
-              alt={extra.client ? String(extra.client) : "Client logo"}
-              width={typeof extra.logoWidth === "number" ? extra.logoWidth : 171}
-              height={typeof extra.logoHeight === "number" ? extra.logoHeight : 74}
-              style={{ height: "16px", width: "auto", display: "block" }}
-              priority
-            />
-          </div>
-        ) : extra.client ? (
-          <div className="mb-5 text-xs font-medium"
-            style={{
-              color: "var(--color-text-tertiary)",
-              letterSpacing: "0.24em",
-              textTransform: "uppercase",
-            }}>
-            {String(extra.client)}
-          </div>
-        ) : null}
-
         {extra.cover ? (
           <>
             <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight leading-[1.05]">
