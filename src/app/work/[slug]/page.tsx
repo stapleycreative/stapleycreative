@@ -46,7 +46,7 @@ export default async function CaseStudyPage({ params }: Props) {
               alt={extra.client ? String(extra.client) : "Client logo"}
               width={typeof extra.logoWidth === "number" ? extra.logoWidth : 171}
               height={typeof extra.logoHeight === "number" ? extra.logoHeight : 74}
-              style={{ height: "32px", width: "auto", display: "block" }}
+              style={{ height: "16px", width: "auto", display: "block" }}
               priority
             />
           </div>
