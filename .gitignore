@@ -36,6 +36,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# image source originals — preserved locally via iCloud, not committed
+# (keeps repo lean; compressed copies in public/ are the deployed assets)
+/originals
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
