@@ -1,0 +1,2096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spectrum — Understand How Your Mind Works</title>
+<style>
+/* ============================================
+   SPECTRUM v2 — Neurodivergence Assessment
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #FAFAF8;
+  --bg-card: #FFFFFF;
+  --bg-warm: #F5F3EF;
+  --bg-accent: #EDE8E0;
+  --text-primary: #1C1917;
+  --text-secondary: #57534E;
+  --text-tertiary: #A8A29E;
+  --accent: #6366F1;
+  --accent-light: #EEF2FF;
+  --accent-dark: #4338CA;
+  --warm: #D97706;
+  --warm-light: #FFFBEB;
+  --teal: #0D9488;
+  --teal-light: #F0FDFA;
+  --rose: #E11D48;
+  --rose-light: #FFF1F2;
+  --purple: #7C3AED;
+  --purple-light: #F5F3FF;
+  --border: #E7E5E4;
+  --border-light: #F5F5F4;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 30px rgba(0,0,0,0.08);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+}
+
+html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.serif { font-family: 'Fraunces', Georgia, serif; }
+
+/* ---- Layout ---- */
+.container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+.container--wide { max-width: 840px; }
+.container--narrow { max-width: 560px; }
+
+/* ---- Screens ---- */
+.screen { display: none; min-height: 100vh; opacity: 0; transition: opacity 0.4s ease; }
+.screen.active { display: flex; flex-direction: column; opacity: 1; }
+
+/* ============================================
+   LANDING
+   ============================================ */
+.landing {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px 24px 80px;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-warm) 100%);
+}
+
+.landing__logo { display: flex; align-items: center; gap: 10px; margin-bottom: 48px; }
+.landing__logo-mark {
+  width: 36px; height: 36px; background: var(--accent);
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+}
+.landing__logo-mark svg { width: 20px; height: 20px; }
+.landing__logo-text { font-weight: 600; font-size: 18px; letter-spacing: -0.02em; }
+
+.landing__badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--accent-light); color: var(--accent);
+  font-size: 13px; font-weight: 500; padding: 6px 14px;
+  border-radius: 100px; margin-bottom: 24px;
+}
+
+.landing h1 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3rem); font-weight: 600;
+  line-height: 1.15; letter-spacing: -0.03em;
+  margin-bottom: 16px; max-width: 600px;
+}
+
+.landing__sub {
+  font-size: 18px; color: var(--text-secondary);
+  max-width: 480px; margin-bottom: 40px; line-height: 1.65;
+}
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 32px; border-radius: var(--radius-md);
+  font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600;
+  border: none; cursor: pointer; transition: all 0.2s ease; text-decoration: none;
+}
+.btn--primary {
+  background: var(--accent); color: white;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+}
+.btn--primary:hover {
+  background: var(--accent-dark);
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.35);
+  transform: translateY(-1px);
+}
+.btn--ghost { background: transparent; color: var(--text-secondary); padding: 10px 16px; }
+
+.landing__ctas { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+
+.landing__trust { margin-top: 48px; display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
+.landing__trust-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-tertiary); }
+
+.landing__preview { margin-top: 64px; max-width: 560px; width: 100%; }
+.landing__preview-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 32px;
+  box-shadow: var(--shadow-lg); text-align: left;
+}
+.landing__preview-label {
+  font-size: 11px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--text-tertiary); margin-bottom: 12px;
+}
+.landing__preview-title { font-family: 'Fraunces', Georgia, serif; font-size: 24px; font-weight: 600; margin-bottom: 4px; }
+.landing__preview-subtitle { font-size: 14px; color: var(--text-tertiary); margin-bottom: 20px; }
+.landing__preview-dims { display: flex; flex-direction: column; gap: 10px; }
+.landing__preview-dim { display: flex; align-items: center; gap: 12px; }
+.landing__preview-dim-label { font-size: 12px; color: var(--text-secondary); width: 120px; flex-shrink: 0; }
+.landing__preview-dim-bar { flex: 1; height: 6px; background: var(--border-light); border-radius: 100px; overflow: hidden; }
+.landing__preview-dim-fill { height: 100%; border-radius: 100px; background: var(--accent); }
+
+/* ============================================
+   QUIZ
+   ============================================ */
+.quiz { padding: 0; min-height: 100vh; background: var(--bg); }
+
+.quiz__header {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(250, 250, 248, 0.9);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-light); padding: 16px 24px;
+}
+.quiz__header-inner {
+  max-width: 720px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.quiz__progress-text { font-size: 13px; color: var(--text-tertiary); font-weight: 500; }
+.quiz__progress-bar { height: 3px; background: var(--border-light); border-radius: 100px; margin-top: 8px; max-width: 720px; margin-left: auto; margin-right: auto; }
+.quiz__progress-fill { height: 100%; background: var(--accent); border-radius: 100px; transition: width 0.4s ease; }
+
+.quiz__body {
+  max-width: 640px; margin: 0 auto; padding: 48px 24px 120px;
+  display: flex; flex-direction: column; align-items: center;
+}
+
+.quiz__question-num { font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 16px; letter-spacing: 0.05em; }
+
+.quiz__question {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 500; line-height: 1.4;
+  text-align: center; margin-bottom: 8px; max-width: 560px;
+}
+
+.quiz__context {
+  font-size: 14px; color: var(--text-tertiary);
+  text-align: center; margin-bottom: 32px; max-width: 480px; line-height: 1.5;
+}
+
+.quiz__options { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 520px; }
+
+.quiz__option {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 16px 20px; border-radius: var(--radius-md);
+  border: 1.5px solid var(--border); background: var(--bg-card);
+  cursor: pointer; transition: all 0.15s ease; text-align: left;
+}
+.quiz__option:hover { border-color: var(--accent); background: var(--accent-light); }
+.quiz__option.selected { border-color: var(--accent); background: var(--accent-light); box-shadow: 0 0 0 1px var(--accent); }
+
+.quiz__option-letter {
+  width: 28px; height: 28px; border-radius: 8px;
+  background: var(--bg-warm); display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 600; color: var(--text-secondary); flex-shrink: 0;
+}
+.quiz__option.selected .quiz__option-letter { background: var(--accent); color: white; }
+
+.quiz__option-text { font-size: 15px; line-height: 1.5; color: var(--text-primary); padding-top: 3px; }
+
+.quiz__nav {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: rgba(250, 250, 248, 0.95); backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border-light); padding: 16px 24px;
+}
+.quiz__nav-inner {
+  max-width: 640px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+.quiz__nav .btn--back {
+  background: none; border: none; color: var(--text-tertiary);
+  font-size: 14px; font-weight: 500; cursor: pointer; padding: 10px 16px;
+}
+.quiz__nav .btn--back:hover { color: var(--text-secondary); }
+
+.quiz__nav .btn--next {
+  padding: 12px 28px; border-radius: var(--radius-md);
+  background: var(--accent); color: white; border: none;
+  font-size: 14px; font-weight: 600; cursor: pointer;
+  opacity: 0.4; pointer-events: none; transition: all 0.2s ease;
+}
+.quiz__nav .btn--next.enabled { opacity: 1; pointer-events: auto; }
+.quiz__nav .btn--next.enabled:hover { background: var(--accent-dark); }
+
+/* ============================================
+   ANALYSIS ANIMATION
+   ============================================ */
+.analysis {
+  justify-content: center; align-items: center; text-align: center;
+  padding: 60px 24px; background: var(--bg);
+}
+
+.analysis__content { max-width: 480px; }
+
+.analysis h2 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.75rem; font-weight: 600; margin-bottom: 12px;
+}
+.analysis__sub { font-size: 15px; color: var(--text-secondary); margin-bottom: 48px; line-height: 1.6; }
+
+.analysis__dims { display: flex; flex-direction: column; gap: 16px; text-align: left; margin-bottom: 48px; }
+.analysis__dim { display: flex; flex-direction: column; gap: 6px; }
+.analysis__dim-header { display: flex; justify-content: space-between; align-items: center; }
+.analysis__dim-name { font-size: 13px; font-weight: 500; color: var(--text-secondary); }
+.analysis__dim-score { font-size: 13px; font-weight: 600; color: var(--accent); opacity: 0; transition: opacity 0.3s; }
+.analysis__dim-score.visible { opacity: 1; }
+.analysis__dim-bar { height: 6px; background: var(--border-light); border-radius: 100px; overflow: hidden; }
+.analysis__dim-fill { height: 100%; background: var(--accent); border-radius: 100px; width: 0; transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1); }
+
+.analysis__status { font-size: 14px; color: var(--text-tertiary); margin-bottom: 8px; }
+.analysis__spinner {
+  width: 32px; height: 32px; border: 3px solid var(--border);
+  border-top-color: var(--accent); border-radius: 50%;
+  animation: spin 0.8s linear infinite; margin: 0 auto;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ============================================
+   RESULTS
+   ============================================ */
+.results { padding: 0 0 80px; background: var(--bg); }
+
+.results__hero {
+  padding: 60px 24px 48px; text-align: center;
+  background: linear-gradient(180deg, var(--accent-light) 0%, var(--bg) 100%);
+}
+.results__hero-label {
+  font-size: 12px; font-weight: 600; color: var(--accent);
+  text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px;
+}
+.results__hero h1 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 2.75rem); font-weight: 600;
+  line-height: 1.15; margin-bottom: 8px;
+}
+.results__hero-variant {
+  font-size: 15px; color: var(--accent); font-weight: 500; margin-bottom: 16px;
+}
+.results__hero-tagline {
+  font-size: 18px; color: var(--text-secondary);
+  max-width: 520px; margin: 0 auto 24px; line-height: 1.6;
+  font-style: italic;
+}
+.results__hero-confidence {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; color: var(--text-tertiary);
+  background: var(--bg-card); border: 1px solid var(--border);
+  padding: 4px 12px; border-radius: 100px;
+}
+
+/* Results body sections */
+.results__body { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+.results__section {
+  margin-bottom: 40px; padding: 32px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.results__section--plain { background: none; border: none; padding: 0; }
+
+.results__section-label {
+  font-size: 11px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--text-tertiary); margin-bottom: 16px;
+}
+.results__section h3 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.25rem; font-weight: 600; margin-bottom: 12px;
+}
+.results__section p { font-size: 15px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 12px; }
+.results__section p:last-child { margin-bottom: 0; }
+
+/* Dimension bars in results */
+.results__dims { display: flex; flex-direction: column; gap: 14px; margin-top: 16px; }
+.results__dim { display: flex; align-items: center; gap: 12px; }
+.results__dim-label { font-size: 13px; color: var(--text-secondary); width: 140px; flex-shrink: 0; }
+.results__dim-bar { flex: 1; height: 8px; background: var(--border-light); border-radius: 100px; overflow: hidden; }
+.results__dim-fill { height: 100%; border-radius: 100px; transition: width 0.8s ease; }
+.results__dim-score { font-size: 13px; font-weight: 600; width: 40px; text-align: right; }
+
+/* Contradiction cards */
+.results__contradiction {
+  padding: 20px 24px; border-radius: var(--radius-md);
+  border-left: 3px solid var(--warm); background: var(--warm-light);
+  margin-bottom: 12px;
+}
+.results__contradiction-tier { font-size: 11px; font-weight: 600; color: var(--warm); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+.results__contradiction-text { font-size: 15px; line-height: 1.6; color: var(--text-primary); }
+
+/* Misread items */
+.results__misread-item {
+  padding: 16px 20px; border-radius: var(--radius-md);
+  background: var(--bg-warm); margin-bottom: 10px;
+}
+.results__misread-item p { font-size: 14px; line-height: 1.6; color: var(--text-secondary); margin: 0; }
+
+/* List items for what helps / backfires */
+.results__list-item {
+  padding: 12px 0; border-bottom: 1px solid var(--border-light);
+  font-size: 15px; line-height: 1.6; color: var(--text-secondary);
+}
+.results__list-item:last-child { border-bottom: none; }
+
+/* Stress loop */
+.results__loop { display: flex; flex-direction: column; gap: 8px; }
+.results__loop-step {
+  display: flex; gap: 12px; padding: 12px 16px;
+  background: var(--bg-warm); border-radius: var(--radius-sm);
+}
+.results__loop-arrow { color: var(--text-tertiary); font-size: 13px; flex-shrink: 0; margin-top: 2px; }
+.results__loop-text { font-size: 14px; line-height: 1.5; color: var(--text-secondary); }
+
+/* Quote/say-this cards */
+.results__quote {
+  padding: 20px 24px; border-radius: var(--radius-md);
+  border-left: 3px solid var(--teal); background: var(--teal-light);
+  margin-bottom: 10px; font-size: 15px; line-height: 1.6;
+  color: var(--text-primary); font-style: italic;
+}
+
+/* Screening summary */
+.results__screening { display: flex; gap: 16px; margin-top: 16px; }
+.results__screening-item {
+  flex: 1; padding: 20px; border-radius: var(--radius-md);
+  background: var(--bg-warm); text-align: center;
+}
+.results__screening-label { font-size: 12px; color: var(--text-tertiary); margin-bottom: 8px; }
+.results__screening-score { font-size: 28px; font-weight: 700; color: var(--text-primary); }
+.results__screening-bar { height: 4px; background: var(--border); border-radius: 100px; margin-top: 8px; overflow: hidden; }
+.results__screening-fill { height: 100%; border-radius: 100px; background: var(--accent); }
+
+/* Tier labels */
+.results__tier-label {
+  font-size: 11px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--text-tertiary);
+  margin-bottom: 24px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+/* Share card */
+.results__share-card {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+  border-radius: var(--radius-lg); padding: 32px; color: white; text-align: center;
+  margin-bottom: 40px;
+}
+.results__share-card h3 { color: white; font-family: 'Fraunces', Georgia, serif; font-size: 1.5rem; margin-bottom: 8px; }
+.results__share-card p { color: rgba(255,255,255,0.85); font-size: 15px; line-height: 1.5; }
+
+/* Disclaimer */
+.results__disclaimer {
+  padding: 24px; border-radius: var(--radius-md);
+  background: var(--bg-warm); border: 1px solid var(--border);
+  font-size: 13px; line-height: 1.6; color: var(--text-tertiary);
+}
+
+/* Low signal result */
+.results__low-signal {
+  padding: 48px 32px; text-align: center;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); margin-bottom: 40px;
+}
+.results__low-signal h3 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.25rem; margin-bottom: 16px;
+}
+.results__low-signal p { font-size: 15px; line-height: 1.7; color: var(--text-secondary); max-width: 520px; margin: 0 auto 12px; }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .results__screening { flex-direction: column; }
+  .results__dim-label { width: 110px; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ==========================================
+     LANDING SCREEN
+     ========================================== -->
+<div id="screen-landing" class="screen landing active">
+  <div class="landing__logo">
+    <div class="landing__logo-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+        <path d="M12 3C7 3 3 7 3 12s4 9 9 9 9-4 9-9"/>
+        <path d="M12 3c3 0 6 4 6 9"/>
+        <path d="M12 3c-3 0-6 4-6 9"/>
+      </svg>
+    </div>
+    <span class="landing__logo-text">Spectrum</span>
+  </div>
+
+  <div class="landing__badge">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    48 questions, 11 dimensions, 10 profiles
+  </div>
+
+  <h1 class="serif">Why does your mind work like this?</h1>
+
+  <p class="landing__sub">
+    Not a screener. Not a diagnosis. A high-resolution map of how your attention, energy, emotions, and social processing actually operate — and why normal advice keeps failing.
+  </p>
+
+  <div class="landing__ctas">
+    <button class="btn btn--primary" onclick="startQuiz()">
+      Map your pattern
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+    <button class="btn btn--ghost" onclick="document.querySelector('.landing__preview').scrollIntoView({behavior:'smooth'})">See example result</button>
+  </div>
+
+  <div class="landing__trust">
+    <div class="landing__trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Research-informed
+    </div>
+    <div class="landing__trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      ~12 minutes
+    </div>
+    <div class="landing__trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+      No account needed
+    </div>
+  </div>
+
+  <div class="landing__preview">
+    <div class="landing__preview-card">
+      <div class="landing__preview-label">Example result</div>
+      <div class="landing__preview-title serif">The Bridge</div>
+      <div class="landing__preview-subtitle">Both systems running. Both real. Neither optional.</div>
+      <div class="landing__preview-dims">
+        <div class="landing__preview-dim"><span class="landing__preview-dim-label">Attention</span><div class="landing__preview-dim-bar"><div class="landing__preview-dim-fill" style="width:78%"></div></div></div>
+        <div class="landing__preview-dim"><span class="landing__preview-dim-label">Monotropic Focus</span><div class="landing__preview-dim-bar"><div class="landing__preview-dim-fill" style="width:72%"></div></div></div>
+        <div class="landing__preview-dim"><span class="landing__preview-dim-label">Task Initiation</span><div class="landing__preview-dim-bar"><div class="landing__preview-dim-fill" style="width:85%"></div></div></div>
+        <div class="landing__preview-dim"><span class="landing__preview-dim-label">Routine Need</span><div class="landing__preview-dim-bar"><div class="landing__preview-dim-fill" style="width:68%"></div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================
+     QUIZ SCREEN
+     ========================================== -->
+<div id="screen-quiz" class="screen quiz">
+  <div class="quiz__header">
+    <div class="quiz__header-inner">
+      <span class="quiz__progress-text" id="quiz-progress-text">Question 1 of 48</span>
+    </div>
+    <div class="quiz__progress-bar"><div class="quiz__progress-fill" id="quiz-progress-fill" style="width:2%"></div></div>
+  </div>
+  <div class="quiz__body">
+    <div class="quiz__question-num" id="quiz-qnum">Question 1</div>
+    <h2 class="quiz__question" id="quiz-question"></h2>
+    <p class="quiz__context" id="quiz-context"></p>
+    <div class="quiz__options" id="quiz-options"></div>
+  </div>
+  <div class="quiz__nav">
+    <div class="quiz__nav-inner">
+      <button class="btn--back" id="quiz-back" onclick="prevQuestion()">Back</button>
+      <button class="btn--next" id="quiz-next" onclick="nextQuestion()">Next</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================
+     ANALYSIS SCREEN
+     ========================================== -->
+<div id="screen-analysis" class="screen analysis">
+  <div class="analysis__content">
+    <h2 class="serif">Mapping your pattern</h2>
+    <p class="analysis__sub">Analyzing 48 responses across 11 dimensions to build your profile.</p>
+    <div class="analysis__dims" id="analysis-dims"></div>
+    <div id="analysis-status">
+      <p class="analysis__status">Calculating dimensional scores...</p>
+      <div class="analysis__spinner"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================
+     RESULTS SCREEN
+     ========================================== -->
+<div id="screen-results" class="screen results">
+  <div id="results-content"></div>
+</div>
+
+<script>
+// ============================================================================
+// SPECTRUM v2 — COMPLETE ASSESSMENT ENGINE
+// ============================================================================
+
+// ---- QUESTIONS (inline from questions-v2.js) ----
+</script>
+<script>
+// We'll load questions inline. Paste the full array:
+</script>
+
+<script>
+// ============================================================================
+// QUESTION DATA — 48 questions, 11 dimensions
+// ============================================================================
+
+const QUESTIONS = [
+  // ATTENTION VARIABILITY (5)
+  { id:1, text:"When you're reading or working, your attention either locks in completely or slips away almost instantly. There's rarely a middle ground.", context:"This is about the on/off nature of your focus, not about the total time you can concentrate.", primary:"attention", secondary:null, options:[
+    {label:"A",text:"This doesn't match me at all. I sustain attention pretty steadily.",scores:{attention:0.10}},
+    {label:"B",text:"I notice some variation, but I can usually modulate my focus intentionally.",scores:{attention:0.35}},
+    {label:"C",text:"I recognize the pattern sometimes — certain topics lock me in or make me drift.",scores:{attention:0.70}},
+    {label:"D",text:"This is exactly it. I'm either completely absorbed or my mind is elsewhere. Almost nothing in between.",scores:{attention:1.00}}
+  ]},
+  { id:2, text:"You walk into a conversation mid-way and immediately forget what was just said, even though nothing else is on your mind.", context:"Not about distraction from competing thoughts — just the incoming information vanished.", primary:"attention", secondary:{dim:"social",weight:0.4}, options:[
+    {label:"A",text:"Rarely. I track conversations well.",scores:{attention:0.10,social:0.10}},
+    {label:"B",text:"Sometimes, especially if I'm tired or context-switching.",scores:{attention:0.35,social:0.25}},
+    {label:"C",text:"This happens regularly. The words land but don't stick.",scores:{attention:0.70,social:0.50}},
+    {label:"D",text:"Constantly. I miss entire sentences even when I'm trying to listen.",scores:{attention:1.00,social:0.70}}
+  ]},
+  { id:3, text:"When you hyperfocus on something, losing track of time and basic needs (food, bathroom, sleep) feels unavoidable, not something you can interrupt.", context:"The cost here is the disruption to your life, not the intensity of interest.", primary:"attention", secondary:{dim:"monotropic",weight:0.45}, options:[
+    {label:"A",text:"I'm able to step back even during deep work. Time passing registers.",scores:{attention:0.10,monotropic:0.10}},
+    {label:"B",text:"I can lose track occasionally, but I usually notice or get pulled back.",scores:{attention:0.35,monotropic:0.35}},
+    {label:"C",text:"This happens regularly. I look up and suddenly 6 hours have passed.",scores:{attention:0.70,monotropic:0.70}},
+    {label:"D",text:"This is my default. Once locked in, I have no sense of time or body signals until forced to stop.",scores:{attention:1.00,monotropic:1.00}}
+  ]},
+  { id:4, text:"You start a task but midway realize you've been holding the same page or screen for 5 minutes without reading. Your mind went somewhere else without you noticing.", context:"This is mind-wandering that catches you off-guard, not deliberate switching.", primary:"attention", secondary:null, options:[
+    {label:"A",text:"Doesn't happen to me. I notice when my attention shifts.",scores:{attention:0.10}},
+    {label:"B",text:"Rarely. When it does, something else usually captured my interest deliberately.",scores:{attention:0.35}},
+    {label:"C",text:"Happens a few times per session. I catch myself staring blankly.",scores:{attention:0.70}},
+    {label:"D",text:"Happens constantly. I find myself in a task with no idea how much time passed or what I actually read.",scores:{attention:1.00}}
+  ]},
+  { id:5, text:"When listening to someone speak, you often know what you want to say next but can't hold onto the other person's words at the same time.", context:"The listening and the planning fight for the same resource.", primary:"attention", secondary:{dim:"social",weight:0.3}, options:[
+    {label:"A",text:"I can do both. I listen and formulate thoughts without losing track.",scores:{attention:0.10,social:0.10}},
+    {label:"B",text:"Sometimes I have to choose, but usually I manage both.",scores:{attention:0.35,social:0.25}},
+    {label:"C",text:"I notice this trade-off often. Listening OR planning, rarely both.",scores:{attention:0.70,social:0.50}},
+    {label:"D",text:"Always. If I'm waiting to speak, I lose their words. If I listen fully, my thought evaporates.",scores:{attention:1.00,social:0.70}}
+  ]},
+
+  // MONOTROPIC FOCUS (4)
+  { id:6, text:"When you learn something new, you dive into ONE aspect obsessively until you understand it deeply, rather than building a balanced overview.", context:"This is about the shape of how you learn, not how much you learn.", primary:"monotropic", secondary:null, options:[
+    {label:"A",text:"I prefer building a broad foundation first, then deepening.",scores:{monotropic:0.10}},
+    {label:"B",text:"I go deep sometimes, but I usually try to stay balanced.",scores:{monotropic:0.35}},
+    {label:"C",text:"I naturally go tunnel-vision into one corner, then realize I missed context.",scores:{monotropic:0.70}},
+    {label:"D",text:"Absolutely. I hyperfocus on one thread, ignore everything else until I've mastered it.",scores:{monotropic:1.00}}
+  ]},
+  { id:7, text:"You find it difficult to switch mental 'channels' — once absorbed in one topic or project, other interests feel inaccessible even if you want to pivot.", context:"Not about unwillingness to switch, but the actual mental friction.", primary:"monotropic", secondary:{dim:"transition",weight:0.5}, options:[
+    {label:"A",text:"I can shift between topics easily. Mental channels feel fluid.",scores:{monotropic:0.10,transition:0.10}},
+    {label:"B",text:"Shifting takes effort, but it's doable if I decide to.",scores:{monotropic:0.35,transition:0.35}},
+    {label:"C",text:"I notice the friction. Switching feels like starting from zero each time.",scores:{monotropic:0.70,transition:0.65}},
+    {label:"D",text:"Very difficult. When locked into one thing, my other interests feel dim or unreachable.",scores:{monotropic:1.00,transition:0.85}}
+  ]},
+  { id:8, text:"You tend to have one or two all-consuming interests at a time, rather than a stable set of hobbies you rotate between.", context:"The pattern: intensity rotating, not variety rotating.", primary:"monotropic", secondary:{dim:"novelty",weight:0.4}, options:[
+    {label:"A",text:"I have a consistent set of interests I enjoy throughout the year.",scores:{monotropic:0.10,novelty:0.10}},
+    {label:"B",text:"I have core interests, plus occasional intense phases.",scores:{monotropic:0.35,novelty:0.30}},
+    {label:"C",text:"I definitely cycle through intense obsessions, with quiet periods between.",scores:{monotropic:0.70,novelty:0.65}},
+    {label:"D",text:"Yes. One thing consumes my free time and thoughts for months, then I move to the next.",scores:{monotropic:1.00,novelty:0.80}}
+  ]},
+  { id:9, text:"When forced to context-switch (meeting, interruption, obligation), it takes you a long time to re-engage with what you were doing beforehand.", context:"The cost is the re-entry time and the mental friction, not just the interruption itself.", primary:"monotropic", secondary:{dim:"transition",weight:0.5}, options:[
+    {label:"A",text:"I can jump back in pretty quickly.",scores:{monotropic:0.10,transition:0.10}},
+    {label:"B",text:"A few minutes to refocus, but not a big deal.",scores:{monotropic:0.35,transition:0.35}},
+    {label:"C",text:"Takes 10-20 minutes to feel back in flow. The momentum is real.",scores:{monotropic:0.70,transition:0.65}},
+    {label:"D",text:"The session is basically lost. Even if I try, I can't recapture the previous focus level.",scores:{monotropic:1.00,transition:0.85}}
+  ]},
+
+  // TASK INITIATION (4)
+  { id:10, text:"You have a clear intention to do something, but there's a gap between deciding and actually starting. The larger the task, the wider the gap.", context:"Not about willpower or motivation — the gap exists even for things you want to do.", primary:"initiation", secondary:null, options:[
+    {label:"A",text:"I decide and start. The intention translates directly into action.",scores:{initiation:0.10}},
+    {label:"B",text:"Minor gap sometimes. Usually I can bridge it with a small nudge.",scores:{initiation:0.35}},
+    {label:"C",text:"The gap is noticeable. I often need to psych myself up or create conditions to start.",scores:{initiation:0.70}},
+    {label:"D",text:"Large gap. Intention and action feel disconnected. I know I want to do it, but starting feels incredibly difficult.",scores:{initiation:1.00}}
+  ]},
+  { id:11, text:"You often rely on external pressure or deadlines to get tasks done, even though you're capable of doing them without urgency.", context:"This is about the urgency-dependence pattern, not about lacking ability.", primary:"initiation", secondary:null, options:[
+    {label:"A",text:"Deadlines help, but I start early regardless.",scores:{initiation:0.10}},
+    {label:"B",text:"I usually start before deadline, though I do better under some time pressure.",scores:{initiation:0.35}},
+    {label:"C",text:"Without deadline or external push, I really struggle to start. Pressure is what makes it possible.",scores:{initiation:0.70}},
+    {label:"D",text:"Almost always need external pressure. Without a deadline or someone depending on me, starting feels nearly impossible.",scores:{initiation:1.00}}
+  ]},
+  { id:12, text:"You have multiple unstarted projects or tasks sitting incomplete that you genuinely want to do, but the initiation barrier keeps them pending.", context:"The desire is there. The action is not.", primary:"initiation", secondary:null, options:[
+    {label:"A",text:"Not really. I start things I want to do.",scores:{initiation:0.10}},
+    {label:"B",text:"Maybe one or two, but they usually get done eventually.",scores:{initiation:0.35}},
+    {label:"C",text:"Yeah, I have a list of things I actually want to do but haven't started.",scores:{initiation:0.70}},
+    {label:"D",text:"Yes, many. I can describe the projects in detail and genuinely want to do them, but they never start.",scores:{initiation:1.00}}
+  ]},
+  { id:13, text:"Starting a task feels like pushing against resistance, but once you're 5 minutes in, the resistance drops significantly.", context:"The hardest part is the first few minutes, not the task itself.", primary:"initiation", secondary:null, options:[
+    {label:"A",text:"Getting started feels fine. The work level is pretty consistent throughout.",scores:{initiation:0.10}},
+    {label:"B",text:"Slight resistance at the start, but it's not a major barrier.",scores:{initiation:0.35}},
+    {label:"C",text:"Definitely notice the resistance at the beginning, then it eases.",scores:{initiation:0.70}},
+    {label:"D",text:"Absolutely. The first 5-10 minutes feel like fighting gravity, then suddenly it's fine.",scores:{initiation:1.00}}
+  ]},
+
+  // TASK TRANSITION (4)
+  { id:14, text:"When you're in the middle of a task, shifting to a different task feels like a jolt. The switch costs mental energy, not just time.", context:"This is the subjective friction, not the time lost.", primary:"transition", secondary:null, options:[
+    {label:"A",text:"Switching tasks doesn't bother me. It's pretty fluid.",scores:{transition:0.10}},
+    {label:"B",text:"I notice the switch, but the cost is minimal.",scores:{transition:0.35}},
+    {label:"C",text:"Switching always costs me energy. It's noticeable friction.",scores:{transition:0.70}},
+    {label:"D",text:"Switching feels depleting. Each context change drains me, and I resist it.",scores:{transition:1.00}}
+  ]},
+  { id:15, text:"You prefer finishing one task completely before starting another, even if a new task is more urgent. Leaving things mid-way feels unsettling.", context:"This is about the internal discomfort with incompleteness, not just preference.", primary:"transition", secondary:{dim:"monotropic",weight:0.4}, options:[
+    {label:"A",text:"I switch easily based on priority. Incomplete tasks don't bother me.",scores:{transition:0.10,monotropic:0.10}},
+    {label:"B",text:"I prefer finishing, but I can switch if needed without much discomfort.",scores:{transition:0.35,monotropic:0.25}},
+    {label:"C",text:"I really prefer finishing before switching. Mid-task interruptions feel jarring.",scores:{transition:0.70,monotropic:0.55}},
+    {label:"D",text:"Leaving something unfinished feels almost wrong. I'll often finish even if something else is more urgent.",scores:{transition:1.00,monotropic:0.75}}
+  ]},
+  { id:16, text:"Switching between different types of work (creative to analytical, detail-oriented to big-picture) costs more energy than switching within the same type.", context:"Different thinking modes require different setup time.", primary:"transition", secondary:{dim:"sensory",weight:0.3}, options:[
+    {label:"A",text:"I don't notice a difference. Switching is switching.",scores:{transition:0.10,sensory:0.10}},
+    {label:"B",text:"Some difference, but I adapt pretty quickly.",scores:{transition:0.35,sensory:0.20}},
+    {label:"C",text:"Yes, there's a cost. Switching thinking modes takes more effort.",scores:{transition:0.70,sensory:0.40}},
+    {label:"D",text:"Absolutely. Switching modes feels harder than just switching tasks within the same mode.",scores:{transition:1.00,sensory:0.60}}
+  ]},
+  { id:17, text:"You find yourself finishing low-priority tasks just because they're already 'in motion,' even though you should switch to something more important.", context:"The inertia of the current task pulls you forward, overriding rational priority.", primary:"transition", secondary:{dim:"monotropic",weight:0.4}, options:[
+    {label:"A",text:"I switch to what's important without hesitation.",scores:{transition:0.10,monotropic:0.10}},
+    {label:"B",text:"I usually switch, though I might finish a quick task first.",scores:{transition:0.35,monotropic:0.25}},
+    {label:"C",text:"This happens. I notice the pattern — finishing what's in motion even when illogical.",scores:{transition:0.70,monotropic:0.55}},
+    {label:"D",text:"Frequently. The momentum of the current task overrides my rational plan.",scores:{transition:1.00,monotropic:0.75}}
+  ]},
+
+  // SENSORY PROCESSING (5)
+  { id:18, text:"Certain sounds, lights, or textures hit you as too intense even at volumes or intensities others find normal. You need to escape or block them.", context:"This is hypersensitivity — signal arriving as too loud.", primary:"sensory", secondary:null, options:[
+    {label:"A",text:"Most sensory input feels fine to me. I don't often need to escape it.",scores:{sensory:0.10}},
+    {label:"B",text:"Sometimes I find noise or brightness a bit much, but I can usually tolerate it.",scores:{sensory:0.35}},
+    {label:"C",text:"Regularly. Certain textures or sounds are genuinely overwhelming and I need relief.",scores:{sensory:0.70}},
+    {label:"D",text:"Frequently. Sensory input gets too intense and I have to remove myself or block it.",scores:{sensory:1.00}}
+  ]},
+  { id:19, text:"You don't register internal signals well — thirst, hunger, pain, or needing the bathroom — until it suddenly becomes urgent and intrusive.", context:"This is hyposensitivity — signal arriving as missed until critical.", primary:"sensory", secondary:null, options:[
+    {label:"A",text:"I notice my physical signals clearly before they become urgent.",scores:{sensory:0.10}},
+    {label:"B",text:"Usually I notice, though sometimes I'm late to the signal.",scores:{sensory:0.35}},
+    {label:"C",text:"I regularly miss internal signals until they're hard to ignore. Hunger, pain, etc. surprise me.",scores:{sensory:0.70}},
+    {label:"D",text:"Constantly. I don't feel signals until they're suddenly urgent or someone else points them out.",scores:{sensory:1.00}}
+  ]},
+  { id:20, text:"You seek out or crave certain sensations (fidgeting, strong flavors, pressure, certain textures, fast movement). It feels like something you need, not just enjoy.", context:"Stimming or sensory-seeking, not just preference.", primary:"sensory", secondary:{dim:"novelty",weight:0.3}, options:[
+    {label:"A",text:"Not particularly. I don't have strong sensory-seeking patterns.",scores:{sensory:0.10,novelty:0.10}},
+    {label:"B",text:"I enjoy some sensations more than others, but it's not a need.",scores:{sensory:0.35,novelty:0.20}},
+    {label:"C",text:"Yes, there are certain sensations I actively seek out and feel better with them.",scores:{sensory:0.70,novelty:0.50}},
+    {label:"D",text:"Yes. I seek specific sensory input regularly and feel like I need it to regulate.",scores:{sensory:1.00,novelty:0.65}}
+  ]},
+  { id:21, text:"You're highly aware of small sensory details that others miss — the texture of a cup, the hum of a light, fabric tags, specific smells.", context:"Not overwhelm, but noticing and attending to details others don't.", primary:"sensory", secondary:null, options:[
+    {label:"A",text:"Not particularly. I take in the broad strokes of sensory input.",scores:{sensory:0.10}},
+    {label:"B",text:"Sometimes I notice details, but usually when I'm looking for them.",scores:{sensory:0.35}},
+    {label:"C",text:"Yes, I often notice small sensory details automatically.",scores:{sensory:0.70}},
+    {label:"D",text:"Constantly. I'm attuned to texture, sound, light, smell details others don't register.",scores:{sensory:1.00}}
+  ]},
+  { id:22, text:"Background noise or visual activity pulls your attention even when you're trying to focus. Filtering it out takes effort you shouldn't need to spend.", context:"Ask yourself: do you filter effortlessly or does it cost energy?", primary:"sensory", secondary:null, options:[
+    {label:"A",text:"I filter background input well. It doesn't pull my attention.",scores:{sensory:0.10}},
+    {label:"B",text:"I can filter if I focus, but it takes effort sometimes.",scores:{sensory:0.35}},
+    {label:"C",text:"Background input often pulls my attention. I struggle to filter.",scores:{sensory:0.70}},
+    {label:"D",text:"Background noise and activity constantly pull my attention. Filtering takes significant effort.",scores:{sensory:1.00}}
+  ]},
+
+  // SOCIAL PROCESSING LOAD (4)
+  { id:23, text:"Being around people requires active cognitive effort. You're monitoring social cues, managing your expression, tracking conversation. You need recovery time after.", context:"This is the cognitive cost, not whether you enjoy it.", primary:"social", secondary:null, options:[
+    {label:"A",text:"Social interaction feels pretty automatic. No special effort or recovery needed.",scores:{social:0.10}},
+    {label:"B",text:"Some effort, but minimal. Brief recovery time if it was intense.",scores:{social:0.35}},
+    {label:"C",text:"Yes, I'm aware I'm working to manage social interaction. Recovery time is noticeable.",scores:{social:0.70}},
+    {label:"D",text:"Always. Social interaction is cognitively demanding and I need substantial recovery time after.",scores:{social:1.00}}
+  ]},
+  { id:24, text:"Group conversations are harder than one-on-one. Tracking multiple people and their conversational threads feels overwhelming.", context:"The processing load of multiple speakers and implicit social rules.", primary:"social", secondary:null, options:[
+    {label:"A",text:"Group conversations feel fine. No harder than one-on-one.",scores:{social:0.10}},
+    {label:"B",text:"Slightly harder, but manageable.",scores:{social:0.35}},
+    {label:"C",text:"Noticeably harder. I struggle to track all the threads and navigate the social dynamics.",scores:{social:0.70}},
+    {label:"D",text:"Much harder. Groups feel chaotic. I often miss context or misread social moments.",scores:{social:1.00}}
+  ]},
+  { id:25, text:"After social interaction (meeting, party, phone call), you replay moments, wonder what people thought, or feel some regret — even when it went well.", context:"Post-social rumination or self-doubt, not just reflection.", primary:"social", secondary:{dim:"emotional",weight:0.45}, options:[
+    {label:"A",text:"No, I don't replay social interactions. They feel resolved.",scores:{social:0.10,emotional:0.10}},
+    {label:"B",text:"Sometimes I reflect, but it's light and passes quickly.",scores:{social:0.35,emotional:0.25}},
+    {label:"C",text:"I regularly find myself replaying moments and wondering what people thought. It's noticeable.",scores:{social:0.70,emotional:0.60}},
+    {label:"D",text:"Always. I replay conversations extensively and worry about how I came across, even when it went well.",scores:{social:1.00,emotional:0.80}}
+  ]},
+  { id:26, text:"You understand the logic of social rules but sometimes miss the implicit ones. What feels 'normal' to others can surprise you.", context:"Social rule awareness — explicit vs implicit gap.", primary:"social", secondary:null, options:[
+    {label:"A",text:"I pick up on social norms pretty naturally.",scores:{social:0.10}},
+    {label:"B",text:"Usually fine, but occasionally I miss an implicit rule.",scores:{social:0.35}},
+    {label:"C",text:"I'm aware of the gap often. Implicit rules sometimes surprise me.",scores:{social:0.70}},
+    {label:"D",text:"Frequently. I understand the logic of rules, but social norms feel foreign or arbitrary.",scores:{social:1.00}}
+  ]},
+
+  // MASKING & COMPENSATION (5)
+  { id:27, text:"You modify your behavior around others — suppressing movements, managing tone, controlling facial expression. It feels deliberate, not automatic.", context:"Performing a 'socially appropriate' version of yourself.", primary:"masking", secondary:null, options:[
+    {label:"A",text:"My behavior is pretty consistent across situations. Not much deliberate modification.",scores:{masking:0.10}},
+    {label:"B",text:"Some minor adjustments depending on context, but nothing feels like a performance.",scores:{masking:0.35}},
+    {label:"C",text:"I'm aware I modify my behavior around others. It's deliberate but habitual at this point.",scores:{masking:0.70}},
+    {label:"D",text:"Absolutely. I actively manage my presentation — movements, tone, expression — to appear more 'normal.'",scores:{masking:1.00}}
+  ]},
+  { id:28, text:"When alone or with safe people, you stim or move more — fidgeting, pacing, humming, hand movements. In public or with unfamiliar people, you suppress these.", context:"The difference between private and public self-regulation.", primary:"masking", secondary:null, options:[
+    {label:"A",text:"I don't notice this pattern. My movement is pretty consistent across settings.",scores:{masking:0.10}},
+    {label:"B",text:"Minor differences depending on context, nothing significant.",scores:{masking:0.35}},
+    {label:"C",text:"Yes, I definitely suppress certain movements in public. Alone I'm more free.",scores:{masking:0.70}},
+    {label:"D",text:"Very much so. Alone I'm relaxed and move a lot. In public I'm much more controlled.",scores:{masking:1.00}}
+  ]},
+  { id:29, text:"You script or mentally prepare what you'll say before social situations (phone calls, meetings, conversations). Unscripted interaction feels harder.", context:"The need for mental preparation or scripting before social engagement.", primary:"masking", secondary:{dim:"social",weight:0.35}, options:[
+    {label:"A",text:"I don't script. Conversation feels natural and spontaneous.",scores:{masking:0.10,social:0.10}},
+    {label:"B",text:"Occasionally I prep, but usually conversation flows naturally.",scores:{masking:0.35,social:0.20}},
+    {label:"C",text:"I often mentally script before social situations. Unscripted feels harder.",scores:{masking:0.70,social:0.50}},
+    {label:"D",text:"Almost always. I mentally script what I'll say and feel anxious when conversation goes off-script.",scores:{masking:1.00,social:0.70}}
+  ]},
+  { id:30, text:"Over time, the effort of masking or performing leaves you drained — even apart from the social interaction itself.", context:"Masking fatigue, the accumulation of performing.", primary:"masking", secondary:{dim:"overwhelm",weight:0.45}, options:[
+    {label:"A",text:"I don't experience this. No particular fatigue from managing behavior.",scores:{masking:0.10,overwhelm:0.10}},
+    {label:"B",text:"Mild fatigue sometimes, but it passes quickly.",scores:{masking:0.35,overwhelm:0.25}},
+    {label:"C",text:"Yes, masking takes an energy toll. Over time it's noticeably draining.",scores:{masking:0.70,overwhelm:0.60}},
+    {label:"D",text:"Absolutely. The effort of performing and masking is exhausting. It accumulates and depletes me.",scores:{masking:1.00,overwhelm:0.80}}
+  ]},
+  { id:31, text:"Your internal experience (thoughts, sensations, humor, interests) is often quite different from what you show externally. The gap is significant.", context:"The private/public split — how different are they?", primary:"masking", secondary:null, options:[
+    {label:"A",text:"What you see is what you get. Not much difference between inside and outside.",scores:{masking:0.10}},
+    {label:"B",text:"Some differences, but generally I'm fairly transparent.",scores:{masking:0.35}},
+    {label:"C",text:"There's a noticeable gap. Internally I'm quite different from what I show.",scores:{masking:0.70}},
+    {label:"D",text:"Significant gap. My internal world is very different from my external presentation.",scores:{masking:1.00}}
+  ]},
+
+  // ROUTINE & PREDICTABILITY (4)
+  { id:32, text:"You do better with structure and routine. Changes to a familiar routine feel disorienting, even if they're positive changes.", context:"Routine as stabilizer, not just preference.", primary:"routine", secondary:null, options:[
+    {label:"A",text:"I'm flexible with routine. Changes don't bother me much.",scores:{routine:0.10}},
+    {label:"B",text:"I like routine, but I adapt to changes without much difficulty.",scores:{routine:0.35}},
+    {label:"C",text:"Routine helps me. Changes feel disorienting even when they should be good.",scores:{routine:0.70}},
+    {label:"D",text:"Very much so. Routine is essential for me. Any change is destabilizing.",scores:{routine:1.00}}
+  ]},
+  { id:33, text:"When plans change unexpectedly, you feel disproportionate frustration or distress. The frustration is about the disruption, not the new plan itself.", context:"The disruption itself is the problem, not the specific change.", primary:"routine", secondary:{dim:"overwhelm",weight:0.4}, options:[
+    {label:"A",text:"Plans changing doesn't bother me. I adapt easily.",scores:{routine:0.10,overwhelm:0.10}},
+    {label:"B",text:"Mildly frustrating, but I adjust pretty quickly.",scores:{routine:0.35,overwhelm:0.20}},
+    {label:"C",text:"Plan changes feel disproportionately frustrating. The disruption bothers me.",scores:{routine:0.70,overwhelm:0.55}},
+    {label:"D",text:"Yes. Unexpected changes create significant distress or frustration out of proportion to the change itself.",scores:{routine:1.00,overwhelm:0.75}}
+  ]},
+  { id:34, text:"You have specific rituals or sequences for daily tasks (morning routine, how you organize your desk, order of doing things). Breaking the sequence feels wrong.", context:"Specific sequences, not just preference for order.", primary:"routine", secondary:null, options:[
+    {label:"A",text:"No particular attachment to sequences. I'm flexible in how I do things.",scores:{routine:0.10}},
+    {label:"B",text:"I have some preferred sequences, but I can deviate without issue.",scores:{routine:0.35}},
+    {label:"C",text:"Yes, I have specific sequences I prefer. Deviating is uncomfortable.",scores:{routine:0.70}},
+    {label:"D",text:"Definitely. My routines and sequences are important. Breaking them feels really wrong.",scores:{routine:1.00}}
+  ]},
+  { id:35, text:"You need to mentally prepare for transitions (time of day changes, location changes, activity changes). Sudden transitions feel jarring.", context:"Transition preparation, not resistance to the transition itself.", primary:"routine", secondary:{dim:"transition",weight:0.35}, options:[
+    {label:"A",text:"Transitions are fine. I don't need special preparation.",scores:{routine:0.10,transition:0.10}},
+    {label:"B",text:"Usually fine, though a heads-up helps.",scores:{routine:0.35,transition:0.20}},
+    {label:"C",text:"I benefit from mental prep for transitions. Sudden ones feel jarring.",scores:{routine:0.70,transition:0.50}},
+    {label:"D",text:"Definitely. I need time to prepare mentally for transitions. Sudden ones are very disruptive.",scores:{routine:1.00,transition:0.70}}
+  ]},
+
+  // NOVELTY & STIMULATION (4)
+  { id:36, text:"You need variety and new stimulation to feel engaged. Repetitive tasks or routines feel unstimulating and hard to sustain.", context:"Boredom as an active uncomfortable state, not just lack of interest.", primary:"novelty", secondary:null, options:[
+    {label:"A",text:"I can sustain focus on repetitive tasks without much trouble.",scores:{novelty:0.10}},
+    {label:"B",text:"Repetition gets dull, but I can push through.",scores:{novelty:0.35}},
+    {label:"C",text:"Repetitive tasks feel really unstimulating. I struggle to maintain focus.",scores:{novelty:0.70}},
+    {label:"D",text:"Absolutely. Repetition and routine feel cognitively painful. I need novelty to stay engaged.",scores:{novelty:1.00}}
+  ]},
+  { id:37, text:"You frequently start new projects or hobbies with enthusiasm, but the interest drops sharply once the novelty wears off.", context:"The novelty cycle: intense start, rapid decline.", primary:"novelty", secondary:null, options:[
+    {label:"A",text:"I sustain interest over time. Novelty is nice but not essential.",scores:{novelty:0.10}},
+    {label:"B",text:"Interest dips after novelty, but I often stick with it.",scores:{novelty:0.35}},
+    {label:"C",text:"Yes, I start strong then lose interest once the novelty fades.",scores:{novelty:0.70}},
+    {label:"D",text:"Definitely. I'm drawn to new things and enthusiastic at first, but the interest drops sharply.",scores:{novelty:1.00}}
+  ]},
+  { id:38, text:"You're drawn to novelty and excitement. The familiar, even if enjoyable, feels less compelling than something new.", context:"Novelty-seeking as a driver, not just preference.", primary:"novelty", secondary:null, options:[
+    {label:"A",text:"I don't particularly seek novelty. The familiar is fine.",scores:{novelty:0.10}},
+    {label:"B",text:"I enjoy newness sometimes, but I'm equally happy with familiar things.",scores:{novelty:0.35}},
+    {label:"C",text:"Yes, I'm drawn to novelty. New feels more compelling than familiar.",scores:{novelty:0.70}},
+    {label:"D",text:"Very much so. I actively seek novelty and excitement. The familiar loses its pull.",scores:{novelty:1.00}}
+  ]},
+  { id:39, text:"You get bored easily in conversations, meetings, or situations you've experienced before. Familiar topics feel unstimulating.", context:"Boredom in social/work contexts due to lack of novelty.", primary:"novelty", secondary:{dim:"social",weight:0.3}, options:[
+    {label:"A",text:"No, I'm fine with familiar conversations and topics.",scores:{novelty:0.10,social:0.10}},
+    {label:"B",text:"Sometimes I find familiar topics a bit dull, but I manage.",scores:{novelty:0.35,social:0.15}},
+    {label:"C",text:"Yes, I get bored with familiar topics and conversations. They feel unstimulating.",scores:{novelty:0.70,social:0.45}},
+    {label:"D",text:"Absolutely. Familiar conversations feel unbearably boring. I need novelty to stay engaged.",scores:{novelty:1.00,social:0.65}}
+  ]},
+
+  // OVERWHELM & RECOVERY (5)
+  { id:40, text:"Your overwhelm threshold is lower than others expect. You reach 'full' faster — with sensory input, social demands, or task load.", context:"Threshold sensitivity: how much until you hit the wall?", primary:"overwhelm", secondary:null, options:[
+    {label:"A",text:"I can handle quite a bit before feeling overwhelmed. Pretty high threshold.",scores:{overwhelm:0.10}},
+    {label:"B",text:"Average threshold. Takes a fair bit to overwhelm me.",scores:{overwhelm:0.35}},
+    {label:"C",text:"Lower than I wish. I hit overwhelm faster than others seem to.",scores:{overwhelm:0.70}},
+    {label:"D",text:"Yes, much lower. I reach saturation point quickly with sensory, social, or task load.",scores:{overwhelm:1.00}}
+  ]},
+  { id:41, text:"When overwhelmed, you either shut down (going quiet, withdrawn) or melt down (crying, angry outbursts, extreme frustration). It feels involuntary.", context:"The involuntary nature of the overwhelm response.", primary:"overwhelm", secondary:{dim:"emotional",weight:0.4}, options:[
+    {label:"A",text:"I stay pretty regulated when overwhelmed. Don't have strong shutdown/meltdown patterns.",scores:{overwhelm:0.10,emotional:0.10}},
+    {label:"B",text:"Mild responses sometimes, but I usually keep it together.",scores:{overwhelm:0.35,emotional:0.25}},
+    {label:"C",text:"Yes, I have noticeable shutdown or meltdown patterns when overwhelmed.",scores:{overwhelm:0.70,emotional:0.60}},
+    {label:"D",text:"Definitely. I either shut down or have intense emotional responses. It feels involuntary.",scores:{overwhelm:1.00,emotional:0.75}}
+  ]},
+  { id:42, text:"Recovery time after overwhelm is long. You need significant time alone to recharge, and you feel depleted for hours or days.", context:"The slope of recovery, not just that recovery happens.", primary:"overwhelm", secondary:null, options:[
+    {label:"A",text:"Recovery is quick. I bounce back without much downtime needed.",scores:{overwhelm:0.10}},
+    {label:"B",text:"Moderate recovery time. Usually reset within a few hours.",scores:{overwhelm:0.35}},
+    {label:"C",text:"Recovery takes time. I need several hours or a day of quiet to recharge.",scores:{overwhelm:0.70}},
+    {label:"D",text:"Long recovery time. Overwhelm depletes me for a day or more. I need significant alone time to reset.",scores:{overwhelm:1.00}}
+  ]},
+  { id:43, text:"You're aware of your energy budget. You have to consciously manage how much you commit to (social events, tasks, projects) to avoid overextending.", context:"Active energy management to prevent overwhelm.", primary:"overwhelm", secondary:null, options:[
+    {label:"A",text:"I don't particularly track energy. I don't typically feel stretched thin.",scores:{overwhelm:0.10}},
+    {label:"B",text:"Occasionally I notice energy limits, but usually I'm fine.",scores:{overwhelm:0.35}},
+    {label:"C",text:"Yes, I'm aware of my energy budget and need to manage commitments to stay stable.",scores:{overwhelm:0.70}},
+    {label:"D",text:"Absolutely. Energy management is essential. I consciously limit commitments to avoid overextending.",scores:{overwhelm:1.00}}
+  ]},
+  { id:44, text:"Sensory or social overload builds — you might be fine one moment, then suddenly everything feels unbearable. The switch is quick.", context:"The cliff-edge nature of overwhelm, not gradual build.", primary:"overwhelm", secondary:{dim:"sensory",weight:0.3}, options:[
+    {label:"A",text:"Overwhelm builds gradually. I can usually see it coming and adjust.",scores:{overwhelm:0.10,sensory:0.10}},
+    {label:"B",text:"Mostly gradual, though occasionally it feels sudden.",scores:{overwhelm:0.35,sensory:0.20}},
+    {label:"C",text:"Yes, it often builds then hits a cliff. Suddenly unbearable.",scores:{overwhelm:0.70,sensory:0.50}},
+    {label:"D",text:"Definitely. Overload builds, then suddenly it's too much. The switch is quick.",scores:{overwhelm:1.00,sensory:0.70}}
+  ]},
+
+  // EMOTIONAL INTENSITY (4)
+  { id:45, text:"Your emotions hit intensely and sometimes seem out of proportion to the trigger. You feel them in your body — not just as thoughts.", context:"Emotional intensity and physical manifestation.", primary:"emotional", secondary:null, options:[
+    {label:"A",text:"My emotions are measured. They match the situation.",scores:{emotional:0.10}},
+    {label:"B",text:"Usually proportional, though sometimes they're stronger than expected.",scores:{emotional:0.35}},
+    {label:"C",text:"Yes, emotions arrive intensely. Sometimes they're stronger than the situation warrants.",scores:{emotional:0.70}},
+    {label:"D",text:"Absolutely. Emotions hit intensely and physically. They often feel disproportionate to the trigger.",scores:{emotional:1.00}}
+  ]},
+  { id:46, text:"Perceived rejection or criticism — even minor or unintentional — hurts deeply and leaves you replaying it for hours or days.", context:"This is rejection-sensitive dysphoria. Not just disliking criticism, but the intensity of hurt.", primary:"emotional", secondary:{dim:"social",weight:0.4}, options:[
+    {label:"A",text:"Criticism stings normally, but I move on. Doesn't linger.",scores:{emotional:0.10,social:0.10}},
+    {label:"B",text:"Takes a bit to process, but I don't dwell on it long.",scores:{emotional:0.35,social:0.25}},
+    {label:"C",text:"Yes, rejection or criticism hurts deeply and stays with me.",scores:{emotional:0.70,social:0.55}},
+    {label:"D",text:"Definitely. Perceived rejection is acutely painful and I replay it for hours or days.",scores:{emotional:1.00,social:0.75}}
+  ]},
+  { id:47, text:"You sometimes have trouble identifying what you're feeling — the emotion is there, but the label doesn't come. Or you feel something intense but can't articulate why.", context:"Difficulty with emotional awareness or labeling.", primary:"emotional", secondary:null, options:[
+    {label:"A",text:"I can usually identify and name my emotions easily.",scores:{emotional:0.10}},
+    {label:"B",text:"Usually I know what I'm feeling, though occasionally I'm uncertain.",scores:{emotional:0.35}},
+    {label:"C",text:"I sometimes struggle to identify or name what I'm feeling.",scores:{emotional:0.70}},
+    {label:"D",text:"Frequently. I feel emotions intensely but can't identify or articulate them.",scores:{emotional:1.00}}
+  ]},
+  { id:48, text:"Your emotions shift quickly and sometimes dramatically — from content to overwhelmed, or calm to frustrated. The shifts feel sudden.", context:"Emotional lability or rapid mood shifts.", primary:"emotional", secondary:null, options:[
+    {label:"A",text:"My mood is pretty stable. Shifts are gradual.",scores:{emotional:0.10}},
+    {label:"B",text:"Sometimes I have mood shifts, but they're usually gentle.",scores:{emotional:0.35}},
+    {label:"C",text:"Yes, I notice mood shifts that are fairly sudden.",scores:{emotional:0.70}},
+    {label:"D",text:"Absolutely. My emotions shift quickly and dramatically without much warning.",scores:{emotional:1.00}}
+  ]}
+];
+
+// ============================================================================
+// SCORING ENGINE
+// ============================================================================
+
+const DIM_NAMES = {
+  attention: "Attention Variability",
+  monotropic: "Monotropic Focus",
+  initiation: "Task Initiation",
+  transition: "Task Transition",
+  sensory: "Sensory Processing",
+  social: "Social Processing",
+  masking: "Masking & Compensation",
+  routine: "Routine & Predictability",
+  novelty: "Novelty & Stimulation",
+  overwhelm: "Overwhelm & Recovery",
+  emotional: "Emotional Intensity"
+};
+
+const DIM_COLORS = {
+  attention: "#6366F1",
+  monotropic: "#4F46E5",
+  initiation: "#D97706",
+  transition: "#B45309",
+  sensory: "#0D9488",
+  social: "#E11D48",
+  masking: "#9333EA",
+  routine: "#059669",
+  novelty: "#EA580C",
+  overwhelm: "#7C3AED",
+  emotional: "#DC2626"
+};
+
+function calculateScores(answers) {
+  const buckets = {};
+  const weights = {};
+  Object.keys(DIM_NAMES).forEach(d => { buckets[d] = 0; weights[d] = 0; });
+
+  answers.forEach(a => {
+    const q = QUESTIONS.find(qq => qq.id === a.questionId);
+    if (!q) return;
+    const opt = q.options[a.optionIndex];
+    if (!opt) return;
+
+    // Primary dimension
+    const pScore = opt.scores[q.primary] || 0;
+    buckets[q.primary] += pScore * 1.0;
+    weights[q.primary] += 1.0;
+
+    // Secondary dimension
+    if (q.secondary) {
+      const sScore = opt.scores[q.secondary.dim] || 0;
+      buckets[q.secondary.dim] += sScore * q.secondary.weight;
+      weights[q.secondary.dim] += q.secondary.weight;
+    }
+  });
+
+  const dimensions = {};
+  Object.keys(DIM_NAMES).forEach(d => {
+    dimensions[d] = weights[d] > 0 ? buckets[d] / weights[d] : 0;
+  });
+
+  // Screening formulas
+  const adhd_consistent = (
+    dimensions.attention * 1.0 +
+    dimensions.initiation * 1.0 +
+    dimensions.novelty * 0.8 +
+    dimensions.emotional * 0.7 +
+    dimensions.transition * 0.3
+  ) / 3.8;
+
+  const autism_consistent = (
+    dimensions.sensory * 1.0 +
+    dimensions.social * 1.0 +
+    dimensions.monotropic * 1.0 +
+    dimensions.routine * 0.8 +
+    dimensions.masking * 0.7 +
+    dimensions.transition * 0.7
+  ) / 5.2;
+
+  return { dimensions, adhd_consistent, autism_consistent };
+}
+
+// ============================================================================
+// CONTRADICTION DETECTION
+// ============================================================================
+
+const CONTRADICTION_DEFS = [
+  // Tier 1
+  { tier:1, dims:["routine","novelty"], label:"Routine vs. Novelty", interpretation:"Your nervous system needs predictability, but your motivation system starves without variety. You build scaffolding then tear it down looking for air." },
+  { tier:1, dims:["monotropic","initiation"], label:"Deep Focus vs. Can't Start", interpretation:"You can disappear into the wrong thing for twelve hours but can't start the right thing for twelve minutes. Your attention isn't broken — it's interest-gated." },
+  { tier:1, dims:["masking","emotional"], label:"Masking vs. Emotional Intensity", interpretation:"You feel everything at full volume but nobody sees it. The performance of 'fine' is costing you more than anyone around you realizes." },
+  { tier:1, dims:["overwhelm","masking"], label:"Overwhelm vs. Masking", interpretation:"You're running on empty but the mask keeps running. Nobody can see the cost because you've gotten too good at hiding it." },
+  { tier:1, dims:["initiation","emotional"], label:"Initiation vs. Emotional Intensity", interpretation:"You know what to do, feel terrible about not doing it, and still can't start. The shame about the wall makes the wall higher." },
+  // Tier 2
+  { tier:2, dims:["social","emotional"], label:"Social Need vs. Emotional Cost", interpretation:"You want deep connection but every interaction is processed at full emotional volume. Reaching out and protecting yourself are the same impulse pulling in opposite directions." },
+  { tier:2, dims:["sensory","novelty"], label:"Sensory Sensitivity vs. Novelty", interpretation:"You crave new input but get flooded by it. The thing you need and the thing that hurts you are the same thing." },
+  { tier:2, dims:["monotropic","transition"], label:"Deep Focus vs. Transition Cost", interpretation:"When you're in the zone, being pulled out feels violent. Transitions aren't inconvenient — they're expensive." },
+  // Tier 3
+  { tier:3, dims:["attention","routine"], label:"Attention vs. Routine", interpretation:"You need predictability but your attention won't cooperate. Planning is essential and unreliable." }
+];
+
+function detectContradictions(dimensions) {
+  const active = [];
+  CONTRADICTION_DEFS.forEach(c => {
+    if (c.tier <= 2) {
+      if (dimensions[c.dims[0]] > 0.6 && dimensions[c.dims[1]] > 0.6) {
+        active.push({...c});
+      }
+    } else if (c.dims[0] === "social" && c.dims[1] === "masking") {
+      // Special: social HIGH, masking LOW
+      if (dimensions.social > 0.6 && dimensions.masking < 0.4) {
+        active.push({...c});
+      }
+    } else {
+      if (dimensions[c.dims[0]] > 0.6 && dimensions[c.dims[1]] > 0.6) {
+        active.push({...c});
+      }
+    }
+  });
+  // Also check special tier 3: social HIGH + masking LOW
+  if (dimensions.social > 0.6 && dimensions.masking < 0.4) {
+    const exists = active.find(a => a.dims[0]==="social" && a.dims[1]==="masking");
+    if (!exists) {
+      active.push({ tier:3, dims:["social","masking"], label:"Social Cost Without Mask", interpretation:"Socializing costs you but you don't hide it. People find it confusing that you struggle with things that look easy." });
+    }
+  }
+  return active.sort((a,b) => a.tier - b.tier);
+}
+
+// ============================================================================
+// PROFILE MATCHING
+// ============================================================================
+
+function matchProfile(dimensions, adhd, autism, contradictions) {
+  const d = dimensions;
+  const tier1 = contradictions.filter(c => c.tier === 1);
+  const tier1or2 = contradictions.filter(c => c.tier <= 2);
+
+  // Low-signal check
+  const allBelow04 = Object.values(d).every(v => v < 0.4);
+  const noneAbove05 = Object.values(d).every(v => v <= 0.5);
+  if (allBelow04 && noneAbove05 && tier1or2.length === 0) {
+    return { id:"low_signal", name:"No Strong Pattern Detected", variant:null, confidence:"low_signal", fallback:false, lowSignal:true };
+  }
+
+  // Count dims above threshold
+  const dimsAbove = (thresh) => Object.values(d).filter(v => v > thresh).length;
+  const maxDim = Math.max(...Object.values(d));
+  const highestDimKey = Object.keys(d).reduce((a,b) => d[a] > d[b] ? a : b);
+
+  // 1. Bridge
+  if (adhd > 0.55 && autism > 0.55 && tier1.length >= 1) {
+    let variant = "chaotic";
+    if (d.masking >= d.routine && d.masking >= d.monotropic && d.masking >= d.novelty && d.masking >= d.attention) variant = "masked";
+    else if ((d.routine + d.monotropic) > (d.novelty + d.attention)) variant = "structured";
+    return { id:"bridge", name:"The Bridge", variant, confidence:"high", fallback:false, lowSignal:false };
+  }
+
+  // 2. Weaver — but Bridge fuzzy match can steal
+  if (dimsAbove(0.45) >= 6 && maxDim <= 0.65) {
+    // Bridge fuzzy match
+    if (tier1.length >= 1 && adhd > 0.45 && autism > 0.45) {
+      let variant = "chaotic";
+      if ((d.routine + d.monotropic) > (d.novelty + d.attention)) variant = "structured";
+      if (d.masking > d.routine && d.masking > d.novelty) variant = "masked";
+      return { id:"bridge", name:"The Bridge", variant, confidence:"moderate", fallback:false, lowSignal:false };
+    }
+    let variant = d.overwhelm < 0.5 ? "adaptive" : "invisible";
+    return { id:"weaver", name:"The Weaver", variant, confidence:"moderate", fallback:false, lowSignal:false };
+  }
+
+  // 3. Deep Diver
+  if (d.monotropic > 0.65 && d.sensory > 0.5 && d.social > 0.45 && d.attention < 0.6) {
+    let variant = "analytical";
+    if (d.sensory > d.monotropic * 0.9) variant = "sensory";
+    if (d.social > 0.55) variant = "social";
+    return { id:"deep_diver", name:"The Deep Diver", variant, confidence:"high", fallback:false, lowSignal:false };
+  }
+
+  // 4. Spark
+  if (d.initiation > 0.6 && d.attention > 0.6 && d.emotional > 0.5 && d.novelty > 0.5 && d.routine < 0.55) {
+    let variant = "urgency";
+    if (d.novelty > d.initiation) variant = "novelty";
+    if (d.emotional > d.initiation && d.emotional > d.novelty) variant = "emotional";
+    return { id:"spark", name:"The Spark", variant, confidence:"high", fallback:false, lowSignal:false };
+  }
+
+  // 5. Quiet Architect
+  if (d.masking > 0.7 && d.social > 0.5 && d.overwhelm > 0.5 && !(adhd > 0.55 && autism > 0.55)) {
+    let variant = "late_discovery";
+    if (d.social > d.sensory && d.social > d.overwhelm) variant = "compensator";
+    if (d.sensory > 0.5) variant = "suppressor";
+    return { id:"quiet_architect", name:"The Quiet Architect", variant, confidence:"high", fallback:false, lowSignal:false };
+  }
+
+  // 6. Sensor
+  if (d.sensory > 0.7 && d.overwhelm > 0.55) {
+    let variant = "hyperaware";
+    if (d.novelty > 0.45) variant = "seeking";
+    if (d.sensory > d.overwhelm * 1.2) variant = "hyperaware";
+    // Disconnected: if interoception questions scored high but hypersensitivity low
+    return { id:"sensor", name:"The Sensor", variant, confidence:"high", fallback:false, lowSignal:false };
+  }
+
+  // 7. Storm
+  if (d.emotional > 0.7 && (d.social > 0.5 || d.overwhelm > 0.55)) {
+    let variant = "amplified";
+    if (d.social > d.overwhelm) variant = "rejection";
+    if (d.social < 0.45) variant = "unnamed";
+    return { id:"storm", name:"The Storm", variant, confidence:"high", fallback:false, lowSignal:false };
+  }
+
+  // 8. Structuralist
+  if (d.routine > 0.7 && d.transition > 0.6) {
+    let variant = d.initiation > 0.4 ? "builder" : "rigid";
+    return { id:"structuralist", name:"The Structuralist", variant, confidence:"high", fallback:false, lowSignal:false };
+  }
+
+  // 9. Seeker
+  if (d.novelty > 0.7 && d.routine < 0.5 && d.initiation > 0.5) {
+    let variant = d.attention > 0.55 ? "scattered" : "restless";
+    return { id:"seeker", name:"The Seeker", variant, confidence:"high", fallback:false, lowSignal:false };
+  }
+
+  // 10. Guardian
+  if (d.overwhelm > 0.7 && d.masking > 0.5) {
+    let variant = d.social > 0.5 ? "withdrawn" : "conserved";
+    return { id:"guardian", name:"The Guardian", variant, confidence:"moderate", fallback:false, lowSignal:false };
+  }
+
+  // FALLBACK
+  if (adhd > 0.45 && autism > 0.45) return { id:"bridge", name:"The Bridge", variant:"chaotic", confidence:"complex", fallback:true, lowSignal:false };
+  if (dimsAbove(0.4) >= 6) return { id:"weaver", name:"The Weaver", variant:"invisible", confidence:"complex", fallback:true, lowSignal:false };
+  if (adhd > autism) return { id:"spark", name:"The Spark", variant:"urgency", confidence:"complex", fallback:true, lowSignal:false };
+  if (autism >= adhd) return { id:"deep_diver", name:"The Deep Diver", variant:"analytical", confidence:"complex", fallback:true, lowSignal:false };
+  if (highestDimKey === "masking") return { id:"quiet_architect", name:"The Quiet Architect", variant:"late_discovery", confidence:"complex", fallback:true, lowSignal:false };
+  return { id:"deep_diver", name:"The Deep Diver", variant:"analytical", confidence:"complex", fallback:true, lowSignal:false };
+}
+
+// ============================================================================
+// PROFILE DATA — All 10 profiles + low signal
+// ============================================================================
+
+const PROFILE_DATA = {
+  bridge: {
+    name: "The Bridge",
+    tagline: "Both systems running. Both real. Neither optional.",
+    description: "You live at the intersection of two operating systems that want different things. One craves novelty; the other needs routine. One locks onto interests for hours; the other can't start the task that actually matters. The contradiction isn't a bug in your wiring. It IS your wiring.",
+    variants: {
+      structured: { name: "Bridge-Structured", desc: "You manage the chaos through scaffolding. Systems, lists, rituals — they're not preferences, they're load-bearing infrastructure. You appear organized because the alternative is freefall." },
+      chaotic: { name: "Bridge-Chaotic", desc: "The ADHD patterns run louder. You're spontaneous, fast-moving, idea-rich — and underneath that, the autistic wiring is quietly running cost calculations on every social interaction and sensory environment. People see the spark. They miss the processing." },
+      masked: { name: "Bridge-Masked", desc: "Both systems are present but buried under years of learned performance. You've built such a convincing 'normal' that the contradictions only surface when the mask slips — which usually looks like burnout, not neurodivergence." }
+    },
+    whatOthersMisread: [
+      "People think you're inconsistent. You're not. You're running two systems that take turns at the controls. Your best day and your worst day are both real — they're just produced by different operating modes.",
+      "People assume that because you can hyperfocus for hours on the wrong thing, you could focus on the right thing if you just tried harder. That's like saying because your car goes 120mph downhill, the brakes must work uphill too.",
+      "People think you're being difficult when you resist change to your routine but then get bored by it. They don't see that your nervous system simultaneously requires predictability and starves without novelty."
+    ],
+    whatYouMisread: [
+      "You think you're lazy because you can't sustain effort evenly. You're not. You're running two competing activation systems — one needs interest, the other needs urgency — and they rarely agree on what deserves fuel.",
+      "You think your contradictions mean something is fundamentally wrong with you. They don't. They mean you're operating at a complexity that one label can't describe."
+    ],
+    whatThisIsNot: [
+      "This is not indecisiveness. Your brain processes more variables because it's running two distinct evaluation systems simultaneously.",
+      "This is not 'a little bit of both.' This is a specific pattern where ADHD and autistic traits interact, contradict, and amplify each other.",
+      "This is not something you can simplify by 'picking a side.'"
+    ],
+    stressLoop: ["A demand arrives that requires switching modes", "One system resists while the other activates — you feel pulled in two directions", "You either force the switch (spending masking energy you don't have) or refuse it (appearing rigid)", "The next demand arrives before you've recovered from the last switch"],
+    whatHelps: [
+      "Environments that don't require constant mode-switching. Long blocks of uninterrupted focus followed by genuine novelty.",
+      "Partners and colleagues who understand that your contradictions aren't character flaws — they're the texture of how you process.",
+      "Building your own scaffolding rather than using someone else's system. Your structure needs to accommodate both operating modes.",
+      "Permission to be two things at once without having to explain or justify it."
+    ],
+    whatBackfires: [
+      "'Just pick one and commit.' You can't. Both systems are always running.",
+      "'Be more flexible.' Flexibility costs you more than it costs neurotypical people because every transition requires negotiating between two systems.",
+      "'Make a routine and stick to it.' Your ADHD side will rebel against any routine your autistic side builds.",
+      "Generic ADHD advice ignores your autistic needs. Generic autism advice ignores your ADHD needs."
+    ],
+    tryingToSay: [
+      "I'm not inconsistent. I have two systems that take turns running the show, and neither one is wrong.",
+      "I need structure and freedom in the same life, and I know that sounds contradictory. It is. That's the point.",
+      "The hardest part isn't either system alone. It's that they fight each other, and I'm always the referee."
+    ],
+    sayThis: [
+      "When I seem like two different people, it's because I kind of am. One part of me needs routine and predictability. The other needs novelty and stimulation. They're both real.",
+      "I'm not being difficult when I resist a plan change but also complain about boredom. My brain genuinely needs both stability and variety.",
+      "If you want to help me, don't try to simplify me. Ask me which system is louder today."
+    ],
+    relationships: "You need a partner who can hold complexity — someone who doesn't need you to be one consistent thing. Your best relationships are with people who find the contradictions interesting rather than frustrating. The hardest part: you need deep connection but the social cost is high AND you crave the excitement of new relational energy. That triple-pull shapes every close relationship.",
+    work: "You do your best work in environments that offer deep focus time AND variety. Pure routine jobs drain your ADHD side. Pure novelty jobs destabilize your autistic side. The ideal is a role with interesting problems, long focus blocks, and enough autonomy to switch modes when your brain demands it.",
+    energy: "Mode-switching is your most expensive operation. Not the work itself — the transition between types of work. You can focus for six hours or socialize for three, but alternating between the two every 30 minutes will drain you in 90 minutes. Protect your transitions. Batch similar-mode tasks."
+  },
+
+  weaver: {
+    name: "The Weaver",
+    tagline: "Moderate everywhere. Spiking nowhere. The chorus of quiet signals.",
+    description: "No single dimension dominates, but the cumulative load of moderate sensory sensitivity, moderate social processing cost, moderate initiation friction, and moderate overwhelm is genuinely disabling in aggregate. You've been told 'everyone's a little like that' your entire life. The truth is: not everyone is a little like that across this many dimensions at once.",
+    variants: {
+      adaptive: { name: "Weaver-Adaptive", desc: "You've built a life that accommodates moderate needs across many dimensions. Functional but always managing. The cost is invisible because no single accommodation looks extreme." },
+      invisible: { name: "Weaver-Invisible", desc: "You've never been identified as neurodivergent because nothing is loud enough. Chronic sense of 'something is off' without a clear explanation. Validation-starved." }
+    },
+    whatOthersMisread: [
+      "People think you're fine because nothing looks severe. But they're measuring each dimension in isolation. The weight isn't in any one thing — it's in carrying all of them simultaneously.",
+      "People think you're just a bit sensitive, a bit scattered, a bit drained. The word 'just' is doing all the harm here."
+    ],
+    whatYouMisread: [
+      "You think because no single trait is extreme, nothing is really going on. The density is the pattern. Six moderate signals running simultaneously IS the signal.",
+      "You think you should be able to handle things because each individual challenge seems small. You're not accounting for the cumulative cost."
+    ],
+    whatThisIsNot: [
+      "This is not 'everyone feels this way.' Most people don't carry moderate load across this many dimensions at once.",
+      "This is not subclinical everything. It's a real pattern that's been invisible because the tools to measure it didn't exist.",
+      "This is not a consolation prize. The Weaver pattern is its own thing, not a watered-down version of something louder."
+    ],
+    stressLoop: ["Multiple moderate demands arrive simultaneously", "No single demand is enough to trigger alarm, so you push through all of them", "The cumulative load compounds silently", "You crash and can't point to any one cause because no single thing was 'that bad'"],
+    whatHelps: [
+      "Recognizing the cumulative load. Just because each individual demand is manageable doesn't mean all of them together are.",
+      "Giving yourself permission to say no to things that look small — because your margin is thinner than it appears.",
+      "Finding language for the pattern. 'I'm moderately overloaded across many channels' is harder to explain than 'I have ADHD,' but it's just as real.",
+      "Environments that reduce multiple low-grade stressors simultaneously rather than addressing one at a time."
+    ],
+    whatBackfires: [
+      "'You don't seem that affected.' The invisibility is the problem, not a sign that nothing is happening.",
+      "'Focus on the biggest issue.' There isn't one biggest issue. The pattern IS the breadth.",
+      "Accommodations designed for single-dimension profiles. You need a little bit of accommodation across many dimensions, not a lot in one.",
+      "Self-help advice that treats one symptom. You'll fix one thing and wonder why you're still exhausted — because five other moderate loads are still running."
+    ],
+    tryingToSay: [
+      "Nothing is loud enough to point to, but everything is just loud enough to cost me. The cumulative weight is real even though no single piece looks heavy.",
+      "I've spent my life wondering what's wrong with me because I don't fit any clear category. This is the category.",
+      "I'm not fine just because I'm functional. Functional is the mask for exhausted."
+    ],
+    sayThis: [
+      "I know I don't look like I'm struggling with any one thing. But I'm managing sensory sensitivity, social processing load, initiation friction, and overwhelm all at once, all the time. The total is more than the parts.",
+      "If you want to understand me, don't look for the one big thing. Look for the ten medium things running simultaneously."
+    ],
+    relationships: "You need a partner who understands that your needs aren't dramatic but they're real. The biggest relationship friction: you can't always explain why you're depleted because there's no single cause to point to. Partners who need a clear reason for your low energy will be frustrated. Partners who accept 'I'm running a lot of background processes' will be a relief.",
+    work: "You function best in calm, predictable environments with moderate variety. High-intensity jobs overwhelm you across too many dimensions. Low-intensity jobs bore you. The Goldilocks zone is narrower for you than for most people.",
+    energy: "Your energy drains from many small leaks, not one big one. Fixing any single leak barely helps. The strategy is reducing total environmental load: fewer transitions, less sensory noise, fewer social obligations, simpler task structures — all at once."
+  },
+
+  deep_diver: {
+    name: "The Deep Diver",
+    tagline: "Depth over breadth. The world in high resolution.",
+    description: "Your attention system doesn't scan — it locks. When something captures your interest, you go deeper than almost anyone around you. You notice details others miss, build mental models others can't follow, and produce work of a quality that surprises people who don't understand how your mind works. The cost: the world is processed in high fidelity, and that fidelity doesn't have an off switch.",
+    variants: {
+      analytical: { name: "Deep Diver-Analytical", desc: "Your monotropic focus applies to systems, data, and patterns. You see connections others miss because you've spent enough time in the depth to see the structure underneath. People call you 'detail-oriented' when what they mean is 'thinks in a different resolution.'" },
+      sensory: { name: "Deep Diver-Sensory", desc: "Sensory processing is your co-dominant signal. Environmental sensitivity shapes daily decisions. You experience the world at higher fidelity — which is sometimes a gift and sometimes a tax you can't opt out of." },
+      social: { name: "Deep Diver-Social", desc: "Social processing load is high but managed through explicit learning. You've developed sophisticated understanding of social dynamics through study rather than intuition. You understand people — it just costs you more CPU than it costs them." }
+    },
+    whatOthersMisread: [
+      "People think you're aloof or uninterested. You're not — you're processing at a depth that doesn't leave much bandwidth for surface-level engagement. Small talk feels like it runs on a different operating system than yours.",
+      "People think your interests are 'too much.' What they're seeing is a brain that can't do shallow. Deep is the only mode available.",
+      "People think you're rigid. You're not rigid — you're accurate. You've spent enough time in the depth to know when something is being done wrong, and watching it happen costs you."
+    ],
+    whatYouMisread: [
+      "You think you're antisocial. You're not. Socializing runs on different hardware for you — it requires conscious effort that others do on autopilot.",
+      "You think your intensity about interests is abnormal. It's not abnormal — it's monotropic. Your attention system is designed for depth, not breadth."
+    ],
+    whatThisIsNot: [
+      "This is not introversion, though it overlaps. Introversion is about energy direction. This is about processing depth.",
+      "This is not being 'on the spectrum' in the dismissive way people use that phrase. This is a specific attentional and sensory architecture.",
+      "This is not perfectionism. Perfectionism is anxiety-driven. Your depth is interest-driven."
+    ],
+    stressLoop: ["An environment demands breadth (multitasking, small talk, rapid switching)", "Your depth-oriented system can't engage at the surface level being asked of it", "You either withdraw (appearing disengaged) or force it (spending enormous energy)", "Recovery from forced shallow-processing takes longer than anyone expects"],
+    whatHelps: [
+      "Roles and environments that reward depth over breadth. Jobs where going deep on a problem is valued, not punished.",
+      "Control over your sensory environment. Noise-canceling headphones aren't a luxury for you — they're infrastructure.",
+      "People who are interested in depth. Conversations where you can actually go somewhere instead of skimming the surface.",
+      "Time to process before responding. You're not slow — you're thorough."
+    ],
+    whatBackfires: [
+      "'Just go with the flow.' Your system doesn't have a flow mode. It has a depth mode and a shutdown mode.",
+      "'Don't overthink it.' You're not overthinking. You're thinking at the resolution your brain operates at. Asking you to think less is asking you to think worse.",
+      "'Be more spontaneous.' Spontaneity requires the ability to shift gears quickly. Your gears are heavy and they grind when forced.",
+      "'You need to be more of a team player.' You ARE a team player — when the team values what depth-processing contributes."
+    ],
+    tryingToSay: [
+      "I don't do shallow. When I'm in, I'm all the way in. When I'm out, I need to be all the way out.",
+      "The world is louder and more detailed for me than it is for most people. That's not a complaint — it's a fact about how my system works.",
+      "I'm not ignoring you. I'm processing something at a depth that doesn't leave room for surface conversation right now."
+    ],
+    sayThis: [
+      "When I go quiet, I'm not withdrawing from you. I'm processing. If you give me space, I'll come back with something more thoughtful than what I could produce in real-time.",
+      "I work best when I can go deep on one thing at a time. Multitasking isn't something I do badly — it's something my brain literally doesn't support.",
+      "My interests aren't hobbies. They're how my brain organizes the world. If I'm talking about one a lot, it's because that's where my processing is right now."
+    ],
+    relationships: "You need a partner who doesn't experience your depth as exclusion. When you're locked into something, it's not that you've forgotten about them — it's that your attention system doesn't multitask. Partners who need constant surface-level interaction will feel ignored. Partners who understand monotropic attention will learn to read the rhythm: deep focus, then genuine presence.",
+    work: "You produce your best output when given a single complex problem and the time to solve it. Open offices, constant meetings, and rapid context-switching are hostile environments for your processing style. You're the person who finds the thing everyone else missed — but only if you're given the conditions to go deep enough.",
+    energy: "Shallow processing costs you more than deep processing. A day of meetings, small talk, and rapid switching will drain you faster than a day of intense focused work. Protect your depth time — it's where you do your best thinking AND where you recover."
+  },
+
+  spark: {
+    name: "The Spark",
+    tagline: "Urgency-driven. Energy in bursts. Brilliance on a deadline.",
+    description: "Your activation system is wired to urgency and interest, not importance. The gap between your best day and your worst day is enormous — and the difference isn't effort, it's whether your brain's ignition system fired. You're not inconsistent. You're activation-dependent.",
+    variants: {
+      urgency: { name: "Spark-Urgency", desc: "Deadline-driven activation. The 'entire project in one panic-fueled night' pattern. You've done your best work in conditions that would terrify a planner — and the frustrating part is that it actually works." },
+      novelty: { name: "Spark-Novelty", desc: "Stimulation-driven activation. You need constant new input to stay engaged. The start of every project is electric. The middle is agony. The end depends entirely on whether you found a way to make it interesting again." },
+      emotional: { name: "Spark-Emotional", desc: "Emotional intensity is your leading edge. Feelings drive your behavior more than executive function does. When you care, you're unstoppable. When emotional weight sits on the ignition switch, nothing starts." }
+    },
+    whatOthersMisread: [
+      "People think you're unreliable. You're not — you're activation-dependent. The difference between your best day and worst day isn't effort. It's whether your brain's ignition system fired.",
+      "People think you don't care because you didn't start earlier. You cared. You cared the entire time you couldn't start. The caring didn't make the wall lower.",
+      "People think your good days prove you could do this every day 'if you really wanted to.' That's like saying a sprinter could run a marathon at sprint pace if they just tried harder."
+    ],
+    whatYouMisread: [
+      "You think you're lazy. You're not. You're running an activation system that requires either urgency, interest, or emotional fuel to engage. Without those, the engine doesn't turn over — and that's neurological, not moral.",
+      "You think your inconsistency means you're failing. It means your nervous system has two speeds and very little in between."
+    ],
+    whatThisIsNot: [
+      "This is not laziness. Laziness is not caring. You care enormously — and the gap between caring and doing is where the frustration lives.",
+      "This is not procrastination by choice. This is an activation system that doesn't respond to rational planning.",
+      "This is not something you can willpower through. If willpower worked, you'd be the most productive person alive — because you've been trying harder than anyone for years."
+    ],
+    stressLoop: ["A task exists that matters to you but doesn't have urgency or novelty", "Your activation system won't engage — the wall appears", "Time passes, guilt builds, the task gets more urgent", "Urgency finally fires the engine — you do the entire thing in one burst, producing good work but at enormous cost"],
+    whatHelps: [
+      "Artificial urgency. Body doubles. External accountability. Anything that creates activation pressure without waiting for a real deadline.",
+      "Making boring tasks novel. Change the environment, add music, gamify it, do it with someone. If interest is the ignition, manufacture interest.",
+      "Small starts with no commitment to finish. Getting 5 minutes in often drops the wall. Your brain needs the activation event, not the sustained effort.",
+      "Forgiving yourself for the pattern instead of fighting it. Working with the urgency cycle rather than against it produces better results than pretending you can plan like a neurotypical person."
+    ],
+    whatBackfires: [
+      "'Just start earlier.' If you could, you would have. This advice assumes an activation system you don't have.",
+      "'Break it into smaller steps.' The problem isn't the size of the steps. It's that your brain won't engage until the stakes are real.",
+      "'Make a plan and follow it.' Plans without urgency are decorative. You've made hundreds of plans. The plans aren't the problem.",
+      "'Try harder.' You've been trying harder than anyone realizes your entire life. Trying harder at a neurological pattern produces shame, not results."
+    ],
+    tryingToSay: [
+      "I'm not lazy. My brain is waiting for ignition, and I can't control when the spark comes.",
+      "The gap between my intention and my action isn't about caring. It's about activation. I care so much it hurts — and I still can't start.",
+      "My best work happens in conditions that look like panic to you. That's not dysfunction — it's the only activation system I have."
+    ],
+    sayThis: [
+      "I work differently than you expect. I need urgency or interest to activate. Without those, I can't start — no matter how much I want to. This isn't a discipline problem.",
+      "If you need something from me, giving me a clear deadline and checking in helps more than telling me to start early.",
+      "When I produce great work at the last minute, that's not proof I should have started earlier. That's the only way my brain could produce it at all."
+    ],
+    relationships: "You're electric when you're activated — attentive, creative, fun, fully present. When you're not activated, you can seem distant, scattered, or checked out. Partners who need consistent engagement will be confused by the oscillation. Partners who understand activation dependence will learn to read whether you're 'on' or 'waiting for ignition' — and not take the difference personally.",
+    work: "You produce your best work under deadline pressure, in roles with variety, and on projects that interest you. Sustained, steady-state work without urgency or novelty is where you struggle most. The key insight for managers: your output over time may be excellent even if your daily consistency looks terrible.",
+    energy: "Your energy comes in bursts, not streams. The burst is real and productive. The recovery after the burst is real and necessary. Don't schedule a burst for Monday and expect to be functional Tuesday. Build in recovery. The pattern is: dead → building → spark → burst → crash → recovery → repeat."
+  },
+
+  quiet_architect: {
+    name: "The Quiet Architect",
+    tagline: "The gap between who you perform and who you are.",
+    description: "You've built an elaborate performance of normalcy that others experience as the real you. The person at work, at dinner parties, in meetings — that's a character you've refined over years. When you get home and the door closes, the performance drops and what's left is someone running on fumes. Nobody would guess how much effort the 'normal' version takes.",
+    variants: {
+      compensator: { name: "Quiet Architect-Compensator", desc: "Your primary strategy is cognitive compensation: explicit social rules, rehearsed scripts, conscious behavior management. You've built a manual for being human that works — until the complexity of a situation exceeds what the manual covers." },
+      suppressor: { name: "Quiet Architect-Suppressor", desc: "Your primary strategy is suppression: hiding stims, masking sensory pain, performing energy you don't have. The public self is curated; the private self is depleted. The gap between them is where your energy disappears." },
+      late_discovery: { name: "Quiet Architect-Late Discovery", desc: "You recently discovered or are exploring neurodivergence after years of unexplained difficulty. Everything is clicking into place — and the relief is tangled up with grief for the years spent wondering what was wrong with you." }
+    },
+    whatOthersMisread: [
+      "People think you're fine. You look fine. You've spent years making sure you look fine. The skill of looking fine is so practiced that nobody questions it — including, sometimes, you.",
+      "People think you're naturally social and composed. What they're seeing is a performance that costs more energy than the actual social interaction.",
+      "People are surprised when you crash. They shouldn't be — you've been running a second operating system full-time, and the power bill was always going to come due."
+    ],
+    whatYouMisread: [
+      "You think the mask IS you. It's not. The mask is a tool you built to survive environments that weren't designed for your nervous system. The person underneath is who you are when nobody's watching.",
+      "You think everyone works this hard at being normal. They don't. The effort you're spending on performing baseline social interaction is genuinely unusual — and the exhaustion it produces is legitimate."
+    ],
+    whatThisIsNot: [
+      "This is not social anxiety. Anxiety is about fear. Your pattern is about cost. You're not afraid of social situations — you're expensive in them.",
+      "This is not being an introvert who needs alone time. It's being someone who needs alone time to stop performing a character.",
+      "This is not imposter syndrome. Imposter syndrome is about feeling like you don't deserve your achievements. This is about feeling like your public self is a fictional character."
+    ],
+    stressLoop: ["A social or professional demand arrives", "The mask activates — you perform the expected version of yourself", "The performance costs more energy than the task itself", "When the demand ends, you collapse — but the next demand is already waiting"],
+    whatHelps: [
+      "Safe people who know the real version of you. Even one person who sees the unmasked you reduces the total load significantly.",
+      "Reducing masking requirements rather than building more masking stamina. The goal isn't to mask better — it's to mask less.",
+      "Deliberate unmasking practice in safe contexts. The mask becomes load-bearing if you never take it off. Practicing being yourself is literally rebuilding access to who you are.",
+      "Understanding that the exhaustion is real and proportional to the effort. You're not weak for being tired. You're tired because you're doing more work than anyone realizes."
+    ],
+    whatBackfires: [
+      "'Just be yourself.' You've been performing a self for so long that 'yourself' is hard to access. This advice assumes a simple switch that doesn't exist.",
+      "'You seem fine to me.' That's the mask working. It's not evidence that nothing is wrong.",
+      "'Everyone masks a little.' Not like this. The difference between situational code-switching and full-time identity performance is the difference between adjusting your shirt and wearing a costume 16 hours a day.",
+      "'You should socialize more — you're good at it.' You're good at the performance of socializing. The performance is what's draining you."
+    ],
+    tryingToSay: [
+      "The person you know isn't exactly me. It's a version I built to fit. The real me is quieter, weirder, and more tired.",
+      "I'm not low-energy. I'm spent. There's a difference — and the difference is that I've been performing all day in a way you didn't notice.",
+      "The loneliest part is being seen by everyone and known by no one."
+    ],
+    sayThis: [
+      "I modify my behavior a lot around people. It's not that I'm fake — it's that being natural in social settings takes more effort than performing a script. When I'm quiet at home, I'm recovering from the performance.",
+      "If I seem distant after socializing, it's not about you. It's about the energy I spent managing my presentation. Give me recovery time and I'll be back.",
+      "The most helpful thing you can do is make it safe for me to drop the performance around you. I may not even know what that looks like yet."
+    ],
+    relationships: "You need a partner who can see past the mask — and who makes it safe to drop it. The biggest relationship risk: you attract people who fell in love with the performed version of you, and then maintaining that performance becomes the relationship's unspoken contract. The healthiest relationships you'll have are with people who met you on a low-mask day and liked what they saw.",
+    work: "You're often seen as highly competent because the mask includes a competence performance. The danger is that workplaces build expectations around the masked version — and you have no way to sustain it without burning out. The most important career move: finding environments where you can reduce masking load, not environments that reward the mask.",
+    energy: "Your biggest energy drain isn't work. It's the performance. Days with high masking requirements (meetings, social events, unfamiliar people) cost more than days with high work requirements. Your recovery isn't about rest — it's about being unobserved."
+  },
+
+  sensor: {
+    name: "The Sensor",
+    tagline: "The world arrives louder than it was sent.",
+    description: "Your sensory system processes environmental input at higher fidelity than most people's. Sounds are louder, lights are brighter, textures are more present, crowds are more dense. When the environment is right, you function at full capacity. When it's wrong, everything degrades — not because you're sensitive, but because your hardware processes more signal than the environment was designed to send.",
+    variants: {
+      hyperaware: { name: "Sensor-Hyperaware", desc: "All signals turned up. You notice the hum of a refrigerator two rooms away, the flicker in a fluorescent light, the texture of a paper towel. This can be a gift — detail-oriented, aesthetically precise — and a burden you can't turn off." },
+      seeking: { name: "Sensor-Seeking", desc: "You crave specific sensory input to regulate. Movement, pressure, texture, sound — not as preferences but as needs. The weighted blanket, the specific playlist, the fidget tool in meetings. Without the right input, your system runs rough." },
+      disconnected: { name: "Sensor-Disconnected", desc: "Low interoception dominant. Your body's signals are on mute: hunger, pain, temperature, fatigue don't register until they're severe. You're not ignoring your needs — your internal signal system has the volume set too low to hear." }
+    },
+    whatOthersMisread: [
+      "People think you're high-maintenance about environments. You're not choosing to be particular. Your sensory system processes environmental input at a resolution that makes 'minor' irritants genuinely disabling.",
+      "People think you're overreacting to sounds, lights, or textures. From inside your nervous system, the reaction is proportional. The volume knob you're responding to is turned higher than theirs.",
+      "People think your need for environmental control is about preference. It's about function. A bad environment doesn't just bother you — it degrades your ability to think, work, and regulate."
+    ],
+    whatYouMisread: [
+      "You think you're too sensitive. You're not too anything. Your sensory system has a specific processing profile, and most environments weren't designed for it.",
+      "You think you should be able to tough it out. You can't. Sensory overload isn't willpower-defeatable. It's a hardware limit."
+    ],
+    whatThisIsNot: [
+      "This is not being picky. Pickiness implies choice. Your sensory responses aren't choices.",
+      "This is not anxiety about environments. Anxiety is about what might happen. Your pattern is about what IS happening — the input is real and genuinely too much.",
+      "This is not weakness. It's a processing difference that happens to be disadvantaged in environments designed for median sensory thresholds."
+    ],
+    stressLoop: ["You enter an environment with sensory input above your threshold", "Your system begins allocating bandwidth to managing the input instead of the task", "Cognitive capacity drops as sensory processing consumes more resources", "You either leave, shut down, or push through at enormous cost — and recovery takes much longer than the exposure"],
+    whatHelps: [
+      "Environmental control. Noise-canceling headphones, lighting adjustments, texture-appropriate clothing, and permission to modify your workspace aren't luxury — they're access.",
+      "Knowing your specific sensory profile: what modalities hit hardest, what inputs you seek, what inputs you avoid. The more precise your map, the better your strategy.",
+      "Pre-planning for sensory environments. Knowing what a venue sounds like, how bright it is, how crowded it gets lets you decide whether you have the budget.",
+      "Recovery environments designed for sensory reset. Dark room, weighted blanket, silence, or your specific regulating inputs."
+    ],
+    whatBackfires: [
+      "'You'll get used to it.' You won't. Sensory processing differences are structural, not acclimation failures.",
+      "'Just ignore it.' You can't. The signal is reaching your brain before you have a chance to decide what to do with it.",
+      "'It's not that loud.' It is for you. The disagreement isn't about the objective decibel level — it's about the threshold at which signal becomes pain.",
+      "'Everyone deals with noise.' Not at this processing level. What's background for them is foreground for you."
+    ],
+    tryingToSay: [
+      "The world is louder for me than it is for you. Not metaphorically — literally. My sensory system processes at higher gain.",
+      "When I need to leave or modify my environment, it's not a preference. It's because my ability to function is degrading in real-time.",
+      "The right environment doesn't just make me comfortable. It makes me capable."
+    ],
+    sayThis: [
+      "I process sensory input more intensely than most people. Things that are background noise for you can be genuinely overwhelming for me. It's not about toughening up — it's about my nervous system.",
+      "If you see me adjusting my environment a lot (headphones, lighting, seating), it's because those adjustments are the difference between functional and not.",
+      "The best way to support me is to believe me when I say something is too loud, too bright, or too much."
+    ],
+    relationships: "Your partner needs to understand that environmental factors aren't preferences — they're functional requirements. Arguments about lighting, noise, temperature, and crowd size are actually arguments about your ability to be present. Partners who dismiss sensory needs as 'being dramatic' will build resentment on both sides.",
+    work: "Your productivity is environment-dependent in a way that's hard to explain to people with typical sensory processing. A quiet, dim office with no interruptions might make you 3x more productive than an open floor plan. The accommodation is cheap; the productivity difference is enormous.",
+    energy: "Sensory load drains you before task load does. You can do hard work all day in the right environment and feel fine. You can do easy work for an hour in the wrong environment and be depleted. Map your sensory costs and budget accordingly."
+  },
+
+  storm: {
+    name: "The Storm",
+    tagline: "Feeling everything, loudly. Emotions as weather system.",
+    description: "Your emotional system doesn't have a volume knob — or if it does, it's stuck at maximum. Joy is consuming, rejection is devastating, frustration arrives as rage before you can intervene. This isn't 'being sensitive' in the pop-psychology sense. This is a nervous system that processes emotional input at an amplitude most people can't imagine. Every day is weather.",
+    variants: {
+      rejection: { name: "Storm-Rejection", desc: "Rejection sensitivity is the dominant pattern. Perceived criticism — even minor, even unintentional — triggers disproportionate pain that lingers for hours or days. Relationships are shaped by the constant calculation: is this person about to reject me?" },
+      unnamed: { name: "Storm-Unnamed", desc: "Alexithymia dominant. The emotions are intense but unidentifiable. Something is happening inside you — loud, physical, urgent — but you can't name it until it's already overwhelming. By the time you identify the feeling, it's taken over." },
+      amplified: { name: "Storm-Amplified", desc: "General emotional amplification. Everything is turned up, positive and negative. The joy is as intense as the pain. The enthusiasm is as consuming as the frustration. You don't have mild reactions to things." }
+    },
+    whatOthersMisread: [
+      "People think you're overreacting. From inside your nervous system, the reaction is proportional — the input just arrives louder than it does for them. Telling you to 'calm down' is like telling someone to lower the volume on headphones that are soldered to their ears.",
+      "People think your emotions are a choice or a habit. They're not. Your emotional system has a gain setting that's higher than average. The intensity is neurological before it's behavioral.",
+      "People think you're dramatic. The word 'dramatic' implies performance. There's no performance here — this is what actually arrives."
+    ],
+    whatYouMisread: [
+      "You think your emotions are too big. They're not too big — they're being processed by a system with higher amplitude. The emotion is the right emotion at the wrong volume.",
+      "You think you should be able to control this. You can build better response systems, but you can't change the input amplitude. Managing it is legitimate; thinking you should eliminate it is self-punishment."
+    ],
+    whatThisIsNot: [
+      "This is not a personality flaw. This is a nervous system characteristic.",
+      "This is not the same as anxiety, though it can look like it. Anxiety is about future threat. Emotional intensity is about present-moment amplification.",
+      "This is not immaturity. Your emotional responses aren't underdeveloped — they're overprocessed."
+    ],
+    stressLoop: ["An emotional trigger arrives (criticism, change, rejection, even excitement)", "The emotion hits at full amplitude — physical, consuming, immediate", "You react at the intensity you're experiencing, which others perceive as disproportionate", "Their reaction to your reaction becomes a new emotional trigger — the loop accelerates"],
+    whatHelps: [
+      "Naming the amplitude, not judging it. 'That landed at 9 out of 10 for me' gives you and others information without pathologizing the experience.",
+      "Physical regulation: movement, pressure, temperature change. Your emotional system is embodied. Body-based strategies work faster than cognitive ones.",
+      "Time-buffering between stimulus and response. Not suppressing the emotion, but creating a gap where you can choose what to do with it before it drives behavior.",
+      "Relationships where emotional intensity is understood as structural, not personal. People who don't flinch at your volume are rare and essential."
+    ],
+    whatBackfires: [
+      "'Don't take it personally.' You can't not take it personally. The emotional system processes everything as personal before your cognitive system can intervene.",
+      "'Just calm down.' This has never worked for anyone in the history of emotion, and it works even less when the amplitude is neurologically elevated.",
+      "'You're being too emotional.' This just adds shame to the intensity, which increases the total emotional load.",
+      "'Think rationally about it.' The emotion arrives before rational processing has a chance. By the time you can think about it, the wave has already crested."
+    ],
+    tryingToSay: [
+      "My emotions don't arrive at normal volume. Everything is louder — the good, the bad, the confusing. I'm not choosing this volume. It's what shows up.",
+      "When I react strongly, I'm not performing. I'm experiencing something at an intensity you can't feel from the outside. Trust the intensity even when the trigger looks small.",
+      "I need people who don't flinch when I'm feeling something big. Not people who fix it or minimize it — people who can stand in it with me."
+    ],
+    sayThis: [
+      "My emotional responses are more intense than most people's. When I react strongly to something that seems small to you, it's because it landed at a volume you can't hear from where you're standing.",
+      "The most helpful thing you can do when I'm flooded is stay calm and stay present. Don't try to talk me out of it. Let the wave pass, then I can talk about it.",
+      "I'm working on building better response systems, but the intensity of the input isn't something I can change. Understanding that helps more than any advice."
+    ],
+    relationships: "Your relationships are the primary site of difficulty because every interaction is processed at full emotional volume. The good news: your love is as intense as your pain. Partners who can hold the amplitude — who don't flee from big feelings — will experience a depth of connection most people never access. Partners who need emotional moderation will feel overwhelmed by you, and you'll feel unseen by them.",
+    work: "You need work environments with emotional safety. Open criticism, public feedback, and competitive cultures hit you harder than they hit others. Your best performance comes in environments where your intensity is valued (creative work, passion-driven projects) rather than penalized (bureaucratic, emotionally flat workplaces).",
+    energy: "Emotional processing is your largest energy consumer. A single intense emotional event can drain your entire day's budget. Big joy is expensive too — not just big pain. You need less emotional variation, not just less negative emotion."
+  },
+
+  structuralist: {
+    name: "The Structuralist",
+    tagline: "Predictability is regulation. Systems are safety.",
+    description: "Your nervous system regulates through predictability. The routines, systems, and rituals you build aren't preferences — they're load-bearing infrastructure. When structure holds, you function at full capacity. When it breaks, regulation breaks with it. The physical jolt of unexpected change isn't about the change. It's about the scaffolding collapsing.",
+    variants: {
+      builder: { name: "Structuralist-Builder", desc: "You create systems, rituals, and frameworks to manage internal chaos. The systems work — and the building of them is itself regulating. You're not just organized; you're engineering your own stability." },
+      rigid: { name: "Structuralist-Rigid", desc: "Change sensitivity is extreme. Even positive surprises feel destabilizing. Flexibility is genuinely difficult because it requires rebuilding scaffolding that took significant energy to construct. The rigidity isn't stubbornness — it's structural load management." }
+    },
+    whatOthersMisread: [
+      "People think you're controlling. You're not controlling people — you're controlling variables. The more predictable the environment, the more regulation you have available for everything else.",
+      "People think you're inflexible by choice. The flexibility they're asking for requires dismantling scaffolding that's holding you up. It's not that you won't bend — it's that bending costs structural integrity.",
+      "People think your routines are habits. They're not habits. They're regulation strategies that function because of their consistency. Disrupting them isn't breaking a habit — it's removing a support."
+    ],
+    whatYouMisread: [
+      "You think your need for routine is a weakness. It's not. It's a nervous system that found a way to maintain regulation in a world that's constantly changing. That's engineering, not fragility.",
+      "You think you should be more flexible. Some flexibility is worth developing. But the baseline need for predictability is structural and legitimate."
+    ],
+    whatThisIsNot: [
+      "This is not OCD. OCD involves intrusive thoughts and compulsive behaviors driven by anxiety. Your pattern is about nervous system regulation through predictability.",
+      "This is not being a control freak. You're not trying to control others. You're trying to control enough variables to maintain internal stability.",
+      "This is not inability to handle change. It's that change costs you more neurological energy than it costs most people."
+    ],
+    stressLoop: ["An unexpected change breaks your established structure", "Your nervous system loses the regulation the structure was providing", "Anxiety, frustration, or shutdown escalates while you try to rebuild", "Rebuilding takes time and energy, during which other demands pile up — further destabilizing the system"],
+    whatHelps: [
+      "Maximum advance notice for changes. Even changes you'd accept easily if warned are destabilizing when they arrive without warning.",
+      "Building robust but adaptable structures. Systems with redundancy survive individual failures better than rigid single-point structures.",
+      "Understanding that your need for predictability is regulation, not rigidity. Framing it this way helps others understand and accommodates.",
+      "Having routines for managing disrupted routines. A meta-structure for dealing with change reduces the cost of each individual disruption."
+    ],
+    whatBackfires: [
+      "'Go with the flow.' You don't have a flow. You have a structure, and 'going with the flow' means operating without it — which is operating without regulation.",
+      "'Be more spontaneous.' Spontaneity requires the ability to function without predictability. That's asking you to function without your primary regulation tool.",
+      "'It's not a big deal.' The change itself might not be. But the loss of predictability it represents IS a big deal for your nervous system.",
+      "'You should try exposure therapy for change.' Gradual exposure to change can help. Being thrown into chaos does not."
+    ],
+    tryingToSay: [
+      "My routines aren't preferences. They're regulation. When you disrupt them, you're not just inconveniencing me — you're removing the scaffolding my nervous system uses to stay stable.",
+      "Predictability isn't boring to me. It's the foundation everything else is built on. Without it, even simple things become hard.",
+      "I'm not afraid of change. Change just costs me more than it costs you."
+    ],
+    sayThis: [
+      "I do my best when I know what to expect. Unexpected changes throw me off more than they might throw you off. A heads-up — even five minutes — makes a big difference.",
+      "My routines aren't optional habits. They're how my nervous system stays regulated. When they break, I need time to rebuild, not pressure to adjust faster.",
+      "I'm not trying to control your behavior. I'm trying to maintain enough predictability in my environment to function well."
+    ],
+    relationships: "You need a partner who respects routine without experiencing it as boring. The biggest friction point: spontaneous partners will feel constrained by your need for predictability, and you'll feel destabilized by their spontaneity. The solution isn't compromise — it's separate domains. Protect your essential routines, and build genuine flexibility into the areas that matter less to you.",
+    work: "You thrive in predictable environments with clear expectations, stable processes, and advance notice for changes. Last-minute pivots, moving deadlines, and 'we'll figure it out as we go' cultures are hostile to your regulation style. Your productivity in a stable environment is excellent — and it degrades sharply when stability is removed.",
+    energy: "Unexpected change is your largest energy cost. A single disrupted routine can cascade into a depleted day. Budget for surprises by building buffer into your schedule, and communicate your needs early rather than after the crash."
+  },
+
+  seeker: {
+    name: "The Seeker",
+    tagline: "Novelty as oxygen. The beautiful, unfinished trail.",
+    description: "You need constant new input to stay alive cognitively. Not want — need. Without novelty, your brain slows to a crawl, boredom becomes physical pain, and the world turns gray. You start things with blazing enthusiasm and abandon them when the novelty wears off — not because you lack commitment, but because your brain literally stops producing the neurochemistry to sustain interest once 'new' becomes 'known.'",
+    variants: {
+      scattered: { name: "Seeker-Scattered", desc: "Ten tabs open in the brain, all the time. Multiple parallel interests, unfinished projects, rapid context-switching. The pattern isn't disorganization — it's a brain that needs variety like lungs need air." },
+      restless: { name: "Seeker-Restless", desc: "Physical and environmental restlessness. You need to move, travel, change scenery. The same room for too long feels like a cage. Boredom is a physical state for you, not just a cognitive one." }
+    },
+    whatOthersMisread: [
+      "People think you lack commitment. You don't lack commitment — you lack sustained neurochemistry for 'known' things. The initial commitment was real. The abandonment isn't a choice; it's a chemical withdrawal.",
+      "People think you're irresponsible. They see the trail of unfinished projects and assume carelessness. What they're not seeing is the genuine inability to sustain interest once novelty fades — regardless of consequences.",
+      "People think you should be grateful for stability. Stability feels like suffocation to your nervous system. What others experience as security, you experience as cognitive deprivation."
+    ],
+    whatYouMisread: [
+      "You think your inability to finish things means you lack discipline. It doesn't. Your brain's reward system is wired to respond to novelty, and that wiring is structural, not moral.",
+      "You think if you just found 'the right thing,' you'd stick with it. Maybe. But more likely, even the right thing will lose its novelty. The pattern is about the seeking, not the finding."
+    ],
+    whatThisIsNot: [
+      "This is not flightiness. There's nothing lightweight about needing constant new input to function cognitively.",
+      "This is not immaturity. You're not 'growing out of' this pattern. It's how your dopamine system works.",
+      "This is not the same as being creative. You may be creative, but the driver here is novelty hunger, not creative impulse."
+    ],
+    stressLoop: ["You encounter something new and exciting — engagement is instant and intense", "The novelty wears off and neurochemistry drops — engagement becomes effortful", "You abandon the current thing and start seeking the next new thing", "A trail of unfinished projects builds, generating shame — but the shame isn't strong enough to override the novelty cycle"],
+    whatHelps: [
+      "Designing your life around novelty rather than against it. Roles with variety, environments that change, relationships that surprise.",
+      "Accepting the abandoned project trail as structural, not moral. Some things will be 90% finished. That's the pattern, not a failure.",
+      "Making old things new again — changing the approach, the environment, the angle. Your brain needs newness, but sometimes 'new' can be manufactured within an existing commitment.",
+      "Finding one or two anchor commitments that naturally include variety (a complex career, a creative practice, a partner who surprises you)."
+    ],
+    whatBackfires: [
+      "'Just finish what you started.' You can't produce the neurochemistry to sustain interest after novelty fades. Forcing it produces miserable, low-quality output.",
+      "'Commit to something.' You've committed to many things. The commitment doesn't solve the novelty problem.",
+      "'Make a list and check things off.' Lists work for people whose reward systems respond to completion. Yours responds to novelty. The list becomes another abandoned project.",
+      "'Settle down.' Settling down is neurological deprivation. It's not relaxing — it's suffocating."
+    ],
+    tryingToSay: [
+      "I'm not flaky. My brain runs on novelty the way other people's brains run on routine. When the new wears off, I don't choose to disengage — my chemistry does.",
+      "The trail of unfinished things isn't laziness. Each start was genuine. The endings aren't endings by choice.",
+      "I know my pattern looks irresponsible from the outside. From the inside, it feels like chasing the only signal that makes my brain work."
+    ],
+    sayThis: [
+      "I need variety and novelty to function. It's not that I get bored easily — it's that my brain literally stops engaging when things become too familiar. This isn't a preference; it's how my reward system works.",
+      "If you see me start something with huge enthusiasm and then drift away, that's not about the thing being wrong. It's about the novelty chemistry expiring. Don't take it personally.",
+      "The best way to keep me engaged is to keep things fresh. Change the angle, the environment, the challenge. Sameness shuts me down."
+    ],
+    relationships: "You bring extraordinary energy to the beginning of relationships — intense attention, curiosity, and presence. As the novelty phase naturally subsides, you may feel the pull to seek novelty elsewhere. Partners who keep discovering new dimensions of each other hold your attention. Partners who settle into comfortable routines may find you drifting. The work is building depth of novelty within one relationship rather than seeking it across many.",
+    work: "You excel in roles with constant variety: consulting, creative work, startup environments, anything where the problem changes regularly. You struggle in maintenance roles, repetitive processes, and steady-state operations. The ideal career path isn't a ladder — it's a portfolio of evolving challenges.",
+    energy: "Novelty IS your energy source. New environments, new ideas, new people charge you up. Repetition depletes you. Your energy management strategy should maximize novel input and minimize required repetition — not the other way around."
+  },
+
+  guardian: {
+    name: "The Guardian",
+    tagline: "The quiet math of energy you can't afford to spend.",
+    description: "Your primary experience is managing an overwhelm threshold that's constitutionally lower than the world expects. You've learned to withdraw, conserve, and protect as primary strategies — not because you lack ambition, but because the cost of full engagement is higher than most people can imagine. You appear calm. Under the surface, you're running a constant cost-benefit analysis on every demand.",
+    variants: {
+      withdrawn: { name: "Guardian-Withdrawn", desc: "Your primary strategy is withdrawal and isolation when demands accumulate. You 'go dark' during high-stress periods — not as avoidance, but as emergency energy conservation. The silence isn't anger. It's the sound of a system in protection mode." },
+      conserved: { name: "Guardian-Conserved", desc: "You've built a life around energy management. Low-demand job, small social circle, controlled environment. Not burned out — optimized. You're operating below the capacity others expect of you because the cost of full engagement is too high. The optimization is intelligent, even if it looks like underachievement." }
+    },
+    whatOthersMisread: [
+      "People think you lack ambition. You don't lack ambition. You lack the energy budget to pursue ambition at the pace the world expects. What others spend freely, you have to budget.",
+      "People think you're choosing isolation. You're not choosing it. You're managing a threshold. When demands exceed your capacity, withdrawal is the only move that doesn't end in shutdown.",
+      "People think you're calm. You're not calm — you're conserving. The composure is a conservation strategy, not a personality trait."
+    ],
+    whatYouMisread: [
+      "You think you're weak or broken because your capacity is lower than others'. Your capacity isn't lower — your processing cost is higher. You're doing as much internal work as anyone else; the budget just runs out sooner.",
+      "You think you're underachieving. You're achieving at the maximum sustainable level for your nervous system. The gap between what you could theoretically do and what you can sustainably do is the disability — not a character flaw."
+    ],
+    whatThisIsNot: [
+      "This is not depression, though it can look like it. Depression is about mood. Your pattern is about capacity. You're not sad — you're managed.",
+      "This is not laziness. Laziness implies not caring. You care — you just can't afford the output others take for granted.",
+      "This is not burnout (unless the burnout overlay is active). This is your baseline. The low threshold isn't temporary — it's structural."
+    ],
+    stressLoop: ["Demands arrive that exceed your available energy", "You try to meet them, spending into deficit", "Your system hits the wall — shutdown, withdrawal, or crash", "Recovery takes longer than anyone expects, during which new demands pile up — and you restart the cycle in deeper deficit"],
+    whatHelps: [
+      "Designing your life around your actual capacity, not the capacity others expect. A sustainably managed life at 60% capacity produces more over time than cycles of 100% followed by crash.",
+      "Learning to say no before you hit the wall, rather than after. The wall is expensive. The 'no' is cheap.",
+      "Environments with lower baseline demand: quieter, smaller, more predictable, fewer social obligations. Not because you can't handle more — because handling less gives you the margin to actually live.",
+      "People who don't measure your worth by your output. Partners, friends, and colleagues who understand that your management of energy IS the achievement."
+    ],
+    whatBackfires: [
+      "'Push through it.' Pushing through depletes your reserves further and extends recovery. It doesn't build resilience — it builds deficit.",
+      "'You just need to get out more.' More output without more capacity just accelerates the crash cycle.",
+      "'Everyone feels tired.' Not like this. The fatigue you experience isn't the normal tiredness of a full life. It's the overwhelm of a system running at capacity on half the budget.",
+      "'You have so much potential.' You do. And the gap between potential and sustainable output is the most painful part of this pattern. Pointing it out doesn't help."
+    ],
+    tryingToSay: [
+      "I'm not lazy or unmotivated. I'm running the same processes as everyone else on a smaller energy budget. Everything costs me more than it costs you.",
+      "When I go quiet or pull back, I'm not punishing anyone. I'm protecting what's left. If I spend into deficit, recovery takes days, not hours.",
+      "The life I've built looks small from the outside. From inside, it's the maximum sustainable configuration for my nervous system."
+    ],
+    sayThis: [
+      "My energy threshold is lower than what most people expect. I hit overwhelm faster, and recovery takes longer. This isn't about willpower — it's about capacity.",
+      "When I withdraw, it's not about you. It's about me running out. If you give me space without judgment, I'll come back faster.",
+      "The most helpful thing you can do is lower the demand, not raise the expectation."
+    ],
+    relationships: "You need a partner who understands that your withdrawal isn't rejection. When you go quiet, it's conservation, not coldness. The biggest relationship challenge: partners with high social needs will feel neglected by your conservation patterns, and you'll feel overwhelmed by their needs. The healthy balance is a partner who has their own sources of stimulation and doesn't depend on you to provide it.",
+    work: "You function best in low-demand roles with predictable requirements and minimal social obligation. This isn't underemployment — it's sustainable employment. The most important career insight: a role you can sustain at 80% is worth more than a role that demands 100% and burns you out every six months.",
+    energy: "Everything costs more than it should. Social interaction costs more. Sensory environments cost more. Task-switching costs more. Your management strategy is the entire game: reduce baseline load, protect recovery time, and never spend into deficit expecting to recover quickly."
+  },
+
+  low_signal: {
+    name: "No Strong Pattern Detected",
+    tagline: "Your answers don't show a strongly organized neurodivergent pattern.",
+    description: "That doesn't mean nothing is happening. It could mean your patterns are mild or situational, that you're well-compensated, or that this particular set of questions didn't capture your experience. If you feel like something is off but this assessment didn't surface it, trust that feeling. A conversation with a clinician who understands neurodivergence can explore things a questionnaire can't.",
+    variants: {},
+    whatOthersMisread: [],
+    whatYouMisread: [],
+    whatThisIsNot: [],
+    stressLoop: [],
+    whatHelps: [
+      "If something still feels off, talk to a clinician who specializes in neurodivergence — not just a general practitioner.",
+      "This assessment measures specific patterns. It's possible your experience is organized differently than what these 48 questions target.",
+      "Consider retaking when you're in a different life phase. Stress, burnout, and life changes can suppress or amplify patterns."
+    ],
+    whatBackfires: [],
+    tryingToSay: [],
+    sayThis: [],
+    relationships: "",
+    work: "",
+    energy: ""
+  }
+};
+
+// ============================================================================
+// UI STATE & LOGIC
+// ============================================================================
+
+let currentQuestion = 0;
+let answers = []; // [{questionId, optionIndex}]
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById('screen-' + id);
+  if (target) {
+    target.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+}
+
+function startQuiz() {
+  currentQuestion = 0;
+  answers = new Array(QUESTIONS.length).fill(null);
+  showScreen('quiz');
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = QUESTIONS[currentQuestion];
+  document.getElementById('quiz-progress-text').textContent = `Question ${currentQuestion + 1} of ${QUESTIONS.length}`;
+  document.getElementById('quiz-progress-fill').style.width = ((currentQuestion + 1) / QUESTIONS.length * 100) + '%';
+  document.getElementById('quiz-qnum').textContent = `Question ${currentQuestion + 1}`;
+  document.getElementById('quiz-question').textContent = q.text;
+
+  const ctx = document.getElementById('quiz-context');
+  if (q.context) { ctx.textContent = q.context; ctx.style.display = 'block'; }
+  else { ctx.style.display = 'none'; }
+
+  const optContainer = document.getElementById('quiz-options');
+  optContainer.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const div = document.createElement('div');
+    div.className = 'quiz__option' + (answers[currentQuestion] === i ? ' selected' : '');
+    div.onclick = () => selectOption(i);
+    div.innerHTML = `
+      <div class="quiz__option-letter">${opt.label}</div>
+      <div class="quiz__option-text">${opt.text}</div>
+    `;
+    optContainer.appendChild(div);
+  });
+
+  // Nav
+  document.getElementById('quiz-back').style.visibility = currentQuestion > 0 ? 'visible' : 'hidden';
+  const nextBtn = document.getElementById('quiz-next');
+  nextBtn.textContent = currentQuestion === QUESTIONS.length - 1 ? 'See Results' : 'Next';
+  nextBtn.className = 'btn--next' + (answers[currentQuestion] !== null ? ' enabled' : '');
+}
+
+function selectOption(i) {
+  answers[currentQuestion] = i;
+  document.querySelectorAll('.quiz__option').forEach((el, idx) => {
+    el.classList.toggle('selected', idx === i);
+  });
+  document.getElementById('quiz-next').className = 'btn--next enabled';
+}
+
+function nextQuestion() {
+  if (answers[currentQuestion] === null) return;
+  if (currentQuestion < QUESTIONS.length - 1) {
+    currentQuestion++;
+    renderQuestion();
+    document.querySelector('.quiz__body').scrollTo(0, 0);
+  } else {
+    runAnalysis();
+  }
+}
+
+function prevQuestion() {
+  if (currentQuestion > 0) {
+    currentQuestion--;
+    renderQuestion();
+  }
+}
+
+// ============================================================================
+// ANALYSIS ANIMATION
+// ============================================================================
+
+function runAnalysis() {
+  showScreen('analysis');
+
+  // Build answer objects
+  const answerData = answers.map((optIdx, i) => ({
+    questionId: QUESTIONS[i].id,
+    optionIndex: optIdx
+  }));
+
+  const results = calculateScores(answerData);
+  const contradictions = detectContradictions(results.dimensions);
+  const profile = matchProfile(results.dimensions, results.adhd_consistent, results.autism_consistent, contradictions);
+
+  // Animate dimensions
+  const dimsContainer = document.getElementById('analysis-dims');
+  dimsContainer.innerHTML = '';
+  const dimOrder = Object.keys(DIM_NAMES);
+
+  dimOrder.forEach(dim => {
+    const div = document.createElement('div');
+    div.className = 'analysis__dim';
+    div.innerHTML = `
+      <div class="analysis__dim-header">
+        <span class="analysis__dim-name">${DIM_NAMES[dim]}</span>
+        <span class="analysis__dim-score" id="ascore-${dim}">${Math.round(results.dimensions[dim] * 100)}%</span>
+      </div>
+      <div class="analysis__dim-bar">
+        <div class="analysis__dim-fill" id="afill-${dim}" style="background:${DIM_COLORS[dim]}"></div>
+      </div>
+    `;
+    dimsContainer.appendChild(div);
+  });
+
+  // Stagger animation
+  dimOrder.forEach((dim, i) => {
+    setTimeout(() => {
+      document.getElementById('afill-' + dim).style.width = (results.dimensions[dim] * 100) + '%';
+      document.getElementById('ascore-' + dim).classList.add('visible');
+    }, 300 + i * 150);
+  });
+
+  // Status updates
+  const statusEl = document.getElementById('analysis-status');
+  setTimeout(() => {
+    statusEl.querySelector('.analysis__status').textContent = 'Detecting contradictions...';
+  }, 2000);
+  setTimeout(() => {
+    statusEl.querySelector('.analysis__status').textContent = 'Matching profile pattern...';
+  }, 3500);
+  setTimeout(() => {
+    statusEl.querySelector('.analysis__status').textContent = 'Building your result...';
+  }, 4500);
+
+  // Show results
+  setTimeout(() => {
+    renderResults(results, contradictions, profile);
+    showScreen('results');
+  }, 5500);
+}
+
+// ============================================================================
+// RESULTS RENDERING
+// ============================================================================
+
+function renderResults(scores, contradictions, profile) {
+  const container = document.getElementById('results-content');
+  const d = scores.dimensions;
+  const p = PROFILE_DATA[profile.id];
+  const v = p.variants[profile.variant];
+
+  if (profile.lowSignal) {
+    container.innerHTML = renderLowSignalResults(scores, p);
+    return;
+  }
+
+  // Get top 4 dimensions
+  const dimsSorted = Object.entries(d).sort((a,b) => b[1] - a[1]);
+  const top4 = dimsSorted.slice(0, 4);
+
+  let html = '';
+
+  // HERO
+  html += `
+    <div class="results__hero">
+      <div class="results__hero-label">Your pattern</div>
+      <h1 class="serif">${p.name}</h1>
+      ${v ? `<div class="results__hero-variant">${v.name}</div>` : ''}
+      <p class="results__hero-tagline">"${p.tagline}"</p>
+      <div class="results__hero-confidence">
+        ${profile.confidence === 'high' ? '● High confidence match' :
+          profile.confidence === 'moderate' ? '◐ Moderate confidence' :
+          profile.confidence === 'complex' ? '○ Complex pattern — closest match' : ''}
+        ${profile.fallback ? ' (pattern is complex)' : ''}
+      </div>
+    </div>
+    <div class="results__body">
+  `;
+
+  // PRIMARY TIER label
+  html += `<div class="results__tier-label">Primary — The pattern</div>`;
+
+  // Description + variant
+  html += `
+    <div class="results__section">
+      <div class="results__section-label">Your profile</div>
+      <p>${p.description}</p>
+      ${v ? `<p style="margin-top:12px;color:var(--text-primary);font-weight:500">${v.desc}</p>` : ''}
+    </div>
+  `;
+
+  // Top dimensions
+  html += `
+    <div class="results__section">
+      <div class="results__section-label">Strongest dimensions</div>
+      <div class="results__dims">
+        ${dimsSorted.map(([dim, val]) => `
+          <div class="results__dim">
+            <span class="results__dim-label">${DIM_NAMES[dim]}</span>
+            <div class="results__dim-bar">
+              <div class="results__dim-fill" style="width:${val*100}%;background:${DIM_COLORS[dim]}"></div>
+            </div>
+            <span class="results__dim-score" style="color:${DIM_COLORS[dim]}">${Math.round(val*100)}%</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+
+  // Contradictions
+  if (contradictions.length > 0) {
+    html += `
+      <div class="results__section">
+        <div class="results__section-label">Core contradictions</div>
+        <h3 class="serif">The tensions that define your pattern</h3>
+        <p>These contradictions — where two real needs pull in opposite directions — are where the deepest insight lives. This is what makes your pattern feel impossible to explain in one sentence.</p>
+        ${contradictions.map(c => `
+          <div class="results__contradiction">
+            <div class="results__contradiction-tier">Tier ${c.tier} — ${c.label}</div>
+            <div class="results__contradiction-text">${c.interpretation}</div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  // What others misread
+  if (p.whatOthersMisread.length > 0) {
+    html += `
+      <div class="results__section">
+        <div class="results__section-label">What others misread about you</div>
+        ${p.whatOthersMisread.map(m => `<div class="results__misread-item"><p>${m}</p></div>`).join('')}
+      </div>
+    `;
+  }
+
+  // What you misread about yourself
+  if (p.whatYouMisread && p.whatYouMisread.length > 0) {
+    html += `
+      <div class="results__section">
+        <div class="results__section-label">What you misread about yourself</div>
+        ${p.whatYouMisread.map(m => `<div class="results__misread-item"><p>${m}</p></div>`).join('')}
+      </div>
+    `;
+  }
+
+  // What this is not
+  if (p.whatThisIsNot.length > 0) {
+    html += `
+      <div class="results__section">
+        <div class="results__section-label">What this is not</div>
+        ${p.whatThisIsNot.map(m => `<div class="results__list-item">${m}</div>`).join('')}
+      </div>
+    `;
+  }
+
+  // Shareable summary card
+  html += `
+    <div class="results__share-card">
+      <h3 class="serif">${p.name}</h3>
+      <p>"${p.tagline}"</p>
+      <p style="margin-top:12px;font-size:13px;opacity:0.7">Top dimensions: ${top4.map(([dim,val]) => `${DIM_NAMES[dim]} ${Math.round(val*100)}%`).join(' · ')}</p>
+      ${contradictions.length > 0 ? `<p style="margin-top:8px;font-size:13px;opacity:0.7">Core tension: ${contradictions[0].label}</p>` : ''}
+    </div>
+  `;
+
+  // SECONDARY TIER label
+  html += `<div class="results__tier-label">Secondary — The depth</div>`;
+
+  // Stress loop
+  if (p.stressLoop.length > 0) {
+    html += `
+      <div class="results__section">
+        <div class="results__section-label">Your stress loop</div>
+        <h3 class="serif">The cycle that keeps repeating</h3>
+        <div class="results__loop">
+          ${p.stressLoop.map((step, i) => `
+            <div class="results__loop-step">
+              <span class="results__loop-arrow">${i === 0 ? '→' : '↓'}</span>
+              <span class="results__loop-text">${step}</span>
+            </div>
+          `).join('')}
+          <div class="results__loop-step">
+            <span class="results__loop-arrow">↻</span>
+            <span class="results__loop-text" style="font-style:italic;color:var(--text-tertiary)">Repeat</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // What helps
+  if (p.whatHelps.length > 0) {
+    html += `
+      <div class="results__section">
+        <div class="results__section-label">What actually helps</div>
+        ${p.whatHelps.map(h => `<div class="results__list-item">${h}</div>`).join('')}
+      </div>
+    `;
+  }
+
+  // What backfires
+  if (p.whatBackfires.length > 0) {
+    html += `
+      <div class="results__section">
+        <div class="results__section-label">Advice that backfires</div>
+        ${p.whatBackfires.map(b => `<div class="results__list-item">${b}</div>`).join('')}
+      </div>
+    `;
+  }
+
+  // What you might be trying to say
+  if (p.tryingToSay && p.tryingToSay.length > 0) {
+    html += `
+      <div class="results__section">
+        <div class="results__section-label">What you might be trying to say</div>
+        ${p.tryingToSay.map(t => `<div class="results__quote">${t}</div>`).join('')}
+      </div>
+    `;
+  }
+
+  // Say this to someone
+  if (p.sayThis && p.sayThis.length > 0) {
+    html += `
+      <div class="results__section">
+        <div class="results__section-label">Say this to someone</div>
+        <p style="margin-bottom:16px;font-size:14px;color:var(--text-tertiary)">Ready-made explanations you can literally send to a partner, boss, friend, or therapist.</p>
+        ${p.sayThis.map(s => `<div class="results__quote" style="border-left-color:var(--accent);background:var(--accent-light)">${s}</div>`).join('')}
+      </div>
+    `;
+  }
+
+  // TERTIARY TIER
+  html += `<div class="results__tier-label">Tertiary — Life sections</div>`;
+
+  // Relationships
+  if (p.relationships) {
+    html += `
+      <div class="results__section">
+        <div class="results__section-label">Relationships</div>
+        <h3 class="serif">How this shows up with people</h3>
+        <p>${p.relationships}</p>
+      </div>
+    `;
+  }
+
+  // Work
+  if (p.work) {
+    html += `
+      <div class="results__section">
+        <div class="results__section-label">Work</div>
+        <h3 class="serif">How this shows up professionally</h3>
+        <p>${p.work}</p>
+      </div>
+    `;
+  }
+
+  // Energy
+  if (p.energy) {
+    html += `
+      <div class="results__section">
+        <div class="results__section-label">Energy management</div>
+        <h3 class="serif">What costs, what restores</h3>
+        <p>${p.energy}</p>
+      </div>
+    `;
+  }
+
+  // Screening summary
+  html += `
+    <div class="results__section">
+      <div class="results__section-label">Pattern-adjacent screening</div>
+      <div class="results__screening">
+        <div class="results__screening-item">
+          <div class="results__screening-label">ADHD-consistent</div>
+          <div class="results__screening-score">${Math.round(scores.adhd_consistent * 100)}%</div>
+          <div class="results__screening-bar"><div class="results__screening-fill" style="width:${scores.adhd_consistent*100}%"></div></div>
+        </div>
+        <div class="results__screening-item">
+          <div class="results__screening-label">Autism-consistent</div>
+          <div class="results__screening-score">${Math.round(scores.autism_consistent * 100)}%</div>
+          <div class="results__screening-bar"><div class="results__screening-fill" style="width:${scores.autism_consistent*100}%"></div></div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Disclaimer
+  html += `
+    <div class="results__disclaimer">
+      This is pattern-mapping, not diagnosis. These results describe how your attention, energy, social processing, and emotional regulation tend to operate — based on your self-reported experience. If these patterns are affecting your life, a professional evaluation can provide clarity and access to support. This assessment is research-informed but not clinically validated.
+    </div>
+  `;
+
+  // Retake
+  html += `
+    <div style="text-align:center;margin-top:40px">
+      <button class="btn btn--primary" onclick="startQuiz()" style="margin-right:12px">Retake Assessment</button>
+      <button class="btn btn--ghost" onclick="showScreen('landing')">Back to start</button>
+    </div>
+  `;
+
+  html += '</div>'; // close results__body
+  container.innerHTML = html;
+}
+
+function renderLowSignalResults(scores, p) {
+  return `
+    <div class="results__hero" style="background:linear-gradient(180deg, var(--bg-warm) 0%, var(--bg) 100%)">
+      <div class="results__hero-label">Your result</div>
+      <h1 class="serif">${p.name}</h1>
+    </div>
+    <div class="results__body">
+      <div class="results__low-signal">
+        <h3 class="serif">${p.tagline}</h3>
+        <p>${p.description}</p>
+      </div>
+
+      <div class="results__section">
+        <div class="results__section-label">Your dimensions</div>
+        <div class="results__dims">
+          ${Object.entries(scores.dimensions).sort((a,b) => b[1]-a[1]).map(([dim, val]) => `
+            <div class="results__dim">
+              <span class="results__dim-label">${DIM_NAMES[dim]}</span>
+              <div class="results__dim-bar">
+                <div class="results__dim-fill" style="width:${val*100}%;background:${DIM_COLORS[dim]}"></div>
+              </div>
+              <span class="results__dim-score" style="color:${DIM_COLORS[dim]}">${Math.round(val*100)}%</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="results__section">
+        <div class="results__section-label">What might help</div>
+        ${p.whatHelps.map(h => `<div class="results__list-item">${h}</div>`).join('')}
+      </div>
+
+      <div class="results__section">
+        <div class="results__section-label">Pattern-adjacent screening</div>
+        <div class="results__screening">
+          <div class="results__screening-item">
+            <div class="results__screening-label">ADHD-consistent</div>
+            <div class="results__screening-score">${Math.round(scores.adhd_consistent * 100)}%</div>
+            <div class="results__screening-bar"><div class="results__screening-fill" style="width:${scores.adhd_consistent*100}%"></div></div>
+          </div>
+          <div class="results__screening-item">
+            <div class="results__screening-label">Autism-consistent</div>
+            <div class="results__screening-score">${Math.round(scores.autism_consistent * 100)}%</div>
+            <div class="results__screening-bar"><div class="results__screening-fill" style="width:${scores.autism_consistent*100}%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="results__disclaimer">
+        This is pattern-mapping, not diagnosis. If you feel like something is off but this assessment didn't surface it, trust that feeling. A conversation with a clinician who understands neurodivergence can explore things a questionnaire can't.
+      </div>
+
+      <div style="text-align:center;margin-top:40px">
+        <button class="btn btn--primary" onclick="startQuiz()">Retake Assessment</button>
+      </div>
+    </div>
+  `;
+}
+</script>
+</body>
+</html>
