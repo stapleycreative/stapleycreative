@@ -25,9 +25,11 @@ function GalleryBase({
         {images.map((src, i) => (
           <div
             key={src}
-            className="relative aspect-[975/2113] overflow-hidden rounded-[28px]"
+            className="relative aspect-[975/2113] overflow-hidden rounded-[14px]"
             style={{
               boxShadow: "0 1px 3px rgba(28, 32, 36, 0.06), 0 0 1px rgba(28, 32, 36, 0.04)",
+              outline: "1px solid rgba(28, 32, 36, 0.06)",
+              outlineOffset: "-1px",
             }}
           >
             <Image
