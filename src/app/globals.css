@@ -42,13 +42,6 @@
 body {
   color: var(--color-text-primary);
   background: var(--color-bg-primary);
-  /* Subconscious 8px grid — 1.8% opacity, barely visible. Pairs with the 4/8px spacing grid. */
-  background-image: repeating-linear-gradient(
-    90deg,
-    rgba(28, 32, 36, 0.018) 0 1px,
-    transparent 1px 8px
-  );
-  background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

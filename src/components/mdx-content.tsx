@@ -25,8 +25,6 @@ const components = {
           aspectRatio: aspect,
           backgroundColor: "var(--color-bg-surface)",
           border: "1px solid var(--color-border-subtle)",
-          backgroundImage:
-            "repeating-linear-gradient(135deg, rgba(28,32,36,0.025) 0px, rgba(28,32,36,0.025) 1px, transparent 1px, transparent 10px)",
         }}
       />
       {caption && (
