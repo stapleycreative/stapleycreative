@@ -49,19 +49,21 @@ function GalleryBase({
   );
 }
 
+// Order mirrors the original Squarespace site's "Pulling it all together"
+// 4-column layout: row 1 = positions 1-4, row 2 = 5-8, row 3 = 9-12.
 const HIKI_SCREENS = [
-  "/work/hiki/screens/screen-630.png",
-  "/work/hiki/screens/screen-631.png",
-  "/work/hiki/screens/screen-632.png",
-  "/work/hiki/screens/screen-633.png",
-  "/work/hiki/screens/screen-634.png",
-  "/work/hiki/screens/screen-635.png",
-  "/work/hiki/screens/screen-636.png",
-  "/work/hiki/screens/screen-637.png",
   "/work/hiki/screens/screen-639.png",
+  "/work/hiki/screens/screen-637.png",
+  "/work/hiki/screens/screen-634.png",
+  "/work/hiki/screens/screen-636.png",
+  "/work/hiki/screens/screen-633.png",
+  "/work/hiki/screens/screen-632.png",
+  "/work/hiki/screens/screen-635.png",
+  "/work/hiki/screens/screen-630.png",
+  "/work/hiki/screens/screen-community.png",
   "/work/hiki/screens/screen-640.png",
+  "/work/hiki/screens/screen-631.png",
   "/work/hiki/screens/screen-641.png",
-  "/work/hiki/screens/screen-643.png",
 ];
 
 export function HikiScreenshots({ caption }: { caption?: string }) {
