@@ -6,11 +6,11 @@
  * too large or too wide, and compresses them in place before they're
  * committed. Idempotent — if a file already meets the budget, it's left alone.
  *
- * Budget (chosen so next/image has headroom for responsive srcset):
+ * Budget (tuned for UI/design fidelity, not bandwidth):
  *   - max width: 2400px
- *   - JPEG quality: 85
- *   - PNG: palette-8 quantization if that fits under the size cap,
- *     otherwise lossless re-encode
+ *   - JPEG quality: 92 (preserves fine type and clean edges)
+ *   - PNG: quality 95 with palette, compressionLevel 9 (lossless-ish for UI)
+ *   - Source format preserved — never convert PNG → JPEG implicitly
  *   - size cap: 500KB (warn only, never fail the commit)
  *
  * Usage:
@@ -24,7 +24,8 @@ import { extname } from "node:path";
 import sharp from "sharp";
 
 const MAX_WIDTH = 2400;
-const JPEG_QUALITY = 85;
+const JPEG_QUALITY = 92;
+const PNG_QUALITY = 95;
 const SIZE_WARN_KB = 500;
 const IMAGE_EXT = new Set([".jpg", ".jpeg", ".png", ".webp"]);
 
@@ -61,9 +62,11 @@ async function processFile(filepath) {
   if (ext === ".jpg" || ext === ".jpeg") {
     output = await pipeline.jpeg({ quality: JPEG_QUALITY, mozjpeg: true }).toBuffer();
   } else if (ext === ".png") {
-    output = await pipeline.png({ quality: 85, compressionLevel: 9, palette: true }).toBuffer();
+    output = await pipeline
+      .png({ quality: PNG_QUALITY, compressionLevel: 9, palette: true })
+      .toBuffer();
   } else if (ext === ".webp") {
-    output = await pipeline.webp({ quality: 85 }).toBuffer();
+    output = await pipeline.webp({ quality: 92 }).toBuffer();
   } else {
     return null;
   }
