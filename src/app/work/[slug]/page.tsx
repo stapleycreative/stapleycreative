@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { getAllSlugs, getContentBySlug } from "@/lib/content";
 import { MdxContent } from "@/components/mdx-content";
+import { CaseStudyCover } from "@/components/case-study-cover";
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
@@ -94,23 +95,19 @@ export default async function CaseStudyPage({ params }: Props) {
               priority
             />
           </div>
-        ) : extra.coverBrief ? (
-          <div className="mt-12 rounded-xl flex flex-col items-center justify-center px-8 text-center"
-            style={{
-              aspectRatio: "16 / 10",
-              backgroundColor: "var(--color-bg-surface)",
-              border: "1px dashed var(--color-border-subtle)",
-            }}>
-            <span className="text-[10px] font-medium tracking-[0.22em] uppercase mb-4"
-              style={{ color: "var(--color-text-tertiary)" }}>
-              Cover · placeholder
-            </span>
-            <p className="text-sm leading-relaxed max-w-[48ch]"
-              style={{ color: "var(--color-text-secondary)" }}>
-              {String(extra.coverBrief)}
-            </p>
-          </div>
-        ) : null}
+        ) : (
+          <CaseStudyCover
+            title={String(meta.title)}
+            accent={extra.coverAccent ? String(extra.coverAccent) : undefined}
+            client={extra.client ? String(extra.client) : undefined}
+            role={extra.role ? String(extra.role) : undefined}
+            year={extra.year ? String(extra.year) : undefined}
+            number={extra.coverNumber ? String(extra.coverNumber) : undefined}
+            ground={extra.coverGround ? String(extra.coverGround) : undefined}
+            text={extra.coverText ? String(extra.coverText) : undefined}
+            accentColor={extra.coverAccentColor ? String(extra.coverAccentColor) : undefined}
+          />
+        )}
 
       <div className="mt-12">
         <MdxContent source={content} />
