@@ -1,5 +1,6 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Image from "next/image";
+import { LiveNowCard } from "./live-now-card";
 import { LottieAnimation } from "./lottie-animation";
 import { ResearchSegments } from "./research-segments";
 import { HikiScreenshots } from "./screenshot-gallery";
@@ -13,6 +14,7 @@ const components = {
   VideoBlock,
   VideoPair,
   MediaGrid2x2,
+  LiveNowCard,
 
   /**
    * Dual-mode image component.

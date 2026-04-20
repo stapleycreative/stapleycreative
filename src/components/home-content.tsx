@@ -30,8 +30,6 @@ interface HomeContentProps {
 export function HomeContent({ caseStudies, posts }: HomeContentProps) {
   const heroRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
-  const subheadRef = useRef<HTMLParagraphElement>(null);
-  const rolesRef = useRef<HTMLDivElement>(null);
   const sectionLabelRef = useRef<HTMLHeadingElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
   const writingRef = useRef<HTMLElement>(null);
@@ -87,30 +85,8 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
         });
       }
 
-      // Subhead, fade up after headline
+      // Subhead + role tags: no entrance animation (they render static with the page).
 
-      if (subheadRef.current) {
-        gsap.from(subheadRef.current, {
-          opacity: 0,
-          y: 16,
-          duration: 0.7,
-          ease: "power2.out",
-          delay: 0.5,
-        });
-      }
-
-      // Role tags, stagger in after subhead
-
-      if (rolesRef.current) {
-        gsap.from(rolesRef.current.children, {
-          opacity: 0,
-          x: -12,
-          duration: 0.5,
-          stagger: 0.15,
-          ease: "power2.out",
-          delay: 0.8,
-        });
-      }
       // "Selected work" label, scroll reveal
 
       if (sectionLabelRef.current) {
@@ -171,7 +147,6 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
           I figure out the real problem. Then I build the system that fixes it.
         </h1>
         <p
-          ref={subheadRef}
           className="mt-8 text-lg max-w-[760px] leading-relaxed"
           style={{ color: "var(--color-text-secondary)" }}
         >
@@ -179,7 +154,7 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
           that work. The AI tools and design process on this site are the
           same ones I ship with every day.
         </p>
-        <div ref={rolesRef} className="mt-8 flex flex-wrap gap-3 items-center">
+        <div className="mt-8 flex flex-wrap gap-3 items-center">
           <span className="rounded" style={monoTagStyle}>
             Currently at GiveCampus
           </span>
