@@ -16,6 +16,7 @@ export function LottieAnimation({
   speed = 1,
   aspect = "1/1",
   size = 360,
+  offsetX = 0,
 }: {
   src: string;
   caption?: string;
@@ -25,11 +26,16 @@ export function LottieAnimation({
   aspect?: string;
   /** Max width in px. Default 360px keeps the animation illustrative rather than full-bleed. */
   size?: number;
+  /** Horizontal offset in px from centered position. Negative = left. */
+  offsetX?: number;
 }) {
   return (
     <figure
       className="my-6 not-prose mx-auto"
-      style={{ maxWidth: `${size}px` }}
+      style={{
+        maxWidth: `${size}px`,
+        transform: offsetX ? `translateX(${offsetX}px)` : undefined,
+      }}
       aria-label={caption || "Animation"}
     >
       <div
