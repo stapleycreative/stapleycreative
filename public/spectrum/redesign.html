@@ -656,6 +656,16 @@ body {
   color: var(--ink-5);
 }
 
+.community-pulse {
+  font-size: 13px;
+  color: var(--ink-5);
+  margin-top: 8px;
+}
+.community-pulse strong {
+  color: var(--coral-5);
+  font-weight: 600;
+}
+
 /* Screening bars (moved up) */
 .screening-summary {
   display: flex;
@@ -1111,6 +1121,49 @@ body {
   line-height: 1.65;
   color: var(--ink-5);
   margin-top: 48px;
+}
+
+.methodology-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 20px;
+  border-radius: var(--radius);
+  background: var(--bg-card);
+  border: 1px solid var(--cream-3);
+  margin-top: 16px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-decoration: none;
+  color: var(--ink-3);
+}
+.methodology-link:hover {
+  border-color: var(--coral-3);
+  background: var(--coral-1);
+}
+.methodology-link .ml-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--cream-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.methodology-link .ml-text {
+  font-size: 13px;
+  font-weight: 500;
+}
+.methodology-link .ml-sub {
+  font-size: 12px;
+  color: var(--ink-5);
+  margin-top: 1px;
+}
+.methodology-link .ml-arrow {
+  margin-left: auto;
+  color: var(--ink-6);
+  font-size: 16px;
 }
 
 /* CTA button */
@@ -1594,6 +1647,7 @@ body {
       <div class="results-variant">Bridge-Structured</div>
       <p class="results-tagline">"Both systems running. Both real. Neither optional."</p>
       <div class="confidence-badge">● High confidence match</div>
+      <div class="community-pulse">You share this pattern with <strong>14%</strong> of people who've taken Spectrum</div>
     </div>
 
     <!-- Screening (moved up) -->
@@ -1751,6 +1805,17 @@ body {
       <div class="disclaimer">
         This is pattern-mapping, not diagnosis. These results describe how your attention, energy, social processing, and emotional regulation tend to operate — based on your self-reported experience. If these patterns are affecting your life, a professional evaluation can provide clarity and access to support.
       </div>
+
+      <a class="methodology-link" href="#methodology">
+        <div class="ml-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink-4)" stroke-width="2" stroke-linecap="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        </div>
+        <div>
+          <div class="ml-text">How Spectrum works</div>
+          <div class="ml-sub">11 dimensions, scoring methodology, and the research behind pattern mapping</div>
+        </div>
+        <span class="ml-arrow">→</span>
+      </a>
 
       <div style="text-align:center;">
         <button class="retake-btn" onclick="showScreen('landing')">Retake Assessment</button>
