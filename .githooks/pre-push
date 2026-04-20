@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# Pre-push hook: run the Next.js build before allowing a push to the remote.
+#
+# Why this exists:
+#   Vercel builds run with NODE_ENV=production and strip devDependencies
+#   during install. Broken builds used to ship silently — production stayed
+#   frozen for days. This hook fails fast, locally, before you push.
+#
+# To bypass in an emergency: git push --no-verify
+
+set -e
+
+# Only run for pushes to the live branch. Skip for feature branches if/when
+# we use them.
+protected_ref="refs/heads/main"
+
+while read local_ref local_sha remote_ref remote_sha; do
+  if [ "$remote_ref" = "$protected_ref" ]; then
+    echo "→ Running build before pushing to main..."
+    if ! npm run build --silent; then
+      echo ""
+      echo "✗ Build failed. Push blocked."
+      echo "  Fix the errors above, then push again."
+      echo "  (If you really need to bypass: git push --no-verify)"
+      exit 1
+    fi
+    echo "✓ Build passed. Pushing."
+  fi
+done
+
+exit 0
