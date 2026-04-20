@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getAllSlugs, getContentBySlug } from "@/lib/content";
 import { MdxContent } from "@/components/mdx-content";
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 
 interface Props {
@@ -38,7 +39,18 @@ export default async function CaseStudyPage({ params }: Props) {
           ← Work
         </Link>
 
-        {extra.client ? (
+        {extra.logo ? (
+          <div className="mb-6">
+            <Image
+              src={String(extra.logo)}
+              alt={extra.client ? String(extra.client) : "Client logo"}
+              width={typeof extra.logoWidth === "number" ? extra.logoWidth : 171}
+              height={typeof extra.logoHeight === "number" ? extra.logoHeight : 74}
+              style={{ height: "32px", width: "auto", display: "block" }}
+              priority
+            />
+          </div>
+        ) : extra.client ? (
           <div className="mb-5 text-xs font-medium"
             style={{
               color: "var(--color-text-tertiary)",
