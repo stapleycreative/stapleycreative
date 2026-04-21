@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spectrum — Your Pattern</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   SPECTRUM v5 — ORTHOGRAPHIC FIELD GUIDE
+   Neo-brutalist structure + tessellated data viz + field guide
+   ============================================================ */
+
+:root {
+  /* Structure */
+  --border: 2.5px solid #1a1a1a;
+  --border-thick: 3px solid #1a1a1a;
+  --shadow: 4px 4px 0 #1a1a1a;
+  --shadow-sm: 3px 3px 0 #1a1a1a;
+  --shadow-lg: 6px 6px 0 #1a1a1a;
+
+  /* Palette — warm cream base, not pure white */
+  --bg: #FAF7F2;
+  --bg-card: #FFFFFF;
+  --bg-dark: #1a1a1a;
+  --bg-muted: #F0EDE6;
+  --text: #1a1a1a;
+  --text-muted: #6B6560;
+  --text-light: #9C9590;
+  --rule: #DDD8D0;
+
+  /* Accent */
+  --accent: #F98077;
+  --accent-bg: #FEF0EE;
+
+  /* Dimension colors — saturated, warm-tinted, bold enough for the style */
+  --dim-attention: #D4523E;
+  --dim-initiation: #E87461;
+  --dim-monotropic: #C49B1A;
+  --dim-routine: #E2B93A;
+  --dim-sensory: #5A9E64;
+  --dim-masking: #3D7A47;
+  --dim-emotional: #8B6CC1;
+  --dim-social: #5B7FC4;
+  --dim-rejection: #D47B6B;
+  --dim-energy: #A89070;
+  --dim-executive: #7C6B5B;
+
+  /* Type */
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --radius: 0px; /* Brutalist — no rounding */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+body { font-family: var(--font-sans); background: var(--bg); color: var(--text); line-height: 1.7; }
+::selection { background: rgba(249, 128, 119, 0.3); }
+
+.screen { display: none; }
+.screen.active { display: block; }
+
+/* Dev nav */
+.screen-nav {
+  position: fixed; top: 12px; right: 12px; z-index: 100;
+  display: flex; gap: 0; border: var(--border); box-shadow: var(--shadow-sm); background: var(--bg-dark);
+}
+.screen-nav button {
+  padding: 6px 14px; border: none; background: transparent;
+  color: rgba(255,255,255,0.45); font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: color 0.15s;
+}
+.screen-nav button:hover { color: rgba(255,255,255,0.8); }
+.screen-nav button.active { background: var(--accent); color: white; }
+
+/* ════════════════════════════════════════════
+   LANDING
+   ════════════════════════════════════════════ */
+.landing-cover {
+  min-height: 100vh; display: flex; flex-direction: column;
+  background: var(--bg-dark); color: #FAF7F2; position: relative; overflow: hidden;
+}
+.landing-cover::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.04;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+.landing-cover > * { position: relative; z-index: 1; }
+
+.landing-inner {
+  flex: 1; display: flex; flex-direction: column; justify-content: space-between;
+  padding: clamp(24px, 5vw, 56px); max-width: 1080px; margin: 0 auto; width: 100%;
+}
+.landing-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.landing-logo {
+  font-family: var(--font-sans); font-weight: 800; font-size: 16px; letter-spacing: -0.02em;
+  padding: 4px 10px; border: 2px solid rgba(255,255,255,0.25);
+}
+.landing-meta { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.35; }
+
+.landing-hero { flex: 1; display: flex; flex-direction: column; justify-content: center; max-width: 780px; padding: 48px 0; }
+.landing-hero h1 {
+  font-family: var(--font-sans); font-weight: 800; font-size: clamp(38px, 6vw, 80px);
+  line-height: 0.95; letter-spacing: -0.035em; margin-bottom: clamp(16px, 2vw, 28px);
+}
+.landing-hero h1 em {
+  font-family: var(--font-serif); font-style: italic; font-weight: 400;
+  color: var(--accent); display: inline-block;
+}
+.landing-sub {
+  font-size: clamp(15px, 1.6vw, 17px); line-height: 1.65; max-width: 500px; opacity: 0.55; margin-bottom: 36px;
+}
+
+.landing-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 32px; background: var(--accent); color: white;
+  font-family: var(--font-sans); font-size: 14px; font-weight: 700;
+  text-decoration: none; border: var(--border-thick); box-shadow: var(--shadow);
+  cursor: pointer; transition: all 0.1s;
+}
+.landing-cta:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #1a1a1a; }
+.landing-cta:active { transform: translate(4px, 4px); box-shadow: none; }
+
+.landing-bottom { display: flex; gap: clamp(24px, 4vw, 48px); }
+.landing-stat-value { font-family: var(--font-mono); font-size: 14px; font-weight: 600; }
+.landing-stat-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.3; margin-top: 2px; }
+
+/* ════════════════════════════════════════════
+   RESULTS
+   ════════════════════════════════════════════ */
+
+/* Specimen plate — hero zone */
+.specimen-plate {
+  background: var(--bg);
+  border-bottom: var(--border-thick);
+  padding: clamp(32px, 5vw, 56px) clamp(20px, 4vw, 56px);
+}
+.specimen-plate-inner {
+  max-width: 1080px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 360px; gap: 40px; align-items: start;
+}
+
+/* Tessellated animal — thick strokes between panels */
+.specimen-illustration { display: flex; flex-direction: column; align-items: center; }
+.specimen-svg-wrap {
+  width: 280px; height: 280px; display: flex; align-items: center; justify-content: center;
+  border: var(--border-thick); box-shadow: var(--shadow-lg); background: var(--bg-card);
+  padding: 16px;
+}
+.specimen-name {
+  font-family: var(--font-sans); font-weight: 800; font-size: clamp(36px, 5vw, 52px);
+  letter-spacing: -0.03em; margin-top: 20px; text-align: center; line-height: 1;
+}
+.specimen-name em { font-family: var(--font-serif); font-style: italic; font-weight: 400; }
+.specimen-clinical {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--accent); margin-top: 8px; text-align: center;
+  padding: 3px 10px; border: 2px solid var(--accent); display: inline-block;
+}
+.specimen-tagline {
+  font-family: var(--font-serif); font-style: italic; font-size: 16px;
+  color: var(--text-muted); margin-top: 12px; text-align: center;
+}
+.specimen-community {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em;
+  color: var(--text-light); margin-top: 14px; text-align: center;
+}
+.specimen-community strong { color: var(--accent); font-weight: 600; }
+
+/* Classification sidebar — the dimension scores */
+.specimen-classification {
+  border: var(--border-thick); box-shadow: var(--shadow); background: var(--bg-card); padding: 0;
+}
+.specimen-class-header {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.15em;
+  text-transform: uppercase; padding: 10px 16px; background: var(--bg-dark); color: white;
+  border-bottom: var(--border-thick);
+}
+.specimen-class-row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 16px; border-bottom: 1.5px solid var(--rule);
+}
+.specimen-class-row:last-child { border-bottom: none; }
+.specimen-class-label {
+  font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); letter-spacing: 0.02em;
+  flex: 1; min-width: 0;
+}
+.specimen-class-score {
+  font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--text);
+  width: 32px; text-align: right; flex-shrink: 0;
+}
+.specimen-class-bar {
+  width: 64px; height: 8px; background: var(--bg-muted); flex-shrink: 0;
+  border: 1.5px solid var(--text); overflow: hidden;
+}
+.specimen-class-fill { height: 100%; }
+
+/* Screening strip */
+.screening-strip {
+  background: var(--bg-card); border-bottom: var(--border);
+  padding: 20px clamp(20px, 4vw, 56px);
+}
+.screening-strip-inner {
+  max-width: 1080px; margin: 0 auto; display: flex; gap: 40px;
+}
+.screening-item { flex: 1; }
+.screening-label {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px;
+}
+.screening-row { display: flex; align-items: center; gap: 10px; }
+.screening-value { font-family: var(--font-sans); font-size: 24px; font-weight: 800; letter-spacing: -0.02em; }
+.screening-track {
+  flex: 1; height: 10px; background: var(--bg-muted);
+  border: 1.5px solid var(--text); overflow: hidden;
+}
+.screening-fill { height: 100%; background: var(--text); }
+
+/* ── Share card ── */
+.share-section { max-width: 720px; margin: 0 auto; padding: 36px 20px 0; }
+.share-card {
+  border: var(--border-thick); box-shadow: var(--shadow); background: var(--bg-card); padding: 28px;
+  text-align: center;
+}
+.share-card h3 { font-family: var(--font-sans); font-weight: 800; font-size: 22px; letter-spacing: -0.02em; }
+.share-tagline { font-family: var(--font-serif); font-style: italic; font-size: 15px; color: var(--text-muted); margin-top: 4px; }
+.share-dims { font-family: var(--font-mono); font-size: 11px; color: var(--text-light); letter-spacing: 0.02em; margin-top: 8px; }
+.share-misread { font-size: 13px; color: var(--text-muted); font-style: italic; margin-top: 10px; }
+.share-actions { display: flex; gap: 0; justify-content: center; margin-top: 18px; }
+.share-btn {
+  display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px;
+  background: var(--bg-card); border: var(--border); font-family: var(--font-mono);
+  font-size: 10px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--text); cursor: pointer; transition: all 0.1s;
+}
+.share-btn:hover { background: var(--accent); color: white; }
+.share-btn + .share-btn { border-left: none; }
+
+/* ── Send section ── */
+.send-section { max-width: 720px; margin: 28px auto 0; padding: 0 20px; }
+.send-card {
+  border: var(--border-thick); box-shadow: var(--shadow); background: var(--bg-card);
+  overflow: hidden;
+}
+.send-card-header {
+  display: flex; align-items: center; gap: 12px; padding: 14px 20px;
+  background: var(--accent); color: white; border-bottom: var(--border-thick);
+}
+.send-card-header h3 { font-size: 14px; font-weight: 700; }
+.send-card-header .send-sub { font-size: 11px; opacity: 0.8; }
+.send-tabs {
+  display: flex; gap: 0; border-bottom: var(--border);
+}
+.send-tab {
+  flex: 1; padding: 8px 12px; font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase; text-align: center;
+  border: none; border-right: var(--border); background: var(--bg-muted);
+  color: var(--text-muted); cursor: pointer; transition: all 0.1s;
+}
+.send-tab:last-child { border-right: none; }
+.send-tab:hover { background: var(--bg-card); color: var(--text); }
+.send-tab.active { background: var(--bg-card); color: var(--text); font-weight: 600; }
+.send-message {
+  padding: 20px; font-size: 13px; line-height: 1.75; color: var(--text);
+}
+.send-message-label {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-light); margin-bottom: 8px;
+}
+.send-copy-btn {
+  display: inline-flex; align-items: center; gap: 6px; margin: 0 20px 20px;
+  padding: 8px 18px; background: var(--bg-dark); color: white;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+  border: var(--border-thick); box-shadow: var(--shadow-sm); cursor: pointer; transition: all 0.1s;
+}
+.send-copy-btn:hover { transform: translate(1px, 1px); box-shadow: 2px 2px 0 #1a1a1a; }
+
+/* ════════════════════════════════════════════
+   FIELD GUIDE BODY
+   ════════════════════════════════════════════ */
+.field-guide { max-width: 720px; margin: 0 auto; padding: 40px 20px 64px; }
+
+/* Section dividers — orthographic numbered taxonomy */
+.fg-section-divider {
+  display: flex; align-items: center; gap: 0; margin-bottom: 24px; margin-top: 44px;
+}
+.fg-section-number {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.15em;
+  color: white; background: var(--bg-dark); padding: 4px 10px;
+  border: var(--border); border-right: none;
+}
+.fg-section-rule { flex: 1; height: 0; border-top: var(--border); }
+.fg-section-name {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--text); padding: 4px 12px;
+  border: var(--border); border-left: none; background: var(--bg-card);
+}
+
+/* Headings */
+.fg-heading {
+  font-family: var(--font-sans); font-weight: 800; font-size: clamp(22px, 3vw, 28px);
+  letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 14px;
+}
+.fg-heading em { font-family: var(--font-serif); font-style: italic; font-weight: 400; }
+
+.fg-body {
+  font-size: 15px; line-height: 1.75; color: var(--text); margin-bottom: 16px;
+}
+
+/* Observation cards — thick border, offset shadow */
+.fg-observation {
+  border: var(--border-thick); box-shadow: var(--shadow-sm); background: var(--bg-card);
+  padding: 16px 20px; margin-bottom: 12px;
+}
+.fg-observation-label {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-light); margin-bottom: 6px;
+}
+.fg-observation-text { font-size: 14px; line-height: 1.7; color: var(--text); }
+
+/* Accent observation */
+.fg-observation-accent {
+  background: var(--accent-bg);
+  border-color: var(--accent);
+  box-shadow: 4px 4px 0 var(--accent);
+}
+.fg-observation-accent .fg-observation-label { color: var(--accent); }
+
+/* Stress/threat sequence */
+.fg-sequence { margin: 16px 0; }
+.fg-sequence-step {
+  display: flex; align-items: flex-start; gap: 0; margin-bottom: 0;
+}
+.fg-sequence-arrow {
+  font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: white;
+  background: var(--bg-dark); width: 28px; min-height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  border: var(--border); border-bottom: none; flex-shrink: 0;
+}
+.fg-sequence-step:last-child .fg-sequence-arrow { border-bottom: var(--border); }
+.fg-sequence-text {
+  font-size: 14px; line-height: 1.6; color: var(--text); padding: 10px 16px;
+  border: var(--border); border-left: none; border-bottom: none; flex: 1;
+  background: var(--bg-card);
+}
+.fg-sequence-step:last-child .fg-sequence-text { border-bottom: var(--border); }
+
+/* Quotes */
+.fg-quote {
+  border: var(--border-thick); border-left: 6px solid var(--text);
+  padding: 14px 20px; font-family: var(--font-serif); font-style: italic;
+  font-size: 17px; line-height: 1.55; margin-bottom: 10px; background: var(--bg-card);
+}
+
+/* Life/habitat cards */
+.fg-life-card {
+  border: var(--border-thick); box-shadow: var(--shadow-sm); background: var(--bg-card);
+  margin-bottom: 12px; overflow: hidden;
+}
+.fg-life-label {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: white; background: var(--bg-dark);
+  padding: 6px 16px; border-bottom: var(--border-thick);
+}
+.fg-life-content { padding: 16px 20px; }
+.fg-life-card h3 {
+  font-family: var(--font-sans); font-weight: 700; font-size: 16px;
+  letter-spacing: -0.01em; margin-bottom: 6px;
+}
+.fg-life-card p { font-size: 14px; line-height: 1.7; color: var(--text); }
+
+/* Disclaimer */
+.fg-disclaimer {
+  border: var(--border); padding: 16px 20px; background: var(--bg-muted);
+  font-size: 12px; line-height: 1.65; color: var(--text-muted); margin-top: 40px;
+}
+.fg-methodology {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px; border: var(--border); border-top: none;
+  background: var(--bg-card); cursor: pointer; transition: all 0.1s;
+  text-decoration: none; color: var(--text);
+}
+.fg-methodology:hover { background: var(--accent); color: white; }
+.fg-methodology-text { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.04em; }
+.fg-methodology-arrow { font-family: var(--font-mono); font-size: 14px; }
+
+.retake-btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px;
+  background: var(--bg-dark); color: white; font-family: var(--font-mono);
+  font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  border: var(--border-thick); box-shadow: var(--shadow); cursor: pointer; margin-top: 32px;
+  transition: all 0.1s;
+}
+.retake-btn:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #1a1a1a; }
+
+/* ── Tessellation interaction ── */
+.tess-panel { transition: opacity 0.2s; cursor: pointer; stroke: #1a1a1a; stroke-width: 2; }
+.tess-panel:hover { opacity: 0.7; }
+.tess-tooltip {
+  position: absolute; background: var(--bg-dark); color: white;
+  padding: 4px 10px; border: 2px solid var(--bg-dark);
+  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+  pointer-events: none; opacity: 0; transition: opacity 0.15s; white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .specimen-plate-inner { grid-template-columns: 1fr; gap: 28px; }
+  .screening-strip-inner { flex-direction: column; gap: 16px; }
+  .share-actions { flex-direction: column; }
+  .share-btn + .share-btn { border-left: var(--border); border-top: none; }
+  .send-tabs { flex-wrap: wrap; }
+  .send-tab { flex: none; width: 50%; border-bottom: var(--border); }
+  .send-tab:nth-child(2) { border-right: none; }
+  .send-tab:nth-child(3) { border-bottom: none; }
+  .send-tab:nth-child(4) { border-right: none; border-bottom: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="screen-nav">
+  <button onclick="showScreen('landing')">Landing</button>
+  <button class="active" onclick="showScreen('results')">Results</button>
+</div>
+
+<!-- ============================================================
+     LANDING
+     ============================================================ -->
+<div id="screen-landing" class="screen">
+  <div class="landing-cover">
+    <div class="landing-inner">
+      <div class="landing-top">
+        <div class="landing-logo">SPECTRUM</div>
+        <div class="landing-meta">Pattern Assessment v1</div>
+      </div>
+      <div class="landing-hero">
+        <h1>You're not broken.<br>You're running a <em>pattern.</em></h1>
+        <p class="landing-sub">A high-resolution map of how your attention, energy, emotions, and social processing actually operate — and language you can finally send to someone who needs to understand.</p>
+        <div><button class="landing-cta" onclick="showScreen('results')">Find your pattern <span style="font-size:18px;">→</span></button></div>
+      </div>
+      <div class="landing-bottom">
+        <div><div class="landing-stat-value">48</div><div class="landing-stat-label">Questions</div></div>
+        <div><div class="landing-stat-value">11</div><div class="landing-stat-label">Dimensions</div></div>
+        <div><div class="landing-stat-value">10</div><div class="landing-stat-label">Profiles</div></div>
+        <div><div class="landing-stat-value">~12m</div><div class="landing-stat-label">Duration</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     RESULTS
+     ============================================================ -->
+<div id="screen-results" class="screen active">
+
+  <!-- Specimen plate -->
+  <div class="specimen-plate">
+    <div class="specimen-plate-inner">
+
+      <div class="specimen-illustration">
+        <div class="specimen-svg-wrap">
+          <!-- Tessellated octopus — thick strokes between panels, color = dimension score -->
+          <svg viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+            <!-- Head / mantle — Attention + Executive -->
+            <polygon class="tess-panel" data-dim="Attention" data-score="78" points="130,20 160,45 155,80 130,90 105,80 100,45" fill="var(--dim-attention)" opacity="0.85"/>
+            <polygon class="tess-panel" data-dim="Executive" data-score="65" points="100,45 85,35 75,55 80,75 105,80" fill="var(--dim-executive)" opacity="0.65"/>
+            <polygon class="tess-panel" data-dim="Executive" data-score="65" points="160,45 175,35 185,55 180,75 155,80" fill="var(--dim-executive)" opacity="0.65"/>
+
+            <!-- Eyes — Sensory -->
+            <circle class="tess-panel" data-dim="Sensory" data-score="65" cx="115" cy="58" r="7" fill="var(--dim-sensory)" opacity="0.7"/>
+            <circle class="tess-panel" data-dim="Sensory" data-score="65" cx="145" cy="58" r="7" fill="var(--dim-sensory)" opacity="0.7"/>
+
+            <!-- Central body — Monotropic + Routine -->
+            <polygon class="tess-panel" data-dim="Monotropic" data-score="72" points="105,80 130,90 155,80 160,110 145,125 130,130 115,125 100,110" fill="var(--dim-monotropic)" opacity="0.75"/>
+            <polygon class="tess-panel" data-dim="Routine" data-score="70" points="100,110 115,125 110,145 90,140 80,120" fill="var(--dim-routine)" opacity="0.72"/>
+            <polygon class="tess-panel" data-dim="Routine" data-score="70" points="160,110 145,125 150,145 170,140 180,120" fill="var(--dim-routine)" opacity="0.72"/>
+
+            <!-- Upper tentacles — Initiation + Masking -->
+            <polygon class="tess-panel" data-dim="Initiation" data-score="85" points="80,75 60,65 40,75 35,95 55,100 80,95" fill="var(--dim-initiation)" opacity="0.88"/>
+            <polygon class="tess-panel" data-dim="Initiation" data-score="85" points="180,75 200,65 220,75 225,95 205,100 180,95" fill="var(--dim-initiation)" opacity="0.88"/>
+            <polygon class="tess-panel" data-dim="Masking" data-score="62" points="55,100 35,95 20,110 25,130 45,135 65,120 80,120" fill="var(--dim-masking)" opacity="0.64"/>
+            <polygon class="tess-panel" data-dim="Masking" data-score="62" points="205,100 225,95 240,110 235,130 215,135 195,120 180,120" fill="var(--dim-masking)" opacity="0.64"/>
+
+            <!-- Lower tentacles — Social + Emotional -->
+            <polygon class="tess-panel" data-dim="Social" data-score="55" points="90,140 110,145 105,170 85,175 70,160 75,145" fill="var(--dim-social)" opacity="0.58"/>
+            <polygon class="tess-panel" data-dim="Social" data-score="55" points="170,140 150,145 155,170 175,175 190,160 185,145" fill="var(--dim-social)" opacity="0.58"/>
+            <polygon class="tess-panel" data-dim="Emotional" data-score="58" points="45,135 25,130 15,150 20,175 40,180 60,170 65,150" fill="var(--dim-emotional)" opacity="0.6"/>
+            <polygon class="tess-panel" data-dim="Emotional" data-score="58" points="215,135 235,130 245,150 240,175 220,180 200,170 195,150" fill="var(--dim-emotional)" opacity="0.6"/>
+
+            <!-- Curling tips — Rejection + Energy -->
+            <polygon class="tess-panel" data-dim="Rejection" data-score="68" points="85,175 105,170 115,195 100,215 80,210 70,190" fill="var(--dim-rejection)" opacity="0.7"/>
+            <polygon class="tess-panel" data-dim="Rejection" data-score="68" points="175,175 155,170 145,195 160,215 180,210 190,190" fill="var(--dim-rejection)" opacity="0.7"/>
+            <polygon class="tess-panel" data-dim="Energy" data-score="50" points="40,180 20,175 10,195 20,220 45,225 60,210 55,190" fill="var(--dim-energy)" opacity="0.52"/>
+            <polygon class="tess-panel" data-dim="Energy" data-score="50" points="220,180 240,175 250,195 240,220 215,225 200,210 205,190" fill="var(--dim-energy)" opacity="0.52"/>
+
+            <!-- Lowest curl tips -->
+            <polygon class="tess-panel" data-dim="Energy" data-score="50" points="100,215 115,195 130,210 130,235 110,240 90,230" fill="var(--dim-energy)" opacity="0.52"/>
+            <polygon class="tess-panel" data-dim="Energy" data-score="50" points="160,215 145,195 130,210 130,235 150,240 170,230" fill="var(--dim-energy)" opacity="0.52"/>
+          </svg>
+        </div>
+        <div class="specimen-name">The <em>Bridge</em></div>
+        <div class="specimen-clinical">Combined ADHD + Autistic Pattern</div>
+        <div class="specimen-tagline">"Both systems running. Both real. Neither optional."</div>
+        <div class="specimen-community">Shared by <strong>14%</strong> of Spectrum users</div>
+      </div>
+
+      <div class="specimen-classification">
+        <div class="specimen-class-header">Dimensional Classification</div>
+        <div class="specimen-class-row">
+          <span class="specimen-class-label">Attention</span>
+          <span class="specimen-class-score">78</span>
+          <span class="specimen-class-bar"><span class="specimen-class-fill" style="width:78%;background:var(--dim-attention)"></span></span>
+        </div>
+        <div class="specimen-class-row">
+          <span class="specimen-class-label">Task initiation</span>
+          <span class="specimen-class-score">85</span>
+          <span class="specimen-class-bar"><span class="specimen-class-fill" style="width:85%;background:var(--dim-initiation)"></span></span>
+        </div>
+        <div class="specimen-class-row">
+          <span class="specimen-class-label">Monotropic focus</span>
+          <span class="specimen-class-score">72</span>
+          <span class="specimen-class-bar"><span class="specimen-class-fill" style="width:72%;background:var(--dim-monotropic)"></span></span>
+        </div>
+        <div class="specimen-class-row">
+          <span class="specimen-class-label">Routine need</span>
+          <span class="specimen-class-score">70</span>
+          <span class="specimen-class-bar"><span class="specimen-class-fill" style="width:70%;background:var(--dim-routine)"></span></span>
+        </div>
+        <div class="specimen-class-row">
+          <span class="specimen-class-label">Rejection sensitivity</span>
+          <span class="specimen-class-score">68</span>
+          <span class="specimen-class-bar"><span class="specimen-class-fill" style="width:68%;background:var(--dim-rejection)"></span></span>
+        </div>
+        <div class="specimen-class-row">
+          <span class="specimen-class-label">Sensory processing</span>
+          <span class="specimen-class-score">65</span>
+          <span class="specimen-class-bar"><span class="specimen-class-fill" style="width:65%;background:var(--dim-sensory)"></span></span>
+        </div>
+        <div class="specimen-class-row">
+          <span class="specimen-class-label">Executive function</span>
+          <span class="specimen-class-score">65</span>
+          <span class="specimen-class-bar"><span class="specimen-class-fill" style="width:65%;background:var(--dim-executive)"></span></span>
+        </div>
+        <div class="specimen-class-row">
+          <span class="specimen-class-label">Social masking</span>
+          <span class="specimen-class-score">62</span>
+          <span class="specimen-class-bar"><span class="specimen-class-fill" style="width:62%;background:var(--dim-masking)"></span></span>
+        </div>
+        <div class="specimen-class-row">
+          <span class="specimen-class-label">Emotional intensity</span>
+          <span class="specimen-class-score">58</span>
+          <span class="specimen-class-bar"><span class="specimen-class-fill" style="width:58%;background:var(--dim-emotional)"></span></span>
+        </div>
+        <div class="specimen-class-row">
+          <span class="specimen-class-label">Social processing</span>
+          <span class="specimen-class-score">55</span>
+          <span class="specimen-class-bar"><span class="specimen-class-fill" style="width:55%;background:var(--dim-social)"></span></span>
+        </div>
+        <div class="specimen-class-row">
+          <span class="specimen-class-label">Energy capacity</span>
+          <span class="specimen-class-score">50</span>
+          <span class="specimen-class-bar"><span class="specimen-class-fill" style="width:50%;background:var(--dim-energy)"></span></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Screening -->
+  <div class="screening-strip">
+    <div class="screening-strip-inner">
+      <div class="screening-item">
+        <div class="screening-label">ADHD-Consistent</div>
+        <div class="screening-row">
+          <span class="screening-value">72%</span>
+          <div class="screening-track"><div class="screening-fill" style="width:72%"></div></div>
+        </div>
+      </div>
+      <div class="screening-item">
+        <div class="screening-label">Autism-Consistent</div>
+        <div class="screening-row">
+          <span class="screening-value">68%</span>
+          <div class="screening-track"><div class="screening-fill" style="width:68%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Share -->
+  <div class="share-section">
+    <div class="share-card">
+      <h3>The Bridge</h3>
+      <div class="share-tagline">"Both systems running. Both real. Neither optional."</div>
+      <div class="share-dims">ATT 78 · INI 85 · MON 72 · ROU 70 · REJ 68</div>
+      <div class="share-misread">People think you're inconsistent. You're running two systems.</div>
+      <div class="share-actions">
+        <button class="share-btn" onclick="copyLink(this)">Copy link</button>
+        <button class="share-btn">Share</button>
+        <button class="share-btn">Save image</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Send to someone -->
+  <div class="send-section">
+    <div class="send-card">
+      <div class="send-card-header">
+        <div>
+          <h3>Send this to someone</h3>
+          <div class="send-sub">Pre-written messages. Pick who needs to understand your pattern.</div>
+        </div>
+      </div>
+      <div class="send-tabs">
+        <button class="send-tab active" onclick="switchTab(this,'partner')">Partner</button>
+        <button class="send-tab" onclick="switchTab(this,'boss')">Boss</button>
+        <button class="send-tab" onclick="switchTab(this,'therapist')">Therapist</button>
+        <button class="send-tab" onclick="switchTab(this,'friend')">Friend</button>
+      </div>
+      <div class="send-message" id="send-partner"><div class="send-message-label">To your partner</div>I took this assessment and it nailed something I've been struggling to explain. I'm what they call "The Bridge" — I'm running two systems at once. One needs routine and predictability. The other craves novelty and stimulation. When I seem inconsistent, it's because both are real and they take turns. The most helpful thing you can do is ask me which system is louder today instead of trying to simplify me into one thing.</div>
+      <div class="send-message" id="send-boss" style="display:none"><div class="send-message-label">To your boss</div>I wanted to share something that might help us work together better. My cognitive pattern means I process through two different systems. I do my best work when I can have blocks of deep focus time AND some variety. Mode-switching between very different tasks is the most expensive thing for my productivity.</div>
+      <div class="send-message" id="send-therapist" style="display:none"><div class="send-message-label">To your therapist</div>I took a neurodivergence pattern-mapping assessment and the results matched my experience closely. It identified a combined ADHD + autistic pattern. The core tension is between two genuine needs — routine vs. novelty, deep focus vs. initiation — in constant conflict. I think it could be a useful starting point for exploring whether formal evaluation makes sense.</div>
+      <div class="send-message" id="send-friend" style="display:none"><div class="send-message-label">To a friend</div>Hey — I took this thing called Spectrum and it kind of blew my mind. Turns out my brain runs two operating systems that want different things at the same time. That's why I'm sometimes hyper-organized and sometimes a total mess. It's not random — it's a pattern. You should take it too: [link]</div>
+      <button class="send-copy-btn" onclick="copyMsg(this)">Copy message →</button>
+    </div>
+  </div>
+
+  <!-- Field Guide Body -->
+  <div class="field-guide">
+
+    <!-- 01 BEHAVIORAL SIGNATURE -->
+    <div class="fg-section-divider">
+      <span class="fg-section-number">01</span>
+      <span class="fg-section-rule"></span>
+      <span class="fg-section-name">Behavioral Signature</span>
+    </div>
+
+    <h2 class="fg-heading">Two operating systems at <em>war.</em></h2>
+    <p class="fg-body">You live at the intersection of two operating systems that want fundamentally different things. One craves novelty, stimulation, and rapid iteration. The other desperately needs routine, predictability, and deep focus. The contradiction isn't a bug in your wiring. It IS your wiring.</p>
+
+    <div class="fg-observation fg-observation-accent">
+      <div class="fg-observation-label">Key Observation</div>
+      <div class="fg-observation-text">You manage the chaos through scaffolding. Your intricate systems, lists, and rituals aren't preferences — they are load-bearing infrastructure keeping the two sides balanced.</div>
+    </div>
+
+    <!-- 02 WHAT OTHERS MISREAD -->
+    <div class="fg-section-divider">
+      <span class="fg-section-number">02</span>
+      <span class="fg-section-rule"></span>
+      <span class="fg-section-name">What Others Misread</span>
+    </div>
+
+    <div class="fg-observation">
+      <div class="fg-observation-label">Misread #1</div>
+      <div class="fg-observation-text">People think you're inconsistent. You're not. You're running two systems that take turns at the controls.</div>
+    </div>
+    <div class="fg-observation">
+      <div class="fg-observation-label">Misread #2</div>
+      <div class="fg-observation-text">People assume that because you can hyperfocus on the wrong thing, you could focus on the right thing if you just tried harder.</div>
+    </div>
+
+    <!-- 03 CORE CONTRADICTIONS -->
+    <div class="fg-section-divider">
+      <span class="fg-section-number">03</span>
+      <span class="fg-section-rule"></span>
+      <span class="fg-section-name">Core Contradictions</span>
+    </div>
+
+    <h2 class="fg-heading">The tensions that define your <em>pattern.</em></h2>
+
+    <div class="fg-observation">
+      <div class="fg-observation-label">Tier 1 — Routine ↔ Novelty</div>
+      <div class="fg-observation-text">Your nervous system simultaneously requires predictability and starves without novelty. This isn't inconsistency — it's two systems in genuine conflict.</div>
+    </div>
+    <div class="fg-observation">
+      <div class="fg-observation-label">Tier 1 — Attention ↔ Initiation</div>
+      <div class="fg-observation-text">You can hyperfocus for hours on the wrong thing but can't start the right thing. The ignition system and the lock-on system don't share a key.</div>
+    </div>
+
+    <!-- 04 THREAT RESPONSE -->
+    <div class="fg-section-divider">
+      <span class="fg-section-number">04</span>
+      <span class="fg-section-rule"></span>
+      <span class="fg-section-name">Threat Response</span>
+    </div>
+
+    <h2 class="fg-heading">The cycle that keeps <em>repeating.</em></h2>
+    <div class="fg-sequence">
+      <div class="fg-sequence-step"><span class="fg-sequence-arrow">→</span><span class="fg-sequence-text">A demand arrives that requires switching modes</span></div>
+      <div class="fg-sequence-step"><span class="fg-sequence-arrow">↓</span><span class="fg-sequence-text">One system resists while the other activates — you feel pulled in two directions</span></div>
+      <div class="fg-sequence-step"><span class="fg-sequence-arrow">↓</span><span class="fg-sequence-text">You either force the switch (spending masking energy) or refuse it (appearing rigid)</span></div>
+      <div class="fg-sequence-step"><span class="fg-sequence-arrow">↓</span><span class="fg-sequence-text">The next demand arrives before you've recovered from the last switch</span></div>
+      <div class="fg-sequence-step"><span class="fg-sequence-arrow">↻</span><span class="fg-sequence-text" style="font-style:italic;color:var(--text-muted);">Repeat</span></div>
+    </div>
+
+    <!-- 05 INNER VOICE -->
+    <div class="fg-section-divider">
+      <span class="fg-section-number">05</span>
+      <span class="fg-section-rule"></span>
+      <span class="fg-section-name">Inner Voice</span>
+    </div>
+
+    <div class="fg-quote">I'm not inconsistent. I have two systems that take turns running the show, and neither one is wrong.</div>
+    <div class="fg-quote">I need structure and freedom in the same life, and I know that sounds contradictory. It is. That's the point.</div>
+
+    <!-- 06 HABITAT -->
+    <div class="fg-section-divider">
+      <span class="fg-section-number">06</span>
+      <span class="fg-section-rule"></span>
+      <span class="fg-section-name">Habitat Preferences</span>
+    </div>
+
+    <div class="fg-life-card">
+      <div class="fg-life-label">Symbiotic Relationships</div>
+      <div class="fg-life-content">
+        <h3>How this shows up with people</h3>
+        <p>You need a partner who can hold complexity — someone who doesn't need you to be one consistent thing. Your best relationships are with people who find the contradictions interesting rather than frustrating.</p>
+      </div>
+    </div>
+    <div class="fg-life-card">
+      <div class="fg-life-label">Professional Habitat</div>
+      <div class="fg-life-content">
+        <h3>How this shows up at work</h3>
+        <p>You do your best work in environments that offer deep focus time AND variety. Pure routine jobs drain your ADHD side. Pure novelty jobs destabilize your autistic side.</p>
+      </div>
+    </div>
+    <div class="fg-life-card">
+      <div class="fg-life-label">Energy Metabolism</div>
+      <div class="fg-life-content">
+        <h3>What costs, what restores</h3>
+        <p>Mode-switching is your most expensive operation. Not the work itself — the transition between types of work. Protect your transitions. Batch similar-mode tasks.</p>
+      </div>
+    </div>
+
+    <div class="fg-disclaimer">This is pattern-mapping, not diagnosis. These results describe how your attention, energy, social processing, and emotional regulation tend to operate — based on your self-reported experience. If these patterns are affecting your life, a professional evaluation can provide clarity and access to support.</div>
+
+    <a class="fg-methodology" href="#methodology">
+      <span class="fg-methodology-text">How Spectrum works →</span>
+      <span class="fg-methodology-arrow">→</span>
+    </a>
+
+    <div style="text-align:center;"><button class="retake-btn" onclick="showScreen('landing')">Retake Assessment</button></div>
+  </div>
+
+</div>
+
+<script>
+function showScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.screen-nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('screen-' + name).classList.add('active');
+  document.querySelectorAll('.screen-nav button').forEach(b => {
+    if (b.textContent.toLowerCase() === name) b.classList.add('active');
+  });
+  window.scrollTo(0, 0);
+}
+function switchTab(btn, target) {
+  btn.parentElement.querySelectorAll('.send-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  ['partner','boss','therapist','friend'].forEach(id => {
+    const el = document.getElementById('send-' + id);
+    if (el) el.style.display = id === target ? 'block' : 'none';
+  });
+}
+function copyMsg(btn) {
+  const section = btn.closest('.send-card');
+  const visible = section.querySelector('.send-message:not([style*="display: none"])') || section.querySelector('.send-message:not([style])');
+  const label = visible.querySelector('.send-message-label');
+  let text = visible.textContent;
+  if (label) text = text.replace(label.textContent, '').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied'; btn.style.background = '#3D7A47'; btn.style.boxShadow = '3px 3px 0 #2a5530';
+    setTimeout(() => { btn.textContent = 'Copy message →'; btn.style.background = ''; btn.style.boxShadow = ''; }, 2000);
+  });
+}
+function copyLink(btn) {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    btn.textContent = '✓ Copied';
+    setTimeout(() => { btn.textContent = 'Copy link'; }, 2000);
+  });
+}
+
+// Tessellation hover tooltips
+document.querySelectorAll('.tess-panel').forEach(panel => {
+  panel.addEventListener('mouseenter', e => {
+    const dim = panel.getAttribute('data-dim');
+    const score = panel.getAttribute('data-score');
+    let tip = document.getElementById('tess-tip');
+    if (!tip) { tip = document.createElement('div'); tip.id = 'tess-tip'; tip.className = 'tess-tooltip'; document.body.appendChild(tip); }
+    tip.textContent = dim + ' · ' + score + '%';
+    tip.style.opacity = '1';
+    tip.style.left = (e.pageX + 12) + 'px';
+    tip.style.top = (e.pageY - 28) + 'px';
+  });
+  panel.addEventListener('mousemove', e => {
+    const tip = document.getElementById('tess-tip');
+    if (tip) { tip.style.left = (e.pageX + 12) + 'px'; tip.style.top = (e.pageY - 28) + 'px'; }
+  });
+  panel.addEventListener('mouseleave', () => {
+    const tip = document.getElementById('tess-tip');
+    if (tip) tip.style.opacity = '0';
+  });
+});
+</script>
+
+</body>
+</html>
