@@ -87,9 +87,9 @@ export default function WorkPage() {
   const caseStudies = getAllContent("work");
 
   return (
-    <>
-      {/* Intro — narrow column */}
-      <div className="mx-auto px-6 pt-16" style={{ maxWidth: "var(--max-width-content)" }}>
+    <div className="mx-auto px-6 pt-16 pb-24" style={{ maxWidth: "var(--max-width-wide)" }}>
+      {/* Intro — narrow, left-aligned within wide container */}
+      <div style={{ maxWidth: "var(--max-width-content)" }}>
         <h1 className="text-3xl font-semibold tracking-tight">Work</h1>
         <p className="mt-3 max-w-[520px] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
           Twenty years of product design, systems thinking, and building
@@ -98,13 +98,14 @@ export default function WorkPage() {
         </p>
       </div>
 
-      {/* Case Studies — magazine grid, widened */}
-      <section className="mx-auto px-6 mt-14" style={{ maxWidth: "var(--max-width-wide)" }}>
+      {/* Case Studies — featured lead + 2×2 grid */}
+      <section className="mt-14">
         <h2 className="text-xs font-medium tracking-wide mb-8" style={{ color: "var(--color-text-tertiary)" }}>
           Case studies
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
-          {caseStudies.map((study) => (
+        <div className="flex flex-col gap-12">
+          {/* Featured lead */}
+          {caseStudies.slice(0, 1).map((study) => (
             <Link
               key={study.slug}
               href={`/work/${study.slug}`}
@@ -125,16 +126,45 @@ export default function WorkPage() {
                   accentColor={study.coverAccentColor ? String(study.coverAccentColor) : undefined}
                 />
               </div>
-              <p className="mt-4 text-[13.5px] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
+              <p className="mt-5 text-[15px] max-w-[620px] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
                 {study.description}
               </p>
             </Link>
           ))}
+          {/* Remaining — 2×2 grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
+            {caseStudies.slice(1).map((study) => (
+              <Link
+                key={study.slug}
+                href={`/work/${study.slug}`}
+                className="group block"
+                aria-label={`${study.title} — case study`}
+              >
+                <div className="transition-transform duration-300 group-hover:-translate-y-1">
+                  <CaseStudyCover
+                    variant="card"
+                    title={String(study.title)}
+                    accent={study.coverAccent ? String(study.coverAccent) : undefined}
+                    client={study.client ? String(study.client) : undefined}
+                    role={study.role ? String(study.role) : undefined}
+                    year={study.year ? String(study.year) : undefined}
+                    number={study.coverNumber ? String(study.coverNumber) : undefined}
+                    ground={study.coverGround ? String(study.coverGround) : undefined}
+                    text={study.coverText ? String(study.coverText) : undefined}
+                    accentColor={study.coverAccentColor ? String(study.coverAccentColor) : undefined}
+                  />
+                </div>
+                <p className="mt-4 text-[13.5px] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
+                  {study.description}
+                </p>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Sub-sections — narrow column */}
-      <div className="mx-auto px-6 pb-24" style={{ maxWidth: "var(--max-width-content)" }}>
+      {/* Sub-sections — narrow, left-aligned within wide container */}
+      <div style={{ maxWidth: "var(--max-width-content)" }}>
 
       {/* Product & UI */}
       <section className="mt-14">
@@ -231,6 +261,6 @@ export default function WorkPage() {
         </div>
       </section>
       </div>
-    </>
+    </div>
   );
 }

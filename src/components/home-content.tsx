@@ -137,7 +137,7 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
     };
   }, []);
   return (
-    <div ref={heroRef} className="mx-auto px-6" style={{ maxWidth: "860px" }}>
+    <div ref={heroRef} className="mx-auto px-6" style={{ maxWidth: "var(--max-width-wide)" }}>
       {/* Hero */}
       <section className="pt-32 pb-20 relative">
         <h1
@@ -176,8 +176,9 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
         >
           Selected work
         </h2>
-        <div ref={cardsRef} className="flex flex-col gap-16">
-          {caseStudies.slice(0, 3).map((study) => (
+        <div ref={cardsRef} className="flex flex-col gap-12">
+          {/* Featured lead — newest case study, full container width */}
+          {caseStudies.slice(0, 1).map((study) => (
             <Link
               key={study.slug}
               href={`/work/${study.slug}`}
@@ -206,6 +207,38 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
               </p>
             </Link>
           ))}
+          {/* Supporting pair — 2-col grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
+            {caseStudies.slice(1, 3).map((study) => (
+              <Link
+                key={study.slug}
+                href={`/work/${study.slug}`}
+                className="group block"
+                aria-label={`${study.title} — case study`}
+              >
+                <div className="transition-transform duration-300 group-hover:-translate-y-1">
+                  <CaseStudyCover
+                    variant="card"
+                    title={String(study.title)}
+                    accent={study.coverAccent ? String(study.coverAccent) : undefined}
+                    client={study.client ? String(study.client) : undefined}
+                    role={study.role ? String(study.role) : undefined}
+                    year={study.year ? String(study.year) : undefined}
+                    number={study.coverNumber ? String(study.coverNumber) : undefined}
+                    ground={study.coverGround ? String(study.coverGround) : undefined}
+                    text={study.coverText ? String(study.coverText) : undefined}
+                    accentColor={study.coverAccentColor ? String(study.coverAccentColor) : undefined}
+                  />
+                </div>
+                <p
+                  className="mt-4 text-[13.5px] leading-relaxed"
+                  style={{ color: "var(--color-text-secondary)" }}
+                >
+                  {study.description}
+                </p>
+              </Link>
+            ))}
+          </div>
         </div>
         <div className="mt-14 pt-8" style={{ borderTop: "1px solid var(--color-border-subtle)" }}>
           <Link
