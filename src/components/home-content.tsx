@@ -137,7 +137,7 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
     };
   }, []);
   return (
-    <div ref={heroRef} className="mx-auto px-6" style={{ maxWidth: "var(--max-width-wide)" }}>
+    <div ref={heroRef} className="mx-auto px-6" style={{ maxWidth: "860px" }}>
       {/* Hero */}
       <section className="pt-32 pb-20 relative">
         <h1
@@ -176,12 +176,13 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
         >
           Selected work
         </h2>
-        <div ref={cardsRef} className="flex flex-col gap-20">
+        <div ref={cardsRef} className="flex flex-col gap-16">
           {caseStudies.slice(0, 3).map((study) => (
             <Link
               key={study.slug}
               href={`/work/${study.slug}`}
               className="group block"
+              aria-label={`${study.title} — case study`}
             >
               <div className="transition-transform duration-300 group-hover:-translate-y-1">
                 <CaseStudyCover
@@ -197,30 +198,16 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
                   accentColor={study.coverAccentColor ? String(study.coverAccentColor) : undefined}
                 />
               </div>
-              <div className="mt-6 flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-                <p
-                  className="text-base max-w-[560px] leading-relaxed"
-                  style={{ color: "var(--color-text-secondary)" }}
-                >
-                  {study.description}
-                </p>
-                <div className="flex gap-2 flex-shrink-0 flex-wrap">
-                  {study.tags?.slice(0, 3).map((tag) => (
-                    <span key={tag} className="rounded" style={monoTagStyle}>
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <div className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
-                style={{ color: "var(--color-text-primary)" }}>
-                Read case study
-                <span className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
-              </div>
+              <p
+                className="mt-5 text-[15px] max-w-[620px] leading-relaxed"
+                style={{ color: "var(--color-text-secondary)" }}
+              >
+                {study.description}
+              </p>
             </Link>
           ))}
         </div>
-        <div className="mt-16 pt-8" style={{ borderTop: "1px solid var(--color-border-subtle)" }}>
+        <div className="mt-14 pt-8" style={{ borderTop: "1px solid var(--color-border-subtle)" }}>
           <Link
             href="/work"
             className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors group"

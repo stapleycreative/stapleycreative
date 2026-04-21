@@ -87,8 +87,9 @@ export default function WorkPage() {
   const caseStudies = getAllContent("work");
 
   return (
-    <div className="mx-auto px-6 pt-16 pb-24" style={{ maxWidth: "var(--max-width-content)" }}>
-      <div>
+    <>
+      {/* Intro — narrow column */}
+      <div className="mx-auto px-6 pt-16" style={{ maxWidth: "var(--max-width-content)" }}>
         <h1 className="text-3xl font-semibold tracking-tight">Work</h1>
         <p className="mt-3 max-w-[520px] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
           Twenty years of product design, systems thinking, and building
@@ -97,17 +98,18 @@ export default function WorkPage() {
         </p>
       </div>
 
-      {/* Case Studies — magazine grid */}
-      <section className="mt-14">
+      {/* Case Studies — magazine grid, widened */}
+      <section className="mx-auto px-6 mt-14" style={{ maxWidth: "var(--max-width-wide)" }}>
         <h2 className="text-xs font-medium tracking-wide mb-8" style={{ color: "var(--color-text-tertiary)" }}>
           Case studies
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-14">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
           {caseStudies.map((study) => (
             <Link
               key={study.slug}
               href={`/work/${study.slug}`}
               className="group block"
+              aria-label={`${study.title} — case study`}
             >
               <div className="transition-transform duration-300 group-hover:-translate-y-1">
                 <CaseStudyCover
@@ -123,20 +125,16 @@ export default function WorkPage() {
                   accentColor={study.coverAccentColor ? String(study.coverAccentColor) : undefined}
                 />
               </div>
-              <div className="mt-4">
-                <p className="text-[13px] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
-                  {study.description}
-                </p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {study.tags?.slice(0, 3).map((tag) => (
-                    <span key={tag} className="rounded" style={monoTagStyle}>{tag}</span>
-                  ))}
-                </div>
-              </div>
+              <p className="mt-4 text-[13.5px] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
+                {study.description}
+              </p>
             </Link>
           ))}
         </div>
       </section>
+
+      {/* Sub-sections — narrow column */}
+      <div className="mx-auto px-6 pb-24" style={{ maxWidth: "var(--max-width-content)" }}>
 
       {/* Product & UI */}
       <section className="mt-14">
@@ -232,6 +230,7 @@ export default function WorkPage() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }
