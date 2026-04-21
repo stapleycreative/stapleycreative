@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import Lenis from "lenis";
 import type { ContentMeta } from "@/lib/content";
+import { CaseStudyCover } from "@/components/case-study-cover";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -166,53 +167,68 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
           </span>
         </div>
       </section>
-      {/* Case Studies */}
-      <section className="pb-16">
+      {/* Case Studies — 3 featured (newest by date) */}
+      <section className="pb-20">
         <h2
           ref={sectionLabelRef}
-          className="text-xs font-medium tracking-wide mb-8"
+          className="text-xs font-medium tracking-wide mb-10"
           style={{ color: "var(--color-text-tertiary)" }}
         >
           Selected work
         </h2>
-        <div ref={cardsRef} className="grid gap-6">
-          {caseStudies.map((study) => (
+        <div ref={cardsRef} className="flex flex-col gap-20">
+          {caseStudies.slice(0, 3).map((study) => (
             <Link
               key={study.slug}
               href={`/work/${study.slug}`}
-              className="group block p-6 rounded-lg transition-all duration-300 relative bg-[#fdfcfd] border border-[var(--color-border-subtle)] hover:border-[#211f26]"
+              className="group block"
             >
-              {/* Utility Badge - Clean execution */}
-              <div className="absolute -top-2.5 right-6 px-2.5 py-0.5 text-[10px] font-mono tracking-wider uppercase bg-[#211f26] text-white rounded shadow-sm z-30 opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 transition-all duration-[250ms] ease-out flex items-center gap-1.5 pointer-events-none">
-                View Study <span className="opacity-70">↗</span>
+              <div className="transition-transform duration-300 group-hover:-translate-y-1">
+                <CaseStudyCover
+                  variant="card"
+                  title={String(study.title)}
+                  accent={study.coverAccent ? String(study.coverAccent) : undefined}
+                  client={study.client ? String(study.client) : undefined}
+                  role={study.role ? String(study.role) : undefined}
+                  year={study.year ? String(study.year) : undefined}
+                  number={study.coverNumber ? String(study.coverNumber) : undefined}
+                  ground={study.coverGround ? String(study.coverGround) : undefined}
+                  text={study.coverText ? String(study.coverText) : undefined}
+                  accentColor={study.coverAccentColor ? String(study.coverAccentColor) : undefined}
+                />
               </div>
-
-              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 relative z-20">
-                <div>
-                  <h3
-                    className="text-lg font-semibold transition-colors"
-                    style={{ color: "var(--color-text-primary)" }}
-                  >
-                    {study.title}
-                  </h3>
-                  <p
-                    className="mt-2 text-sm max-w-[480px] leading-relaxed"
-                    style={{ color: "var(--color-text-secondary)" }}
-                  >
-                    {study.description}
-                  </p>
-                </div>
-                
-                <div className="flex gap-2 flex-shrink-0 mt-3 sm:mt-0">
+              <div className="mt-6 flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                <p
+                  className="text-base max-w-[560px] leading-relaxed"
+                  style={{ color: "var(--color-text-secondary)" }}
+                >
+                  {study.description}
+                </p>
+                <div className="flex gap-2 flex-shrink-0 flex-wrap">
                   {study.tags?.slice(0, 3).map((tag) => (
-                    <span key={tag} className="rounded mono-tag" style={monoTagStyle}>
+                    <span key={tag} className="rounded" style={monoTagStyle}>
                       {tag}
                     </span>
                   ))}
                 </div>
               </div>
+              <div className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
+                style={{ color: "var(--color-text-primary)" }}>
+                Read case study
+                <span className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
+              </div>
             </Link>
           ))}
+        </div>
+        <div className="mt-16 pt-8" style={{ borderTop: "1px solid var(--color-border-subtle)" }}>
+          <Link
+            href="/work"
+            className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors group"
+            style={{ color: "var(--color-text-primary)" }}
+          >
+            See all work
+            <span className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
+          </Link>
         </div>
       </section>
       {/* Recent Writing */}

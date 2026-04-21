@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getAllContent } from "@/lib/content";
+import { CaseStudyCover } from "@/components/case-study-cover";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -96,39 +97,42 @@ export default function WorkPage() {
         </p>
       </div>
 
-      {/* Case Studies */}
+      {/* Case Studies — magazine grid */}
       <section className="mt-14">
-        <h2 className="text-xs font-medium tracking-wide mb-6" style={{ color: "var(--color-text-tertiary)" }}>
+        <h2 className="text-xs font-medium tracking-wide mb-8" style={{ color: "var(--color-text-tertiary)" }}>
           Case studies
         </h2>
-        <div className="grid gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-14">
           {caseStudies.map((study) => (
             <Link
               key={study.slug}
               href={`/work/${study.slug}`}
-              className="group block p-6 rounded-lg transition-all duration-300 relative bg-[#fdfcfd] border border-[var(--color-border-subtle)] hover:border-[#211f26]"
+              className="group block"
             >
-              <div className="absolute -top-2.5 right-6 px-2.5 py-0.5 text-[10px] font-mono tracking-wider uppercase bg-[#211f26] text-white rounded shadow-sm z-30 opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 transition-all duration-[250ms] ease-out flex items-center gap-1.5 pointer-events-none">
-                View Study <span className="opacity-70">↗</span>
+              <div className="transition-transform duration-300 group-hover:-translate-y-1">
+                <CaseStudyCover
+                  variant="card"
+                  title={String(study.title)}
+                  accent={study.coverAccent ? String(study.coverAccent) : undefined}
+                  client={study.client ? String(study.client) : undefined}
+                  role={study.role ? String(study.role) : undefined}
+                  year={study.year ? String(study.year) : undefined}
+                  number={study.coverNumber ? String(study.coverNumber) : undefined}
+                  ground={study.coverGround ? String(study.coverGround) : undefined}
+                  text={study.coverText ? String(study.coverText) : undefined}
+                  accentColor={study.coverAccentColor ? String(study.coverAccentColor) : undefined}
+                />
               </div>
-              <article className="relative z-20">
-                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
-                  <h3 className="text-lg font-semibold" style={{ color: "var(--color-text-primary)" }}>
-                    {study.title}
-                  </h3>
-                  <span className="text-xs flex-shrink-0 mt-1 sm:mt-0 font-mono tracking-wide" style={{ color: "var(--color-text-tertiary)" }}>
-                    {study.readingTime}
-                  </span>
-                </div>
-                <p className="mt-2 text-sm max-w-[560px] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
+              <div className="mt-4">
+                <p className="text-[13px] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
                   {study.description}
                 </p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {study.tags?.map((tag) => (
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {study.tags?.slice(0, 3).map((tag) => (
                     <span key={tag} className="rounded" style={monoTagStyle}>{tag}</span>
                   ))}
                 </div>
-              </article>
+              </div>
             </Link>
           ))}
         </div>
