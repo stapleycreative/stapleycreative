@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spectrum — Pattern Assessment</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   SPECTRUM — PORTFOLIO DESIGN SYSTEM VERSION
+   Radix Mauve scale · Plus Jakarta Sans / Instrument Serif
+   Matches stapleycreative.vercel.app
+   ============================================================ */
+
+:root {
+  /* Radix Mauve scale */
+  --mauve-1: #fdfcfd;
+  --mauve-2: #faf9fb;
+  --mauve-3: #f2eff3;
+  --mauve-4: #eae7ec;
+  --mauve-5: #e3dfe6;
+  --mauve-6: #dbd7e0;
+  --mauve-7: #d0cdd7;
+  --mauve-8: #bcbac7;
+  --mauve-9: #8e8c99;
+  --mauve-10: #84828e;
+  --mauve-11: #65636d;
+  --mauve-12: #211f26;
+
+  /* Accent */
+  --accent: #F98077;
+  --accent-hover: #E66B62;
+  --accent-subtle: rgba(249, 128, 119, 0.08);
+  --accent-light: rgba(249, 128, 119, 0.15);
+
+  /* Semantic */
+  --bg: var(--mauve-1);
+  --bg-surface: var(--mauve-2);
+  --bg-hover: var(--mauve-4);
+  --text-primary: var(--mauve-12);
+  --text-secondary: var(--mauve-11);
+  --text-tertiary: var(--mauve-10);
+  --border: var(--mauve-7);
+  --border-subtle: var(--mauve-4);
+
+  /* Cover palette */
+  --cover-bg: #1B1B1F;
+  --cover-text: #F5F1E8;
+
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  --shadow-sm: 0 1px 2px rgba(33,31,38,0.04);
+  --shadow-md: 0 2px 8px rgba(33,31,38,0.08);
+
+  --max-content: 680px;
+  --max-wide: 1080px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.7;
+}
+
+::selection {
+  background: rgba(249, 128, 119, 0.25);
+}
+
+/* ── Screen management ── */
+.screen { display: none; }
+.screen.active { display: block; }
+
+/* ── Dev nav ── */
+.screen-nav {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 100;
+  display: flex;
+  gap: 2px;
+  background: var(--cover-bg);
+  padding: 3px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+.screen-nav button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: rgba(245,241,232,0.5);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.screen-nav button:hover { color: var(--cover-text); }
+.screen-nav button.active {
+  background: rgba(245,241,232,0.12);
+  color: var(--cover-text);
+}
+
+/* ════════════════════════════════════════════
+   LANDING
+   ════════════════════════════════════════════ */
+
+.landing-cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: var(--cover-bg);
+  color: var(--cover-text);
+  overflow: hidden;
+}
+
+/* Grain overlay */
+.landing-cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.landing-cover > * { position: relative; z-index: 1; }
+
+.landing-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(24px, 5vw, 56px);
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Top bar */
+.landing-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.landing-logo {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+}
+.landing-meta {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.45;
+  font-weight: 500;
+}
+
+/* Headline area */
+.landing-hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 820px;
+  padding: 48px 0;
+}
+
+.landing-hero h1 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(36px, 6.5vw, 80px);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  margin-bottom: clamp(16px, 2vw, 24px);
+}
+.landing-hero h1 em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+}
+
+.landing-sub {
+  font-size: clamp(15px, 1.8vw, 18px);
+  line-height: 1.6;
+  max-width: 520px;
+  opacity: 0.7;
+  margin-bottom: 32px;
+}
+
+.landing-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  border-radius: var(--radius-md);
+  background: var(--accent);
+  color: white;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s var(--ease-out);
+}
+.landing-cta:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+/* Bottom meta */
+.landing-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.landing-stats {
+  display: flex;
+  gap: clamp(24px, 4vw, 56px);
+}
+.landing-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.landing-stat-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cover-text);
+}
+.landing-stat-label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.4;
+}
+.landing-spine {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  opacity: 0.35;
+  display: none;
+}
+@media (min-width: 640px) {
+  .landing-spine { display: block; }
+}
+
+/* ── What you'll get grid ── */
+.youll-get {
+  padding: 64px clamp(24px, 5vw, 56px);
+  background: var(--bg);
+}
+.youll-get-inner {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+}
+.youll-get h2 {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 32px;
+}
+.youll-get-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1px;
+  background: var(--border-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.youll-get-item {
+  padding: 24px;
+  background: var(--bg);
+}
+.youll-get-item strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--text-primary);
+}
+.youll-get-item span {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ════════════════════════════════════════════
+   QUIZ
+   ════════════════════════════════════════════ */
+
+.quiz-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+.quiz-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(253,252,253,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 16px clamp(24px, 5vw, 56px);
+}
+.quiz-header-inner {
+  max-width: var(--max-content);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.quiz-progress-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  letter-spacing: 0.02em;
+}
+.quiz-progress-track {
+  height: 3px;
+  border-radius: 2px;
+  background: var(--mauve-4);
+  max-width: var(--max-content);
+  margin: 8px auto 0;
+}
+.quiz-progress-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--text-primary);
+  transition: width 0.35s var(--ease-out);
+}
+
+.quiz-body {
+  flex: 1;
+  max-width: var(--max-content);
+  margin: 0 auto;
+  padding: 48px 24px 140px;
+  width: 100%;
+}
+
+.quiz-number {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  font-family: var(--font-sans);
+  margin-bottom: 16px;
+}
+
+.quiz-question {
+  font-family: var(--font-sans);
+  font-size: clamp(20px, 3vw, 26px);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  margin-bottom: 8px;
+}
+
+.quiz-context {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.quiz-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--bg);
+  cursor: pointer;
+  transition: all 0.15s;
+  margin-bottom: 8px;
+}
+.quiz-option:hover {
+  border-color: var(--border);
+  background: var(--bg-surface);
+}
+.quiz-option.selected {
+  border-color: var(--text-primary);
+  background: var(--bg-surface);
+  box-shadow: 0 0 0 1px var(--text-primary);
+}
+
+.quiz-option-key {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  flex-shrink: 0;
+  background: var(--mauve-3);
+  color: var(--text-secondary);
+}
+.quiz-option.selected .quiz-option-key {
+  background: var(--text-primary);
+  color: white;
+}
+.quiz-option-text {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text-primary);
+  padding-top: 3px;
+}
+
+/* Quiz nav */
+.quiz-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-top: 1px solid var(--border-subtle);
+  background: rgba(253,252,253,0.95);
+  backdrop-filter: blur(12px);
+  padding: 14px 24px;
+}
+.quiz-nav-inner {
+  max-width: var(--max-content);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.quiz-back {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0;
+}
+.quiz-next {
+  padding: 10px 28px;
+  border-radius: var(--radius-md);
+  background: var(--text-primary);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.quiz-next:hover { opacity: 0.9; }
+.quiz-next:disabled { opacity: 0.3; pointer-events: none; }
+
+/* Quiz checkpoint */
+.quiz-checkpoint {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin: 32px 0;
+  background: var(--bg-surface);
+}
+.quiz-checkpoint-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.quiz-checkpoint-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ════════════════════════════════════════════
+   ANALYSIS
+   ════════════════════════════════════════════ */
+
+.analysis-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  background: var(--bg);
+}
+.analysis-inner {
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+}
+.analysis-inner h2 {
+  font-family: var(--font-sans);
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin-bottom: 8px;
+}
+.analysis-sub {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+}
+.analysis-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
+  margin-bottom: 40px;
+}
+.analysis-bar-row {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.analysis-bar-label {
+  display: flex;
+  justify-content: space-between;
+}
+.analysis-bar-label span:first-child {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.analysis-bar-label span:last-child {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.analysis-bar-track {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--mauve-4);
+  overflow: hidden;
+}
+.analysis-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--text-primary);
+  transition: width 1.2s var(--ease-out);
+}
+.analysis-status {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  margin-bottom: 12px;
+}
+.analysis-spinner {
+  width: 28px;
+  height: 28px;
+  border: 2.5px solid var(--mauve-5);
+  border-top-color: var(--text-primary);
+  border-radius: 50%;
+  margin: 0 auto;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ════════════════════════════════════════════
+   RESULTS
+   ════════════════════════════════════════════ */
+
+/* Cover hero — same structure as case study cover */
+.results-cover {
+  position: relative;
+  background: var(--cover-bg);
+  color: var(--cover-text);
+  overflow: hidden;
+}
+.results-cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+.results-cover > * { position: relative; z-index: 1; }
+
+.results-cover-inner {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  padding: clamp(32px, 5vw, 64px);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  min-height: 380px;
+}
+
+.results-cover-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.results-cover-top {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.45;
+  font-weight: 500;
+}
+
+.results-cover-headline {
+  padding: 32px 0;
+}
+.results-animal {
+  font-size: 56px;
+  margin-bottom: 12px;
+  display: block;
+}
+.results-cover h1 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(36px, 5.5vw, 72px);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+.results-clinical {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(16px, 2vw, 20px);
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.results-variant {
+  font-size: 13px;
+  opacity: 0.55;
+  letter-spacing: 0.04em;
+}
+
+.results-cover-bottom {
+  display: flex;
+  align-items: flex-end;
+  gap: 32px;
+}
+.results-cover-rule {
+  width: 48px;
+  height: 2px;
+  background: var(--accent);
+  margin-bottom: 14px;
+}
+.results-cover-meta {
+  display: flex;
+  gap: 14px;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  opacity: 0.65;
+}
+.results-cover-meta span + span::before {
+  content: '·';
+  margin-right: 14px;
+  opacity: 0.5;
+}
+.results-community {
+  font-size: 12px;
+  opacity: 0.5;
+  margin-top: 8px;
+}
+.results-community strong {
+  color: var(--accent);
+  opacity: 1;
+  font-weight: 600;
+}
+
+.results-spine {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  opacity: 0.35;
+  display: none;
+  align-self: center;
+}
+@media (min-width: 640px) {
+  .results-spine { display: block; }
+}
+
+/* Screening bars — just below cover */
+.screening-strip {
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 20px clamp(24px, 5vw, 56px);
+}
+.screening-strip-inner {
+  max-width: var(--max-content);
+  margin: 0 auto;
+  display: flex;
+  gap: 32px;
+}
+.screening-item {
+  flex: 1;
+}
+.screening-item-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 6px;
+}
+.screening-item-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+.screening-item-track {
+  height: 3px;
+  border-radius: 2px;
+  background: var(--mauve-4);
+  overflow: hidden;
+}
+.screening-item-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--text-primary);
+}
+
+/* Results body — prose-style content */
+.results-body {
+  max-width: var(--max-content);
+  margin: 0 auto;
+  padding: 48px 24px 64px;
+}
+
+/* Share card */
+.share-card {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  text-align: center;
+  background: var(--bg-surface);
+  margin-bottom: 16px;
+}
+.share-card h3 {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin-bottom: 4px;
+}
+.share-card .share-tagline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+.share-card .share-dims {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.02em;
+}
+.share-card .share-misread {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-style: italic;
+  margin-top: 12px;
+}
+
+/* Share buttons */
+.share-actions {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  border: 1px solid var(--border-subtle);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--font-sans);
+}
+.share-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-subtle);
+}
+.share-btn.copied {
+  border-color: #4D8A56;
+  color: #4D8A56;
+  background: rgba(77,138,86,0.06);
+}
+
+/* Send section */
+.send-section {
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  margin-bottom: 48px;
+  position: relative;
+  background: var(--bg);
+}
+.send-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+.send-section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.send-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: var(--accent-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.send-section h3 {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 2px;
+}
+.send-sub {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.send-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.send-tab {
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--font-sans);
+}
+.send-tab:hover, .send-tab.active {
+  background: var(--accent-subtle);
+  border-color: var(--accent);
+  color: var(--accent-hover);
+}
+.send-message {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+.send-message-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-tertiary);
+  margin-bottom: 8px;
+}
+.send-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: var(--radius-sm);
+  background: var(--text-primary);
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--font-sans);
+}
+.send-copy-btn:hover { opacity: 0.9; }
+.send-copy-btn.copied { background: #4D8A56; }
+
+/* Compare invite */
+.compare-invite {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  text-align: center;
+  margin-bottom: 48px;
+  background: var(--bg-surface);
+}
+.compare-invite h3 {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.compare-invite p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+.compare-invite-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  background: var(--text-primary);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--font-sans);
+}
+.compare-invite-btn:hover { opacity: 0.9; }
+
+/* Section labels (like case study section dividers) */
+.tier-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 32px;
+  margin-top: 8px;
+}
+
+/* Section card */
+.r-section {
+  margin-bottom: 40px;
+}
+.r-section-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.r-section-label::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.r-section-label span {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+}
+.r-section h3 {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+.r-section p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-primary);
+}
+
+/* Profile card */
+.r-section-card {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  background: var(--bg);
+  margin-bottom: 24px;
+}
+.r-section-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-primary);
+}
+
+/* Contradictions */
+.contradiction-card {
+  border-left: 3px solid var(--text-primary);
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  background: var(--bg-surface);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.contradiction-tier {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 6px;
+}
+.contradiction-text {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-primary);
+}
+
+/* Misread cards */
+.misread-card {
+  padding: 16px 20px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  background: var(--bg-surface);
+}
+
+/* Stress loop */
+.stress-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.stress-arrow {
+  font-size: 16px;
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+  width: 20px;
+  text-align: center;
+  padding-top: 1px;
+}
+.stress-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+/* Quote blocks */
+.quote-block {
+  border-left: 3px solid var(--text-primary);
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+/* Disclaimer */
+.disclaimer {
+  padding: 20px 24px;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text-tertiary);
+  margin-top: 48px;
+}
+
+/* Methodology link */
+.methodology-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  background: var(--bg);
+  border: 1px solid var(--border-subtle);
+  margin-top: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-decoration: none;
+  color: var(--text-secondary);
+}
+.methodology-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.ml-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.ml-text { font-size: 13px; font-weight: 500; }
+.ml-sub { font-size: 12px; color: var(--text-tertiary); margin-top: 1px; }
+.ml-arrow { margin-left: auto; color: var(--text-tertiary); font-size: 14px; }
+
+/* Retake */
+.retake-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: var(--radius-md);
+  background: var(--text-primary);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s;
+  margin-top: 32px;
+  font-family: var(--font-sans);
+}
+.retake-btn:hover { opacity: 0.9; }
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .screening-strip-inner { flex-direction: column; gap: 16px; }
+  .share-actions { flex-direction: column; align-items: stretch; }
+  .send-tabs { gap: 6px; }
+  .results-cover-inner { grid-template-columns: 1fr; }
+  .landing-stats { flex-direction: column; gap: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Dev nav -->
+<div class="screen-nav">
+  <button class="active" onclick="showScreen('landing')">Landing</button>
+  <button onclick="showScreen('quiz')">Quiz</button>
+  <button onclick="showScreen('analysis')">Analysis</button>
+  <button onclick="showScreen('results')">Results</button>
+</div>
+
+<!-- ============================================================
+     LANDING
+     ============================================================ -->
+<div id="screen-landing" class="screen active">
+  <div class="landing-cover">
+    <div class="landing-content">
+
+      <div class="landing-top">
+        <div class="landing-logo">Spectrum</div>
+        <div class="landing-meta">Pattern Assessment</div>
+      </div>
+
+      <div class="landing-hero">
+        <h1>You're not inconsistent. You're running a <em>pattern.</em></h1>
+        <p class="landing-sub">Not a screener. Not a diagnosis. A high-resolution map of how your attention, energy, emotions, and social processing actually operate — and language you can finally send to someone.</p>
+        <div>
+          <button class="landing-cta" onclick="showScreen('quiz')">
+            Find your pattern
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="landing-bottom">
+        <div class="landing-stats">
+          <div class="landing-stat">
+            <div class="landing-stat-value">48</div>
+            <div class="landing-stat-label">Questions</div>
+          </div>
+          <div class="landing-stat">
+            <div class="landing-stat-value">11</div>
+            <div class="landing-stat-label">Dimensions</div>
+          </div>
+          <div class="landing-stat">
+            <div class="landing-stat-value">10</div>
+            <div class="landing-stat-label">Profiles</div>
+          </div>
+          <div class="landing-stat">
+            <div class="landing-stat-value">~12m</div>
+            <div class="landing-stat-label">Duration</div>
+          </div>
+        </div>
+        <div class="landing-spine">Spectrum Assessment</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- What you'll get -->
+  <div class="youll-get">
+    <div class="youll-get-inner">
+      <h2>What you'll get</h2>
+      <div class="youll-get-grid">
+        <div class="youll-get-item"><strong>Your profile</strong><span>Which of 10 cognitive patterns fits your wiring</span></div>
+        <div class="youll-get-item"><strong>Core contradictions</strong><span>Where your real needs pull in opposite directions</span></div>
+        <div class="youll-get-item"><strong>What others misread</strong><span>The gap between how you function and how it looks</span></div>
+        <div class="youll-get-item"><strong>Your stress loop</strong><span>The cycle that keeps repeating and why</span></div>
+        <div class="youll-get-item"><strong>Send-to-someone</strong><span>Pre-written messages for partner, boss, therapist</span></div>
+        <div class="youll-get-item"><strong>Life sections</strong><span>How this plays out in work, relationships, energy</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     QUIZ
+     ============================================================ -->
+<div id="screen-quiz" class="screen">
+  <div class="quiz-screen">
+    <div class="quiz-header">
+      <div class="quiz-header-inner">
+        <div class="quiz-progress-text">Question 7 of 48 <span style="color:var(--text-tertiary);font-weight:400;">· ~10 min left</span></div>
+      </div>
+      <div class="quiz-progress-track">
+        <div class="quiz-progress-fill" style="width:15%"></div>
+      </div>
+    </div>
+
+    <div class="quiz-body">
+      <div class="quiz-number">Question 07</div>
+
+      <h2 class="quiz-question">When your environment suddenly changes — new noise, different lighting, unexpected visitors — what happens first?</h2>
+      <p class="quiz-context">Think about the automatic response, not what you do after you've adjusted.</p>
+
+      <div onclick="selectOption(this)" class="quiz-option">
+        <div class="quiz-option-key">A</div>
+        <div class="quiz-option-text">I barely notice unless it directly interrupts what I'm doing</div>
+      </div>
+      <div onclick="selectOption(this)" class="quiz-option selected">
+        <div class="quiz-option-key">B</div>
+        <div class="quiz-option-text">My body reacts before my brain catches up — a jolt, tension, or sudden need to leave</div>
+      </div>
+      <div onclick="selectOption(this)" class="quiz-option">
+        <div class="quiz-option-key">C</div>
+        <div class="quiz-option-text">I notice everything shifting but can usually absorb it without visible reaction</div>
+      </div>
+      <div onclick="selectOption(this)" class="quiz-option">
+        <div class="quiz-option-key">D</div>
+        <div class="quiz-option-text">I get irritated or overwhelmed, and it takes a while to recalibrate</div>
+      </div>
+
+      <!-- Checkpoint example -->
+      <div class="quiz-checkpoint">
+        <div class="quiz-checkpoint-label">Pattern signal detected</div>
+        <div class="quiz-checkpoint-text">Your responses show high transition sensitivity. The next few questions will help distinguish whether this comes from sensory processing, routine disruption, or both.</div>
+      </div>
+    </div>
+
+    <div class="quiz-nav">
+      <div class="quiz-nav-inner">
+        <button class="quiz-back">Back</button>
+        <button class="quiz-next" onclick="showScreen('analysis')">Next</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     ANALYSIS
+     ============================================================ -->
+<div id="screen-analysis" class="screen">
+  <div class="analysis-screen">
+    <div class="analysis-inner">
+      <h2>Mapping your pattern</h2>
+      <p class="analysis-sub">Analyzing 48 responses across 11 dimensions.</p>
+
+      <div class="analysis-bars">
+        <div class="analysis-bar-row"><div class="analysis-bar-label"><span>Attention</span><span>78%</span></div><div class="analysis-bar-track"><div class="analysis-bar-fill" style="width:78%"></div></div></div>
+        <div class="analysis-bar-row"><div class="analysis-bar-label"><span>Task initiation</span><span>85%</span></div><div class="analysis-bar-track"><div class="analysis-bar-fill" style="width:85%"></div></div></div>
+        <div class="analysis-bar-row"><div class="analysis-bar-label"><span>Monotropic focus</span><span>72%</span></div><div class="analysis-bar-track"><div class="analysis-bar-fill" style="width:72%"></div></div></div>
+        <div class="analysis-bar-row"><div class="analysis-bar-label"><span>Routine need</span><span>70%</span></div><div class="analysis-bar-track"><div class="analysis-bar-fill" style="width:70%"></div></div></div>
+        <div class="analysis-bar-row"><div class="analysis-bar-label"><span>Sensory sensitivity</span><span>65%</span></div><div class="analysis-bar-track"><div class="analysis-bar-fill" style="width:65%"></div></div></div>
+        <div class="analysis-bar-row"><div class="analysis-bar-label"><span>Social masking</span><span>62%</span></div><div class="analysis-bar-track"><div class="analysis-bar-fill" style="width:62%"></div></div></div>
+        <div class="analysis-bar-row"><div class="analysis-bar-label"><span>Emotional intensity</span><span>58%</span></div><div class="analysis-bar-track"><div class="analysis-bar-fill" style="width:58%"></div></div></div>
+      </div>
+
+      <p class="analysis-status">Matching profile pattern...</p>
+      <div class="analysis-spinner"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     RESULTS
+     ============================================================ -->
+<div id="screen-results" class="screen">
+
+  <!-- Cover hero -->
+  <div class="results-cover">
+    <div class="results-cover-inner">
+      <div class="results-cover-content">
+        <div class="results-cover-top">Your Spectrum Result</div>
+        <div class="results-cover-headline">
+          <span class="results-animal">🐙</span>
+          <h1>The Bridge</h1>
+          <div class="results-clinical">Combined ADHD + Autistic pattern</div>
+          <div class="results-variant">Bridge-Structured · High confidence</div>
+        </div>
+        <div>
+          <div class="results-cover-rule"></div>
+          <div class="results-cover-meta">
+            <span>48 questions</span>
+            <span>11 dimensions</span>
+            <span>Top 4 signals elevated</span>
+          </div>
+          <div class="results-community">Shared by <strong>14%</strong> of people who've taken Spectrum</div>
+        </div>
+      </div>
+      <div class="results-spine">Spectrum Assessment</div>
+    </div>
+  </div>
+
+  <!-- Screening strip -->
+  <div class="screening-strip">
+    <div class="screening-strip-inner">
+      <div class="screening-item">
+        <div class="screening-item-label">ADHD-consistent</div>
+        <div class="screening-item-value">72%</div>
+        <div class="screening-item-track"><div class="screening-item-fill" style="width:72%"></div></div>
+      </div>
+      <div class="screening-item">
+        <div class="screening-item-label">Autism-consistent</div>
+        <div class="screening-item-value">68%</div>
+        <div class="screening-item-track"><div class="screening-item-fill" style="width:68%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="results-body">
+
+    <!-- Share card -->
+    <div class="share-card">
+      <span style="font-size:40px;display:block;margin-bottom:8px;">🐙</span>
+      <h3>The Bridge</h3>
+      <div class="share-tagline">"Both systems running. Both real. Neither optional."</div>
+      <div class="share-dims">Attention 78% · Initiation 85% · Monotropic 72% · Routine 70%</div>
+      <div class="share-misread">People think you're inconsistent. You're running two systems.</div>
+    </div>
+
+    <div class="share-actions">
+      <button class="share-btn" onclick="copyShareCard(this)">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Copy link
+      </button>
+      <button class="share-btn" onclick="shareNative(this)">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+        Share
+      </button>
+      <button class="share-btn" onclick="saveImage(this)">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        Save image
+      </button>
+    </div>
+
+    <!-- Send to someone -->
+    <div class="send-section">
+      <div class="send-section-header">
+        <div class="send-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
+        </div>
+        <div>
+          <h3>Send this to someone</h3>
+          <div class="send-sub">Pre-written messages you can copy and send right now.</div>
+        </div>
+      </div>
+
+      <div class="send-tabs">
+        <button class="send-tab active" onclick="switchSendTab(this, 'partner')">Partner</button>
+        <button class="send-tab" onclick="switchSendTab(this, 'boss')">Boss / Manager</button>
+        <button class="send-tab" onclick="switchSendTab(this, 'therapist')">Therapist</button>
+        <button class="send-tab" onclick="switchSendTab(this, 'friend')">Friend</button>
+      </div>
+
+      <div class="send-message" id="send-partner">
+        <div class="send-message-label">Message to your partner</div>
+        I took this assessment and the result really nailed something I've been struggling to explain. I'm what they call "The Bridge" — it means I'm running two systems at once. One needs routine and predictability. The other craves novelty and stimulation. When I seem inconsistent, it's because both are real and they take turns. The most helpful thing you can do is ask me which system is louder today instead of trying to simplify me into one thing.
+      </div>
+      <div class="send-message" id="send-boss" style="display:none;">
+        <div class="send-message-label">Message to your boss / manager</div>
+        I wanted to share something that might help us work together better. I recently learned my cognitive pattern is called "The Bridge" — I process through two different systems. I do my best work when I can have blocks of deep focus time AND some variety. Mode-switching between very different types of tasks is the most expensive thing for my productivity. If I can batch similar work together and protect transition time, you'll get significantly better output from me.
+      </div>
+      <div class="send-message" id="send-therapist" style="display:none;">
+        <div class="send-message-label">Message to your therapist</div>
+        I took a neurodivergence pattern-mapping assessment and the results matched my experience closely. It identified a combined ADHD + autistic pattern they call "The Bridge." The core tension is between two genuine needs — routine vs. novelty, deep focus vs. initiation — that are in constant conflict. I'm not looking for a diagnosis from this, but I think it could be a useful starting point for exploring whether formal evaluation makes sense.
+      </div>
+      <div class="send-message" id="send-friend" style="display:none;">
+        <div class="send-message-label">Message to a friend</div>
+        Hey — I took this thing called Spectrum and it kind of blew my mind. Turns out my brain runs two operating systems that want different things at the same time. That's why I'm sometimes hyper-organized and sometimes a total mess. It's not random — it's a pattern. You should take it too, it's pretty wild: [link]
+      </div>
+
+      <button class="send-copy-btn" onclick="copySendMessage(this)">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Copy message
+      </button>
+    </div>
+
+    <!-- Compare invite -->
+    <div class="compare-invite">
+      <h3>See how your patterns interact</h3>
+      <p>Send this to someone you're close to. When they take Spectrum, you'll both unlock a comparison showing where your patterns align, clash, and complement.</p>
+      <button class="compare-invite-btn" onclick="copyCompareLink(this)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+        Invite someone to compare
+      </button>
+    </div>
+
+    <!-- Depth content -->
+    <div class="tier-label">Your pattern — the depth</div>
+
+    <div class="r-section-card">
+      <div class="r-section-label"><span>Your profile</span></div>
+      <p>You live at the intersection of two operating systems that want different things. One craves novelty; the other needs routine. One locks onto interests for hours; the other can't start the task that actually matters. The contradiction isn't a bug in your wiring. It IS your wiring.</p>
+      <p style="margin-top:12px;font-weight:500;">You manage the chaos through scaffolding. Systems, lists, rituals — they're not preferences, they're load-bearing infrastructure. You appear organized because the alternative is freefall.</p>
+    </div>
+
+    <div class="r-section">
+      <div class="r-section-label"><span>What others misread</span></div>
+      <div class="misread-card">People think you're inconsistent. You're not. You're running two systems that take turns at the controls.</div>
+      <div class="misread-card">People assume that because you can hyperfocus on the wrong thing, you could focus on the right thing if you just tried harder.</div>
+    </div>
+
+    <div class="r-section">
+      <div class="r-section-label"><span>Core contradictions</span></div>
+      <h3>The tensions that define your pattern</h3>
+      <p style="margin-bottom:16px;color:var(--text-secondary);font-size:14px;">These contradictions — where two real needs pull in opposite directions — are where the deepest insight lives.</p>
+      <div class="contradiction-card">
+        <div class="contradiction-tier">Tier 1 — Routine ↔ Novelty</div>
+        <div class="contradiction-text">Your nervous system simultaneously requires predictability and starves without novelty. This isn't inconsistency — it's two systems in genuine conflict.</div>
+      </div>
+      <div class="contradiction-card">
+        <div class="contradiction-tier">Tier 1 — Attention ↔ Initiation</div>
+        <div class="contradiction-text">You can hyperfocus for hours on the wrong thing but can't start the right thing. The ignition system and the lock-on system don't share a key.</div>
+      </div>
+    </div>
+
+    <div class="r-section">
+      <div class="r-section-label"><span>Your stress loop</span></div>
+      <h3>The cycle that keeps repeating</h3>
+      <div class="stress-step"><span class="stress-arrow">→</span><span class="stress-text">A demand arrives that requires switching modes</span></div>
+      <div class="stress-step"><span class="stress-arrow">↓</span><span class="stress-text">One system resists while the other activates — you feel pulled in two directions</span></div>
+      <div class="stress-step"><span class="stress-arrow">↓</span><span class="stress-text">You either force the switch (spending masking energy you don't have) or refuse it (appearing rigid)</span></div>
+      <div class="stress-step"><span class="stress-arrow">↓</span><span class="stress-text">The next demand arrives before you've recovered from the last switch</span></div>
+      <div class="stress-step"><span class="stress-arrow">↻</span><span class="stress-text" style="font-style:italic;color:var(--text-tertiary);">Repeat</span></div>
+    </div>
+
+    <div class="r-section">
+      <div class="r-section-label"><span>What you might be trying to say</span></div>
+      <div class="quote-block">I'm not inconsistent. I have two systems that take turns running the show, and neither one is wrong.</div>
+      <div class="quote-block">I need structure and freedom in the same life, and I know that sounds contradictory. It is. That's the point.</div>
+    </div>
+
+    <div class="tier-label">How this plays out</div>
+
+    <div class="r-section-card">
+      <div class="r-section-label"><span>Relationships</span></div>
+      <h3>How this shows up with people</h3>
+      <p>You need a partner who can hold complexity — someone who doesn't need you to be one consistent thing. Your best relationships are with people who find the contradictions interesting rather than frustrating.</p>
+    </div>
+
+    <div class="r-section-card">
+      <div class="r-section-label"><span>Work</span></div>
+      <h3>How this shows up professionally</h3>
+      <p>You do your best work in environments that offer deep focus time AND variety. Pure routine jobs drain your ADHD side. Pure novelty jobs destabilize your autistic side.</p>
+    </div>
+
+    <div class="r-section-card">
+      <div class="r-section-label"><span>Energy management</span></div>
+      <h3>What costs, what restores</h3>
+      <p>Mode-switching is your most expensive operation. Not the work itself — the transition between types of work. Protect your transitions. Batch similar-mode tasks.</p>
+    </div>
+
+    <div class="disclaimer">
+      This is pattern-mapping, not diagnosis. These results describe how your attention, energy, social processing, and emotional regulation tend to operate — based on your self-reported experience. If these patterns are affecting your life, a professional evaluation can provide clarity and access to support.
+    </div>
+
+    <a class="methodology-link" href="#methodology">
+      <div class="ml-icon">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" stroke-width="2" stroke-linecap="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+      </div>
+      <div>
+        <div class="ml-text">How Spectrum works</div>
+        <div class="ml-sub">11 dimensions, scoring methodology, and the research behind pattern mapping</div>
+      </div>
+      <span class="ml-arrow">→</span>
+    </a>
+
+    <div style="text-align:center;">
+      <button class="retake-btn" onclick="showScreen('landing')">Retake Assessment</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function showScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.screen-nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('screen-' + name).classList.add('active');
+  document.querySelectorAll('.screen-nav button').forEach(b => {
+    if (b.textContent.toLowerCase() === name) b.classList.add('active');
+  });
+  window.scrollTo(0, 0);
+}
+
+function selectOption(el) {
+  el.parentElement.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function switchSendTab(btn, target) {
+  btn.parentElement.querySelectorAll('.send-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  ['partner','boss','therapist','friend'].forEach(id => {
+    const el = document.getElementById('send-' + id);
+    if (el) el.style.display = id === target ? 'block' : 'none';
+  });
+  const copyBtn = btn.closest('.send-section').querySelector('.send-copy-btn');
+  if (copyBtn) { copyBtn.classList.remove('copied'); copyBtn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy message'; }
+}
+
+function copySendMessage(btn) {
+  const section = btn.closest('.send-section');
+  const visible = section.querySelector('.send-message:not([style*="display: none"])') || section.querySelector('.send-message:not([style])');
+  const label = visible.querySelector('.send-message-label');
+  let text = visible.textContent;
+  if (label) text = text.replace(label.textContent, '').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.classList.add('copied');
+    btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+    setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy message'; }, 2000);
+  });
+}
+
+function copyShareCard(btn) {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    btn.classList.add('copied');
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+    setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = orig; }, 2000);
+  });
+}
+
+function shareNative(btn) {
+  if (navigator.share) {
+    navigator.share({ title: 'My Spectrum Result — The Bridge', url: window.location.href });
+  } else { copyShareCard(btn); }
+}
+
+function saveImage(btn) {
+  btn.textContent = 'Coming soon';
+  setTimeout(() => { btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Save image'; }, 2000);
+}
+
+function copyCompareLink(btn) {
+  const text = "I just mapped my cognitive pattern on Spectrum — I'm The Bridge. Take it too and we can compare how our patterns interact: " + window.location.origin + window.location.pathname;
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Link copied!';
+    btn.style.background = '#4D8A56'; btn.style.color = 'white';
+    setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.style.color = ''; }, 2500);
+  });
+}
+</script>
+
+</body>
+</html>
