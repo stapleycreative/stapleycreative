@@ -8,47 +8,6 @@ export const metadata: Metadata = {
   description: "Case studies, product design, tools, branding, and illustration. Twenty years of work.",
 };
 
-const monoTagStyle = {
-  padding: "2px 6px",
-  display: "inline-flex" as const,
-  alignItems: "center" as const,
-  backgroundColor: "rgba(20, 20, 19, 0.06)",
-  color: "rgba(20, 20, 19, 0.5)",
-  fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
-  fontSize: "11px",
-  fontWeight: 400,
-  lineHeight: "18px",
-  borderRadius: "4px",
-};
-
-const projects = [
-  {
-    title: "NordicTrack PDP",
-    desc: "Product detail page redesign. Conversion-focused layout for a $2K+ hardware purchase.",
-    type: "UI",
-  },
-  {
-    title: "iFIT Workout UI",
-    desc: "In-workout interface across treadmill, bike, and rower. Real-time metrics at a glance while moving.",
-    type: "UI",
-  },
-  {
-    title: "NordicTrack Checkout",
-    desc: "Checkout flow redesign for high-ticket fitness hardware. Reduced friction, increased conversion.",
-    type: "UI",
-  },
-  {
-    title: "NordicTrack Ad Campaign",
-    desc: "Digital ad campaign for connected fitness hardware. Creative direction across channels.",
-    type: "Creative",
-  },
-  {
-    title: "iFIT Vision Deck",
-    desc: "Internal strategy deck that aligned five product surfaces under one design language.",
-    type: "Strategy",
-  },
-];
-
 const tools = [
   {
     title: "Signal",
@@ -64,25 +23,6 @@ const tools = [
   },
 ];
 
-const brand = [
-  {
-    title: "Found Resume",
-    desc: "Identity for a resume optimization service. Beat the bots, impress employers.",
-  },
-  {
-    title: "Shundahai",
-    desc: "Brand and identity for an affluent community development in Bear Lake, Utah.",
-  },
-  {
-    title: "Alpine Orthopaedic Specialists",
-    desc: "Brand system for a group orthopaedic practice. Logan, Utah.",
-  },
-  {
-    title: "Milieu",
-    desc: "Print brochure design. Layout, typography, production.",
-  },
-];
-
 export default function WorkPage() {
   const caseStudies = getAllContent("work");
 
@@ -93,8 +33,7 @@ export default function WorkPage() {
         <h1 className="text-3xl font-semibold tracking-tight">Work</h1>
         <p className="mt-3 max-w-[520px] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
           Twenty years of product design, systems thinking, and building
-          things that work. Case studies, shipped products, tools, brand
-          work, and illustration.
+          things that work. Five case studies. Two live tools.
         </p>
       </div>
 
@@ -166,31 +105,8 @@ export default function WorkPage() {
       {/* Sub-sections — narrow, left-aligned within wide container */}
       <div style={{ maxWidth: "var(--max-width-content)" }}>
 
-      {/* Product & UI */}
-      <section className="mt-14">
-        <h2 className="text-xs font-medium tracking-wide mb-6" style={{ color: "var(--color-text-tertiary)" }}>
-          Product &amp; UI
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {projects.map((p) => (
-            <div
-              key={p.title}
-              className="block p-5 rounded-lg border border-[var(--color-border-subtle)] bg-[#fdfcfd]"
-            >
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <h3 className="text-sm font-semibold" style={{ color: "var(--color-text-primary)" }}>{p.title}</h3>
-                  <p className="mt-1.5 text-[13px] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>{p.desc}</p>
-                </div>
-                <span className="rounded flex-shrink-0" style={monoTagStyle}>{p.type}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* Tools & Demos */}
-      <section className="mt-14">
+      <section className="mt-20">
         <h2 className="text-xs font-medium tracking-wide mb-6" style={{ color: "var(--color-text-tertiary)" }}>
           Tools &amp; personal projects
         </h2>
@@ -220,46 +136,11 @@ export default function WorkPage() {
         </div>
       </section>
 
-      {/* Brand & Identity */}
-      <section className="mt-14">
-        <h2 className="text-xs font-medium tracking-wide mb-6" style={{ color: "var(--color-text-tertiary)" }}>
-          Brand &amp; identity
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {brand.map((b) => (
-            <div
-              key={b.title}
-              className="block p-5 rounded-lg border border-[var(--color-border-subtle)] bg-[#fdfcfd]"
-            >
-              <h3 className="text-sm font-semibold" style={{ color: "var(--color-text-primary)" }}>{b.title}</h3>
-              <p className="mt-1.5 text-[13px] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>{b.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Illustration */}
-      <section className="mt-14 pb-8">
-        <h2 className="text-xs font-medium tracking-wide mb-6" style={{ color: "var(--color-text-tertiary)" }}>
-          Illustration
-        </h2>
-        <div
-          className="block p-6 rounded-lg border border-[var(--color-border-subtle)] bg-[#fdfcfd]"
-        >
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <h3 className="text-sm font-semibold" style={{ color: "var(--color-text-primary)" }}>
-                Illustration selects
-              </h3>
-              <p className="mt-1.5 text-[13px] leading-relaxed max-w-[480px]" style={{ color: "var(--color-text-secondary)" }}>
-                Ten years of editorial and publication illustration. Highlights Magazine, Friend Magazine,
-                and personal work. Color, contrast, visual flow, emotional tone.
-              </p>
-            </div>
-            <span className="rounded flex-shrink-0" style={monoTagStyle}>Gallery</span>
-          </div>
-        </div>
-      </section>
+      {/* Also — quiet footer line */}
+      <p className="mt-20 text-[13px] leading-relaxed" style={{ color: "var(--color-text-tertiary)" }}>
+        Also: brand systems for Found Resume, Shundahai, Alpine Orthopaedic, and Milieu.
+        Ten years of editorial illustration for Highlights and Friend Magazine. Ask me about any of it.
+      </p>
       </div>
     </div>
   );
