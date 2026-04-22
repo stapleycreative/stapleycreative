@@ -29,7 +29,14 @@ interface HomeContentProps {
 }
 
 export function HomeContent({ caseStudies: allStudies, posts }: HomeContentProps) {
-  const caseStudies = allStudies.filter((s) => !(s as ContentMeta & { playground?: boolean }).playground);
+  // Curated home order: featured lead + supporting pair.
+  // Per positioning master: Emotional Audit leads, iFIT and Contact Reports anchor the pair.
+  // Hiki stays visible on /work. Playground items always filtered out.
+  const HOME_ORDER = ["emotional-audit-framework", "contact-reports", "ifit"] as const;
+  const nonPlayground = allStudies.filter((s) => !(s as ContentMeta & { playground?: boolean }).playground);
+  const caseStudies = HOME_ORDER
+    .map((slug) => nonPlayground.find((s) => s.slug === slug))
+    .filter((s): s is ContentMeta => Boolean(s));
   const heroRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const sectionLabelRef = useRef<HTMLHeadingElement>(null);
@@ -52,39 +59,21 @@ export function HomeContent({ caseStudies: allStudies, posts }: HomeContentProps
       // Hero headline, split into words, stagger reveal
 
       if (headlineRef.current) {
-        // "Stereographic RGB Pull" reveal (Sharp, Zero Blur)
+        // Clean word-stagger reveal. No chromatic shadow, no scroll-reactive effects.
         const split = new SplitText(headlineRef.current, { type: "words" });
-        
-        // 1. Initial Load Lock-in
-        gsap.fromTo(split.words, 
-          { 
-            opacity: 0, 
-            y: 8,
-            textShadow: "0px -8px 0px rgba(255,0,0,0.8), 0px 8px 0px rgba(0,255,255,0.8)"
-          },
-          { 
-            opacity: 1, 
-            y: 0, 
-            textShadow: "0px 0px 0px rgba(255,0,0,0), 0px 0px 0px rgba(0,255,255,0)",
-            duration: 1.0, 
-            stagger: 0.04, 
-            ease: "power3.out", 
-            delay: 0.1 
+
+        gsap.fromTo(
+          split.words,
+          { opacity: 0, y: 8 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.04,
+            ease: "power3.out",
+            delay: 0.1,
           }
         );
-
-        // 2. Velocity-based Scroll Deconstruction
-        lenis.on('scroll', (e: any) => {
-          let v = e.velocity * 0.5;
-          v = Math.max(-50, Math.min(50, v));
-
-          gsap.to(split.words, {
-            textShadow: `0px ${-v}px 0px rgba(255,0,0,0.25), 0px ${v}px 0px rgba(0,255,255,0.25)`,
-            duration: 0.3,
-            ease: "power2.out",
-            overwrite: "auto"
-          });
-        });
       }
 
       // Subhead + role tags: no entrance animation (they render static with the page).
