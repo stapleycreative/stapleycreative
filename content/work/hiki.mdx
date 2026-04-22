@@ -22,6 +22,8 @@ coverAccentColor: "#E85C8A"
   result="3.9x user growth. 2.6x revenue. 10:1 LTV:CAC. 350K+ users across 100 countries. CBS News coverage."
 />
 
+The mainstream dating playbook was the product's ceiling. Growth didn't come from a better version of swipe. It came from rebuilding the product around how neurodivergent people actually form connection: slower pacing, compatibility that predicted real fit, and a monetization model that didn't punish the people it claimed to serve. Everything below is downstream of that call.
+
 ## The before
 
 The app I walked into was a Tinder clone with an autism sticker on it. Swipe-based matching. Generic profiles. No design system. No accessibility beyond the legal minimum.
@@ -62,13 +64,15 @@ Three theme modes: light, dark, and high-contrast. Each one shaped every compone
 
 Beyond color: no fast or sudden movements anywhere in the UI. Every animation respects `prefers-reduced-motion`. No auto-playing media. Interactions are consensual by default, meaning nothing happens to your profile, your visibility, or your notifications without you explicitly opting in. For this audience, unexpected UI shifts can trigger genuine distress.
 
-### Profile redesign: scroll and engage, not swipe and judge
+### Killing the swipe
 
 I killed the swipe mechanic entirely. Replaced it with scroll-based browsing where profiles are richer, longer, and designed to be read rather than snap-judged. You scroll at your own pace. If you're interested, you like them. A like triggers the ability to message. No unsolicited DMs. No pressure to respond instantly.
 
 Swiping optimizes for volume and speed. Neurodivergent users need more information before making social decisions, not less. The scroll model gives them that space.
 
-### ND filtering: four categories filled during onboarding
+The tradeoff was slower onboarding and a lower like rate per session. I took it. The users swipe was bringing in weren't the ones we wanted to keep.
+
+### Matching on how brains work, not demographics
 
 The matching system uses four neurodivergent-specific filter categories: identity (how you identify within the ND spectrum), communication styles (how you prefer to interact), special considerations (things a potential match should know), and special needs (specific accommodations or boundaries). Users fill these out during onboarding, not as an afterthought in settings.
 
@@ -99,7 +103,7 @@ Paid features are shortcuts, not unlocks. More likes, priority visibility, advan
   size={320}
 />
 
-## The rollout
+## Why we chose a hard cutover
 
 <MediaGrid2x2
   topLeft="/work/hiki/rollout-01.png"
@@ -116,11 +120,13 @@ For this audience, gradual means unpredictable. Half the app looks new, half loo
 
 So we shipped everything at once and over-communicated the hell out of it. In-app education explaining what changed and why. Onboarding that walked existing users through the new system at their own pace. The framing mattered: this isn't change for the sake of change. This is the app finally becoming what it was supposed to be.
 
+The risk was real. Power users had muscle memory on the old app, and a subset of them felt disoriented for the first week. The in-app education recovered most of them. The alternative, a phased rollout with half the app changing while they used it, would have been worse.
+
 ## Results
 
 <HikiScreenshots />
 
-3.9x user growth. 2.6x revenue. 10:1 lifetime value to customer acquisition cost ratio. 700+ screens designed and shipped across iOS and Android. Product choices built specifically for neurodivergent users outperformed the template conventions the old product was copying. The niche was the wedge, not the ceiling.
+3.9x user growth. 2.6x revenue. 10:1 lifetime value to customer acquisition cost ratio. Product choices built specifically for neurodivergent users outperformed the template conventions the old product was copying. The niche was the wedge, not the ceiling.
 
 The app went from a niche autism-only product that [Newsweek](https://www.newsweek.com/new-dating-app-helping-people-autistic-spectrum-find-love-1449552) and [NBC](https://www.nbcnewyork.com/news/local/first-dating-app-for-autistic-users-lau/1058168/) covered at launch in 2019 to 350,000+ users across 100 countries after the redesign. [CBS News ran a story](https://www.cbsnews.com/news/app-neurodivergent-people-couple-with-autism-finding-love/) about a couple who met on the platform and got engaged. That kind of press doesn't happen to apps with bad UX.
 

@@ -28,7 +28,8 @@ interface HomeContentProps {
   posts: ContentMeta[];
 }
 
-export function HomeContent({ caseStudies, posts }: HomeContentProps) {
+export function HomeContent({ caseStudies: allStudies, posts }: HomeContentProps) {
+  const caseStudies = allStudies.filter((s) => !(s as ContentMeta & { playground?: boolean }).playground);
   const heroRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const sectionLabelRef = useRef<HTMLHeadingElement>(null);
@@ -163,7 +164,7 @@ export function HomeContent({ caseStudies, posts }: HomeContentProps) {
             className="text-sm"
             style={{ color: "var(--color-text-tertiary)" }}
           >
-            Open to staff, principal, and creative leadership roles.
+            Open to Principal or Staff Product Design roles. Active search, 1–3 month window.
           </span>
         </div>
       </section>
