@@ -135,7 +135,7 @@ export function HomeContent({ caseStudies: allStudies, posts }: HomeContentProps
           className="text-4xl sm:text-5xl lg:text-[56px] font-semibold tracking-tight leading-[1.1] max-w-[860px]"
           style={{ color: "var(--color-text-primary)" }}
         >
-          I figure out the real problem. Then I build the system that fixes it.
+          I design for how attention, emotion, and trust actually work.
         </h1>
         <p
           className="mt-8 text-lg max-w-[760px] leading-relaxed"
@@ -153,7 +153,7 @@ export function HomeContent({ caseStudies: allStudies, posts }: HomeContentProps
             className="text-sm"
             style={{ color: "var(--color-text-tertiary)" }}
           >
-            Open to Principal or Staff Product Design roles. Active search, 1–3 month window.
+            Open to Principal or Staff roles on AI products or behavioral design. Active search, 1–3 month window.
           </span>
         </div>
       </section>

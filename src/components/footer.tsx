@@ -12,7 +12,7 @@ export function Footer() {
             Craig Stapley — Product Designer
           </p>
           <p className="text-xs mt-1" style={{ color: "var(--color-text-tertiary)" }}>
-            Systems thinking. Behavioral design. Built with Next.js.
+            Behavioral design. Cognitive architecture. Built with Next.js.
           </p>
         </div>
         <div className="flex gap-4 text-sm" style={{ color: "var(--color-text-secondary)" }}>

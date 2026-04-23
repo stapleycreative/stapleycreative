@@ -16,9 +16,8 @@ export default function AboutPage() {
           className="mt-4 text-[15px] leading-relaxed max-w-[56ch]"
           style={{ color: "var(--color-text-tertiary)" }}
         >
-          Currently at GiveCampus. Open to Principal or Staff Product Design
-          roles. Active search, 1–3 month window. Strongest fit: AI product
-          and 0→1 work.{" "}
+          Currently at GiveCampus. Open to Principal or Staff roles on AI
+          products or behavioral design. Active search, 1–3 month window.{" "}
           <a
             href="mailto:stapleycreative@gmail.com"
             style={{
