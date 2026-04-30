@@ -27,6 +27,7 @@ const components = {
     alt,
     caption,
     aspect = "16/9",
+    bg,
   }: {
     src?: string;
     alt: string;
@@ -36,14 +37,16 @@ const components = {
     priority?: string;
     style?: string;
     aspect?: string;
+    /** Optional background color override (e.g. "#051629" for dark deck-slide images). */
+    bg?: string;
   }) => (
     <figure className="my-8 not-prose" aria-label={alt}>
       <div
         className="rounded-lg overflow-hidden relative"
         style={{
           aspectRatio: aspect,
-          backgroundColor: "var(--color-bg-surface)",
-          border: "1px solid var(--color-border-subtle)",
+          backgroundColor: bg ?? "var(--color-bg-surface)",
+          border: bg ? "none" : "1px solid var(--color-border-subtle)",
         }}
       >
         {src && (
