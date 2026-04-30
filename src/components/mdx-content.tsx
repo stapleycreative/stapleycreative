@@ -47,16 +47,19 @@ const components = {
           aspectRatio: aspect,
           backgroundColor: bg ?? "var(--color-bg-surface)",
           border: bg ? "none" : "1px solid var(--color-border-subtle)",
+          padding: bg ? "clamp(24px, 4vw, 64px)" : 0,
         }}
       >
         {src && (
-          <Image
-            src={src}
-            alt={alt}
-            fill
-            sizes="(min-width: 1024px) 1080px, 100vw"
-            className="object-cover"
-          />
+          <div className="relative w-full h-full">
+            <Image
+              src={src}
+              alt={alt}
+              fill
+              sizes="(min-width: 1024px) 1080px, 100vw"
+              className={bg ? "object-contain" : "object-cover"}
+            />
+          </div>
         )}
       </div>
       {caption && (
