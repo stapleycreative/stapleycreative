@@ -21,7 +21,6 @@
   --color-accent-hover: #E66B62;
 
   --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-serif-display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   --radius-sm: 6px;
@@ -71,7 +70,7 @@ body {
   margin-bottom: 0.75rem;
 }
 .prose p {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.75rem;
 }
 .prose blockquote {
   border-left: 4px solid var(--color-text-primary);
@@ -84,7 +83,7 @@ body {
   margin-bottom: 2rem;
 }
 .prose ul {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.75rem;
   padding-left: 0;
   list-style: none;
 }
