@@ -115,16 +115,16 @@ const components = {
                   style={{
                     display: "inline-block",
                     color: "#00A3E0",
-                    fontSize: "11px",
-                    letterSpacing: "0.14em",
+                    fontSize: "10px",
+                    fontFamily: "var(--font-mono)",
+                    letterSpacing: "0.05em",
                     fontWeight: 600,
                     marginBottom: "16px",
                     textTransform: "uppercase",
-                    backgroundColor: "rgba(0,163,224,0.12)",
-                    border: "1px solid rgba(0,163,224,0.28)",
-                    padding: "6px 11px",
-                    borderRadius: "6px",
-                    lineHeight: 1,
+                    backgroundColor: "rgba(0,163,224,0.10)",
+                    padding: "3px 6px",
+                    borderRadius: "4px",
+                    lineHeight: 1.2,
                   }}
                 >
                   {eyebrow}
@@ -482,15 +482,15 @@ const components = {
                   style={{
                     display: "inline-block",
                     color: "var(--color-text-tertiary)",
-                    fontSize: "11px",
-                    letterSpacing: "0.14em",
+                    fontSize: "10px",
+                    fontFamily: "var(--font-mono)",
+                    letterSpacing: "0.05em",
                     fontWeight: 600,
                     textTransform: "uppercase",
-                    backgroundColor: "rgba(28,32,36,0.05)",
-                    border: "1px solid rgba(28,32,36,0.12)",
-                    padding: "6px 11px",
-                    borderRadius: "6px",
-                    lineHeight: 1,
+                    backgroundColor: "rgba(28,32,36,0.06)",
+                    padding: "3px 6px",
+                    borderRadius: "4px",
+                    lineHeight: 1.2,
                   }}
                 >
                   Reference

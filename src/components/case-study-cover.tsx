@@ -93,17 +93,16 @@ export function CaseStudyCover({
           <div
             style={{
               display: "inline-block",
-              fontSize: numberSize,
-              letterSpacing: "0.14em",
+              fontSize: "10px",
+              fontFamily: "var(--font-mono)",
+              letterSpacing: "0.05em",
               fontWeight: 600,
               textTransform: "uppercase",
-              fontFamily: "var(--font-sans)",
               color: "rgba(245,241,232,0.75)",
-              backgroundColor: "rgba(255,255,255,0.06)",
-              border: "1px solid rgba(255,255,255,0.14)",
-              padding: "6px 11px",
-              borderRadius: "6px",
-              lineHeight: 1,
+              backgroundColor: "rgba(255,255,255,0.08)",
+              padding: "3px 6px",
+              borderRadius: "4px",
+              lineHeight: 1.2,
             }}
           >
             {number ? `${number} · Case Study` : "Case Study"}
