@@ -143,6 +143,8 @@ const components = {
               style={{
                 position: "relative",
                 aspectRatio: afterAspect,
+                borderRadius: "10px",
+                overflow: "hidden",
               }}
             >
               <Image
@@ -150,7 +152,7 @@ const components = {
                 alt={afterAlt}
                 fill
                 sizes="(min-width: 1024px) 1000px, 100vw"
-                className="object-contain"
+                className="object-cover"
               />
             </div>
           </div>
