@@ -92,14 +92,15 @@ export function CaseStudyCover({
           {/* Number label */}
           <div
             style={{
-              display: "inline-block",
+              alignSelf: "flex-start",
+              width: "fit-content",
               fontSize: "10px",
               fontFamily: "var(--font-mono)",
               letterSpacing: "0.05em",
               fontWeight: 600,
               textTransform: "uppercase",
               color: "rgba(245,241,232,0.75)",
-              backgroundColor: "rgba(255,255,255,0.08)",
+              backgroundColor: "rgba(255,255,255,0.10)",
               padding: "3px 6px",
               borderRadius: "4px",
               lineHeight: 1.2,

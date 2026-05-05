@@ -114,6 +114,7 @@ const components = {
                 <div
                   style={{
                     display: "inline-block",
+                    width: "fit-content",
                     color: "#00A3E0",
                     fontSize: "10px",
                     fontFamily: "var(--font-mono)",
@@ -121,7 +122,7 @@ const components = {
                     fontWeight: 600,
                     marginBottom: "16px",
                     textTransform: "uppercase",
-                    backgroundColor: "rgba(0,163,224,0.10)",
+                    backgroundColor: "rgba(0,163,224,0.18)",
                     padding: "3px 6px",
                     borderRadius: "4px",
                     lineHeight: 1.2,
@@ -481,6 +482,7 @@ const components = {
                 <div
                   style={{
                     display: "inline-block",
+                    width: "fit-content",
                     color: "var(--color-text-tertiary)",
                     fontSize: "10px",
                     fontFamily: "var(--font-mono)",
