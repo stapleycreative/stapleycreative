@@ -223,6 +223,82 @@ const components = {
     );
   },
 
+
+  /**
+   * Ownership callout. Lists what Craig personally owned on the project.
+   * Light card with eyebrow pill + bulleted list.
+   */
+  OwnedBlock: ({
+    title = "What I owned",
+    items,
+  }: {
+    title?: string;
+    items: string[];
+  }) => (
+    <div
+      className="my-12 not-prose rounded-xl px-8 py-9"
+      style={{
+        backgroundColor: "var(--color-bg-surface)",
+        border: "1px solid var(--color-border-subtle)",
+      }}
+    >
+      <div
+        style={{
+          display: "inline-block",
+          width: "fit-content",
+          color: "var(--color-text-tertiary)",
+          fontSize: "10px",
+          fontFamily: "var(--font-mono)",
+          letterSpacing: "0.02em",
+          fontWeight: 400,
+          marginBottom: "20px",
+          backgroundColor: "rgba(28,32,36,0.06)",
+          padding: "3px 6px",
+          borderRadius: "4px",
+          lineHeight: 1.2,
+        }}
+      >
+        {title}
+      </div>
+      <ul
+        style={{
+          display: "grid",
+          gap: "10px",
+          padding: 0,
+          margin: 0,
+          listStyle: "none",
+        }}
+      >
+        {items.map((item: string, i: number) => (
+          <li
+            key={i}
+            style={{
+              paddingLeft: "22px",
+              position: "relative",
+              color: "var(--color-text-primary)",
+              fontSize: "16px",
+              lineHeight: 1.5,
+            }}
+          >
+            <span
+              aria-hidden
+              style={{
+                position: "absolute",
+                left: 0,
+                top: "0.65em",
+                width: "6px",
+                height: "6px",
+                backgroundColor: "var(--color-accent)",
+                borderRadius: "50%",
+              }}
+            />
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  ),
+
   /**
    * Before / After comparison block with HTML-rendered headers and labels
    * (no text baked into images). Each image has its own aspect ratio.
