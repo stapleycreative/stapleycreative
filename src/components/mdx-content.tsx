@@ -17,6 +17,213 @@ const components = {
   LiveNowCard,
 
   /**
+   * Side-by-side checkout-flow comparison rendered in code.
+   * Each row is an array of step boxes. Steps can be highlighted, stacked,
+   * or marked as "final" (the Done state). Separator with vertical CHECKOUT
+   * FLOW label aligns across rows by `separatorAfter` index.
+   * On narrow screens, horizontal scroll preserves alignment.
+   */
+  FlowComparison: ({
+    eyebrow,
+    title,
+    rows,
+    columnTemplate,
+  }: {
+    eyebrow?: string;
+    title?: string;
+    columnTemplate?: string;
+    rows: Array<{
+      label: string;
+      separatorAfter?: number;
+      steps: Array<{
+        text: string;
+        col?: number;
+        highlighted?: boolean;
+        stacked?: boolean;
+        final?: boolean;
+      }>;
+    }>;
+  }) => {
+    const renderStep = (
+      step: {
+        text: string;
+        col?: number;
+        highlighted?: boolean;
+        stacked?: boolean;
+        final?: boolean;
+      },
+      idx: number,
+    ) => {
+      const baseStyle = {
+        gridColumn: step.col ? `${step.col} / span 1` : undefined,
+        position: "relative" as const,
+        height: "84px",
+        borderRadius: "12px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "12px 16px",
+        fontSize: "13px",
+        lineHeight: 1.25,
+        fontWeight: 500,
+        textAlign: "center" as const,
+        whiteSpace: "pre-line" as const,
+      };
+      const colorStyle = step.highlighted
+        ? { backgroundColor: "#00A3E0", color: "white" }
+        : step.final
+          ? { backgroundColor: "#E5E7EB", color: "#1C2024" }
+          : { backgroundColor: "rgba(255,255,255,0.18)", color: "white" };
+
+      return (
+        <div key={idx} style={{ ...baseStyle, ...colorStyle }}>
+          {step.stacked && (
+            <div
+              aria-hidden
+              style={{
+                position: "absolute",
+                inset: "8px -8px -8px 8px",
+                borderRadius: "12px",
+                backgroundColor: step.highlighted
+                  ? "rgba(0,163,224,0.45)"
+                  : "rgba(255,255,255,0.08)",
+                zIndex: -1,
+              }}
+            />
+          )}
+          {step.text}
+        </div>
+      );
+    };
+
+    const totalCols = columnTemplate
+      ? columnTemplate.split(" ").length
+      : Math.max(
+          ...rows.map((r) => Math.max(...r.steps.map((s) => s.col ?? 0))),
+        );
+
+    return (
+      <figure className="my-12 not-prose">
+        <div
+          className="rounded-xl px-6 sm:px-10 py-10 sm:py-14 overflow-x-auto"
+          style={{ backgroundColor: "#051629" }}
+        >
+          {(eyebrow || title) && (
+            <div style={{ marginBottom: "40px" }}>
+              {eyebrow && (
+                <div
+                  style={{
+                    display: "inline-block",
+                    color: "#00A3E0",
+                    fontSize: "11px",
+                    letterSpacing: "0.14em",
+                    fontWeight: 600,
+                    marginBottom: "16px",
+                    textTransform: "uppercase",
+                    backgroundColor: "rgba(0,163,224,0.12)",
+                    border: "1px solid rgba(0,163,224,0.28)",
+                    padding: "6px 11px",
+                    borderRadius: "6px",
+                    lineHeight: 1,
+                  }}
+                >
+                  {eyebrow}
+                </div>
+              )}
+              {title && (
+                <div
+                  style={{
+                    color: "white",
+                    fontSize: "clamp(28px, 4vw, 44px)",
+                    fontWeight: 600,
+                    lineHeight: 1.05,
+                    letterSpacing: "-0.02em",
+                  }}
+                >
+                  {title}
+                </div>
+              )}
+            </div>
+          )}
+
+          <div
+            style={{
+              minWidth: "780px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "56px",
+            }}
+          >
+            {rows.map((row, rowIdx) => {
+              const sepCol = row.separatorAfter ?? 0;
+              return (
+                <div key={rowIdx}>
+                  <div
+                    style={{
+                      color: "white",
+                      fontSize: "20px",
+                      fontWeight: 500,
+                      marginBottom: "16px",
+                      lineHeight: 1.15,
+                    }}
+                  >
+                    {row.label}
+                  </div>
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns:
+                        columnTemplate ?? `repeat(${totalCols}, 1fr)`,
+                      gap: "10px",
+                      alignItems: "center",
+                      position: "relative",
+                    }}
+                  >
+                    {row.steps.map((step, idx) => renderStep(step, idx))}
+                    {sepCol > 0 && (
+                      <div
+                        aria-hidden
+                        style={{
+                          position: "absolute",
+                          left: `calc((100% / ${totalCols}) * ${sepCol} - 5px)`,
+                          top: "-20px",
+                          bottom: "-20px",
+                          width: "1px",
+                          backgroundColor: "rgba(255,255,255,0.25)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <div
+                          style={{
+                            position: "absolute",
+                            transform: "rotate(-90deg)",
+                            transformOrigin: "center",
+                            color: "rgba(255,255,255,0.55)",
+                            fontSize: "10px",
+                            letterSpacing: "0.18em",
+                            fontWeight: 600,
+                            whiteSpace: "nowrap",
+                            backgroundColor: "#051629",
+                            padding: "0 8px",
+                          }}
+                        >
+                          CHECKOUT FLOW
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </figure>
+    );
+  },
+
+  /**
    * Before / After comparison block with HTML-rendered headers and labels
    * (no text baked into images). Each image has its own aspect ratio.
    * Default layout is stacked. Pass layout="side-by-side" for horizontal.
@@ -124,6 +331,16 @@ const components = {
                 sizes="(min-width: 1024px) 1000px, 100vw"
                 className="object-cover"
               />
+              <div
+                aria-hidden
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  borderRadius: "10px",
+                  boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.15)",
+                  pointerEvents: "none",
+                }}
+              />
             </div>
           </div>
 
@@ -153,6 +370,16 @@ const components = {
                 fill
                 sizes="(min-width: 1024px) 1000px, 100vw"
                 className="object-cover"
+              />
+              <div
+                aria-hidden
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  borderRadius: "10px",
+                  boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.15)",
+                  pointerEvents: "none",
+                }}
               />
             </div>
           </div>
