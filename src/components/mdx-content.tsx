@@ -113,10 +113,8 @@ const components = {
               style={{
                 position: "relative",
                 aspectRatio: beforeAspect,
-                backgroundColor: "#FCFCFD",
                 borderRadius: "10px",
                 overflow: "hidden",
-                boxShadow: "0 1px 3px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.04)",
               }}
             >
               <Image
@@ -124,7 +122,7 @@ const components = {
                 alt={beforeAlt}
                 fill
                 sizes="(min-width: 1024px) 1000px, 100vw"
-                className="object-contain"
+                className="object-cover"
               />
             </div>
           </div>
