@@ -80,22 +80,30 @@ const components = {
     children: React.ReactNode;
     cite?: string;
   }) => (
-    <blockquote
-      className="my-10 pl-6 not-italic"
-      style={{ borderLeft: "3px solid var(--color-border-strong)" }}
-    >
+    <blockquote className="my-14 not-prose">
       <p
-        className="text-lg italic leading-relaxed"
-        style={{ color: "var(--color-text-secondary)" }}
+        className="text-3xl sm:text-4xl md:text-[2.75rem] leading-[1.15] tracking-tight"
+        style={{
+          fontFamily: "var(--font-serif), Georgia, 'Times New Roman', serif",
+          color: "var(--color-text-primary)",
+          fontWeight: 400,
+          letterSpacing: "-0.01em",
+        }}
       >
         {children}
       </p>
       {cite && (
         <footer
-          className="mt-2 text-sm"
-          style={{ color: "var(--color-text-tertiary)" }}
+          className="mt-5 text-sm tracking-wide uppercase"
+          style={{
+            color: "var(--color-text-tertiary)",
+            fontFamily: "var(--font-family), system-ui, sans-serif",
+            letterSpacing: "0.08em",
+            fontSize: "11px",
+            fontWeight: 600,
+          }}
         >
-          — {cite}
+          {cite}
         </footer>
       )}
     </blockquote>
