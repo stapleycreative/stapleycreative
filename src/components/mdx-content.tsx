@@ -113,9 +113,6 @@ const components = {
               style={{
                 position: "relative",
                 aspectRatio: beforeAspect,
-                backgroundColor: "rgba(255,255,255,0.04)",
-                borderRadius: "6px",
-                overflow: "hidden",
               }}
             >
               <Image
@@ -144,9 +141,6 @@ const components = {
               style={{
                 position: "relative",
                 aspectRatio: afterAspect,
-                backgroundColor: "rgba(255,255,255,0.04)",
-                borderRadius: "6px",
-                overflow: "hidden",
               }}
             >
               <Image
