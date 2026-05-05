@@ -17,6 +17,162 @@ const components = {
   LiveNowCard,
 
   /**
+   * Before / After comparison block with HTML-rendered headers and labels
+   * (no text baked into images). Each image has its own aspect ratio.
+   * Default layout is stacked. Pass layout="side-by-side" for horizontal.
+   */
+  BeforeAfter: ({
+    eyebrow,
+    title,
+    beforeSrc,
+    beforeAlt,
+    beforeLabel = "Before",
+    beforeAspect = "16/9",
+    afterSrc,
+    afterAlt,
+    afterLabel = "After",
+    afterAspect = "4/5",
+    caption,
+    bg = "#051629",
+    layout = "stacked",
+  }: {
+    eyebrow?: string;
+    title?: string;
+    beforeSrc: string;
+    beforeAlt: string;
+    beforeLabel?: string;
+    beforeAspect?: string;
+    afterSrc: string;
+    afterAlt: string;
+    afterLabel?: string;
+    afterAspect?: string;
+    caption?: string;
+    bg?: string;
+    layout?: "stacked" | "side-by-side";
+  }) => (
+    <figure className="my-12 not-prose">
+      <div
+        className="rounded-xl overflow-hidden"
+        style={{
+          backgroundColor: bg,
+          padding: "clamp(24px, 4vw, 64px)",
+        }}
+      >
+        {(eyebrow || title) && (
+          <div style={{ marginBottom: "32px" }}>
+            {eyebrow && (
+              <div
+                style={{
+                  color: "#00A3E0",
+                  fontSize: "11px",
+                  letterSpacing: "0.14em",
+                  fontWeight: 600,
+                  marginBottom: "10px",
+                  textTransform: "uppercase",
+                }}
+              >
+                {eyebrow}
+              </div>
+            )}
+            {title && (
+              <div
+                style={{
+                  color: "white",
+                  fontSize: "clamp(28px, 4vw, 44px)",
+                  fontWeight: 600,
+                  lineHeight: 1.05,
+                  letterSpacing: "-0.02em",
+                }}
+              >
+                {title}
+              </div>
+            )}
+          </div>
+        )}
+
+        <div
+          className={
+            layout === "side-by-side"
+              ? "grid grid-cols-1 sm:grid-cols-2 gap-6"
+              : "flex flex-col gap-10"
+          }
+        >
+          <div>
+            <div
+              style={{
+                color: "rgba(255,255,255,0.7)",
+                fontSize: "13px",
+                fontWeight: 500,
+                marginBottom: "10px",
+                letterSpacing: "0.02em",
+              }}
+            >
+              {beforeLabel}
+            </div>
+            <div
+              style={{
+                position: "relative",
+                aspectRatio: beforeAspect,
+                backgroundColor: "rgba(255,255,255,0.04)",
+                borderRadius: "6px",
+                overflow: "hidden",
+              }}
+            >
+              <Image
+                src={beforeSrc}
+                alt={beforeAlt}
+                fill
+                sizes="(min-width: 1024px) 1000px, 100vw"
+                className="object-contain"
+              />
+            </div>
+          </div>
+
+          <div>
+            <div
+              style={{
+                color: "white",
+                fontSize: "13px",
+                fontWeight: 600,
+                marginBottom: "10px",
+                letterSpacing: "0.02em",
+              }}
+            >
+              {afterLabel}
+            </div>
+            <div
+              style={{
+                position: "relative",
+                aspectRatio: afterAspect,
+                backgroundColor: "rgba(255,255,255,0.04)",
+                borderRadius: "6px",
+                overflow: "hidden",
+              }}
+            >
+              <Image
+                src={afterSrc}
+                alt={afterAlt}
+                fill
+                sizes="(min-width: 1024px) 1000px, 100vw"
+                className="object-contain"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {caption && (
+        <figcaption
+          className="text-sm mt-4"
+          style={{ color: "var(--color-text-tertiary)" }}
+        >
+          {caption}
+        </figcaption>
+      )}
+    </figure>
+  ),
+
+  /**
    * Dual-mode image component.
    * - No `src`: renders a neutral placeholder box (for work-in-progress case studies).
    * - With `src`: renders an optimized next/image with the same figure + caption chrome.
