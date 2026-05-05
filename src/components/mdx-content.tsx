@@ -299,6 +299,128 @@ const components = {
     </div>
   ),
 
+
+  /**
+   * Deck-style slide block. Dark navy bg, HTML eyebrow + title + subtitle,
+   * single image below. Same visual system as BeforeAfter so deck slides
+   * and product comparisons read as one set on the page.
+   */
+  DeckSlide: ({
+    eyebrow,
+    title,
+    subtitle,
+    src,
+    alt,
+    aspect = "16/9",
+    caption,
+  }: {
+    eyebrow?: string;
+    title?: string;
+    subtitle?: string;
+    src: string;
+    alt: string;
+    aspect?: string;
+    caption?: string;
+  }) => (
+    <figure className="my-12 not-prose">
+      <div
+        className="rounded-xl"
+        style={{
+          backgroundColor: "#051629",
+          padding: "clamp(28px, 4.5vw, 64px)",
+        }}
+      >
+        {(eyebrow || title || subtitle) && (
+          <div style={{ marginBottom: "36px", maxWidth: "60ch" }}>
+            {eyebrow && (
+              <div
+                style={{
+                  display: "inline-block",
+                  width: "fit-content",
+                  color: "#00A3E0",
+                  fontSize: "10px",
+                  fontFamily: "var(--font-mono)",
+                  letterSpacing: "0.02em",
+                  fontWeight: 400,
+                  marginBottom: "20px",
+                  backgroundColor: "rgba(0,163,224,0.18)",
+                  padding: "3px 6px",
+                  borderRadius: "4px",
+                  lineHeight: 1.2,
+                }}
+              >
+                {eyebrow}
+              </div>
+            )}
+            {title && (
+              <div
+                style={{
+                  color: "white",
+                  fontSize: "clamp(28px, 4vw, 44px)",
+                  fontWeight: 600,
+                  lineHeight: 1.05,
+                  letterSpacing: "-0.02em",
+                  marginBottom: subtitle ? "20px" : 0,
+                  whiteSpace: "pre-line",
+                }}
+              >
+                {title}
+              </div>
+            )}
+            {subtitle && (
+              <div
+                style={{
+                  color: "rgba(255,255,255,0.6)",
+                  fontSize: "clamp(14px, 1.1vw, 16px)",
+                  lineHeight: 1.5,
+                  fontWeight: 400,
+                }}
+              >
+                {subtitle}
+              </div>
+            )}
+          </div>
+        )}
+
+        <div
+          style={{
+            position: "relative",
+            aspectRatio: aspect,
+            borderRadius: "10px",
+            overflow: "hidden",
+          }}
+        >
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            sizes="(min-width: 1024px) 1080px, 100vw"
+            className="object-contain"
+          />
+          <div
+            aria-hidden
+            style={{
+              position: "absolute",
+              inset: 0,
+              borderRadius: "10px",
+              boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.15)",
+              pointerEvents: "none",
+            }}
+          />
+        </div>
+      </div>
+
+      {caption && (
+        <figcaption
+          className="text-sm mt-4"
+          style={{ color: "var(--color-text-tertiary)" }}
+        >
+          {caption}
+        </figcaption>
+      )}
+    </figure>
+  ),
+
   /**
    * Before / After comparison block with HTML-rendered headers and labels
    * (no text baked into images). Each image has its own aspect ratio.
