@@ -113,6 +113,10 @@ const components = {
               style={{
                 position: "relative",
                 aspectRatio: beforeAspect,
+                backgroundColor: "#FCFCFD",
+                borderRadius: "10px",
+                overflow: "hidden",
+                boxShadow: "0 1px 3px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.04)",
               }}
             >
               <Image
@@ -229,35 +233,60 @@ const components = {
   }: {
     children: React.ReactNode;
     cite?: string;
-  }) => (
-    <blockquote className="my-14 not-prose">
-      <p
-        className="text-3xl sm:text-4xl md:text-[2.75rem] leading-[1.15] tracking-tight"
-        style={{
-          fontFamily: "var(--font-serif), Georgia, 'Times New Roman', serif",
-          color: "var(--color-text-primary)",
-          fontWeight: 400,
-          letterSpacing: "-0.01em",
-        }}
-      >
-        {children}
-      </p>
-      {cite && (
-        <footer
-          className="mt-5 text-sm tracking-wide uppercase"
+  }) => {
+    // Parse "Name, Title" format from cite string
+    const parts = cite ? cite.split(",").map((s) => s.trim()) : [];
+    const name = parts[0] || "";
+    const role = parts.slice(1).join(", ");
+
+    return (
+      <figure className="my-12 not-prose">
+        <div
+          className="rounded-xl px-8 sm:px-12 py-10 sm:py-14"
           style={{
-            color: "var(--color-text-tertiary)",
-            fontFamily: "var(--font-family), system-ui, sans-serif",
-            letterSpacing: "0.08em",
-            fontSize: "11px",
-            fontWeight: 600,
+            backgroundColor: "var(--color-bg-surface)",
+            border: "1px solid var(--color-border-subtle)",
           }}
         >
-          {cite}
-        </footer>
-      )}
-    </blockquote>
-  ),
+          <div className="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-6 md:gap-12 items-start">
+            {cite && (
+              <div className="md:pt-1">
+                <div
+                  className="text-xs uppercase tracking-[0.08em] font-semibold mb-3"
+                  style={{ color: "var(--color-text-tertiary)" }}
+                >
+                  Reference
+                </div>
+                <div
+                  className="text-base font-semibold leading-snug"
+                  style={{ color: "var(--color-text-primary)" }}
+                >
+                  {name}
+                </div>
+                {role && (
+                  <div
+                    className="text-sm leading-snug mt-1"
+                    style={{ color: "var(--color-text-tertiary)" }}
+                  >
+                    {role}
+                  </div>
+                )}
+              </div>
+            )}
+            <blockquote
+              className="text-xl sm:text-[1.375rem] leading-[1.5] font-normal"
+              style={{
+                color: "var(--color-text-primary)",
+                letterSpacing: "-0.005em",
+              }}
+            >
+              {children}
+            </blockquote>
+          </div>
+        </div>
+      </figure>
+    );
+  },
 
   Metric: ({ label, value }: { label: string; value: string }) => (
     <div
