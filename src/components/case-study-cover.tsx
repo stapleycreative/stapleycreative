@@ -34,7 +34,7 @@ export function CaseStudyCover({
   role,
   year,
   number,
-  ground = "#1B1B1F",
+  ground = "#051629",
   text = "#F5F1E8",
   accentColor = "#F98077",
   variant = "detail",
@@ -91,13 +91,19 @@ export function CaseStudyCover({
         <div className="flex flex-col justify-between min-w-0">
           {/* Number label */}
           <div
-            className="font-medium"
             style={{
+              display: "inline-block",
               fontSize: numberSize,
-              letterSpacing: "0.22em",
+              letterSpacing: "0.14em",
+              fontWeight: 600,
               textTransform: "uppercase",
-              opacity: 0.55,
               fontFamily: "var(--font-sans)",
+              color: "rgba(245,241,232,0.75)",
+              backgroundColor: "rgba(255,255,255,0.06)",
+              border: "1px solid rgba(255,255,255,0.14)",
+              padding: "6px 11px",
+              borderRadius: "6px",
+              lineHeight: 1,
             }}
           >
             {number ? `${number} · Case Study` : "Case Study"}

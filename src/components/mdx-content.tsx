@@ -475,18 +475,32 @@ const components = {
             border: "1px solid var(--color-border-subtle)",
           }}
         >
-          <div className="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-6 md:gap-12 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 md:gap-14 items-start">
             {cite && (
-              <div className="md:pt-1">
+              <div>
                 <div
-                  className="text-xs uppercase tracking-[0.08em] font-semibold mb-3"
-                  style={{ color: "var(--color-text-tertiary)" }}
+                  style={{
+                    display: "inline-block",
+                    color: "var(--color-text-tertiary)",
+                    fontSize: "11px",
+                    letterSpacing: "0.14em",
+                    fontWeight: 600,
+                    textTransform: "uppercase",
+                    backgroundColor: "rgba(28,32,36,0.05)",
+                    border: "1px solid rgba(28,32,36,0.12)",
+                    padding: "6px 11px",
+                    borderRadius: "6px",
+                    lineHeight: 1,
+                  }}
                 >
                   Reference
                 </div>
                 <div
                   className="text-base font-semibold leading-snug"
-                  style={{ color: "var(--color-text-primary)" }}
+                  style={{
+                    color: "var(--color-text-primary)",
+                    marginTop: "20px",
+                  }}
                 >
                   {name}
                 </div>
@@ -500,15 +514,22 @@ const components = {
                 )}
               </div>
             )}
-            <blockquote
-              className="text-xl sm:text-[1.375rem] leading-[1.5] font-normal"
+            <div
               style={{
+                fontSize: "clamp(18px, 1.5vw, 22px)",
+                lineHeight: 1.5,
+                fontWeight: 400,
+                fontStyle: "normal",
                 color: "var(--color-text-primary)",
                 letterSpacing: "-0.005em",
+                border: "none",
+                padding: 0,
+                margin: 0,
+                maxWidth: "none",
               }}
             >
               {children}
-            </blockquote>
+            </div>
           </div>
         </div>
       </figure>
