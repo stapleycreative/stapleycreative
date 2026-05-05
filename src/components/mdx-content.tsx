@@ -346,12 +346,18 @@ const components = {
             {eyebrow && (
               <div
                 style={{
+                  display: "inline-block",
+                  width: "fit-content",
                   color: "#00A3E0",
-                  fontSize: "11px",
-                  letterSpacing: "0.14em",
-                  fontWeight: 600,
-                  marginBottom: "10px",
-                  textTransform: "uppercase",
+                  fontSize: "10px",
+                  fontFamily: "var(--font-mono)",
+                  letterSpacing: "0.02em",
+                  fontWeight: 400,
+                  marginBottom: "16px",
+                  backgroundColor: "rgba(0,163,224,0.18)",
+                  padding: "3px 6px",
+                  borderRadius: "4px",
+                  lineHeight: 1.2,
                 }}
               >
                 {eyebrow}
