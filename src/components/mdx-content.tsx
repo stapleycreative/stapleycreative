@@ -227,13 +227,24 @@ const components = {
   /**
    * Ownership callout. Lists what Craig personally owned on the project.
    * Light card with eyebrow pill + bulleted list.
+   *
+   * Two usage modes:
+   *   1. Children pattern (MDX-safe, preferred):
+   *      <OwnedBlock>
+   *        <OwnedItem>...</OwnedItem>
+   *        <OwnedItem>...</OwnedItem>
+   *      </OwnedBlock>
+   *   2. Items prop (fallback):
+   *      <OwnedBlock items={["one", "two"]} />
    */
   OwnedBlock: ({
     title = "What I owned",
     items,
+    children,
   }: {
     title?: string;
-    items: string[];
+    items?: string[];
+    children?: React.ReactNode;
   }) => (
     <div
       className="my-12 not-prose rounded-xl px-8 py-9"
@@ -269,34 +280,65 @@ const components = {
           listStyle: "none",
         }}
       >
-        {items.map((item: string, i: number) => (
-          <li
-            key={i}
-            style={{
-              paddingLeft: "22px",
-              position: "relative",
-              color: "var(--color-text-primary)",
-              fontSize: "16px",
-              lineHeight: 1.5,
-            }}
-          >
-            <span
-              aria-hidden
-              style={{
-                position: "absolute",
-                left: 0,
-                top: "0.65em",
-                width: "6px",
-                height: "6px",
-                backgroundColor: "var(--color-accent)",
-                borderRadius: "50%",
-              }}
-            />
-            {item}
-          </li>
-        ))}
+        {Array.isArray(items)
+          ? items.map((item: string, i: number) => (
+              <li
+                key={i}
+                style={{
+                  paddingLeft: "22px",
+                  position: "relative",
+                  color: "var(--color-text-primary)",
+                  fontSize: "16px",
+                  lineHeight: 1.5,
+                }}
+              >
+                <span
+                  aria-hidden
+                  style={{
+                    position: "absolute",
+                    left: 0,
+                    top: "0.65em",
+                    width: "6px",
+                    height: "6px",
+                    backgroundColor: "var(--color-accent)",
+                    borderRadius: "50%",
+                  }}
+                />
+                {item}
+              </li>
+            ))
+          : children}
       </ul>
     </div>
+  ),
+
+  /**
+   * Single ownership item, used as a child of OwnedBlock.
+   */
+  OwnedItem: ({ children }: { children?: React.ReactNode }) => (
+    <li
+      style={{
+        paddingLeft: "22px",
+        position: "relative",
+        color: "var(--color-text-primary)",
+        fontSize: "16px",
+        lineHeight: 1.5,
+      }}
+    >
+      <span
+        aria-hidden
+        style={{
+          position: "absolute",
+          left: 0,
+          top: "0.65em",
+          width: "6px",
+          height: "6px",
+          backgroundColor: "var(--color-accent)",
+          borderRadius: "50%",
+        }}
+      />
+      {children}
+    </li>
   ),
 
 
