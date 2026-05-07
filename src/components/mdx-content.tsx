@@ -804,6 +804,126 @@ const components = {
   ),
 
   /**
+   * Editorial spread: 3 deck pages laid out as a magazine-style spread on the
+   * dark navy ground. Top row splits 40/60 (lead + hero, both portraits at
+   * matching aspect — hero ends up larger in both dimensions). Third child
+   * is the closer, spans full width below.
+   *
+   * Use when scope is conveyed by the subtitle and the images can be
+   * deliberately curated rather than exhaustive.
+   *
+   * MDX usage:
+   *   <DeckSpread eyebrow="..." title="..." subtitle="..." caption="...">
+   *     <DeckPage src="..." alt="brand intro" />
+   *     <DeckPage src="..." alt="hero stats" />
+   *     <DeckPage src="..." alt="closer landscape" wide />
+   *   </DeckSpread>
+   */
+  DeckSpread: ({
+    eyebrow,
+    title,
+    subtitle,
+    caption,
+    children,
+  }: {
+    eyebrow?: string;
+    title?: string;
+    subtitle?: string;
+    caption?: string;
+    children?: React.ReactNode;
+  }) => (
+    <figure className="my-12 not-prose">
+      <div
+        className="rounded-xl"
+        style={{
+          backgroundColor: "#051629",
+          padding: "clamp(28px, 4.5vw, 64px)",
+        }}
+      >
+        {(eyebrow || title || subtitle) && (
+          <div style={{ marginBottom: "36px", maxWidth: "60ch" }}>
+            {eyebrow && (
+              <div
+                style={{
+                  display: "inline-block",
+                  width: "fit-content",
+                  color: "#00A3E0",
+                  fontSize: "10px",
+                  fontFamily: "var(--font-mono)",
+                  letterSpacing: "0.02em",
+                  fontWeight: 400,
+                  marginBottom: "20px",
+                  backgroundColor: "rgba(0,163,224,0.18)",
+                  padding: "3px 6px",
+                  borderRadius: "4px",
+                  lineHeight: 1.2,
+                }}
+              >
+                {eyebrow}
+              </div>
+            )}
+            {title && (
+              <div
+                style={{
+                  color: "white",
+                  fontSize: "clamp(28px, 4vw, 44px)",
+                  fontWeight: 600,
+                  lineHeight: 1.05,
+                  letterSpacing: "-0.02em",
+                  marginBottom: subtitle ? "20px" : 0,
+                }}
+              >
+                {title}
+              </div>
+            )}
+            {subtitle && (
+              <div
+                style={{
+                  color: "rgba(255,255,255,0.6)",
+                  fontSize: "clamp(14px, 1.1vw, 16px)",
+                  lineHeight: 1.5,
+                  fontWeight: 400,
+                }}
+              >
+                {subtitle}
+              </div>
+            )}
+          </div>
+        )}
+
+        <div className="deck-spread">{children}</div>
+      </div>
+
+      {caption && (
+        <figcaption
+          className="text-sm mt-4"
+          style={{ color: "var(--color-text-tertiary)" }}
+        >
+          {caption}
+        </figcaption>
+      )}
+
+      <style>{`
+        .deck-spread {
+          display: grid;
+          grid-template-columns: 2fr 3fr;
+          gap: 14px;
+          align-items: start;
+        }
+        .deck-spread > *:nth-child(3) {
+          grid-column: 1 / -1;
+        }
+        @media (max-width: 768px) {
+          .deck-spread {
+            grid-template-columns: 1fr;
+            gap: 10px;
+          }
+        }
+      `}</style>
+    </figure>
+  ),
+
+  /**
    * Dual-mode image component.
    * - No `src`: renders a neutral placeholder box (for work-in-progress case studies).
    * - With `src`: renders an optimized next/image with the same figure + caption chrome.
