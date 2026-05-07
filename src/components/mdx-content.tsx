@@ -760,48 +760,63 @@ const components = {
   ),
 
   /**
-   * Single deck page rendered inside <DeckMosaic>. Pass `wide` for landscape
-   * pages — they get 2 columns and a 1.7:1 aspect. Portraits get 1 column
-   * and the standard 0.77:1 letter-size aspect.
+   * Single deck page rendered inside <DeckMosaic> or <DeckSpread>. Variants:
+   *   - default (portrait): 0.77:1 letter aspect, fills 1 grid cell
+   *   - wide: 1.7:1 landscape, spans 2 cells in DeckMosaic
+   *   - hero: no fixed aspect — fills whatever grid area it's placed in
+   *           (use as the first child of DeckSpread to anchor the spread)
    */
   DeckPage: ({
     src,
     alt,
     wide = false,
+    hero = false,
   }: {
     src: string;
     alt: string;
     wide?: boolean;
-  }) => (
-    <div
-      className={wide ? "deck-page-wide" : "deck-page"}
-      style={{
-        position: "relative",
-        aspectRatio: wide ? "1.7 / 1" : "0.77 / 1",
-        borderRadius: "4px",
-        overflow: "hidden",
-        backgroundColor: "rgba(255,255,255,0.03)",
-      }}
-    >
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        sizes="(min-width: 1024px) 280px, (min-width: 768px) 50vw, 50vw"
-        className="object-cover"
-      />
+    hero?: boolean;
+  }) => {
+    const className = hero
+      ? "deck-page-hero"
+      : wide
+      ? "deck-page-wide"
+      : "deck-page";
+    return (
       <div
-        aria-hidden
+        className={className}
         style={{
-          position: "absolute",
-          inset: 0,
+          position: "relative",
+          aspectRatio: hero ? undefined : wide ? "1.7 / 1" : "0.77 / 1",
           borderRadius: "4px",
-          boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.15)",
-          pointerEvents: "none",
+          overflow: "hidden",
+          backgroundColor: "rgba(255,255,255,0.03)",
         }}
-      />
-    </div>
-  ),
+      >
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes={
+            hero
+              ? "(min-width: 1024px) 540px, 100vw"
+              : "(min-width: 1024px) 270px, (min-width: 768px) 50vw, 50vw"
+          }
+          className="object-cover"
+        />
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            inset: 0,
+            borderRadius: "4px",
+            boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.15)",
+            pointerEvents: "none",
+          }}
+        />
+      </div>
+    );
+  },
 
   /**
    * Editorial spread: 3 deck pages laid out as a magazine-style spread on the
@@ -906,17 +921,24 @@ const components = {
       <style>{`
         .deck-spread {
           display: grid;
-          grid-template-columns: 2fr 3fr;
-          gap: 14px;
-          align-items: start;
+          grid-template-columns: 2fr 1fr 1fr;
+          grid-auto-rows: 1fr;
+          gap: 16px;
+          align-items: stretch;
         }
-        .deck-spread > *:nth-child(3) {
-          grid-column: 1 / -1;
+        /* First child = the hero. Spans both rows of the 2-col grid on the right. */
+        .deck-spread > *:first-child {
+          grid-column: 1;
+          grid-row: 1 / 3;
         }
         @media (max-width: 768px) {
           .deck-spread {
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 10px;
+          }
+          .deck-spread > *:first-child {
+            grid-column: 1 / -1;
+            grid-row: auto;
           }
         }
       `}</style>
