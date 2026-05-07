@@ -644,6 +644,166 @@ const components = {
   ),
 
   /**
+   * Editorial mosaic of deck pages on the same dark navy ground as DeckSlide.
+   * Children are <DeckPage> elements; pass `wide` for landscape pages so they
+   * span 2 grid cells. 4-col grid on desktop (each portrait spans 1 cell,
+   * each landscape spans 2). 2-col grid on mobile (everything spans full width).
+   *
+   * Use this when the point of the section is showing scope — many pages
+   * read together — rather than featuring any single page as a hero.
+   */
+  DeckMosaic: ({
+    eyebrow,
+    title,
+    subtitle,
+    caption,
+    children,
+  }: {
+    eyebrow?: string;
+    title?: string;
+    subtitle?: string;
+    caption?: string;
+    children?: React.ReactNode;
+  }) => (
+    <figure className="my-12 not-prose">
+      <div
+        className="rounded-xl"
+        style={{
+          backgroundColor: "#051629",
+          padding: "clamp(24px, 4vw, 56px)",
+        }}
+      >
+        {(eyebrow || title || subtitle) && (
+          <div style={{ marginBottom: "36px", maxWidth: "60ch" }}>
+            {eyebrow && (
+              <div
+                style={{
+                  display: "inline-block",
+                  width: "fit-content",
+                  color: "#00A3E0",
+                  fontSize: "10px",
+                  fontFamily: "var(--font-mono)",
+                  letterSpacing: "0.02em",
+                  fontWeight: 400,
+                  marginBottom: "20px",
+                  backgroundColor: "rgba(0,163,224,0.18)",
+                  padding: "3px 6px",
+                  borderRadius: "4px",
+                  lineHeight: 1.2,
+                }}
+              >
+                {eyebrow}
+              </div>
+            )}
+            {title && (
+              <div
+                style={{
+                  color: "white",
+                  fontSize: "clamp(28px, 4vw, 44px)",
+                  fontWeight: 600,
+                  lineHeight: 1.05,
+                  letterSpacing: "-0.02em",
+                  marginBottom: subtitle ? "20px" : 0,
+                }}
+              >
+                {title}
+              </div>
+            )}
+            {subtitle && (
+              <div
+                style={{
+                  color: "rgba(255,255,255,0.6)",
+                  fontSize: "clamp(14px, 1.1vw, 16px)",
+                  lineHeight: 1.5,
+                  fontWeight: 400,
+                }}
+              >
+                {subtitle}
+              </div>
+            )}
+          </div>
+        )}
+
+        <div className="deck-mosaic-grid">{children}</div>
+      </div>
+
+      {caption && (
+        <figcaption
+          className="text-sm mt-4"
+          style={{ color: "var(--color-text-tertiary)" }}
+        >
+          {caption}
+        </figcaption>
+      )}
+
+      <style>{`
+        .deck-mosaic-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 10px;
+          grid-auto-flow: dense;
+        }
+        .deck-mosaic-grid > .deck-page-wide {
+          grid-column: span 2;
+        }
+        @media (max-width: 768px) {
+          .deck-mosaic-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+          }
+          .deck-mosaic-grid > .deck-page-wide {
+            grid-column: span 2;
+          }
+        }
+      `}</style>
+    </figure>
+  ),
+
+  /**
+   * Single deck page rendered inside <DeckMosaic>. Pass `wide` for landscape
+   * pages — they get 2 columns and a 1.7:1 aspect. Portraits get 1 column
+   * and the standard 0.77:1 letter-size aspect.
+   */
+  DeckPage: ({
+    src,
+    alt,
+    wide = false,
+  }: {
+    src: string;
+    alt: string;
+    wide?: boolean;
+  }) => (
+    <div
+      className={wide ? "deck-page-wide" : "deck-page"}
+      style={{
+        position: "relative",
+        aspectRatio: wide ? "1.7 / 1" : "0.77 / 1",
+        borderRadius: "4px",
+        overflow: "hidden",
+        backgroundColor: "rgba(255,255,255,0.03)",
+      }}
+    >
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes="(min-width: 1024px) 280px, (min-width: 768px) 50vw, 50vw"
+        className="object-cover"
+      />
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          inset: 0,
+          borderRadius: "4px",
+          boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.15)",
+          pointerEvents: "none",
+        }}
+      />
+    </div>
+  ),
+
+  /**
    * Dual-mode image component.
    * - No `src`: renders a neutral placeholder box (for work-in-progress case studies).
    * - With `src`: renders an optimized next/image with the same figure + caption chrome.
