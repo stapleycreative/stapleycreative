@@ -1,5 +1,6 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Image from "next/image";
+import React from "react";
 import { LiveNowCard } from "./live-now-card";
 import { LottieAnimation } from "./lottie-animation";
 import { ResearchSegments } from "./research-segments";
@@ -817,6 +818,264 @@ const components = {
       </div>
     );
   },
+
+  /**
+   * Anatomy breakdown of a single artifact. Card image on the left at
+   * portrait aspect, numbered annotations stack on the right. Each <Annotation>
+   * child renders as a row with number badge + label + description. Small
+   * numbered badges appear absolutely positioned on the card image, anchored
+   * to coordinates the child declares.
+   *
+   * MDX usage:
+   *   <CardAnatomy
+   *     image="/work/sunday-school/card-anatomy.png"
+   *     alt="Annotated breakdown of a single Missed in Sunday quote card"
+   *     eyebrow="Anatomy of a card"
+   *     title="Evidence architecture built for trust."
+   *     subtitle="Every element earned its place against a specific defensive response."
+   *   >
+   *     <Annotation x={50} y={6} label="Source authority">
+   *       Identifies the speaker to establish institutional and historical authority.
+   *     </Annotation>
+   *     ...
+   *   </CardAnatomy>
+   *
+   * x/y are percentages (0-100) of the card image area where the numbered
+   * badge should sit.
+   */
+  CardAnatomy: ({
+    image,
+    alt,
+    eyebrow,
+    title,
+    subtitle,
+    children,
+  }: {
+    image: string;
+    alt: string;
+    eyebrow?: string;
+    title?: string;
+    subtitle?: string;
+    children?: React.ReactNode;
+  }) => {
+    const childArray = React.Children.toArray(children);
+    return (
+      <figure className="my-12 not-prose">
+        <div
+          className="rounded-xl"
+          style={{
+            backgroundColor: "#051629",
+            padding: "clamp(28px, 4.5vw, 56px)",
+          }}
+        >
+          {(eyebrow || title || subtitle) && (
+            <div style={{ marginBottom: "40px", maxWidth: "60ch" }}>
+              {eyebrow && (
+                <div
+                  style={{
+                    display: "inline-block",
+                    width: "fit-content",
+                    color: "#EC2C6E",
+                    fontSize: "10px",
+                    fontFamily: "var(--font-mono)",
+                    letterSpacing: "0.02em",
+                    fontWeight: 400,
+                    marginBottom: "20px",
+                    backgroundColor: "rgba(236,44,110,0.18)",
+                    padding: "3px 6px",
+                    borderRadius: "4px",
+                    lineHeight: 1.2,
+                  }}
+                >
+                  {eyebrow}
+                </div>
+              )}
+              {title && (
+                <div
+                  style={{
+                    color: "white",
+                    fontSize: "clamp(28px, 4vw, 44px)",
+                    fontWeight: 600,
+                    lineHeight: 1.05,
+                    letterSpacing: "-0.02em",
+                    marginBottom: subtitle ? "20px" : 0,
+                  }}
+                >
+                  {title}
+                </div>
+              )}
+              {subtitle && (
+                <div
+                  style={{
+                    color: "rgba(255,255,255,0.6)",
+                    fontSize: "clamp(14px, 1.1vw, 16px)",
+                    lineHeight: 1.5,
+                    fontWeight: 400,
+                  }}
+                >
+                  {subtitle}
+                </div>
+              )}
+            </div>
+          )}
+
+          <div className="card-anatomy-grid">
+            <div className="card-anatomy-image">
+              <div
+                style={{
+                  position: "relative",
+                  aspectRatio: "4 / 5",
+                  borderRadius: "4px",
+                  overflow: "hidden",
+                  backgroundColor: "rgba(255,255,255,0.03)",
+                }}
+              >
+                <Image
+                  src={image}
+                  alt={alt}
+                  fill
+                  sizes="(min-width: 1024px) 480px, 100vw"
+                  className="object-cover"
+                />
+                <div
+                  aria-hidden
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    borderRadius: "4px",
+                    boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.15)",
+                    pointerEvents: "none",
+                  }}
+                />
+                {childArray.map((child, i) => {
+                  const c = child as React.ReactElement<{ x?: number; y?: number }>;
+                  const x = c.props?.x ?? 50;
+                  const y = c.props?.y ?? 50;
+                  return (
+                    <div
+                      key={`marker-${i}`}
+                      aria-hidden
+                      style={{
+                        position: "absolute",
+                        left: `${x}%`,
+                        top: `${y}%`,
+                        transform: "translate(-50%, -50%)",
+                        width: "22px",
+                        height: "22px",
+                        borderRadius: "50%",
+                        backgroundColor: "#EC2C6E",
+                        color: "white",
+                        fontSize: "11px",
+                        fontFamily: "var(--font-mono)",
+                        fontWeight: 600,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        boxShadow:
+                          "0 0 0 3px rgba(5,22,41,0.9), 0 0 0 4px rgba(236,44,110,0.4)",
+                        lineHeight: 1,
+                      }}
+                    >
+                      {i + 1}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <ol className="card-anatomy-list">
+              {childArray.map((child, i) => {
+                const c = child as React.ReactElement<{
+                  label?: string;
+                  children?: React.ReactNode;
+                }>;
+                return (
+                  <li key={`item-${i}`} className="card-anatomy-item">
+                    <span className="card-anatomy-num">{String(i + 1).padStart(2, "0")}</span>
+                    <div className="card-anatomy-text">
+                      <div className="card-anatomy-label">{c.props.label}</div>
+                      <div className="card-anatomy-body">{c.props.children}</div>
+                    </div>
+                  </li>
+                );
+              })}
+            </ol>
+          </div>
+        </div>
+
+        <style>{`
+          .card-anatomy-grid {
+            display: grid;
+            grid-template-columns: 5fr 7fr;
+            gap: 48px;
+            align-items: start;
+          }
+          .card-anatomy-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+          }
+          .card-anatomy-item {
+            display: grid;
+            grid-template-columns: 44px 1fr;
+            gap: 18px;
+            align-items: baseline;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+          }
+          .card-anatomy-item:first-child {
+            border-top: 0;
+            padding-top: 0;
+          }
+          .card-anatomy-num {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 400;
+            color: #EC2C6E;
+            letter-spacing: 0.02em;
+            line-height: 1;
+            padding-top: 4px;
+          }
+          .card-anatomy-label {
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: -0.005em;
+            margin-bottom: 6px;
+          }
+          .card-anatomy-body {
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+            line-height: 1.55;
+            font-weight: 400;
+          }
+          @media (max-width: 900px) {
+            .card-anatomy-grid {
+              grid-template-columns: 1fr;
+              gap: 32px;
+            }
+          }
+        `}</style>
+      </figure>
+    );
+  },
+
+  /**
+   * Single annotation child of <CardAnatomy>. Position via x/y percentages
+   * relative to the card image. Label and description render as a numbered
+   * row in the annotation list on the right.
+   */
+  Annotation: ({
+    children,
+  }: {
+    x?: number;
+    y?: number;
+    label?: string;
+    children?: React.ReactNode;
+  }) => <>{children}</>,
 
   /**
    * Editorial spread: 3 deck pages laid out as a magazine-style spread on the
