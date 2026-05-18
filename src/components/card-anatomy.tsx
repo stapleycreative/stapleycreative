@@ -54,38 +54,42 @@ export function CardAnatomy({
   const itemRefs = useRef<Array<HTMLLIElement | null>>([]);
 
   useEffect(() => {
-    const items = itemRefs.current.filter(Boolean) as HTMLLIElement[];
-    if (items.length === 0) return;
+    let rafId = 0;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => {
-            const aCenter =
-              a.boundingClientRect.top + a.boundingClientRect.height / 2;
-            const bCenter =
-              b.boundingClientRect.top + b.boundingClientRect.height / 2;
-            const viewportCenter = window.innerHeight / 2;
-            return (
-              Math.abs(aCenter - viewportCenter) -
-              Math.abs(bCenter - viewportCenter)
-            );
-          });
-
-        if (visible.length > 0) {
-          const idx = items.indexOf(visible[0].target as HTMLLIElement);
-          if (idx !== -1) setActiveIndex(idx);
+    const compute = () => {
+      const items = itemRefs.current.filter(Boolean) as HTMLLIElement[];
+      if (items.length === 0) return;
+      const viewportCenter = window.innerHeight / 2;
+      let bestIdx = 0;
+      let bestDistance = Infinity;
+      items.forEach((item, i) => {
+        const rect = item.getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        const distance = Math.abs(center - viewportCenter);
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          bestIdx = i;
         }
-      },
-      {
-        rootMargin: "-35% 0px -35% 0px",
-        threshold: [0, 0.5, 1],
-      }
-    );
+      });
+      setActiveIndex((prev) => (prev === bestIdx ? prev : bestIdx));
+    };
 
-    items.forEach((item) => observer.observe(item));
-    return () => observer.disconnect();
+    const onScroll = () => {
+      if (rafId) return;
+      rafId = window.requestAnimationFrame(() => {
+        compute();
+        rafId = 0;
+      });
+    };
+
+    compute();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, [childArray.length]);
 
   return (
