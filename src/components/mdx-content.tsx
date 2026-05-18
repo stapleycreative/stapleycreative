@@ -1035,6 +1035,175 @@ const components = {
     );
   },
 
+  /**
+   * Two-column book feature: cover image on the left, metadata + CTA on the right.
+   * Clickable cover and "view on" CTA both link out to the buy-page URL.
+   * Stacks on mobile.
+   */
+  BookFeature: ({
+    image,
+    alt,
+    eyebrow,
+    title,
+    subtitle,
+    description,
+    href,
+    ctaLabel = "View on Amazon",
+  }: {
+    image: string;
+    alt: string;
+    eyebrow?: string;
+    title?: string;
+    subtitle?: string;
+    description?: string;
+    href: string;
+    ctaLabel?: string;
+  }) => (
+    <figure className="my-14 not-prose">
+      <div className="book-feature-grid">
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${title ?? "Book"} — ${ctaLabel}`}
+          className="book-feature-cover"
+        >
+          <Image
+            src={image}
+            alt={alt}
+            width={520}
+            height={584}
+            sizes="(min-width: 900px) 300px, 70vw"
+            style={{
+              width: "100%",
+              height: "auto",
+              display: "block",
+            }}
+          />
+        </a>
+
+        <div className="book-feature-meta">
+          {eyebrow && (
+            <div
+              style={{
+                display: "inline-block",
+                width: "fit-content",
+                color: "#EC2C6E",
+                fontSize: "10px",
+                fontFamily: "var(--font-mono)",
+                letterSpacing: "0.04em",
+                fontWeight: 400,
+                marginBottom: "20px",
+                backgroundColor: "rgba(236,44,110,0.10)",
+                padding: "3px 6px",
+                borderRadius: "4px",
+                lineHeight: 1.2,
+              }}
+            >
+              {eyebrow}
+            </div>
+          )}
+          {title && (
+            <div
+              style={{
+                color: "var(--color-text-primary)",
+                fontSize: "clamp(24px, 2.6vw, 32px)",
+                fontWeight: 600,
+                lineHeight: 1.1,
+                letterSpacing: "-0.015em",
+                marginBottom: subtitle ? "8px" : "20px",
+              }}
+            >
+              {title}
+            </div>
+          )}
+          {subtitle && (
+            <div
+              style={{
+                color: "var(--color-text-secondary)",
+                fontSize: "16px",
+                lineHeight: 1.4,
+                fontWeight: 400,
+                marginBottom: "24px",
+              }}
+            >
+              {subtitle}
+            </div>
+          )}
+          {description && (
+            <p
+              style={{
+                color: "var(--color-text-secondary)",
+                fontSize: "15px",
+                lineHeight: 1.6,
+                fontWeight: 400,
+                marginBottom: "28px",
+                maxWidth: "40ch",
+              }}
+            >
+              {description}
+            </p>
+          )}
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="book-feature-cta"
+          >
+            {ctaLabel}
+            <span aria-hidden style={{ marginLeft: "6px" }}>→</span>
+          </a>
+        </div>
+      </div>
+
+      <style>{`
+        .book-feature-grid {
+          display: grid;
+          grid-template-columns: minmax(0, 280px) 1fr;
+          gap: clamp(32px, 5vw, 64px);
+          align-items: center;
+        }
+        .book-feature-cover {
+          display: block;
+          transition: transform 280ms cubic-bezier(.2,.6,.2,1);
+        }
+        .book-feature-cover:hover {
+          transform: translateY(-3px);
+        }
+        .book-feature-cta {
+          display: inline-flex;
+          align-items: center;
+          font-family: var(--font-mono);
+          font-size: 11px;
+          letter-spacing: 0.06em;
+          color: var(--color-text-primary);
+          text-transform: uppercase;
+          padding: 12px 16px;
+          border: 1px solid var(--color-border-strong, var(--color-border-subtle));
+          border-radius: 6px;
+          background-color: transparent;
+          transition: background-color 200ms ease, border-color 200ms ease;
+          text-decoration: none;
+        }
+        .book-feature-cta:hover {
+          background-color: var(--color-text-primary);
+          color: var(--color-bg, white);
+          border-color: var(--color-text-primary);
+        }
+        @media (max-width: 768px) {
+          .book-feature-grid {
+            grid-template-columns: 1fr;
+            gap: 28px;
+            align-items: start;
+          }
+          .book-feature-cover {
+            max-width: 240px;
+          }
+        }
+      `}</style>
+    </figure>
+  ),
+
   PullQuote: ({
     children,
     cite,
