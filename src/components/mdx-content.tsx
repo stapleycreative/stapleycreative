@@ -961,6 +961,8 @@ const components = {
     caption,
     aspect = "16/9",
     bg,
+    maxWidth,
+    align = "stretch",
   }: {
     src?: string;
     alt: string;
@@ -972,39 +974,66 @@ const components = {
     aspect?: string;
     /** Optional background color override (e.g. "#051629" for dark deck-slide images). */
     bg?: string;
-  }) => (
-    <figure className="my-8 not-prose" aria-label={alt}>
-      <div
-        className="rounded-lg overflow-hidden relative"
-        style={{
-          aspectRatio: aspect,
-          backgroundColor: bg ?? "var(--color-bg-surface)",
-          border: bg ? "none" : "1px solid var(--color-border-subtle)",
-          padding: bg ? "clamp(24px, 4vw, 64px)" : 0,
-        }}
-      >
-        {src && (
-          <div className="relative w-full h-full">
-            <Image
-              src={src}
-              alt={alt}
-              fill
-              sizes="(min-width: 1024px) 1080px, 100vw"
-              className={bg ? "object-contain" : "object-cover"}
-            />
-          </div>
-        )}
-      </div>
-      {caption && (
-        <figcaption
-          className="text-xs mt-3"
-          style={{ color: "var(--color-text-tertiary)" }}
+    /** Constrain max rendered width (e.g. "420px"). Default is full content width. */
+    maxWidth?: string;
+    /** Horizontal alignment when maxWidth shrinks the image. "center" | "left" | "right" | "stretch" */
+    align?: "center" | "left" | "right" | "stretch";
+  }) => {
+    const wrapperStyle: React.CSSProperties = maxWidth
+      ? {
+          maxWidth,
+          marginLeft:
+            align === "center"
+              ? "auto"
+              : align === "right"
+              ? "auto"
+              : undefined,
+          marginRight:
+            align === "center"
+              ? "auto"
+              : align === "left"
+              ? "auto"
+              : undefined,
+        }
+      : {};
+    return (
+      <figure className="my-8 not-prose" aria-label={alt} style={wrapperStyle}>
+        <div
+          className="rounded-lg overflow-hidden relative"
+          style={{
+            aspectRatio: aspect,
+            backgroundColor: bg ?? "var(--color-bg-surface)",
+            border: bg ? "none" : "1px solid var(--color-border-subtle)",
+            padding: bg ? "clamp(24px, 4vw, 64px)" : 0,
+          }}
         >
-          {caption}
-        </figcaption>
-      )}
-    </figure>
-  ),
+          {src && (
+            <div className="relative w-full h-full">
+              <Image
+                src={src}
+                alt={alt}
+                fill
+                sizes={
+                  maxWidth
+                    ? `(min-width: 1024px) ${maxWidth}, 100vw`
+                    : "(min-width: 1024px) 1080px, 100vw"
+                }
+                className={bg ? "object-contain" : "object-cover"}
+              />
+            </div>
+          )}
+        </div>
+        {caption && (
+          <figcaption
+            className="text-xs mt-3"
+            style={{ color: "var(--color-text-tertiary)" }}
+          >
+            {caption}
+          </figcaption>
+        )}
+      </figure>
+    );
+  },
 
   PullQuote: ({
     children,
