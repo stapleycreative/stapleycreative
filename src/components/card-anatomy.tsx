@@ -176,26 +176,20 @@ export function CardAnatomy({
                   pointerEvents: "none",
                 }}
               />
-              {childArray.map((child, i) => {
-                const x = child.props?.x ?? 50;
-                const y = child.props?.y ?? 50;
-                const isActive = i === activeIndex;
-                return (
-                  <div
-                    key={`marker-${i}`}
-                    aria-hidden
-                    className={`card-anatomy-marker${
-                      isActive ? " is-active" : ""
-                    }`}
-                    style={{
-                      left: `${x}%`,
-                      top: `${y}%`,
-                    }}
-                  >
-                    <span className="card-anatomy-marker-num">{i + 1}</span>
-                  </div>
-                );
-              })}
+              {childArray.length > 0 && (
+                <div
+                  aria-hidden
+                  className="card-anatomy-marker"
+                  style={{
+                    left: `${childArray[activeIndex]?.props?.x ?? 50}%`,
+                    top: `${childArray[activeIndex]?.props?.y ?? 50}%`,
+                  }}
+                >
+                  <span className="card-anatomy-marker-num">
+                    {activeIndex + 1}
+                  </span>
+                </div>
+              )}
             </div>
           </div>
 
@@ -250,8 +244,8 @@ export function CardAnatomy({
           margin: 0;
           display: flex;
           flex-direction: column;
-          gap: 96px;
-          padding-block: 8px 40vh;
+          gap: 56px;
+          padding-block: 4px 24vh;
         }
         .card-anatomy-item {
           display: grid;
@@ -289,14 +283,14 @@ export function CardAnatomy({
         }
         .card-anatomy-marker {
           position: absolute;
-          transform: translate(-50%, -50%) scale(0.78);
-          width: 26px;
-          height: 26px;
+          transform: translate(-50%, -50%);
+          width: 28px;
+          height: 28px;
           border-radius: 50%;
-          background-color: rgba(236,44,110,0.55);
+          background-color: #EC2C6E;
           color: white;
           font-family: var(--font-mono);
-          font-size: 11px;
+          font-size: 12px;
           font-weight: 600;
           display: flex;
           align-items: center;
@@ -304,20 +298,13 @@ export function CardAnatomy({
           line-height: 1;
           box-shadow:
             0 0 0 3px rgba(5,22,41,0.95),
-            0 0 0 4px rgba(236,44,110,0.18);
+            0 0 0 8px rgba(236,44,110,0.22),
+            0 0 28px rgba(236,44,110,0.55);
           transition:
-            transform 380ms cubic-bezier(.2,.7,.2,1.2),
-            background-color 320ms cubic-bezier(.2,.6,.2,1),
-            box-shadow 380ms cubic-bezier(.2,.6,.2,1);
+            left 560ms cubic-bezier(.4,.0,.2,1),
+            top 560ms cubic-bezier(.4,.0,.2,1);
           pointer-events: none;
-        }
-        .card-anatomy-marker.is-active {
-          transform: translate(-50%, -50%) scale(1.15);
-          background-color: #EC2C6E;
-          box-shadow:
-            0 0 0 3px rgba(5,22,41,0.95),
-            0 0 0 8px rgba(236,44,110,0.28),
-            0 0 24px rgba(236,44,110,0.5);
+          will-change: left, top;
         }
         .card-anatomy-marker-num {
           line-height: 1;
