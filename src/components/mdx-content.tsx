@@ -1073,7 +1073,7 @@ const components = {
             alt={alt}
             width={1428}
             height={1600}
-            sizes="(min-width: 900px) 840px, 90vw"
+            sizes="(min-width: 900px) 500px, 80vw"
             style={{
               width: "100%",
               height: "auto",
@@ -1159,8 +1159,8 @@ const components = {
       <style>{`
         .book-feature-grid {
           display: grid;
-          grid-template-columns: minmax(0, 840px) 1fr;
-          gap: clamp(40px, 6vw, 88px);
+          grid-template-columns: minmax(0, 500px) 1fr;
+          gap: clamp(40px, 5vw, 64px);
           align-items: center;
         }
         .book-feature-cover {
@@ -1197,7 +1197,7 @@ const components = {
             align-items: start;
           }
           .book-feature-cover {
-            max-width: 720px;
+            max-width: 420px;
           }
         }
       `}</style>
