@@ -4,8 +4,10 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 
 interface AnnotationProps {
-  x?: number;
-  y?: number;
+  /** Horizontal position as a percentage of the card image area (0–100). */
+  posX?: number;
+  /** Vertical position as a percentage of the card image area (0–100). */
+  posY?: number;
   label?: string;
   children?: React.ReactNode;
 }
@@ -185,8 +187,8 @@ export function CardAnatomy({
                   aria-hidden
                   className="card-anatomy-marker-track"
                   style={{
-                    left: `${childArray[activeIndex]?.props?.x ?? 50}%`,
-                    top: `${childArray[activeIndex]?.props?.y ?? 50}%`,
+                    left: `${childArray[activeIndex]?.props?.posX ?? 50}%`,
+                    top: `${childArray[activeIndex]?.props?.posY ?? 50}%`,
                   }}
                 >
                   <div
