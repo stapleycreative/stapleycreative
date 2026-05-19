@@ -1071,9 +1071,9 @@ const components = {
           <Image
             src={image}
             alt={alt}
-            width={520}
-            height={584}
-            sizes="(min-width: 900px) 300px, 70vw"
+            width={1428}
+            height={1600}
+            sizes="(min-width: 900px) 840px, 90vw"
             style={{
               width: "100%",
               height: "auto",
@@ -1159,8 +1159,8 @@ const components = {
       <style>{`
         .book-feature-grid {
           display: grid;
-          grid-template-columns: minmax(0, 280px) 1fr;
-          gap: clamp(32px, 5vw, 64px);
+          grid-template-columns: minmax(0, 840px) 1fr;
+          gap: clamp(40px, 6vw, 88px);
           align-items: center;
         }
         .book-feature-cover {
@@ -1197,7 +1197,7 @@ const components = {
             align-items: start;
           }
           .book-feature-cover {
-            max-width: 240px;
+            max-width: 720px;
           }
         }
       `}</style>
