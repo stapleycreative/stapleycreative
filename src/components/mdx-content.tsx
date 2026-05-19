@@ -1204,6 +1204,156 @@ const components = {
     </figure>
   ),
 
+  /**
+   * Editorial testimonial stack: first child renders as a large display
+   * quote, remaining children render as a tight vertical list separated
+   * by hairline dividers. Pure typography — no cards, no pills.
+   *
+   * MDX usage:
+   *   <Testimonials>
+   *     <Testimonial cite="T. C.">Super useful when...</Testimonial>
+   *     <Testimonial cite="D. S.">I just stumbled upon...</Testimonial>
+   *   </Testimonials>
+   */
+  Testimonials: ({ children }: { children?: React.ReactNode }) => {
+    const childArray = React.Children.toArray(
+      children
+    ) as React.ReactElement<{ cite?: string; children?: React.ReactNode }>[];
+    const [hero, ...rest] = childArray;
+    return (
+      <div className="my-14 not-prose">
+        {hero && (
+          <figure className="testimonials-hero">
+            <blockquote className="testimonials-hero-quote">
+              <span aria-hidden className="testimonials-hero-mark">
+                &ldquo;
+              </span>
+              {hero.props.children}
+            </blockquote>
+            {hero.props.cite && (
+              <figcaption className="testimonials-hero-cite">
+                <span className="testimonials-dash" aria-hidden>
+                  —
+                </span>{" "}
+                {hero.props.cite}
+              </figcaption>
+            )}
+          </figure>
+        )}
+
+        {rest.length > 0 && (
+          <ul className="testimonials-list">
+            {rest.map((c, i) => (
+              <li key={i} className="testimonials-row">
+                <blockquote className="testimonials-row-quote">
+                  {c.props.children}
+                </blockquote>
+                {c.props.cite && (
+                  <span className="testimonials-row-cite">
+                    <span className="testimonials-dash" aria-hidden>
+                      —
+                    </span>{" "}
+                    {c.props.cite}
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <style>{`
+          .testimonials-hero {
+            margin: 0 0 48px 0;
+            padding: 0;
+            max-width: 60ch;
+          }
+          .testimonials-hero-quote {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            color: var(--color-text-primary);
+            font-size: clamp(24px, 2.6vw, 34px);
+            line-height: 1.25;
+            font-weight: 500;
+            letter-spacing: -0.012em;
+            position: relative;
+            text-indent: -0.45em;
+          }
+          .testimonials-hero-mark {
+            color: var(--color-accent, #EC2C6E);
+            font-weight: 600;
+            font-size: 1.05em;
+            margin-right: 0.04em;
+          }
+          .testimonials-hero-cite {
+            margin-top: 24px;
+            color: var(--color-text-secondary);
+            font-size: 14px;
+            letter-spacing: 0.01em;
+            font-weight: 500;
+          }
+          .testimonials-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            border-top: 1px solid var(--color-border-subtle);
+          }
+          .testimonials-row {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: clamp(24px, 4vw, 56px);
+            align-items: baseline;
+            padding: 28px 0;
+            border-bottom: 1px solid var(--color-border-subtle);
+          }
+          .testimonials-row-quote {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            color: var(--color-text-secondary);
+            font-size: 16px;
+            line-height: 1.55;
+            font-weight: 400;
+            max-width: 58ch;
+          }
+          .testimonials-row-cite {
+            color: var(--color-text-tertiary);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            white-space: nowrap;
+          }
+          .testimonials-dash {
+            color: var(--color-text-tertiary);
+            margin-right: 4px;
+          }
+          @media (max-width: 700px) {
+            .testimonials-row {
+              grid-template-columns: 1fr;
+              gap: 8px;
+              padding: 22px 0;
+            }
+            .testimonials-hero-quote {
+              text-indent: 0;
+            }
+            .testimonials-hero-mark {
+              display: none;
+            }
+          }
+        `}</style>
+      </div>
+    );
+  },
+
+  /**
+   * Single testimonial inside <Testimonials>. Pass-through child — the
+   * parent reads cite + children and decides whether to render as hero
+   * or list row based on position.
+   */
+  Testimonial: ({ children }: { cite?: string; children?: React.ReactNode }) => (
+    <>{children}</>
+  ),
+
   PullQuote: ({
     children,
     cite,
