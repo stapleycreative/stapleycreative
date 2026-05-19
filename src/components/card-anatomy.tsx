@@ -183,15 +183,20 @@ export function CardAnatomy({
               {childArray.length > 0 && (
                 <div
                   aria-hidden
-                  className="card-anatomy-marker"
+                  className="card-anatomy-marker-track"
                   style={{
                     left: `${childArray[activeIndex]?.props?.x ?? 50}%`,
                     top: `${childArray[activeIndex]?.props?.y ?? 50}%`,
                   }}
                 >
-                  <span className="card-anatomy-marker-num">
-                    {activeIndex + 1}
-                  </span>
+                  <div
+                    key={activeIndex}
+                    className="card-anatomy-marker"
+                  >
+                    <span className="card-anatomy-marker-num">
+                      {activeIndex + 1}
+                    </span>
+                  </div>
                 </div>
               )}
             </div>
@@ -285,16 +290,23 @@ export function CardAnatomy({
           line-height: 1.55;
           font-weight: 400;
         }
-        .card-anatomy-marker {
+        .card-anatomy-marker-track {
           position: absolute;
+          transition:
+            left 380ms cubic-bezier(.4,.0,.2,1),
+            top 380ms cubic-bezier(.4,.0,.2,1);
+          pointer-events: none;
+          will-change: left, top;
           transform: translate(-50%, -50%);
-          width: 28px;
-          height: 28px;
+        }
+        .card-anatomy-marker {
+          width: 32px;
+          height: 32px;
           border-radius: 50%;
           background-color: #EC2C6E;
           color: white;
           font-family: var(--font-mono);
-          font-size: 12px;
+          font-size: 13px;
           font-weight: 600;
           display: flex;
           align-items: center;
@@ -302,13 +314,23 @@ export function CardAnatomy({
           line-height: 1;
           box-shadow:
             0 0 0 3px rgba(5,22,41,0.95),
-            0 0 0 8px rgba(236,44,110,0.22),
-            0 0 28px rgba(236,44,110,0.55);
-          transition:
-            left 560ms cubic-bezier(.4,.0,.2,1),
-            top 560ms cubic-bezier(.4,.0,.2,1);
-          pointer-events: none;
-          will-change: left, top;
+            0 0 0 9px rgba(236,44,110,0.28),
+            0 0 32px rgba(236,44,110,0.6);
+          animation: card-anatomy-pulse 420ms cubic-bezier(.2,.7,.3,1.3) both;
+        }
+        @keyframes card-anatomy-pulse {
+          0% {
+            transform: scale(0.5);
+            opacity: 0.4;
+          }
+          55% {
+            transform: scale(1.25);
+            opacity: 1;
+          }
+          100% {
+            transform: scale(1);
+            opacity: 1;
+          }
         }
         .card-anatomy-marker-num {
           line-height: 1;
@@ -330,10 +352,13 @@ export function CardAnatomy({
           }
         }
         @media (prefers-reduced-motion: reduce) {
-          .card-anatomy-marker,
+          .card-anatomy-marker-track,
           .card-anatomy-item,
           .card-anatomy-num {
             transition: none;
+          }
+          .card-anatomy-marker {
+            animation: none;
           }
         }
       `}</style>
