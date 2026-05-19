@@ -4,12 +4,21 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 
 interface AnnotationProps {
-  /** Horizontal position as a percentage of the card image area (0–100). */
-  posX?: number;
-  /** Vertical position as a percentage of the card image area (0–100). */
-  posY?: number;
+  /** Position as "x,y" percentages of the card image area (0–100). E.g. "50,6". */
+  pos?: string;
   label?: string;
   children?: React.ReactNode;
+}
+
+function parsePos(pos: string | undefined): { x: number; y: number } {
+  if (!pos) return { x: 50, y: 50 };
+  const [xs, ys] = pos.split(",").map((s) => s.trim());
+  const x = parseFloat(xs);
+  const y = parseFloat(ys);
+  return {
+    x: Number.isFinite(x) ? x : 50,
+    y: Number.isFinite(y) ? y : 50,
+  };
 }
 
 /**
@@ -182,13 +191,15 @@ export function CardAnatomy({
                   pointerEvents: "none",
                 }}
               />
-              {childArray.length > 0 && (
+              {childArray.length > 0 && (() => {
+                const { x, y } = parsePos(childArray[activeIndex]?.props?.pos);
+                return (
                 <div
                   aria-hidden
                   className="card-anatomy-marker-track"
                   style={{
-                    left: `${childArray[activeIndex]?.props?.posX ?? 50}%`,
-                    top: `${childArray[activeIndex]?.props?.posY ?? 50}%`,
+                    left: `${x}%`,
+                    top: `${y}%`,
                   }}
                 >
                   <div
@@ -200,7 +211,8 @@ export function CardAnatomy({
                     </span>
                   </div>
                 </div>
-              )}
+                );
+              })()}
             </div>
           </div>
 
