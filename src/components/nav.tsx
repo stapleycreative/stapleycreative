@@ -9,6 +9,7 @@ import gsap from "gsap";
 const links = [
   { href: "/", label: "Home" },
   { href: "/work", label: "Work" },
+  { href: "/craft", label: "Craft" },
   { href: "/ai", label: "AI" },
   { href: "/blog", label: "Writing" },
   { href: "/tools", label: "Tools" },
