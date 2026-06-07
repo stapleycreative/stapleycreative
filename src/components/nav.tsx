@@ -108,8 +108,8 @@ function MagneticLogo() {
         <Image
           src="/logo.svg"
           alt="Craig Stapley"
-          width={106}
-          height={50}
+          width={94}
+          height={32}
           className="h-[30px] w-auto transition-opacity hover:opacity-100"
           style={{ opacity: 0.85 }}
           priority
