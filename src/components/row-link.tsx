@@ -7,6 +7,8 @@ interface RowLinkProps {
   /** Tailwind classes for the title span. Default: "font-medium" */
   titleClassName?: string;
   description?: ReactNode;
+  /** Optional inline badge after the title (status chip etc.). */
+  badge?: ReactNode;
   /** Right-aligned mono metadata: read time, year, or a quiet CTA word. */
   meta?: ReactNode;
   external?: boolean;
@@ -26,6 +28,7 @@ export function RowLink({
   title,
   titleClassName = "font-medium",
   description,
+  badge,
   meta,
   external,
   padding = "py-5",
@@ -37,6 +40,7 @@ export function RowLink({
           className={`${titleClassName} block transition-colors duration-300 group-hover:text-[#211f26]`}
         >
           {title}
+          {badge && <span className="ml-2 align-middle">{badge}</span>}
           <span
             aria-hidden
             className="ml-1.5 font-mono text-[0.8em] transition-opacity duration-300 opacity-50 group-hover:opacity-100"

@@ -1,5 +1,5 @@
-import Link from "next/link";
 import type { Metadata } from "next";
+import { RowLink } from "@/components/row-link";
 
 export const metadata: Metadata = {
   title: "Tools",
@@ -115,62 +115,36 @@ export default function ToolsPage() {
 
       <div className="mt-12 flex flex-col gap-1">
         {tools.map((tool) => (
-          <Link
+          <RowLink
             key={tool.slug}
             href={tool.href}
-            className="group flex items-start justify-between gap-6 py-5 relative transition-all duration-300 border-b border-[var(--color-border-subtle)] hover:border-[#211f26]"
-          >
-
-
-            <div className="min-w-0 flex-1">
-              <div className="flex items-baseline gap-3">
-                <span className="font-medium transition-colors block group-hover:text-[#211f26]">
-                  {tool.title}
+            title={tool.title}
+            badge={
+              tool.status ? (
+                <span
+                  className="rounded"
+                  style={{
+                    padding: "2px 6px",
+                    fontFamily:
+                      "ui-monospace, SFMono-Regular, Menlo, monospace",
+                    fontSize: "10px",
+                    backgroundColor:
+                      tool.status === "live"
+                        ? "rgba(249, 128, 119, 0.12)"
+                        : "rgba(20, 20, 19, 0.06)",
+                    color:
+                      tool.status === "live"
+                        ? "var(--color-accent)"
+                        : "var(--color-text-tertiary)",
+                  }}
+                >
+                  {statusLabel[tool.status]}
                 </span>
-                {tool.status && (
-                  <span
-                    className="rounded"
-                    style={{
-                      padding: "2px 6px",
-                      fontFamily:
-                        "ui-monospace, SFMono-Regular, Menlo, monospace",
-                      fontSize: "10px",
-                      backgroundColor:
-                        tool.status === "live"
-                          ? "rgba(249, 128, 119, 0.12)"
-                          : "rgba(20, 20, 19, 0.06)",
-                      color:
-                        tool.status === "live"
-                          ? "var(--color-accent)"
-                          : "var(--color-text-tertiary)",
-                    }}
-                  >
-                    {statusLabel[tool.status]}
-                  </span>
-                )}
-              </div>
-              <p
-                className="mt-1 text-sm leading-relaxed"
-                style={{ color: "var(--color-text-tertiary)" }}
-              >
-                {tool.description}
-              </p>
-            </div>
-            <div className="relative mt-1 sm:ml-4 flex-shrink-0 flex justify-end h-fit sm:min-w-[130px]">
-              {/* Default State */}
-              <span
-                className="text-xs whitespace-nowrap transition-opacity duration-[75ms] group-hover:opacity-0"
-                style={{ color: "var(--color-text-tertiary)" }}
-              >
-                {tool.cta} <span className="opacity-70 font-mono text-[10px] ml-0.5">→</span>
-              </span>
-
-              {/* Hover State */}
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 px-2.5 py-[5px] text-[10px] font-mono tracking-wider uppercase bg-[#211f26] text-white rounded shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-[120ms] ease-out flex items-center gap-1.5 pointer-events-none scale-[0.97] group-hover:scale-100">
-                View Tool <span className="opacity-70 inline-block leading-none translate-y-px">↗</span>
-              </div>
-            </div>
-          </Link>
+              ) : undefined
+            }
+            description={tool.description}
+            meta={tool.cta}
+          />
         ))}
       </div>
 
