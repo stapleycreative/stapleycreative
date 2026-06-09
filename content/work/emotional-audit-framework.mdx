@@ -36,6 +36,7 @@ A model that says "this page feels cold" leaves a designer guessing what to chan
 
 The tradeoff I made: deterministic rules are harder to build, they move slower, and they require me to justify every threshold in writing. Every scoring decision gets a citation. I traded speed of development for explainability, and I traded headline "AI" framing for trust with designers who (correctly) don't want a black box telling them their work feels wrong. The AI layer comes later and sits on top of the rules. Screenshot-based computer vision, narrative synthesis, pattern recognition across a reading diary. All of that is easier to build once the deterministic foundation is in place.
 
+{/* IMAGE PENDING — build to brief, then uncomment.
 <ImagePlaceholder
   alt="Signal Chrome extension side panel showing a tone profile with eleven horizontal bars: Warm/Cool, Calm/Energetic, Minimal/Dense, Formal/Casual, Playful/Serious, Soft/Sharp, Open/Closed, Light/Heavy, Organic/Geometric, Static/Dynamic, Accessible/Exclusive. Each bar has a labeled midpoint and a filled position showing where the scanned page lands."
   caption="Signal reads the page and produces a tone profile across eleven dimensions. Not a score. A reading."
@@ -43,6 +44,7 @@ The tradeoff I made: deterministic rules are harder to build, they move slower, 
   priority="HIGH"
   style="Product screenshot, browser extension side panel. Tight, instrument-coded visual language."
 />
+*/}
 
 ## Six layers of evidence
 
@@ -84,6 +86,7 @@ The architecture is the actual design decision. Extension, Figma plugin, and des
 
 The strategic reason this matters: perceptual evaluation has to meet designers where they work. After deploy, inside the design file, and inside the agent flow that's increasingly how design work gets reviewed. Building a separate tool for each context would fork the rule logic and guarantee drift. One engine keeps all three surfaces honest.
 
+{/* IMAGE PENDING — build to brief, then uncomment.
 <ImagePlaceholder
   alt="Architecture diagram: one central rule engine connected to three surfaces. Left: Chrome extension reading a live web page. Center: Figma plugin reading design frames. Right: Design agent invoking the engine in a review workflow. Arrows showing the same eleven-dimension tone profile output flowing to each surface."
   caption="One engine. Three surfaces. The rules don't fork. The reading is consistent across the browser, the design file, and the agent."
@@ -91,6 +94,7 @@ The strategic reason this matters: perceptual evaluation has to meet designers w
   priority="HIGH"
   style="Technical architecture diagram. Flat, minimal, monochrome with one accent color (the cover amber)."
 />
+*/}
 
 ## What v0.1 ships, what it doesn't
 
