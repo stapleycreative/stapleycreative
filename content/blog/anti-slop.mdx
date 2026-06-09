@@ -1,0 +1,52 @@
+---
+title: "Slop has a tell"
+description: "AI-generated UI doesn't fail because it's ugly. It fails because it projects nothing on purpose. The fix is a rule, and the rule is measurable."
+date: "2026-06-09"
+tags: ["AI", "Design", "Emotional Design"]
+---
+
+## The wrong diagnosis
+
+Everyone calls AI-generated UI "generic" like it's a quality problem. Too many cards. Inter on everything. The same blue gradient hero, the same three-column feature grid, the same rounded-rectangle moodlessness. The assumption underneath the complaint: the tools just need better taste, and the next model will fix it.
+
+That diagnosis is off base. The next model will not fix it, because the problem isn't quality. Most AI output is technically competent. Aligned, consistent, accessible if you ask nicely. It passes every check a design system can run.
+
+And it still feels wrong. Everyone senses it. Almost nobody can say why.
+
+## What your nervous system already knows
+
+A page reads as something before you've processed a single word on it. Warm or cold. Calm or pushy. Trustworthy or slightly off. That read happens in the first few hundred milliseconds, and it comes from measurable properties: color temperature, contrast distribution, type scale, spacing rhythm, motion behavior. The page has body language.
+
+Designed interfaces project something on purpose. A Linear screen projects restraint. A children's hospital site projects warmth before the headline loads. Someone made those calls, and the hundred small decisions underneath all point the same direction.
+
+AI-generated UI projects nothing on purpose. It's the statistical center of everything the model has seen. The grays are blue-shifted because the training data leans SaaS. The spacing is generous because generous spacing is the average of "modern." Each choice is defensible. The sum is a face with no expression.
+
+That's the tell. Slop isn't ugly. Slop is incongruent. The signals don't agree with each other, and none of them agree with any intent, because there wasn't one.
+
+## The rule
+
+So here's the rule I hold AI output to, my own included:
+
+**Every interface projects an emotional signal whether you designed it or not. The work is making the projected signal match the declared intent. If you never declared an intent, you've already failed, you just can't see where.**
+
+Declared intent is the operative part. "Make it clean" is not an intent. Calm, for users arriving anxious, is an intent. Warm but competent, for donors deciding whether to trust you with money, is an intent. Once you've declared one, every AI-generated screen becomes checkable: does what this page projects match what I said it should?
+
+Most of the time the answer is no, in specific, fixable ways. The grays read clinical when you wanted warm. The motion performs when it should guide. The density signals "power tool" on a page meant to lower someone's heart rate.
+
+## You can measure this
+
+I got tired of making that argument by eyeball, so I built the instrument. [Signal](/work/emotional-audit-framework) is a Chrome extension that reads the computed properties of any page and produces a tone profile across eleven dimensions: warm/cool, calm/energetic, minimal/dense, playful/serious, and so on. Fifteen deterministic rules, every threshold cited. You declare what the page should project. It tells you what the page actually projects, and where the gap is coming from.
+
+Rules, not a model, on purpose. A model that says "this feels cold" leaves you guessing. A rule that says your color temperature averages 7200K and your dominant hue sits in the 200 to 240 range tells you exactly which decision to reverse. You can argue with a rule. That's what makes it useful.
+
+Run it on AI-generated UI and the slop stops being a mood and becomes a list. Congruence score, broken out by dimension, traced to CSS. The wrongness everyone feels but can't name turns out to be ordinary, fixable incongruence.
+
+## Why this matters more every month
+
+Generation is getting free. Passable screens in seconds, from anyone, forever. That's the new floor, and arguing with it is a waste of a career.
+
+But cheap generation moves all the value to the one question the tools can't answer: what should this page do to the person looking at it? That's a judgment call about attention, emotion, and trust. It requires knowing who's arriving, in what state, carrying what suspicion.
+
+The designers who survive this transition won't be the ones who prompt fastest. They'll be the ones who can declare an intent, catch the incongruence in the output, and name which property is lying. Taste, made checkable.
+
+Slop has a tell. Now you know what it is.

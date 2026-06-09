@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: "%s — Craig Stapley",
   },
   description:
-    "Systems-level product designer. I diagnose the real problem, architect the system, and build the prototype.",
+    "Nervous-system-aware product design. Interfaces built around how people actually process information, allocate attention, and form trust. Currently shipping AI-native product.",
   metadataBase: new URL("https://stapleycreative.com"),
 };
 
