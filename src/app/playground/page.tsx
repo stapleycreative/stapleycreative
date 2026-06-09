@@ -38,6 +38,7 @@ export default function PlaygroundPage() {
               title={String(item.title)}
               description={item.description}
               meta={item.year ? String(item.year) : undefined}
+              pillLabel="View"
             />
           ))}
         </div>

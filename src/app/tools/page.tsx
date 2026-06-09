@@ -144,6 +144,7 @@ export default function ToolsPage() {
             }
             description={tool.description}
             meta={tool.cta}
+            pillLabel="View tool"
           />
         ))}
       </div>

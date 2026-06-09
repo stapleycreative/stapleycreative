@@ -126,6 +126,7 @@ export default function WorkPage() {
               title={t.title}
               description={t.desc}
               meta={t.cta}
+              pillLabel={t.cta}
             />
           ))}
         </div>

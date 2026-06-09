@@ -14,6 +14,8 @@ interface RowLinkProps {
   external?: boolean;
   /** Vertical padding override for density. Default: "py-5" */
   padding?: string;
+  /** Label inside the hover pill. Default: "Read" */
+  pillLabel?: string;
 }
 
 /**
@@ -32,6 +34,7 @@ export function RowLink({
   meta,
   external,
   padding = "py-5",
+  pillLabel = "Read",
 }: RowLinkProps) {
   const inner = (
     <>
@@ -41,13 +44,6 @@ export function RowLink({
         >
           {title}
           {badge && <span className="ml-2 align-middle">{badge}</span>}
-          <span
-            aria-hidden
-            className="ml-1.5 font-mono text-[0.8em] transition-opacity duration-300 opacity-50 group-hover:opacity-100"
-            style={{ color: "var(--color-text-tertiary)" }}
-          >
-            {external ? "↗" : "→"}
-          </span>
         </span>
         {description && (
           <p
@@ -59,11 +55,20 @@ export function RowLink({
         )}
       </div>
       {meta && (
-        <span
-          className="text-xs font-mono whitespace-nowrap flex-shrink-0 ml-4"
-          style={{ color: "var(--color-text-tertiary)" }}
-        >
-          {meta}
+        <span className="relative flex-shrink-0 ml-4 inline-flex justify-end">
+          <span
+            className="text-xs font-mono whitespace-nowrap transition-opacity duration-[75ms] group-hover:opacity-0"
+            style={{ color: "var(--color-text-tertiary)" }}
+          >
+            {meta}
+          </span>
+          <span
+            aria-hidden
+            className="absolute right-0 top-1/2 -translate-y-1/2 px-2.5 py-[5px] text-[10px] font-mono tracking-wider uppercase bg-[#211f26] text-white rounded shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-[120ms] ease-out flex items-center gap-1.5 pointer-events-none scale-[0.97] group-hover:scale-100"
+          >
+            {pillLabel}{" "}
+            <span className="opacity-70 inline-block leading-none translate-y-px">↗</span>
+          </span>
         </span>
       )}
     </>
