@@ -21,7 +21,7 @@ interface HomeContentProps {
 }
 export function HomeContent({ caseStudies: allStudies, posts }: HomeContentProps) {
   // Curated home order. Playground items are filtered out (their URLs stay live).
-  const HOME_ORDER = ["emotional-audit-framework", "contact-reports", "ifit"] as const;
+  const HOME_ORDER = ["contact-reports", "ifit", "emotional-audit-framework"] as const;
   const nonPlayground = allStudies.filter(
     (s) => !(s as ContentMeta & { playground?: boolean }).playground
   );
