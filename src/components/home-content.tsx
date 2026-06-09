@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ContentMeta } from "@/lib/content";
 import { CaseStudyCover } from "@/components/case-study-cover";
+import { RowLink } from "@/components/row-link";
 
 const monoTagStyle = {
   padding: "2px 6px",
@@ -153,20 +154,14 @@ export function HomeContent({ caseStudies: allStudies, posts }: HomeContentProps
           </h2>
           <div className="grid gap-4">
             {posts.map((post) => (
-              <Link
+              <RowLink
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group flex items-baseline justify-between py-3 transition-colors"
-                style={{ borderBottom: "1px solid var(--color-border-subtle)" }}
-              >
-                <span className="text-sm font-medium">{post.title}</span>
-                <span
-                  className="text-xs font-mono ml-4 flex-shrink-0"
-                  style={{ color: "var(--color-text-tertiary)" }}
-                >
-                  {post.readingTime}
-                </span>
-              </Link>
+                title={post.title}
+                titleClassName="text-sm font-medium"
+                meta={post.readingTime}
+                padding="py-3"
+              />
             ))}
           </div>
           <Link

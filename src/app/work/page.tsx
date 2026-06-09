@@ -119,32 +119,13 @@ export default function WorkPage() {
         </h2>
         <div className="flex flex-col gap-1">
           {tools.map((t) => (
-            <Link
+            <RowLink
               key={t.title}
               href={t.href}
-              className="group flex items-start justify-between gap-6 py-5 relative transition-all duration-300 border-b border-[var(--color-border-subtle)] hover:border-[#211f26]"
-            >
-              <div className="min-w-0 flex-1">
-                <span className="font-medium block transition-colors group-hover:text-[#211f26]">
-                  {t.title}
-                </span>
-                <p className="mt-1 text-sm leading-relaxed" style={{ color: "var(--color-text-tertiary)" }}>
-                  {t.desc}
-                </p>
-              </div>
-              <div className="relative mt-1 sm:ml-4 flex-shrink-0 flex justify-end h-fit sm:min-w-[100px]">
-                <span
-                  className="text-xs font-mono whitespace-nowrap transition-opacity duration-[75ms] group-hover:opacity-0"
-                  style={{ color: "var(--color-text-tertiary)" }}
-                >
-                  {t.cta}{" "}
-                  <span className="opacity-70 font-mono text-[10px] ml-0.5">→</span>
-                </span>
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 px-2.5 py-[5px] text-[10px] font-mono tracking-wider uppercase bg-[#211f26] text-white rounded shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-[120ms] ease-out flex items-center gap-1.5 pointer-events-none scale-[0.97] group-hover:scale-100">
-                  {t.cta} <span className="opacity-70 inline-block leading-none translate-y-px">↗</span>
-                </div>
-              </div>
-            </Link>
+              title={t.title}
+              description={t.desc}
+              meta={t.cta}
+            />
           ))}
         </div>
       </section>

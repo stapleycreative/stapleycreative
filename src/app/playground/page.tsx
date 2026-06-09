@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { getAllContent } from "@/lib/content";
+import { RowLink } from "@/components/row-link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -32,47 +32,13 @@ export default function PlaygroundPage() {
 
         <div className="mt-12 flex flex-col gap-1">
           {items.map((item) => (
-            <Link
+            <RowLink
               key={item.slug}
               href={`/work/${item.slug}`}
-              className="group flex items-start justify-between gap-6 py-5 relative transition-all duration-300 border-b border-[var(--color-border-subtle)] hover:border-[#211f26]"
-            >
-              <div className="min-w-0 flex-1">
-                <div className="flex items-baseline gap-3">
-                  <span className="font-medium transition-colors block group-hover:text-[#211f26]">
-                    {String(item.title)}
-                  </span>
-                  {item.year && (
-                    <span
-                      className="text-[11px] font-mono"
-                      style={{ color: "var(--color-text-tertiary)" }}
-                    >
-                      {String(item.year)}
-                    </span>
-                  )}
-                </div>
-                <p
-                  className="mt-1 text-sm leading-relaxed"
-                  style={{ color: "var(--color-text-tertiary)" }}
-                >
-                  {item.description}
-                </p>
-              </div>
-              <div className="relative mt-1 sm:ml-4 flex-shrink-0 flex justify-end h-fit sm:min-w-[130px]">
-                <span
-                  className="text-xs whitespace-nowrap transition-opacity duration-[75ms] group-hover:opacity-0"
-                  style={{ color: "var(--color-text-tertiary)" }}
-                >
-                  Read{" "}
-                  <span className="opacity-70 font-mono text-[10px] ml-0.5">
-                    →
-                  </span>
-                </span>
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 px-2.5 py-[5px] text-[10px] font-mono tracking-wider uppercase bg-[#211f26] text-white rounded shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-[120ms] ease-out flex items-center gap-1.5 pointer-events-none scale-[0.97] group-hover:scale-100">
-                  View <span className="opacity-70 inline-block leading-none translate-y-px">↗</span>
-                </div>
-              </div>
-            </Link>
+              title={String(item.title)}
+              description={item.description}
+              meta={item.year ? String(item.year) : undefined}
+            />
           ))}
         </div>
 
