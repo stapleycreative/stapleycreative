@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getAllContent } from "@/lib/content";
 import { CaseStudyCover } from "@/components/case-study-cover";
+import { RowLink } from "@/components/row-link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
