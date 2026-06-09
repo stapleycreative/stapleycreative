@@ -13,7 +13,7 @@ const tools = [
     title: "Signal",
     desc: "Chrome extension that reads the emotional body language of a web page. Tone profiles, congruence scoring, rules-first engine.",
     href: "/blog/signal-emotional-audit",
-    cta: "Read more",
+    cta: "Read",
   },
   {
     title: "Creativity Engine",
@@ -117,27 +117,33 @@ export default function WorkPage() {
         <h2 className="text-xs font-medium tracking-wide mb-6" style={{ color: "var(--color-text-tertiary)" }}>
           Tools &amp; personal projects
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="flex flex-col gap-1">
           {tools.map((t) => (
             <Link
               key={t.title}
               href={t.href}
-              className="group block p-5 rounded-lg transition-all duration-200"
-              style={{
-                border: "1px solid var(--color-border-subtle)",
-                background: "linear-gradient(135deg, #fdfcfd 0%, rgba(249,128,119,0.04) 100%)",
-              }}
+              className="group flex items-start justify-between gap-6 py-5 relative transition-all duration-300 border-b border-[var(--color-border-subtle)] hover:border-[#211f26]"
             >
-              <div className="flex items-start justify-between gap-2">
-                <h3 className="text-sm font-semibold" style={{ color: "var(--color-text-primary)" }}>{t.title}</h3>
-                <span
-                  className="text-[10px] font-mono tracking-wider uppercase px-1.5 py-0.5 rounded flex-shrink-0"
-                  style={{ color: "var(--color-accent)", backgroundColor: "rgba(249,128,119,0.1)" }}
-                >
-                  {t.cta}
+              <div className="min-w-0 flex-1">
+                <span className="font-medium block transition-colors group-hover:text-[#211f26]">
+                  {t.title}
                 </span>
+                <p className="mt-1 text-sm leading-relaxed" style={{ color: "var(--color-text-tertiary)" }}>
+                  {t.desc}
+                </p>
               </div>
-              <p className="mt-1.5 text-[13px] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>{t.desc}</p>
+              <div className="relative mt-1 sm:ml-4 flex-shrink-0 flex justify-end h-fit sm:min-w-[100px]">
+                <span
+                  className="text-xs font-mono whitespace-nowrap transition-opacity duration-[75ms] group-hover:opacity-0"
+                  style={{ color: "var(--color-text-tertiary)" }}
+                >
+                  {t.cta}{" "}
+                  <span className="opacity-70 font-mono text-[10px] ml-0.5">→</span>
+                </span>
+                <div className="absolute right-0 top-1/2 -translate-y-1/2 px-2.5 py-[5px] text-[10px] font-mono tracking-wider uppercase bg-[#211f26] text-white rounded shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-[120ms] ease-out flex items-center gap-1.5 pointer-events-none scale-[0.97] group-hover:scale-100">
+                  {t.cta} <span className="opacity-70 inline-block leading-none translate-y-px">↗</span>
+                </div>
+              </div>
             </Link>
           ))}
         </div>

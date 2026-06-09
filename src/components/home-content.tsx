@@ -161,7 +161,7 @@ export function HomeContent({ caseStudies: allStudies, posts }: HomeContentProps
               >
                 <span className="text-sm font-medium">{post.title}</span>
                 <span
-                  className="text-xs ml-4 flex-shrink-0"
+                  className="text-xs font-mono ml-4 flex-shrink-0"
                   style={{ color: "var(--color-text-tertiary)" }}
                 >
                   {post.readingTime}
