@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { ContentMeta } from "@/lib/content";
-import { CaseStudyCover } from "@/components/case-study-cover";
+import { WorkIndex } from "@/components/work-index";
 import { RowLink } from "@/components/row-link";
 
 const monoTagStyle = {
@@ -22,7 +22,7 @@ interface HomeContentProps {
 }
 export function HomeContent({ caseStudies: allStudies, posts }: HomeContentProps) {
   // Curated home order. Playground items are filtered out (their URLs stay live).
-  const HOME_ORDER = ["contact-reports", "ifit", "emotional-audit-framework"] as const;
+  const HOME_ORDER = ["contact-reports", "ifit", "emotional-audit-framework", "hiki"] as const;
   const nonPlayground = allStudies.filter(
     (s) => !(s as ContentMeta & { playground?: boolean }).playground
   );
@@ -68,70 +68,16 @@ export function HomeContent({ caseStudies: allStudies, posts }: HomeContentProps
         >
           Selected work
         </h2>
-        <div className="flex flex-col gap-12">
-          {/* Featured lead — full container width */}
-          {caseStudies.slice(0, 1).map((study) => (
-            <Link
-              key={study.slug}
-              href={`/work/${study.slug}`}
-              className="group block"
-              aria-label={`${study.title} — case study`}
-            >
-              <div className="transition-transform duration-300 group-hover:-translate-y-1">
-                <CaseStudyCover
-                  variant="card"
-                  title={String(study.title)}
-                  accent={study.coverAccent ? String(study.coverAccent) : undefined}
-                  client={study.client ? String(study.client) : undefined}
-                  role={study.role ? String(study.role) : undefined}
-                  year={study.year ? String(study.year) : undefined}
-                  number={study.coverNumber ? String(study.coverNumber) : undefined}
-                  ground={study.coverGround ? String(study.coverGround) : undefined}
-                  text={study.coverText ? String(study.coverText) : undefined}
-                  accentColor={study.coverAccentColor ? String(study.coverAccentColor) : undefined}
-                />
-              </div>
-              <p
-                className="mt-5 text-[15px] max-w-[620px] leading-relaxed"
-                style={{ color: "var(--color-text-secondary)" }}
-              >
-                {study.description}
-              </p>
-            </Link>
-          ))}
-          {/* Supporting pair — 2-col grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
-            {caseStudies.slice(1, 3).map((study) => (
-              <Link
-                key={study.slug}
-                href={`/work/${study.slug}`}
-                className="group block"
-                aria-label={`${study.title} — case study`}
-              >
-                <div className="transition-transform duration-300 group-hover:-translate-y-1">
-                  <CaseStudyCover
-                    variant="card"
-                    title={String(study.title)}
-                    accent={study.coverAccent ? String(study.coverAccent) : undefined}
-                    client={study.client ? String(study.client) : undefined}
-                    role={study.role ? String(study.role) : undefined}
-                    year={study.year ? String(study.year) : undefined}
-                    number={study.coverNumber ? String(study.coverNumber) : undefined}
-                    ground={study.coverGround ? String(study.coverGround) : undefined}
-                    text={study.coverText ? String(study.coverText) : undefined}
-                    accentColor={study.coverAccentColor ? String(study.coverAccentColor) : undefined}
-                  />
-                </div>
-                <p
-                  className="mt-4 text-[13.5px] leading-relaxed"
-                  style={{ color: "var(--color-text-secondary)" }}
-                >
-                  {study.description}
-                </p>
-              </Link>
-            ))}
-          </div>
-        </div>
+        <WorkIndex
+          studies={caseStudies.map((s) => ({
+            slug: s.slug,
+            title: String(s.title),
+            accent: s.coverAccent ? String(s.coverAccent) : undefined,
+            outcome: s.indexOutcome ? String(s.indexOutcome) : undefined,
+            status: s.indexStatus ? String(s.indexStatus) : undefined,
+            year: s.year ? String(s.year) : undefined,
+          }))}
+        />
         <div className="mt-14 pt-8" style={{ borderTop: "1px solid var(--color-border-subtle)" }}>
           <Link
             href="/work"

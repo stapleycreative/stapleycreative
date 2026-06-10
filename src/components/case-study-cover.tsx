@@ -238,7 +238,7 @@ function renderHeadline(
  * serif while the rest uses the sans base. Case-insensitive match; preserves
  * the original casing of the matched phrase from the title.
  */
-function splitTitleOnAccent(
+export function splitTitleOnAccent(
   title: string,
   accent?: string
 ): { before: string; accent: string; after: string } {

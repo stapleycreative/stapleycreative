@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getAllContent } from "@/lib/content";
-import { CaseStudyCover } from "@/components/case-study-cover";
+import { WorkIndex } from "@/components/work-index";
 import { RowLink } from "@/components/row-link";
 import type { Metadata } from "next";
 
@@ -26,7 +26,15 @@ const tools = [
 
 export default function WorkPage() {
   const allWork = getAllContent("work");
-  const caseStudies = allWork.filter((s) => !s.playground);
+  // Canonical featured order (positioning master §4a)
+  const ORDER = ["contact-reports", "ifit", "emotional-audit-framework", "hiki"];
+  const caseStudies = allWork
+    .filter((s) => !s.playground)
+    .sort((a, b) => {
+      const ai = ORDER.indexOf(a.slug);
+      const bi = ORDER.indexOf(b.slug);
+      return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
+    });
   const playgroundCount = allWork.length - caseStudies.length;
 
   return (
@@ -50,64 +58,16 @@ export default function WorkPage() {
         <h2 className="text-xs font-medium tracking-wide mb-8" style={{ color: "var(--color-text-tertiary)" }}>
           Case studies
         </h2>
-        <div className="flex flex-col gap-12">
-          {/* Featured lead */}
-          {caseStudies.slice(0, 1).map((study) => (
-            <Link
-              key={study.slug}
-              href={`/work/${study.slug}`}
-              className="group block"
-              aria-label={`${study.title} — case study`}
-            >
-              <div className="transition-transform duration-300 group-hover:-translate-y-1">
-                <CaseStudyCover
-                  variant="card"
-                  title={String(study.title)}
-                  accent={study.coverAccent ? String(study.coverAccent) : undefined}
-                  client={study.client ? String(study.client) : undefined}
-                  role={study.role ? String(study.role) : undefined}
-                  year={study.year ? String(study.year) : undefined}
-                  number={study.coverNumber ? String(study.coverNumber) : undefined}
-                  ground={study.coverGround ? String(study.coverGround) : undefined}
-                  text={study.coverText ? String(study.coverText) : undefined}
-                  accentColor={study.coverAccentColor ? String(study.coverAccentColor) : undefined}
-                />
-              </div>
-              <p className="mt-5 text-[15px] max-w-[620px] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
-                {study.description}
-              </p>
-            </Link>
-          ))}
-          {/* Remaining — 2×2 grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
-            {caseStudies.slice(1).map((study) => (
-              <Link
-                key={study.slug}
-                href={`/work/${study.slug}`}
-                className="group block"
-                aria-label={`${study.title} — case study`}
-              >
-                <div className="transition-transform duration-300 group-hover:-translate-y-1">
-                  <CaseStudyCover
-                    variant="card"
-                    title={String(study.title)}
-                    accent={study.coverAccent ? String(study.coverAccent) : undefined}
-                    client={study.client ? String(study.client) : undefined}
-                    role={study.role ? String(study.role) : undefined}
-                    year={study.year ? String(study.year) : undefined}
-                    number={study.coverNumber ? String(study.coverNumber) : undefined}
-                    ground={study.coverGround ? String(study.coverGround) : undefined}
-                    text={study.coverText ? String(study.coverText) : undefined}
-                    accentColor={study.coverAccentColor ? String(study.coverAccentColor) : undefined}
-                  />
-                </div>
-                <p className="mt-4 text-[13.5px] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
-                  {study.description}
-                </p>
-              </Link>
-            ))}
-          </div>
-        </div>
+        <WorkIndex
+          studies={caseStudies.map((s) => ({
+            slug: s.slug,
+            title: String(s.title),
+            accent: s.coverAccent ? String(s.coverAccent) : undefined,
+            outcome: s.indexOutcome ? String(s.indexOutcome) : undefined,
+            status: s.indexStatus ? String(s.indexStatus) : undefined,
+            year: s.year ? String(s.year) : undefined,
+          }))}
+        />
       </section>
 
       {/* Sub-sections — narrow, left-aligned within wide container */}
