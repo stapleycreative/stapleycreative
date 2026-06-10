@@ -1,0 +1,262 @@
+{
+  "engine": "Signal v0.2 (Emotional Audit Framework)",
+  "auditedAt": "2026-06-10",
+  "declaredIntent": [
+    "calm",
+    "trustworthy"
+  ],
+  "routes": {
+    "/about": {
+      "alignmentScore": 74,
+      "thinSignal": {
+        "thin": false
+      },
+      "declaredIntent": [
+        "calm",
+        "trustworthy"
+      ],
+      "tones": {
+        "calmTone": 80,
+        "premiumTone": 93,
+        "supportiveTone": 73,
+        "playfulTone": 66,
+        "energeticTone": 46
+      },
+      "layerScores": {
+        "perceptual": 100,
+        "cognitive": 86,
+        "trust": 35,
+        "tone": 100,
+        "motion": 100
+      },
+      "characterStrength": 40,
+      "line": "Reads premiumTone and calmTone. The page mostly holds its declared intent.",
+      "failCount": 2,
+      "passCount": 14
+    },
+    "/ai": {
+      "alignmentScore": 78,
+      "thinSignal": {
+        "thin": false
+      },
+      "declaredIntent": [
+        "calm",
+        "trustworthy"
+      ],
+      "tones": {
+        "calmTone": 100,
+        "premiumTone": 93,
+        "supportiveTone": 73,
+        "playfulTone": 87,
+        "energeticTone": 51
+      },
+      "layerScores": {
+        "perceptual": 100,
+        "cognitive": 100,
+        "trust": 46,
+        "tone": 100,
+        "motion": 100
+      },
+      "characterStrength": 64,
+      "line": "Reads calmTone and premiumTone. The page mostly holds its declared intent.",
+      "failCount": 2,
+      "passCount": 18
+    },
+    "/blog": {
+      "alignmentScore": 70,
+      "thinSignal": {
+        "thin": false
+      },
+      "declaredIntent": [
+        "calm",
+        "trustworthy"
+      ],
+      "tones": {
+        "calmTone": 80,
+        "premiumTone": 93,
+        "supportiveTone": 73,
+        "playfulTone": 72,
+        "energeticTone": 53
+      },
+      "layerScores": {
+        "perceptual": 68,
+        "cognitive": 65,
+        "trust": 63,
+        "tone": 100,
+        "motion": 100
+      },
+      "characterStrength": 48,
+      "line": "Reads premiumTone and calmTone. The page mostly holds its declared intent.",
+      "failCount": 5,
+      "passCount": 17
+    },
+    "/": {
+      "alignmentScore": 55,
+      "thinSignal": {
+        "thin": false
+      },
+      "declaredIntent": [
+        "calm",
+        "trustworthy"
+      ],
+      "tones": {
+        "calmTone": 70,
+        "premiumTone": 53,
+        "supportiveTone": 73,
+        "playfulTone": 59,
+        "energeticTone": 48
+      },
+      "layerScores": {
+        "perceptual": 81,
+        "cognitive": 86,
+        "trust": 47,
+        "tone": 75,
+        "motion": 100
+      },
+      "characterStrength": 45,
+      "line": "Reads supportiveTone and calmTone. The page is drifting from its declared intent.",
+      "failCount": 6,
+      "passCount": 15
+    },
+    "/work/contact-reports": {
+      "alignmentScore": 57,
+      "thinSignal": {
+        "thin": false
+      },
+      "declaredIntent": [
+        "calm",
+        "trustworthy"
+      ],
+      "tones": {
+        "calmTone": 70,
+        "premiumTone": 53,
+        "supportiveTone": 73,
+        "playfulTone": 73,
+        "energeticTone": 49
+      },
+      "layerScores": {
+        "perceptual": 76,
+        "cognitive": 100,
+        "trust": 46,
+        "tone": 75,
+        "motion": 100
+      },
+      "characterStrength": 54,
+      "line": "Reads supportiveTone and playfulTone. The page is drifting from its declared intent.",
+      "failCount": 5,
+      "passCount": 16
+    },
+    "/work/emotional-audit-framework": {
+      "alignmentScore": 64,
+      "thinSignal": {
+        "thin": false
+      },
+      "declaredIntent": [
+        "calm",
+        "trustworthy"
+      ],
+      "tones": {
+        "calmTone": 70,
+        "premiumTone": 53,
+        "supportiveTone": 73,
+        "playfulTone": 73,
+        "energeticTone": 55
+      },
+      "layerScores": {
+        "perceptual": 76,
+        "cognitive": 100,
+        "trust": 63,
+        "tone": 75,
+        "motion": 100
+      },
+      "characterStrength": 55,
+      "line": "Reads supportiveTone and playfulTone. The page is drifting from its declared intent.",
+      "failCount": 5,
+      "passCount": 18
+    },
+    "/work/hiki": {
+      "alignmentScore": 59,
+      "thinSignal": {
+        "thin": false
+      },
+      "declaredIntent": [
+        "calm",
+        "trustworthy"
+      ],
+      "tones": {
+        "calmTone": 70,
+        "premiumTone": 60,
+        "supportiveTone": 73,
+        "playfulTone": 74,
+        "energeticTone": 51
+      },
+      "layerScores": {
+        "perceptual": 76,
+        "cognitive": 100,
+        "trust": 52,
+        "tone": 75,
+        "motion": 100
+      },
+      "characterStrength": 63,
+      "line": "Reads playfulTone and supportiveTone. The page is drifting from its declared intent.",
+      "failCount": 5,
+      "passCount": 17
+    },
+    "/work/ifit": {
+      "alignmentScore": 51,
+      "thinSignal": {
+        "thin": false
+      },
+      "declaredIntent": [
+        "calm",
+        "trustworthy"
+      ],
+      "tones": {
+        "calmTone": 70,
+        "premiumTone": 43,
+        "supportiveTone": 73,
+        "playfulTone": 74,
+        "energeticTone": 47
+      },
+      "layerScores": {
+        "perceptual": 76,
+        "cognitive": 100,
+        "trust": 14,
+        "tone": 67,
+        "motion": 100
+      },
+      "characterStrength": 63,
+      "line": "Reads playfulTone and supportiveTone. The page is drifting from its declared intent.",
+      "failCount": 6,
+      "passCount": 15
+    },
+    "/work": {
+      "alignmentScore": 59,
+      "thinSignal": {
+        "thin": false
+      },
+      "declaredIntent": [
+        "calm",
+        "trustworthy"
+      ],
+      "tones": {
+        "calmTone": 70,
+        "premiumTone": 68,
+        "supportiveTone": 73,
+        "playfulTone": 59,
+        "energeticTone": 48
+      },
+      "layerScores": {
+        "perceptual": 100,
+        "cognitive": 86,
+        "trust": 47,
+        "tone": 75,
+        "motion": 100
+      },
+      "characterStrength": 45,
+      "line": "Reads supportiveTone and calmTone. The page is drifting from its declared intent.",
+      "failCount": 5,
+      "passCount": 16
+    }
+  }
+}

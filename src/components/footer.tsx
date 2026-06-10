@@ -1,8 +1,10 @@
 import Link from "next/link";
+import { SignalBadge } from "./signal-badge";
 
 export function Footer() {
   return (
     <footer className="mt-24" style={{ borderTop: "1px solid var(--color-border-subtle)" }}>
+      <SignalBadge />
       <div
         className="mx-auto px-6 py-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
         style={{ maxWidth: "var(--max-width-wide)" }}

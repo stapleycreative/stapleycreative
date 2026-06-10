@@ -39,6 +39,26 @@
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* ─── Page enter (route transition) ─── */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.page-enter {
+  animation: page-enter var(--duration-normal) var(--ease-out) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-enter {
+    animation: none;
+  }
+}
+
 /* ─── Base Styles ─── */
 body {
   color: var(--color-text-primary);
@@ -49,6 +69,18 @@ body {
 
 ::selection {
   background: rgba(249, 128, 119, 0.25);
+}
+
+/* ─── Focus visibility (Signal TC-5: keyboard users get a real indicator) ─── */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
 }
 
 /* ─── Prose (MDX content) ─── */
