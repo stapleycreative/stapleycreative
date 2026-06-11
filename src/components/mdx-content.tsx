@@ -7,6 +7,7 @@ import { ResearchSegments } from "./research-segments";
 import { HikiScreenshots } from "./screenshot-gallery";
 import { MediaGrid2x2, VideoBlock, VideoPair } from "./video-block";
 import { CardAnatomy, Annotation } from "./card-anatomy";
+import { SYSTEM_DIAGRAMS } from "./system-diagrams";
 
 /* Custom components available inside MDX files */
 const components = {
@@ -950,9 +951,11 @@ const components = {
   ),
 
   /**
-   * Dual-mode image component.
-   * - No `src`: renders a neutral placeholder box (for work-in-progress case studies).
-   * - With `src`: renders an optimized next/image with the same figure + caption chrome.
+   * Dual-mode image component / artifact slot.
+   * - With `src`: renders an optimized next/image with figure + caption chrome.
+   * - No `src`: an ARTIFACT SLOT. In dev (NEXT_PUBLIC_SHOW_SLOTS=1) it renders a
+   *   designed frame naming the exact asset needed (`brief` + `source`).
+   *   In production it renders nothing — the site never ships an empty box.
    * `src` should be an absolute path rooted at /public, e.g. "/work/hiki/before.jpg".
    */
   ImagePlaceholder: ({
@@ -963,12 +966,16 @@ const components = {
     bg,
     maxWidth,
     align = "stretch",
+    brief,
+    source,
   }: {
     src?: string;
     alt: string;
     caption?: string;
-    // Briefing props — ignored at render, kept so MDX stays stable during the image-upload pass.
+    /** What goes in this slot — shown in the dev frame. */
     brief?: string;
+    /** Where the asset comes from (Figma file/frame, export spec). Shown in the dev frame. */
+    source?: string;
     priority?: string;
     style?: string;
     aspect?: string;
@@ -996,6 +1003,44 @@ const components = {
               : undefined,
         }
       : {};
+
+    // ── Artifact slot mode ──
+    if (!src) {
+      if (process.env.NEXT_PUBLIC_SHOW_SLOTS !== "1") return null;
+      return (
+        <figure className="my-8 not-prose" aria-label={`Artifact slot: ${alt}`} style={wrapperStyle}>
+          <div
+            className="rounded-lg flex flex-col justify-between p-5 sm:p-6"
+            style={{
+              aspectRatio: aspect,
+              border: "1.5px dashed var(--color-border-strong)",
+              backgroundColor: "var(--color-bg-surface)",
+            }}
+          >
+            <span
+              className="text-[10px] font-mono tracking-[0.18em] uppercase"
+              style={{ color: "var(--color-accent)" }}
+            >
+              Artifact slot
+            </span>
+            <div className="max-w-[56ch]">
+              <p className="text-[14px] leading-relaxed font-medium" style={{ color: "var(--color-text-primary)" }}>
+                {brief ?? alt}
+              </p>
+              {source && (
+                <p className="mt-2 text-[11px] font-mono leading-relaxed" style={{ color: "var(--color-text-tertiary)" }}>
+                  SOURCE: {source}
+                </p>
+              )}
+            </div>
+            <span className="text-[11px]" style={{ color: "var(--color-text-tertiary)" }}>
+              {caption ? `Ships with caption: “${caption}”` : "No caption set."} · Aspect {aspect}
+            </span>
+          </div>
+        </figure>
+      );
+    }
+
     return (
       <figure className="my-8 not-prose" aria-label={alt} style={wrapperStyle}>
         <div
@@ -1499,6 +1544,90 @@ const components = {
          </div>
          <p className="text-sm sm:text-[15px] font-medium leading-[1.65]" style={{ color: "var(--color-text-primary)" }}>{result}</p>
        </div>
+    </div>
+  ),
+
+  /** The project's system diagram (same drawing as the home index hover). */
+  SystemDiagram: ({ slug }: { slug: string }) => {
+    const entry = SYSTEM_DIAGRAMS[slug];
+    if (!entry) return null;
+    return (
+      <figure className="not-prose my-10">
+        <div
+          className="rounded-xl flex items-center justify-center py-6"
+          style={{ backgroundColor: "var(--color-bg-surface)", border: "1px solid var(--color-border-subtle)" }}
+        >
+          <div className="w-full max-w-[460px] aspect-[340/200]">
+            <entry.Diagram />
+          </div>
+        </div>
+        <figcaption className="text-xs mt-3 font-mono" style={{ color: "var(--color-text-tertiary)" }}>
+          {entry.caption}
+        </figcaption>
+      </figure>
+    );
+  },
+
+  /** "What this case proves" — recruiter routing block. Short claims, two columns.
+   *  `items` accepts an array or a pipe-delimited string (MDX-attribute-safe). */
+  CaseProves: ({ items: itemsProp }: { items: string[] | string }) => {
+    const items = Array.isArray(itemsProp)
+      ? itemsProp
+      : String(itemsProp ?? "")
+          .split("|")
+          .map((t) => t.trim())
+          .filter(Boolean);
+    return (
+    <aside
+      className="not-prose my-14 rounded-xl p-6 sm:p-8"
+      style={{ backgroundColor: "var(--color-bg-surface)", border: "1px solid var(--color-border-subtle)" }}
+    >
+      <span className="text-[11px] font-mono tracking-[0.15em] uppercase" style={{ color: "var(--color-accent)" }}>
+        What this case proves
+      </span>
+      <ul className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-3" style={{ listStyle: "none", margin: 0, padding: 0 }}>
+        {items.map((item) => (
+          <li key={item} className="relative pl-5 text-[14.5px] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
+            <span
+              aria-hidden
+              className="absolute left-0 top-[0.62em] w-[6px] h-[2px] rounded-full"
+              style={{ backgroundColor: "var(--color-accent)" }}
+            />
+            {item}
+          </li>
+        ))}
+      </ul>
+    </aside>
+    );
+  },
+
+  /** A named decision — visually distinct from narrative prose. */
+  DecisionBlock: ({ children }: { children: React.ReactNode }) => (
+    <div
+      className="not-prose my-8 pl-5 py-1"
+      style={{ borderLeft: "2px solid var(--color-accent)" }}
+    >
+      <span className="text-[11px] font-mono tracking-[0.15em] uppercase block mb-1.5" style={{ color: "var(--color-accent)" }}>
+        Decision
+      </span>
+      <p className="text-[15.5px] leading-relaxed font-medium m-0" style={{ color: "var(--color-text-primary)" }}>
+        {children}
+      </p>
+    </div>
+  ),
+
+  /** A named tradeoff — honest cost of the decision, muted. */
+  TradeoffBlock: ({ children }: { children: React.ReactNode }) => (
+    <div
+      className="not-prose my-8 pl-5 py-1"
+      style={{ borderLeft: "2px solid var(--color-border-strong)" }}
+    >
+      <span className="text-[11px] font-mono tracking-[0.15em] uppercase block mb-1.5" style={{ color: "var(--color-text-tertiary)" }}>
+        Tradeoff
+      </span>
+      <p className="text-[15px] leading-relaxed m-0" style={{ color: "var(--color-text-secondary)" }}>
+        {children}
+      </p>
     </div>
   ),
 };

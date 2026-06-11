@@ -20,6 +20,8 @@ coverAccentColor: "#FFC24B"
   result="Signal v0.1 shipped April 13, 2026. Free Chrome extension. Local-only reading diary, no telemetry. The engine that powers it is the same one that will power the Figma plugin and the design agent. Framework is on the site. Rules are citable."
 />
 
+<SystemDiagram slug="emotional-audit-framework" />
+
 The strategic bet underneath this isn't the extension. It's that perceptual evaluation should be part of the design loop, not a debrief after launch. Most design tools check the thing the tool is good at. Lighthouse measures performance. Axe measures accessibility. Figma measures spec adherence. None of them measure what the page is actually projecting to a nervous system. That's the gap. A framework that reads computed CSS, layout metrics, and visual properties and tells you whether the signal matches the intent closes it. One rule engine. Same engine runs in the browser after deploy, in Figma during design, and inside an agent that reviews work before it ever reaches a human. That last piece is the real thesis. The first surface is the proof I can ship it.
 
 ## The problem I was solving for myself
@@ -32,21 +34,22 @@ I wanted something that reads the page the way a nervous system reads it. Not my
 
 ## The first decision: rules before AI
 
+<DecisionBlock>Deterministic rules before any model. A rule that names the measurable cause can be argued with, cited, and fixed. A model's vibe can only be believed or ignored.</DecisionBlock>
+
 Every version of this tool that gets built by someone else is going to be a model. Feed a screenshot into GPT, ask "how does this feel," ship the answer. It would work. It would also be useless for the thing I actually need it to do.
 
 A model that says "this page feels cold" leaves a designer guessing what to change. A rule that says "color temperature averages 7200K, saturation is below 15%, dominant hue sits between 200 and 240" tells you exactly where the coldness is coming from. You can argue with a rule. You can't argue with a model that won't show its work.
 
 The tradeoff I made: deterministic rules are harder to build, they move slower, and they require me to justify every threshold in writing. Every scoring decision gets a citation. I traded speed of development for explainability, and I traded headline "AI" framing for trust with designers who (correctly) don't want a black box telling them their work feels wrong. The AI layer comes later and sits on top of the rules. Screenshot-based computer vision, narrative synthesis, pattern recognition across a reading diary. All of that is easier to build once the deterministic foundation is in place.
 
-{/* IMAGE PENDING — build to brief, then uncomment.
 <ImagePlaceholder
   alt="Signal Chrome extension side panel showing a tone profile with eleven horizontal bars: Warm/Cool, Calm/Energetic, Minimal/Dense, Formal/Casual, Playful/Serious, Soft/Sharp, Open/Closed, Light/Heavy, Organic/Geometric, Static/Dynamic, Accessible/Exclusive. Each bar has a labeled midpoint and a filled position showing where the scanned page lands."
   caption="Signal reads the page and produces a tone profile across eleven dimensions. Not a score. A reading."
   brief="Browser side-panel screenshot of the Signal Chrome extension. Eleven horizontal diverging bars stacked vertically, each labeled with its two poles. Each bar has a small dot or filled position showing the reading. Above: the page URL being read and the user's declared target tones as chips. Below: a congruence percentage. Clean side-panel UI, sans-serif, tight vertical rhythm, subtle grid. Dark or light theme acceptable — match the actual shipped extension."
+  source="Real product — open Signal side panel on any live page, screenshot at 2x → /work/emotional-audit-framework/panel-tone-profile.png"
   priority="HIGH"
   style="Product screenshot, browser extension side panel. Tight, instrument-coded visual language."
 />
-*/}
 
 ## Six layers of evidence
 
@@ -76,6 +79,18 @@ Intent first. Evidence second. Diagnosis third. Same pattern I use on every proj
 
 <PullQuote>The page has an opinion about who should use it. The tool reads that opinion back to you. Whether it matches the intent is the only question that matters.</PullQuote>
 
+## Signal caught this
+
+The clearest proof of the framework is what happened when I turned it on the site you're reading.
+
+In June 2026 I wired the engine into this portfolio's build: every page gets scanned, and the footer of every page carries its live tone profile. Declared intent: calm and trustworthy. The first run came back ugly. The trust layer scored 23 out of 100.
+
+Two findings, both real. First: the site had no visible focus styles — keyboard users got nothing. A genuine accessibility gap that three rounds of human review had missed. Fixed the same night. Second, and better: one trust rule failed in a way that didn't add up, and chasing it exposed a bug in the engine itself — the extractor walked stylesheets flat, so every rule inside a CSS `@layer` block was invisible to it. Tailwind v4 wraps *everything* in layers. The instrument was misreading an entire generation of websites. Patched the rule walker, re-ran the audit, and the scores moved for honest reasons.
+
+One more finding I kept: the case-study pages read more "playful" than the declared "calm" — the colorful cover art was the measurable cause. The engine was right. That tension fed the redesign of how work is presented on this site.
+
+A tool that audits pages, catches a real defect in its own author's site, and exposes a measurement bug in itself on the way through — that's the verification loop working. The footer badge on every page of this site is the standing demo.
+
 ## One engine, three surfaces
 
 The architecture is the actual design decision. Extension, Figma plugin, and design agent all share the same rule engine. Not three tools. Three surfaces on one engine.
@@ -88,15 +103,14 @@ The architecture is the actual design decision. Extension, Figma plugin, and des
 
 The strategic reason this matters: perceptual evaluation has to meet designers where they work. After deploy, inside the design file, and inside the agent flow that's increasingly how design work gets reviewed. Building a separate tool for each context would fork the rule logic and guarantee drift. One engine keeps all three surfaces honest.
 
-{/* IMAGE PENDING — build to brief, then uncomment.
 <ImagePlaceholder
   alt="Architecture diagram: one central rule engine connected to three surfaces. Left: Chrome extension reading a live web page. Center: Figma plugin reading design frames. Right: Design agent invoking the engine in a review workflow. Arrows showing the same eleven-dimension tone profile output flowing to each surface."
   caption="One engine. Three surfaces. The rules don't fork. The reading is consistent across the browser, the design file, and the agent."
   brief="Clean architecture diagram. Central node labeled 'Rule engine' containing a small list of the six layers. Three branches out to three surface labels with small iconography: Chrome extension (browser window), Figma plugin (Figma canvas), Design agent (chat/review panel). Each surface shows the same tone profile output in miniature. Minimal, instrument-coded, not cute. Think systems diagram in a technical paper, not marketing infographic."
+  source="Designed diagram — Figma per brief → /work/emotional-audit-framework/one-engine-three-surfaces.png"
   priority="HIGH"
   style="Technical architecture diagram. Flat, minimal, monochrome with one accent color (the cover amber)."
 />
-*/}
 
 ## What v0.1 ships, what it doesn't
 
@@ -158,3 +172,5 @@ The tool is the Chrome extension. The work is the framework. The bet is that des
 I built this because I needed it. I'm shipping it because the framework is the point. The extension is the first surface that proves the framework runs. The next two surfaces will prove it generalizes.
 
 Everything under this case study is downstream of that call.
+
+<CaseProves items="Inventing a defensible framework, not a feature — every threshold cited, every rule arguable | Rules-before-AI judgment: explainability chosen over headline AI framing | Platform thinking: one engine, three surfaces, no forked logic | Eating my own instrument: this site audits itself with it, publicly, in the footer | The tool caught a real accessibility defect and a bug in its own extractor | Shipping discipline: narrow v0.1 that works over broad v1 that guesses" />
