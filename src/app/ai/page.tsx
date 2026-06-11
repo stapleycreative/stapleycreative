@@ -556,6 +556,56 @@ export default function AIPage() {
           without earning it.
         </p>
 
+        <h3>A real loop from shipped work</h3>
+        <p>The task card example, step by step:</p>
+        <ol>
+          <li>
+            <strong>Build.</strong> Claude produced the task card from the
+            design-system spec. Visually clean. Passed my review.
+          </li>
+          <li>
+            <strong>Critique.</strong> The ChatGPT critic, holding only the
+            product context — volunteers need to get into calls fast — flagged
+            the buried CTA. No knowledge of how the build happened.
+          </li>
+          <li>
+            <strong>Referee.</strong> I checked the critique against the
+            actual task model. The critic was right for the right reason: the
+            card&apos;s job is the call, not the metadata.
+          </li>
+          <li>
+            <strong>Revise.</strong> Call CTA promoted to the primary slot;
+            metadata demoted to a single supporting line.
+          </li>
+          <li>
+            <strong>Why it mattered.</strong> The component shipped with the
+            corrected hierarchy — and the failure pattern (inherited hierarchy,
+            unearned) became a named check in the build skill that runs on
+            every screen since.
+          </li>
+        </ol>
+        {process.env.NEXT_PUBLIC_SHOW_SLOTS === "1" && (
+          <div
+            className="not-prose my-8 rounded-lg flex flex-col justify-between p-5"
+            style={{
+              aspectRatio: "16/8",
+              border: "1.5px dashed var(--color-border-strong)",
+              backgroundColor: "var(--color-bg-surface)",
+            }}
+          >
+            <span className="text-[10px] font-mono tracking-[0.18em] uppercase" style={{ color: "var(--color-accent)" }}>
+              Artifact slot
+            </span>
+            <p className="text-[14px] font-medium max-w-[56ch]" style={{ color: "var(--color-text-primary)" }}>
+              Task card before/after: buried call CTA vs promoted call CTA, with
+              one line of the actual critic output quoted between them.
+            </p>
+            <span className="text-[11px] font-mono" style={{ color: "var(--color-text-tertiary)" }}>
+              SOURCE: VM 2.0 Figma + relay transcript → /ai/task-card-loop.png (sanitize labels)
+            </span>
+          </div>
+        )}
+
         <h3>What designing with AI this way teaches you</h3>
         <ul>
           <li>

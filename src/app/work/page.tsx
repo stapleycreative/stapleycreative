@@ -43,9 +43,10 @@ export default function WorkPage() {
       <div style={{ maxWidth: "var(--max-width-content)" }}>
         <h1 className="text-3xl font-semibold tracking-tight">Work</h1>
         <p className="mt-3 max-w-[520px] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
-          Twenty years of product design, systems thinking, and building
-          things that work. Four case studies. Two live tools.
-          Earlier work and entrepreneurial projects live in the{" "}
+          Four kinds of senior design work: AI workflow design,
+          revenue-critical commerce, design tooling, and behavioral product
+          strategy. Two live tools. Earlier work and entrepreneurial projects
+          live in the{" "}
           <Link href="/playground" style={{ color: "var(--color-text-primary)", textDecoration: "underline", textUnderlineOffset: "3px" }}>
             playground
           </Link>

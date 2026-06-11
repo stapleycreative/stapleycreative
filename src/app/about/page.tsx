@@ -75,6 +75,16 @@ export default function AboutPage() {
             sitting in front of it.
           </p>
 
+          <h2>Before product design</h2>
+          <p>
+            I came up through illustration, branding, and marketing before
+            product. Ten years drawing for Highlights taught me that a surface
+            has an emotional read before anyone processes a word. Brand work
+            taught me there&apos;s a business model under every screen. That
+            mix is still how I work: the feeling of the surface, the model
+            underneath it, and the system that has to survive after launch.
+          </p>
+
           <h2>What I'm building toward</h2>
           <p>
             The design industry is being reshaped by AI. Tools like v0, Cursor,

@@ -1,6 +1,6 @@
 {
   "engine": "Signal v0.2 (Emotional Audit Framework)",
-  "auditedAt": "2026-06-10",
+  "auditedAt": "2026-06-11",
   "declaredIntent": [
     "calm",
     "trustworthy"
@@ -35,7 +35,7 @@
       "passCount": 14
     },
     "/ai": {
-      "alignmentScore": 78,
+      "alignmentScore": 75,
       "thinSignal": {
         "thin": false
       },
@@ -51,7 +51,7 @@
         "energeticTone": 51
       },
       "layerScores": {
-        "perceptual": 100,
+        "perceptual": 73,
         "cognitive": 100,
         "trust": 46,
         "tone": 100,
@@ -59,11 +59,11 @@
       },
       "characterStrength": 64,
       "line": "Reads calmTone and premiumTone. The page mostly holds its declared intent.",
-      "failCount": 2,
+      "failCount": 3,
       "passCount": 18
     },
     "/blog": {
-      "alignmentScore": 70,
+      "alignmentScore": 72,
       "thinSignal": {
         "thin": false
       },
@@ -72,14 +72,14 @@
         "trustworthy"
       ],
       "tones": {
-        "calmTone": 80,
+        "calmTone": 90,
         "premiumTone": 93,
         "supportiveTone": 73,
         "playfulTone": 72,
         "energeticTone": 53
       },
       "layerScores": {
-        "perceptual": 68,
+        "perceptual": 73,
         "cognitive": 65,
         "trust": 63,
         "tone": 100,
@@ -88,10 +88,10 @@
       "characterStrength": 48,
       "line": "Reads premiumTone and calmTone. The page mostly holds its declared intent.",
       "failCount": 5,
-      "passCount": 17
+      "passCount": 18
     },
     "/": {
-      "alignmentScore": 55,
+      "alignmentScore": 60,
       "thinSignal": {
         "thin": false
       },
@@ -100,22 +100,22 @@
         "trustworthy"
       ],
       "tones": {
-        "calmTone": 70,
-        "premiumTone": 53,
+        "calmTone": 100,
+        "premiumTone": 78,
         "supportiveTone": 73,
-        "playfulTone": 59,
-        "energeticTone": 48
+        "playfulTone": 87,
+        "energeticTone": 52
       },
       "layerScores": {
-        "perceptual": 81,
-        "cognitive": 86,
-        "trust": 47,
-        "tone": 75,
+        "perceptual": 71,
+        "cognitive": 83,
+        "trust": 46,
+        "tone": 100,
         "motion": 100
       },
-      "characterStrength": 45,
-      "line": "Reads supportiveTone and calmTone. The page is drifting from its declared intent.",
-      "failCount": 6,
+      "characterStrength": 65,
+      "line": "Reads calmTone and playfulTone. The page is drifting from its declared intent.",
+      "failCount": 4,
       "passCount": 15
     },
     "/work/contact-reports": {
@@ -132,7 +132,7 @@
         "premiumTone": 53,
         "supportiveTone": 73,
         "playfulTone": 73,
-        "energeticTone": 49
+        "energeticTone": 50
       },
       "layerScores": {
         "perceptual": 76,
@@ -141,7 +141,7 @@
         "tone": 75,
         "motion": 100
       },
-      "characterStrength": 54,
+      "characterStrength": 55,
       "line": "Reads supportiveTone and playfulTone. The page is drifting from its declared intent.",
       "failCount": 5,
       "passCount": 16
@@ -160,7 +160,7 @@
         "premiumTone": 53,
         "supportiveTone": 73,
         "playfulTone": 73,
-        "energeticTone": 55
+        "energeticTone": 56
       },
       "layerScores": {
         "perceptual": 76,
@@ -188,7 +188,7 @@
         "premiumTone": 60,
         "supportiveTone": 73,
         "playfulTone": 74,
-        "energeticTone": 51
+        "energeticTone": 52
       },
       "layerScores": {
         "perceptual": 76,
@@ -216,7 +216,7 @@
         "premiumTone": 43,
         "supportiveTone": 73,
         "playfulTone": 74,
-        "energeticTone": 47
+        "energeticTone": 48
       },
       "layerScores": {
         "perceptual": 76,
@@ -225,13 +225,13 @@
         "tone": 67,
         "motion": 100
       },
-      "characterStrength": 63,
+      "characterStrength": 64,
       "line": "Reads playfulTone and supportiveTone. The page is drifting from its declared intent.",
       "failCount": 6,
       "passCount": 15
     },
     "/work": {
-      "alignmentScore": 59,
+      "alignmentScore": 61,
       "thinSignal": {
         "thin": false
       },
@@ -240,22 +240,22 @@
         "trustworthy"
       ],
       "tones": {
-        "calmTone": 70,
-        "premiumTone": 68,
+        "calmTone": 100,
+        "premiumTone": 93,
         "supportiveTone": 73,
-        "playfulTone": 59,
-        "energeticTone": 48
+        "playfulTone": 87,
+        "energeticTone": 52
       },
       "layerScores": {
-        "perceptual": 100,
-        "cognitive": 86,
-        "trust": 47,
-        "tone": 75,
+        "perceptual": 73,
+        "cognitive": 83,
+        "trust": 46,
+        "tone": 100,
         "motion": 100
       },
-      "characterStrength": 45,
-      "line": "Reads supportiveTone and calmTone. The page is drifting from its declared intent.",
-      "failCount": 5,
+      "characterStrength": 65,
+      "line": "Reads calmTone and premiumTone. The page is drifting from its declared intent.",
+      "failCount": 4,
       "passCount": 16
     }
   }
