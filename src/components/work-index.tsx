@@ -18,6 +18,7 @@ export interface WorkIndexStudy {
   outcome?: string;
   status?: string;
   year?: string;
+  client?: string;
 }
 
 /** Render **bold** segments of the frontmatter outcome line. */
@@ -40,7 +41,10 @@ function renderTitle(title: string, accent?: string) {
   return (
     <>
       {parts.before}
-      <em style={{ fontFamily: "var(--font-serif-display)", fontStyle: "italic", fontWeight: 400, letterSpacing: "-0.01em" }}>
+      <em
+        className="work-row-accent"
+        style={{ fontFamily: "var(--font-serif-display)", fontStyle: "italic", fontWeight: 400, letterSpacing: "-0.01em" }}
+      >
         {parts.accent}
       </em>
       {parts.after}
@@ -61,7 +65,7 @@ export function WorkIndex({ studies }: { studies: WorkIndexStudy[] }) {
           <Link
             key={s.slug}
             href={`/work/${s.slug}`}
-            className="group block py-8 sm:py-9"
+            className="work-row group block py-8 sm:py-9"
             style={{ borderTop: "1px solid var(--color-border-subtle)" }}
             aria-label={`${s.title} — case study`}
             onMouseEnter={() => setActive(s.slug)}
@@ -71,7 +75,7 @@ export function WorkIndex({ studies }: { studies: WorkIndexStudy[] }) {
           >
             <div className="flex items-baseline justify-between gap-x-6">
               <span
-                className="text-[11px] font-mono shrink-0 w-7"
+                className="work-row-num text-[11px] font-mono shrink-0 w-7"
                 style={{ color: "var(--color-text-tertiary)" }}
                 aria-hidden
               >
@@ -79,13 +83,8 @@ export function WorkIndex({ studies }: { studies: WorkIndexStudy[] }) {
               </span>
               <div className="flex-1 min-w-0 flex items-baseline justify-between gap-x-6">
                 <div className="min-w-0">
-                  <h3
-                    className="text-[22px] sm:text-[28px] font-semibold tracking-tight leading-snug max-w-[460px]"
-                    style={{ textUnderlineOffset: "6px" }}
-                  >
-                    <span className="group-hover:underline" style={{ textDecorationThickness: "1.5px" }}>
-                      {renderTitle(s.title, s.accent)}
-                    </span>
+                  <h3 className="text-[22px] sm:text-[28px] font-semibold tracking-tight leading-snug max-w-[460px]">
+                    <span className="work-row-title-text">{renderTitle(s.title, s.accent)}</span>
                   </h3>
                   {s.outcome && (
                     <p
@@ -100,6 +99,11 @@ export function WorkIndex({ studies }: { studies: WorkIndexStudy[] }) {
                   className="hidden sm:flex flex-col items-end gap-1.5 text-[12px] shrink-0 text-right"
                   style={{ color: "var(--color-text-tertiary)" }}
                 >
+                  {s.client && (
+                    <span className="font-medium" style={{ color: "var(--color-text-secondary)" }}>
+                      {s.client}
+                    </span>
+                  )}
                   {s.year && <span className="font-mono">{s.year}</span>}
                   {s.status && (
                     <span className="flex items-center gap-1.5 whitespace-nowrap" style={{ color: "var(--color-accent)" }}>

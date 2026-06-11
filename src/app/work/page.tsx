@@ -66,6 +66,7 @@ export default function WorkPage() {
             outcome: s.indexOutcome ? String(s.indexOutcome) : undefined,
             status: s.indexStatus ? String(s.indexStatus) : undefined,
             year: s.year ? String(s.year) : undefined,
+            client: s.client ? String(s.client) : undefined,
           }))}
         />
       </section>

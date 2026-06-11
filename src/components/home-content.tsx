@@ -76,6 +76,7 @@ export function HomeContent({ caseStudies: allStudies, posts }: HomeContentProps
             outcome: s.indexOutcome ? String(s.indexOutcome) : undefined,
             status: s.indexStatus ? String(s.indexStatus) : undefined,
             year: s.year ? String(s.year) : undefined,
+            client: s.client ? String(s.client) : undefined,
           }))}
         />
         <div className="mt-14 pt-8" style={{ borderTop: "1px solid var(--color-border-subtle)" }}>

@@ -19,6 +19,7 @@
 
   --color-accent: #F98077;
   --color-accent-hover: #E66B62;
+  --color-accent-wash: rgba(249, 128, 119, 0.25);
 
   --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
@@ -37,6 +38,30 @@
   --duration-normal: 200ms;
   --duration-slow: 350ms;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── Work index hover — title highlights like text selection ───
+   Hovering a row "selects" the case study: the title takes the same
+   coral wash as ::selection. box-decoration-break gives multi-line
+   titles per-line highlight boxes, exactly like real selection. */
+.work-row .work-row-title-text {
+  border-radius: 3px;
+  padding: 2px 8px;
+  margin-left: -8px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+.work-row:hover .work-row-title-text,
+.work-row:focus-visible .work-row-title-text {
+  background-color: var(--color-accent-wash);
+}
+.work-row .work-row-num {
+  transition: color var(--duration-normal) var(--ease-out);
+}
+.work-row:hover .work-row-num,
+.work-row:focus-visible .work-row-num {
+  color: var(--color-accent);
 }
 
 /* ─── Page enter (route transition) ─── */
@@ -68,7 +93,7 @@ body {
 }
 
 ::selection {
-  background: rgba(249, 128, 119, 0.25);
+  background: var(--color-accent-wash);
 }
 
 /* ─── Focus visibility (Signal TC-5: keyboard users get a real indicator) ─── */
