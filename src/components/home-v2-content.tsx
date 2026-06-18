@@ -48,6 +48,7 @@ interface HomeV2ContentProps {
 
 export function HomeV2Content({ caseStudies }: HomeV2ContentProps) {
   const rootRef = useRef<HTMLDivElement>(null);
+  const markRef = useRef<HTMLImageElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const [active, setActive] = useState("intro");
   const lenisRef = useRef<Lenis | null>(null);
@@ -64,6 +65,17 @@ export function HomeV2Content({ caseStudies }: HomeV2ContentProps) {
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
+
+    // Foreground parallax: the wordmark sits "above" the page, so it drifts
+    // faster than the content as you scroll (greater apparent motion = nearer).
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!reduceMotion) {
+      lenis.on("scroll", (e: { scroll: number }) => {
+        if (markRef.current) {
+          markRef.current.style.transform = `translate3d(0, ${e.scroll * -0.45}px, 0)`;
+        }
+      });
+    }
 
     const ctx = gsap.context(() => {
       // Hero headline: stereographic RGB-split reveal, ported from the home page.
@@ -147,11 +159,12 @@ export function HomeV2Content({ caseStudies }: HomeV2ContentProps) {
     <div ref={rootRef} className="relative overflow-hidden">
       {/* Oversized wordmark bleeding off the top-left edge — decorative, desktop only */}
       <img
+        ref={markRef}
         src="/v2-mark.svg"
         alt=""
         aria-hidden="true"
         className="hidden xl:block absolute left-0 top-0 pointer-events-none select-none"
-        style={{ height: "860px", width: "auto", zIndex: 0 }}
+        style={{ height: "860px", width: "auto", zIndex: 0, willChange: "transform" }}
       />
 
       {/* Right-hand section rail — numbered, desktop only. Mirrors the
