@@ -151,7 +151,7 @@ export function HomeV2Content({ caseStudies }: HomeV2ContentProps) {
         alt=""
         aria-hidden="true"
         className="hidden xl:block absolute left-0 top-0 pointer-events-none select-none"
-        style={{ height: "1013px", width: "auto", zIndex: 0 }}
+        style={{ height: "860px", width: "auto", zIndex: 0 }}
       />
 
       {/* Right-hand section rail — numbered, desktop only. Mirrors the
