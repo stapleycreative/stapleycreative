@@ -144,7 +144,16 @@ export function HomeV2Content({ caseStudies }: HomeV2ContentProps) {
   };
 
   return (
-    <div ref={rootRef} className="relative">
+    <div ref={rootRef} className="relative overflow-hidden">
+      {/* Oversized wordmark bleeding off the top-left edge — decorative, desktop only */}
+      <img
+        src="/v2-mark.svg"
+        alt=""
+        aria-hidden="true"
+        className="hidden xl:block absolute left-0 top-0 pointer-events-none select-none"
+        style={{ height: "1013px", width: "auto", zIndex: 0 }}
+      />
+
       {/* Right-hand section rail — numbered, desktop only. Mirrors the
           diagnostic-index treatment in the main nav. */}
       <nav
@@ -196,8 +205,8 @@ export function HomeV2Content({ caseStudies }: HomeV2ContentProps) {
       </nav>
 
       <div
-        className="mx-auto px-6"
-        style={{ maxWidth: "var(--max-width-wide)" }}
+        className="mx-auto px-6 relative"
+        style={{ maxWidth: "var(--max-width-wide)", zIndex: 1 }}
       >
         {/* 01 — Intro */}
         <section id="intro" className="min-h-[88vh] flex flex-col justify-center pt-24 pb-16">
