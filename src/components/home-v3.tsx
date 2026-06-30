@@ -228,7 +228,7 @@ const CSS = `
 .v3-hero{min-height:84vh;display:flex;flex-direction:column;justify-content:center;padding:88px 0 56px}
 .v3-status{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);display:flex;align-items:center;gap:8px;margin-bottom:22px}
 .v3-status .dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
-.v3-h1{font-family:var(--serif);font-size:clamp(36px,5.2vw,60px);font-weight:540;letter-spacing:-.018em;line-height:1.05;max-width:900px;font-variation-settings:"opsz" 96;margin:0}
+.v3-h1{font-family:var(--serif);font-size:clamp(52px,9.5vw,118px);font-weight:540;letter-spacing:-.02em;line-height:1.0;max-width:14ch;font-variation-settings:"opsz" 144;margin:0}
 .v3-sub{margin-top:28px;font-size:18px;color:var(--t2);max-width:640px;line-height:1.6}
 .v3-cta{margin-top:34px;display:flex;gap:12px;flex-wrap:wrap}
 .v3-btn{padding:12px 20px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;border:1px solid transparent;font-family:inherit;text-decoration:none;display:inline-block}
