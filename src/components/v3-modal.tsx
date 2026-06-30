@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
 
 export function V3Modal({
@@ -13,10 +14,12 @@ export function V3Modal({
   const scrollRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const [showCta, setShowCta] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   const close = () => router.back();
 
   useEffect(() => {
+    setMounted(true);
     const y = window.scrollY;
     document.body.style.position = "fixed";
     document.body.style.top = `-${y}px`;
@@ -43,7 +46,7 @@ export function V3Modal({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
+  const node = (
     <div className="v3modal" ref={scrollRef} role="dialog" aria-modal="true" aria-label={title}>
       <style>{CSS}</style>
       <button ref={closeRef} className="dx" aria-label="Close" onClick={close}>✕</button>
@@ -69,6 +72,8 @@ export function V3Modal({
       </div>
     </div>
   );
+
+  return mounted ? createPortal(node, document.body) : null;
 }
 
 const CSS = `
