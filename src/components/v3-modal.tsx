@@ -72,7 +72,7 @@ export function V3Modal({
 }
 
 const CSS = `
-.v3modal{position:fixed;inset:0;z-index:90;background:var(--color-bg-primary,#fdfcfd);overflow-y:auto;
+.v3modal{position:fixed;inset:0;z-index:9999;background:var(--color-bg-primary,#fdfcfd);overflow-y:auto;
   font-family:var(--font-family),system-ui,sans-serif;color:#211f26;animation:v3mIn .32s cubic-bezier(0.16,1,0.3,1)}
 @keyframes v3mIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .v3modal .dx{position:fixed;top:18px;right:20px;z-index:95;width:40px;height:40px;border-radius:50%;border:1px solid #d0cdd7;
