@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
-import { Nav } from "@/components/nav";
-import { Footer } from "@/components/footer";
+import { Plus_Jakarta_Sans, Fraunces } from "next/font/google";
+import { SiteChrome } from "@/components/site-chrome";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-family",
+  display: "swap",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  axes: ["opsz"],
+  variable: "--font-serif",
   display: "swap",
 });
 
@@ -16,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s — Craig Stapley",
   },
   description:
-    "Nervous-system-aware product design. Interfaces built around how people actually process information, allocate attention, and form trust. Currently shipping AI-native product.",
+    "Systems-level product designer. I diagnose the real problem, architect the system, and build the prototype.",
   metadataBase: new URL("https://stapleycreative.com"),
 };
 
@@ -26,11 +32,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={jakarta.variable}>
+    <html lang="en" className={`${jakarta.variable} ${fraunces.variable}`}>
       <body className="bg-bg-primary text-text-primary min-h-screen flex flex-col">
-        <Nav />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );
