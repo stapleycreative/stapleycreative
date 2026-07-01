@@ -239,10 +239,17 @@ export function HomeV3() {
         {/* About */}
         <section id="about" className="v3-sec v3-about">
           <div className="v3-seclabel" data-reveal><h2>About</h2><span className="n">05</span></div>
-          <p>I think at the system level and build at the prototype level. AI is a design material in my workflow, not a replacement for design judgment. Twenty years across consumer, B2B SaaS, and ed-tech, always at the intersection of complex systems and human behavior.</p>
-          <div className="v3-contact">
-            <a className="em" href="mailto:stapleycreative@gmail.com">stapleycreative@gmail.com</a>
-            <a href="https://www.linkedin.com/in/stapleycreative/" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <div className="v3-aboutgrid">
+            <div>
+              <p>I’ve always been more interested in understanding why things work than simply making them look like they do. That curiosity has taken me through branding, illustration, animation, product strategy, AI, human behavior, and an embarrassing amount of Mormon history. Looking back, none of it feels random. Every rabbit hole became another mental model, and those mental models eventually found their way back into the products I build.</p>
+              <div className="v3-contact">
+                <a className="em" href="mailto:stapleycreative@gmail.com">stapleycreative@gmail.com</a>
+                <a href="https://www.linkedin.com/in/stapleycreative/" target="_blank" rel="noopener">LinkedIn ↗</a>
+              </div>
+            </div>
+            <figure className="v3-portrait">
+              <img src="/craig.webp" alt="Craig Stapley" />
+            </figure>
           </div>
         </section>
       </div>
@@ -337,7 +344,13 @@ const CSS = `
 .v3-post .t{font-size:15px;font-weight:500}
 .v3-post .rt{font-family:var(--mono);font-size:11px;color:var(--t3);flex-shrink:0}
 .v3-about{padding-bottom:96px}
-.v3-about p{font-size:17px;color:var(--t2);max-width:600px;line-height:1.6;margin:0}
+.v3-aboutgrid{display:grid;grid-template-columns:1fr 300px;gap:64px;align-items:start}
+@media(max-width:760px){.v3-aboutgrid{grid-template-columns:1fr;gap:32px}.v3-portrait{max-width:240px}}
+.v3-about p{font-size:17px;color:var(--t2);max-width:560px;line-height:1.65;margin:0}
+.v3-portrait{margin:0;border-radius:var(--r-lg,12px);overflow:hidden;position:relative}
+.v3-portrait img{display:block;width:100%;height:auto;filter:grayscale(1) contrast(1.03);transform:scale(1.005);
+  transition:filter .55s var(--ease),transform .7s var(--ease)}
+.v3-portrait:hover img{filter:grayscale(0) contrast(1) drop-shadow(2px 0 rgba(255,40,40,.28)) drop-shadow(-2px 0 rgba(0,200,255,.28));transform:scale(1)}
 .v3-contact{margin-top:24px;display:flex;gap:24px;flex-wrap:wrap;font-size:14px}
 .v3-contact a.em{color:var(--text);font-weight:500;text-decoration:underline;text-underline-offset:3px}
 .v3-contact a{color:var(--t2);text-decoration:none}
