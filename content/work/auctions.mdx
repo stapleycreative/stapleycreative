@@ -1,0 +1,115 @@
+---
+title: "Fixing a lie in the bid button"
+description: "GiveCampus Auctions promised bidders a number it couldn't keep. I caught the trust flaw in the core proxy-bidding mechanic after it had already cleared design and spec, then rebuilt the experience around what we could honestly tell a donor. Built on a design system I created."
+client: "GiveCampus"
+role: "Lead Designer, bidder and live-display surfaces"
+year: "2026"
+tags: ["B2B SaaS", "Design Systems", "Product Judgment"]
+date: "2026-06-01"
+coverAccent: "bid button"
+coverGround: "#0B1E3A"
+coverText: "#F5F7FA"
+coverAccentColor: "#F98077"
+---
+
+<OutcomeBlock
+  problem="The bid card had a max-bid feature that told donors 'we'll place $X now to take the lead.' A specific, confident number. The catch: the moment a second bidder has a hidden max, that number is unknowable. The interface was promising something it couldn't keep, right when a donor decides whether to trust you with their money."
+  change="I stopped designing screens and went back to the mechanic. Killed the placed-number promise. Promised the behavior instead: we bid the minimum to keep you leading, up to your max, and you only pay what's needed. Then showed the real number after the system resolved it."
+  result="Shipped for a June 2026 launch on an honest model instead of a false promise, on a design system that didn't exist when I started, on time. Real donors, real money, real auctions. I wasn't handed the flaw. I found it."
+/>
+
+<MetricsGrid>
+  <Metric label="Surfaces owned" value="Bidder + live display" />
+  <Metric label="Design system" value="Built from zero" />
+  <Metric label="Sources reconciled" value="3 → 1 backlog" />
+  <Metric label="Launch" value="June 2026, on time" />
+</MetricsGrid>
+
+## The situation
+
+I got handed the bidder and public-display surfaces partway into the project. High-leverage, high-visibility, hard launch date.
+
+It was also a context where serious design work hadn't been staffed or prioritized before. So part of the job was the design. The other part was showing what design actually does when you take it seriously. I treated both as the assignment.
+
+## I built the design system first
+
+Before the auction screens, there wasn't a real system. Components were one-offs. Spacing was vibes. Every new screen re-litigated decisions that should have been settled once.
+
+So I built one. Beacon. Tokens for color, type, spacing, radii. A component set with real states, documented in Storybook, wired to the codebase so engineers pulled from the same source I designed against. Not a sticker sheet. A working system with one source of truth.
+
+It matters here for one reason: every decision below was made against tokens and components, not hex codes and guesses. When I redesigned the bid card five times, it cost hours, not weeks. The system absorbed the churn. It's why the craft held up under a deadline.
+
+## The problem everyone had shipped past
+
+The bid card had a max-bid feature. Set the most you're willing to pay, the system bids for you. Standard proxy bidding.
+
+The mock made a promise. Set a max, and it told you: "we'll place $X now to take the lead." A specific number. Clean. Designed, speced, heading into build.
+
+It's a lie.
+
+The moment a second bidder also has a hidden max, that number is unknowable. If I set my max at $850 and someone else is quietly sitting at $900, the system can't place a specific "now" amount that means anything. Their proxy answers mine in real time, and I lose before the animation finishes. To state an honest "we'll place $X," you'd have to reveal the other person's max. You can never do that. That's the whole premise of proxy bidding.
+
+<PullQuote>The interface promised a number it couldn't keep, in the exact moment a donor is deciding whether to trust you with their money.</PullQuote>
+
+Nobody caught it because the mock looked right. It reads fine with one bidder. It only breaks when you model what actually happens with two or three, which is the common case, not the edge case. Most bidders set a max.
+
+## What I did about it
+
+I stopped designing screens and went back to the mechanic.
+
+**First principles.** I mapped every variable, every state, and the multi-bidder logic underneath. Who can know what. What the system can honestly say the moment someone hands it a ceiling, versus what it can only show after the fact.
+
+**Competitive teardown.** eBay, Bring a Trailer, and the charity-auction platforms (Handbid, GiveSmart, and others). The pattern is universal and boring, which is the point: everyone lets you set a confidential max, bids the minimum on your behalf, and never pre-promises a placed number. eBay tells you after the fact that you were outbid. Nobody makes the promise our mock made. That was the tell.
+
+**Adversarial review.** I ran the logic through two AI models set up to disagree with each other, plus a human designer's read, specifically to find holes in my own conclusions before I committed. It surfaced two I'd missed: a race condition on simultaneous bids, and where confidential maxes make fraud harder to spot. I folded both in.
+
+<DecisionBlock>Kill the placed-number promise. Promise the behavior instead: we bid the minimum to keep you leading, up to your max, and you only pay what's needed. Show the real number after the system resolves it, with the price visibly climbing so the proxy isn't a silent jump.</DecisionBlock>
+
+<TradeoffBlock>Ship the proven single-max model for v1 and nothing fancier. Less novel, but honest and buildable under the deadline. The clever variations can wait for a version that has earned them.</TradeoffBlock>
+
+The output was a foundation document: the full state matrix, the multi-bidder resolution rules, the red flags, and a scoped v1 recommendation. No UI in it. On purpose. The logic had to be right before the pixels.
+
+## Systems thinking they could build from
+
+Separately, I reconciled three sources of truth that had drifted apart: the written requirements, my Figma designs, and what was actually running in production. Line by line. Every difference tagged: exists, add to scope, or cut.
+
+That reconciliation became the engineering backlog. Not a deck. The actual list the contractors built from. It's the artifact I'm proudest of, because it's the one most designers can't produce. It takes holding the product, the system, and the constraints in the same frame, and shipping a decision.
+
+## The craft
+
+<ImagePlaceholder
+  alt="Before and after of the NordicTrack-style bid card: the old 'we'll place $X now' promise versus the honest behavior-based reveal."
+  caption="The before promised a number the system couldn't keep. The after promises the behavior, then shows the real amount once the proxy resolves."
+  brief="Two bid cards side by side. Left (before): the 'we'll place $X now to take the lead' promise, flagged as the flaw. Right (after): 'we bid the minimum to keep you leading, up to your max,' with the resolved amount revealed after and the price shown climbing."
+  aspect="16/9"
+/>
+
+<ImagePlaceholder
+  alt="Diagram of proxy-bid resolution between two hidden maxes."
+  caption="Why the promise breaks. Two hidden maxes resolve against each other in real time, so no honest 'placed now' number exists before resolution."
+  brief="Clean 1px schematic. Two bidders each with a hidden max. Show the proxy exchange resolving to the winning increment, and mark the moment where a pre-promised number would have been a lie."
+  aspect="16/9"
+/>
+
+<ImagePlaceholder
+  alt="The event-night live auction display projected in the room."
+  caption="The other half: the event-night public display, updating live as bids land in the room."
+  brief="The live projection/leaderboard surface as shown on event night. Large, legible at distance, updating as bids come in."
+  aspect="16/9"
+/>
+
+The bidder surfaces run on Beacon: the bid card and its full state set (leading, outbid, the instant-outbid moment, closing, won, reserve-not-met), item detail, and discovery. Mobile-first, because if it doesn't work at 375px with one thumb, it doesn't work. The other half is the event-night public display, the live projection in the room as bids land.
+
+## How I worked
+
+I built my own quality tooling on this project because the team didn't have it. A source-fidelity protocol, so nothing got reproduced from a low-res guess. A critique setup that routed work through two AI models that don't share memory and argue, so I caught my own blind spots before a stakeholder did. That's the part I'd point to as the difference between doing good work and raising the standard around me.
+
+## Impact
+
+The bidding experience shipped on an honest model instead of a false promise, on a design system that didn't exist when I started, on time. Real donors, real money, a live event-night display.
+
+## What I'd do next
+
+The v1 model is deliberately plain. The follow-up I care about is the instant-outbid moment: the half-second where a donor bids and a hidden max bumps them. That's where trust is built or lost, and it's the most common thing that happens. That's the screen I'd keep pushing.
+
+<CaseProves items="Owned a live, revenue-critical surface end to end, not a redesign exercise | Caught and fixed a trust flaw in the core mechanic after it had cleared design and spec review | Built the design system the product runs on | Turned a three-way reconciliation into the actual engineering backlog | Worked directly across product and engineering, and built the quality tooling the team was missing" />

@@ -10,6 +10,10 @@ type Work = {
 type Post = { slug: string; title: string; rt: string; ground: string; accent: string };
 
 const works: Work[] = [
+  { slug: "auctions", title: "Fixing a lie in the bid button", sub: "GiveCampus Auctions · bidder & live display",
+    role: "Lead Designer, bidder and live-display surfaces", year: "2026", client: "GiveCampus", tags: ["B2B SaaS", "Design Systems", "Product Judgment"],
+    metric: '<b class="hi">Trust flaw</b> caught before launch', ground: "#0B1E3A", accent: "#F98077", img: "/work/auctions/preview.jpg",
+    lead: "The bid card promised a number it couldn’t keep, in the exact moment a donor decides whether to trust you with their money. I caught it and rebuilt the flow around what we could honestly say." },
   { slug: "ifit", title: "Checkout wasn't the problem. Confidence was.", sub: "NordicTrack checkout · iFIT",
     role: "Creative Director → Principal Designer", year: "2011–2022", client: "iFIT", tags: ["Scale", "Revenue", "Leadership"],
     metric: '<b class="hi">44%</b> of $1.7B hardware revenue', ground: "#0B2A3A", accent: "#00A3E0", img: "/work/previews/ifit.jpg",
