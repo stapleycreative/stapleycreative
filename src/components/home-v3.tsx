@@ -189,7 +189,6 @@ export function HomeV3() {
                   <div>
                     <h3><span className="ink">{w.title}</span></h3>
                     <div className="desc">{w.sub}</div>
-                    <div className="tags">{w.tags.map((t) => <span key={t} className="tag">{t}</span>)}</div>
                     <div className="metric" dangerouslySetInnerHTML={{ __html: w.metric }} />
                     <div className="thumb" style={{ background: heroBg(w.ground, w.accent) }} />
                   </div>
@@ -312,16 +311,16 @@ const CSS = `
 .v3-seclabel .n{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--t3)}
 .v3-workgrid{display:grid;grid-template-columns:1fr 360px;gap:52px;align-items:start}
 .v3-worklist{min-width:0}
-.v3-row{position:relative;display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:start;padding:20px 4px;border-bottom:1px solid var(--border-sub);text-decoration:none;color:inherit;transition:padding-left var(--ds) var(--ease)}
+.v3-row{position:relative;display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:start;padding:32px 4px;border-bottom:1px solid var(--border-sub);text-decoration:none;color:inherit;transition:padding-left var(--ds) var(--ease)}
 .v3-row:hover{padding-left:12px}
 .v3-row .idx{font-family:var(--mono);font-size:11px;color:var(--t3);padding-top:6px}
 .v3-row h3{font-size:clamp(20px,2.1vw,26px);font-weight:600;letter-spacing:-.01em;line-height:1.15;margin:0}
 .v3-row h3 .ink{background-image:linear-gradient(var(--text),var(--text));background-repeat:no-repeat;background-position:0 100%;background-size:0% 1.5px;transition:background-size var(--ds) var(--ease);padding-bottom:2px}
 .v3-row:hover h3 .ink{background-size:100% 1.5px}
-.v3-row .desc{margin-top:5px;font-size:14px;color:var(--t2)}
+.v3-row .desc{margin-top:7px;font-size:14px;color:var(--t2)}
 .v3-row .tags{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
 .v3 .tag{font-family:var(--mono);font-size:10px;color:var(--t2);background:rgba(20,20,19,.06);padding:2px 7px;border-radius:4px}
-.v3-row .metric{color:var(--t3);font-family:var(--mono);font-size:12px;margin-top:9px}
+.v3-row .metric{color:var(--t3);font-family:var(--mono);font-size:12px;margin-top:12px}
 .v3-row .metric .hi{color:var(--accent);font-weight:600}
 .v3-row .chev{color:var(--t3);font-size:17px;padding-top:4px;transition:transform var(--ds) var(--ease),color var(--ds)}
 .v3-row:hover .chev{transform:translateX(4px);color:var(--text)}
