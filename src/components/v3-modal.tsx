@@ -54,7 +54,7 @@ export function V3Modal(props: Props) {
     <div className="v3modal" ref={modalRef} role="dialog" aria-modal="true" aria-label={props.title}>
       <style>{CSS}</style>
       <button ref={closeRef} className="dx" aria-label="Close" onClick={close}>✕</button>
-      <CaseStudyDetail {...props} />
+      <CaseStudyDetail {...props} inModal />
     </div>
   );
 
