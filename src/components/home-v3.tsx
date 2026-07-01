@@ -122,8 +122,8 @@ export function HomeV3() {
         {/* Hero */}
         <section id="home" className="v3-hero">
           <div className="v3-status"><span className="dot" />Currently at GiveCampus · Open to staff / principal roles</div>
-          <h1 ref={heroRef} className="v3-h1">I figure out the real problem. Then I build the system that fixes it.</h1>
-          <p className="v3-sub">Product designer, twenty years. I diagnose the real problem, architect the system, and build the working prototype. Lately: AI product design and 0→1 work.</p>
+          <h1 ref={heroRef} className="v3-h1">Every product has two versions. The one everyone thinks they’re building, and the one users actually experience.</h1>
+          <p className="v3-sub">I’m Craig. Twenty years in design taught me that interfaces rarely fail first. Models do. Lately, I’ve been focused on AI products, human review loops, and the systems that make complex workflows feel usable.</p>
           <div className="v3-cta">
             <button className="v3-btn primary" onClick={() => go("work")}>See the work ↓</button>
             <a className="v3-btn ghost" href="mailto:stapleycreative@gmail.com">Get in touch</a>
@@ -227,7 +227,7 @@ const CSS = `
 .v3-hero{min-height:84vh;display:flex;flex-direction:column;justify-content:center;padding:88px 0 56px}
 .v3-status{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);display:flex;align-items:center;gap:8px;margin-bottom:22px}
 .v3-status .dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
-.v3-h1{font-family:var(--serif);font-size:clamp(52px,9.5vw,118px);font-weight:340;letter-spacing:-.03em;line-height:1.0;max-width:14ch;font-variation-settings:"opsz" 144;margin:0}
+.v3-h1{font-family:var(--serif);font-size:clamp(36px,5.2vw,72px);font-weight:360;letter-spacing:-.02em;line-height:1.05;max-width:15ch;font-variation-settings:"opsz" 144;margin:0}
 .v3-sub{margin-top:28px;font-size:18px;color:var(--t2);max-width:640px;line-height:1.6}
 .v3-cta{margin-top:34px;display:flex;gap:12px;flex-wrap:wrap}
 .v3-btn{padding:12px 20px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;border:1px solid transparent;font-family:inherit;text-decoration:none;display:inline-block}
