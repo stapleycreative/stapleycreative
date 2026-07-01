@@ -22,7 +22,7 @@ const tools: Tool[] = [
     slug: "creativity-engine",
     title: "Creativity Engine",
     description:
-      "A four-phase bisociation pipeline that forces AI to collide your problem with unrelated domains. Paste a design problem, watch the engine run.",
+      "A four-phase pipeline that forces AI to collide your problem with a domain that has nothing to do with it. That collision is where the non-obvious idea lives. Paste a problem, watch it run.",
     article: "/blog/creativity-engine",
     cta: "Run it",
     href: "/tools/creativity-engine",
@@ -32,7 +32,7 @@ const tools: Tool[] = [
     slug: "adversarial-critic-relay",
     title: "Adversarial Critic Relay",
     description:
-      "Config + role prompts for a Claude-builds / ChatGPT-critiques loop. Four critic roles, YAML-configured, no shared memory.",
+      "Claude builds, ChatGPT tears it apart, on purpose. Four critic roles, YAML-configured, no shared memory, so neither one can get comfortable.",
     article: "/blog/adversarial-critic-relay",
     cta: "Read the article",
     href: "/blog/adversarial-critic-relay",
@@ -42,7 +42,7 @@ const tools: Tool[] = [
     slug: "five-gate-design-process",
     title: "5-Gate Design Process",
     description:
-      "The CLAUDE.md, review checklist, and nineteen documented failure modes behind every design review I run.",
+      "The CLAUDE.md, the checklist, and nineteen failure modes I've written down because I kept walking into them. This is the review I run on myself.",
     article: "/blog/five-gate-design-process",
     cta: "Read the article",
     href: "/blog/five-gate-design-process",
@@ -52,7 +52,7 @@ const tools: Tool[] = [
     slug: "emotional-state-first-ux",
     title: "Emotional State Audit",
     description:
-      "A three-question audit that runs before any new screen or redesign. Names the nervous-system state the interface has to handle.",
+      "Three questions I answer before any new screen. What state is the person in before they arrive, and can this interface survive it?",
     article: "/blog/emotional-state-first-ux",
     cta: "Read the article",
     href: "/blog/emotional-state-first-ux",
@@ -62,7 +62,7 @@ const tools: Tool[] = [
     slug: "design-compiler",
     title: "Design Compiler",
     description:
-      "A four-stage prompt pipeline that blocks rendering until screen hierarchy is earned from first principles. Kills cargo-cult field order.",
+      "A four-stage pipeline that won't let AI (or me) render until the screen hierarchy is earned, not copied off the last thing that looked like it. No cargo-culting the field order.",
     article: "/blog/design-compiler",
     cta: "Read the article",
     href: "/blog/design-compiler",
@@ -82,7 +82,7 @@ const tools: Tool[] = [
     slug: "figma-ds-spec-plugin",
     title: "DS Spec Plugin",
     description:
-      "A Figma plugin that exports your design system as a structured spec AI coding tools actually read. In-progress build log.",
+      "A Figma plugin that exports your design system as a spec AI coding tools will actually read, instead of guessing. Building it in the open.",
     article: "/blog/figma-ds-spec-plugin",
     cta: "Follow the build",
     href: "/blog/figma-ds-spec-plugin",

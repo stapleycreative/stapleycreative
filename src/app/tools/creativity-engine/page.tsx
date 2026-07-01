@@ -5,7 +5,7 @@ import { CreativityEngineDemo } from "@/components/creativity-engine-demo";
 export const metadata: Metadata = {
   title: "Creativity Engine — run it",
   description:
-    "A four-phase bisociation pipeline that forces AI to collide your design problem with unrelated domains. Paste a problem, watch the engine run.",
+    "A four-phase pipeline that forces AI to collide your design problem with a domain that has nothing to do with it. Paste a problem, watch it run.",
 };
 
 export default function CreativityEngineToolPage() {

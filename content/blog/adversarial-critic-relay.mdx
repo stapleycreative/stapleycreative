@@ -1,21 +1,21 @@
 ---
-title: "Two minds are better than one: building an adversarial AI critic"
-description: "The first version of every design I ship is wrong. So I built a system where Claude builds, ChatGPT critiques, and I referee. They don't share memory. Disagreement is the product."
+title: "I built an AI that argues with my other AI"
+description: "One model in one chat can't critique itself. It agrees with what it just built because it just built it. So I wired Claude and ChatGPT so they never share memory. Disagreement is the product."
 date: "2026-04-14"
 tags: ["AI", "Design Process", "Critique", "Cognitive Architecture"]
 ---
 
 ## One model in one context window is not a critic
 
-The first version of every design I ship is wrong. Not badly wrong. Just wrong in a way I can't see from inside it.
+The first version of every design I ship is wrong. Not badly wrong. Wrong in a way I can't see from inside it, which is the only kind that survives to production.
 
-This used to be solved by design crits. A senior designer, a PM, an engineer. Each with different blind spots. Each seeing what the others missed.
+Design crits used to catch this. A senior designer, a PM, an engineer. Different blind spots, so between them the gap gets found.
 
-AI broke that loop. I spent a while using one model for everything: build, evaluate, refine. Ship it. Later someone would flag the problem in thirty seconds.
+AI quietly deleted that loop. I spent months running one model for everything: build, evaluate, refine, ship. Then someone would flag the obvious problem in thirty seconds.
 
-The structural issue is clear now. **One model in one context window becomes sycophantic.** It agrees with what it just built because it *just built it*. It pattern-matches to its own output. It's the AI version of asking the designer to critique their own work. Of course they like it. They made it.
+Here's what took me too long to see. **A model can't critique what it just built, and not because it's sycophantic. Because critique needs distance, and a single context window has none.** It pattern-matches to its own output. Asking it to review itself is asking the designer who made the thing whether the thing is good. Of course they like it. They made it.
 
-So I built a relay that refuses to do that.
+So I built a relay that refuses to let that happen.
 
 <CriticRelay caption="Claude builds. ChatGPT critiques. Each critic role has its own system prompt, knowledge base, and toolset. Disagreement is the product." />
 
@@ -47,7 +47,7 @@ Sent it through the critic panel. ChatGPT came back with one line:
 
 > You're burying the action. The card exists to get the volunteer into the call. The call button is tertiary. You've made metadata louder than the thing that matters.
 
-That was correct. I'd copied hierarchy from an older pattern without questioning whether that pattern was right. Claude didn't catch it because Claude built it. I didn't catch it because I was depleted. Someone with no stake in the build, only tasked with finding the gap, caught it in one turn.
+That was correct. I'd copied the hierarchy from an older pattern and never asked if the pattern was right. Claude missed it because Claude built it. I missed it because it was late and I was running on empty. The critic caught it in one turn for the least flattering reason available: it had no stake, and no stake turns out to be the whole qualification.
 
 Happens every time. Not because ChatGPT is smarter than Claude (it isn't, most days). Because it's separate.
 
@@ -55,7 +55,7 @@ Happens every time. Not because ChatGPT is smarter than Claude (it isn't, most d
 
 Models aren't fungible. Claude has its own defaults, failure modes, blind spots. Claude is generous, over-complete, a little too eager. ChatGPT is terse, skeptical, cuts scope too fast. Gemini (when I reach for it) is a quiet validator. Useful for catching when the other two are both wrong.
 
-You don't build an AI team by picking the smartest model. You assign roles based on which failure mode hurts *least* for that job.
+You don't build an AI team by picking the smartest model. You pick, for each seat, the failure mode you can most afford to live with. The builder over-produces, so you can cut. The critic under-validates, so it stays mean. Smart isn't the variable. Which way it breaks is.
 
 Builder needs a model that over-produces. You can always cut. Critic needs a model that under-validates. You want skeptical. Researcher needs strong tool use and citation discipline.
 
@@ -67,6 +67,6 @@ One AI model is your own inner voice bounced back louder. It agrees. It remember
 
 Two models, wired so they never share context, never see each other's work, never align on style, now you have the beginning of a team.
 
-Not "AI-assisted design." Designing alongside a small, specialized, adversarial cognitive team.
+Not "AI-assisted design." Something closer to running a small, specialized, adversarial team that happens to live in two chat windows.
 
 The relay config and role prompts are on the tools page. Adapt them. Make them yours. The architecture matters more than the specific wording. Once you see the pattern, you can build it with whatever models are strongest this quarter.

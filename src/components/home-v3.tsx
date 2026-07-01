@@ -13,25 +13,25 @@ const works: Work[] = [
   { slug: "ifit", title: "Checkout wasn't the problem. Confidence was.", sub: "NordicTrack checkout · iFIT",
     role: "Creative Director → Principal Designer", year: "2011–2022", client: "iFIT", tags: ["Scale", "Revenue", "Leadership"],
     metric: '<b class="hi">44%</b> of $1.7B hardware revenue', ground: "#0B2A3A", accent: "#00A3E0", img: "/work/previews/ifit.jpg",
-    lead: "NordicTrack checkout looked like a conversion problem. It was a confidence problem." },
+    lead: "NordicTrack's checkout read as a conversion problem. People weren't bailing on the form. They were bailing on the doubt." },
   { slug: "hiki", title: "Designing for nervous systems, not user flows", sub: "Social + dating — Hiki",
     role: "Lead Product Designer (sole designer)", year: "2023–2025", client: "Hiki", tags: ["Behavioral", "Accessibility", "Consumer"],
     metric: '<b class="hi">700+</b> screens · iOS + Android', ground: "#2D1F3D", accent: "#E85C8A", img: "/work/previews/hiki.jpg",
-    lead: "Hiki was a social and dating platform for neurodivergent adults. As the sole designer I rebuilt it from the ground up: rebrand, design system, 700+ screens." },
+    lead: "A dating platform for neurodivergent adults, where the usual dating-app tricks (urgency, dopamine, infinite swipe) are the exact things that overload the user. Sole designer. Rebuilt it whole: rebrand, design system, 700+ screens." },
   { slug: "santas-red-letter", title: "What if Santa wrote back?", sub: "Founder — Santa's Red Letter",
     role: "Founder / Designer / Operator", year: "2014–2021", client: "Santa's Red Letter", tags: ["Entrepreneurship", "Brand", "Product"],
     metric: "Built, scaled, and sold", ground: "#A8232B", accent: "#F8F6F2", img: "/work/previews/santas-red-letter.jpg",
-    lead: "I built a business from a bedtime question. Personalized letters from Santa: launched in two months, national TV coverage, partnered with Toys for Tots, then sold." },
-  { slug: "sunday-school", title: "Designing for the hardest emotional transition there is", sub: "Social advocacy platform",
+    lead: "A bedtime question turned into a business. Personalized letters from Santa, launched in two months. National TV, a Toys for Tots partnership, then an exit." },
+  { slug: "sunday-school", title: "Helping people question a belief without making them defend it", sub: "Social advocacy platform",
     role: "Creator / Designer / Author", year: "2016–2020", client: "Stuff You Missed in Sunday School", tags: ["Emotional Design", "Persuasion", "Content"],
     metric: "Belief change without rejection", ground: "#111318", accent: "#EC2C6E", img: "/work/previews/sunday-school.jpg",
-    lead: "How do you help people question load-bearing beliefs without triggering the reflexive rejection that protects those beliefs?" },
+    lead: "A belief people build their life on comes with a reflex that rejects any challenge to it. The design problem was getting under the reflex, not arguing past it." },
 ];
 
 const posts: Post[] = [
   { slug: "mode-based-workflow-adhd", title: "Mode-based design: an externalized executive function for an ADHD brain", rt: "5 min", ground: "#222433", accent: "#F98077" },
-  { slug: "adversarial-critic-relay", title: "Two minds are better than one: building an adversarial AI critic", rt: "5 min", ground: "#1E2A2E", accent: "#7CC4FF" },
-  { slug: "five-gate-design-process", title: "The 5-Gate Design Process: forcing AI (and me) to earn each step", rt: "4 min", ground: "#2A2230", accent: "#FFC24B" },
+  { slug: "adversarial-critic-relay", title: "I built an AI that argues with my other AI", rt: "5 min", ground: "#1E2A2E", accent: "#7CC4FF" },
+  { slug: "five-gate-design-process", title: "I built a design process because I don't trust myself to finish one", rt: "4 min", ground: "#2A2230", accent: "#FFC24B" },
 ];
 
 const aiNodes: [string, string, string?][] = [
@@ -179,7 +179,7 @@ export function HomeV3() {
       <div className="v3-wrap">
         {/* Hero */}
         <section id="home" className="v3-hero">
-          <div className="v3-status"><span className="dot" />Currently at GiveCampus · Open to staff / principal roles</div>
+          <div className="v3-status"><span className="dot" />At GiveCampus · Open to staff / principal roles</div>
           <h1 ref={heroRef} className="v3-h1">Every product has two versions. The one everyone thinks they’re building, and the one users actually experience.</h1>
           <p className="v3-sub">I’m Craig. Twenty years of product design somehow turned into building AI workflows, designing systems, and being the person who keeps asking, “Wait… is this actually the problem?”</p>
           <div className="v3-cta">
@@ -228,7 +228,7 @@ export function HomeV3() {
         <section id="ai" className="v3-sec">
           <div className="v3-seclabel" data-reveal><h2>AI</h2><span className="n">03</span></div>
           <h3 className="v3-statement">I build small minds. Then I put them to work.</h3>
-          <p className="v3-lead">Not “AI-assisted design.” Small cognitive systems, each modeled on a specific part of how brains produce good work, plugged into my process as separate roles. The judgment stays with me.</p>
+          <p className="v3-lead">Not “AI-assisted design.” Each one models a specific part of how a brain produces good work (mind-wandering, adversarial critique, procedural memory) and plugs into my process as a separate role. It generates. I still decide.</p>
           <div className="v3-nodes">
             {aiNodes.map(([fn, ar, slug]) =>
               slug ? (
@@ -258,7 +258,7 @@ export function HomeV3() {
           <div className="v3-seclabel" data-reveal><h2>About</h2><span className="n">05</span></div>
           <div className="v3-aboutgrid">
             <div>
-              <p>I’ve always been more interested in understanding why things work than simply making them look like they do. That curiosity has taken me through branding, illustration, animation, product strategy, AI, human behavior, and an embarrassing amount of Mormon history. Looking back, none of it feels random. Every rabbit hole became another mental model, and those mental models eventually found their way back into the products I build.</p>
+              <p>I’ve always cared more about why a thing works than whether it looks like it does. That’s pulled me through branding, illustration, animation, product strategy, AI, human behavior, and an embarrassing amount of Mormon history. It looked random for years. It wasn’t. Every rabbit hole turned into a mental model, and the mental models keep showing up in the products I build.</p>
               <div className="v3-contact">
                 <a className="em" href="mailto:stapleycreative@gmail.com">stapleycreative@gmail.com</a>
                 <a href="https://www.linkedin.com/in/stapleycreative/" target="_blank" rel="noopener">LinkedIn ↗</a>
@@ -272,7 +272,7 @@ export function HomeV3() {
 
         <footer className="v3-foot">
           <span>© {new Date().getFullYear()} Craig Stapley</span>
-          <span className="note">Some projects have been simplified or redacted to respect confidentiality.</span>
+          <span className="note">Some projects are simplified or redacted for confidentiality.</span>
         </footer>
       </div>
     </div>
@@ -296,9 +296,9 @@ const CSS = `
 .v3-nav{position:sticky;top:0;z-index:60;background:transparent;border-bottom:1px solid transparent;transition:background var(--ds) var(--ease),border-color var(--ds) var(--ease)}
 .v3-nav.scrolled{background:rgba(253,252,253,.8);backdrop-filter:blur(8px);border-bottom:1px solid rgba(33,31,38,.055)}
 .v3-navwrap{display:flex;align-items:center;justify-content:space-between;height:56px}
-.v3-logo{font-size:15px;font-weight:600;letter-spacing:-.01em;background:none;border:0;cursor:pointer;color:var(--text);font-family:inherit;position:relative;transition:letter-spacing .35s var(--ease),text-shadow .35s var(--ease);animation:wmSettle .9s cubic-bezier(.16,1,.3,1) both}
-.v3-logo:hover{letter-spacing:.02em;text-shadow:-1.1px 0 rgba(255,45,60,.5),1.1px 0 rgba(0,190,255,.5)}
-@keyframes wmSettle{0%{letter-spacing:.14em;text-shadow:-3px 0 rgba(255,45,60,.65),3px 0 rgba(0,190,255,.65);opacity:0}55%{opacity:1}100%{letter-spacing:-.01em;text-shadow:0 0 0 rgba(0,0,0,0);opacity:1}}
+.v3-logo{font-size:15px;font-weight:600;letter-spacing:-.01em;background:none;border:0;cursor:pointer;color:var(--text);font-family:inherit;position:relative;transition:letter-spacing .3s var(--ease),text-shadow .3s var(--ease);animation:wmSettle 1.15s cubic-bezier(.16,1,.3,1) both}
+.v3-logo:hover{letter-spacing:.04em;text-shadow:-2.5px 0 rgba(255,45,70,.75),2.5px 0 rgba(0,190,255,.75)}
+@keyframes wmSettle{0%{opacity:0;letter-spacing:.24em;text-shadow:-6px 0 rgba(255,45,70,.8),6px 0 rgba(0,190,255,.8)}60%{opacity:1}100%{opacity:1;letter-spacing:-.01em;text-shadow:0 0 0 rgba(0,0,0,0)}}
 @media(prefers-reduced-motion:reduce){.v3-logo{animation:none;transition:none}.v3-logo:hover{text-shadow:none;letter-spacing:-.01em}}
 .v3-links{display:flex;height:100%}
 .v3-links button{position:relative;display:flex;align-items:center;gap:6px;padding:0 12px;font-size:13px;font-weight:500;color:var(--t2);background:none;border:0;cursor:pointer;font-family:inherit}

@@ -1,6 +1,6 @@
 ---
-title: "The Design Compiler: earning hierarchy instead of pattern-matching it"
-description: "AI can build a screen in seconds. The real work is deciding what goes where. I built a tool that blocks rendering until hierarchy is earned from first principles instead of copied from last project."
+title: "I stopped trusting myself to decide what goes where"
+description: "AI builds a screen in seconds. Deciding what belongs at the top is still the whole job, and I kept copying that decision from the last project without ever making it. So I built a tool that won't render until the hierarchy is actually earned."
 date: "2026-04-14"
 tags: ["Design Systems", "AI", "Hierarchy", "Design Process"]
 ---
@@ -11,9 +11,9 @@ Pattern I caught myself doing across three projects:
 
 New screen. Look at the closest prior design. Copy its field order. Tweak spacing. Change a color. Call it done.
 
-That field order was never questioned. Ever. Not the first time it was designed, not when it was redesigned, not when the redesign was redesigned. Every version just inherited the hierarchy from the version before without asking if it was correct.
+That field order was never actually decided. Not the first time, not in the redesign, not in the redesign of the redesign. Each version inherited the order from the one before and called inheriting it "designing." Nobody chose it. It just accrued.
 
-**Cargo-cult hierarchy.** Looks like design work. Isn't.
+**Cargo-cult hierarchy.** It has every appearance of design work and none of the deciding.
 
 <ImagePlaceholder
   alt="Two versions of the same screen side by side. Left: cargo-cult hierarchy — fields in the order they were coded, metadata elevated, primary action buried. Right: compiled hierarchy — user intent on top, action surfaces earliest, metadata demoted to a collapsible tray."
@@ -79,11 +79,11 @@ Redesigned form starts with free-text: "How was the visit?" Rest is below. Compl
 
 ## Why tool instead of checklist
 
-Tried hierarchy checklists before. Doesn't work. A checklist assumes you notice when you're skipping it. But cargo-cult hierarchy's whole failure is that you *don't notice*. You're copying. Not deciding.
+I tried hierarchy checklists first. They don't work, and the reason is nastier than "I forgot." A checklist only fires if you notice you're skipping it. But copying without deciding doesn't feel like skipping. It feels exactly like working. That's the trap. The failure hides inside the sensation of being productive.
 
-A compiler gates the output. You cannot render a screen until the hierarchy artifact exists. Failure mode shifts from "I didn't think about hierarchy" to "I have to think about hierarchy before I move."
+A gate doesn't care how it feels. You cannot render the screen until the hierarchy artifact exists. The question flips from "did I think about hierarchy" (which I'll always answer yes to) to "does the artifact exist" (which is either true or it isn't).
 
-That's the whole project now: **turn mental discipline into mechanical gates**. Checklists rely on discipline. Gates don't.
+That's the whole project now: **turn discipline into a gate**. Discipline is a thing I run out of by 4pm. A gate doesn't get tired.
 
 ## AI's actual role here
 

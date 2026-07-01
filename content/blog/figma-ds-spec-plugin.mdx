@@ -1,6 +1,6 @@
 ---
-title: "Teaching AI to respect your design system: building the DS Spec plugin"
-description: "AI coding tools invent their own tokens. They drift your design system with every commit. I'm building a plugin that makes the design system ground truth, not a suggestion."
+title: "Your AI coding tool is quietly editing your design system"
+description: "It invents tokens, fakes your colors, bypasses your components. Every commit drifts the system further. I'm building a plugin that hands the AI the real rules instead of letting it guess."
 date: "2026-04-14"
 tags: ["Design Systems", "AI", "Figma", "Tools"]
 ---
@@ -11,11 +11,11 @@ Hand Claude, Cursor, or Copilot a task in a real codebase and watch what happens
 
 The code passes review. It looks fine. Merge it. The design system drifts further.
 
-Do this for six months and you don't have a design system. You have a ghost of one. Overwritten by whatever the AI defaulted to.
+Do this for six months and you don't have a design system. You have a ghost of one. Whatever the AI defaulted to, layered over what you actually decided.
 
-Better prompts don't fix this. Writing "use the design system" in `CLAUDE.md` is just noise if the AI can't see the actual rules. It's inferring from variable names, component names, training data. All of which are fuzzier than what you actually have locked down.
+Better prompts don't fix this. Writing "use the design system" in `CLAUDE.md` is a note taped to a locked door. The AI can't read the rules, so it infers them from variable names, component names, and training data. All fuzzier than what you have sitting in Figma.
 
-The AI needs ground truth. Nobody's been giving it that.
+We keep blaming the model for guessing. We never handed it the answer key.
 
 <ImagePlaceholder
   alt="Diagram of the current broken loop: Designer → Figma (tokens, rules) → [no connection] ← AI coding tool ← Developer. An X is drawn over the missing link."
@@ -27,9 +27,9 @@ The AI needs ground truth. Nobody's been giving it that.
 
 Your Figma library has the tokens. Your design system has rules already written somewhere. "Use `--color-action-primary` for primary CTAs, never for destructive actions." Your components have recipes. Required states, prohibited variants, contrast minimums.
 
-But it's scattered. Figma annotations. Notion. Slack. None of it reaches the AI when code is being written.
+But it's scattered. Figma annotations, a Notion page, a Slack thread from eight months ago. All true, none of it in the room when the code gets written.
 
-I'm building the bridge.
+So I'm building the bridge.
 
 ## What the plugin does
 
@@ -78,9 +78,9 @@ This is the [adversarial critic relay](/blog/adversarial-critic-relay) happening
 
 ## Why this matters beyond my own use case
 
-Every design team with AI coding tools is losing ground to drift. Week to week it's invisible. Month to month it's catastrophic.
+Every design team with AI coding tools is losing ground to drift. Week to week you can't see it. Month to month it's the whole system.
 
-Better prompts don't fix this. The fix is a readable, structured, authoritative spec the AI can't miss. Then every PR either uses the spec or fails review for a real, cite-able reason.
+The fix isn't a better prompt. It's a spec the AI can't miss, structured enough that every PR either uses it or fails review for a reason you can point at. Not "this feels off." A citation.
 
 This is the work design systems teams should be doing now. The first team to make their system legible to AI compounds that advantage. Every AI-written PR in their codebase respects the system. Every AI PR in a system-free codebase drifts further.
 
@@ -96,9 +96,9 @@ Writing this while building, not after. Where it stands:
 
 **Phase 5 is the test.** Export the spec. Feed it to Claude Code on a real task. Measure whether the resulting PR actually uses the system.
 
-Phase 5 succeeds, the plugin becomes what I wish I'd had at every previous company. Phase 5 fails, I learn where the bridge actually breaks.
+If Phase 5 works, the plugin becomes the thing I wanted at every company I've worked at and never had. If it fails, I find out exactly where the bridge breaks, which is almost as useful and a lot less fun to write up.
 
-Either way, the log is open. I'll publish Phase 5 results. [with numbers, not vibes](/blog/five-gate-design-process).
+Either way the log stays open. I'll publish the Phase 5 numbers, [not the vibes](/blog/five-gate-design-process).
 
 ## Want to follow along
 
@@ -106,4 +106,4 @@ Plugin goes public after Phase 5. Free for individual designers. Hosted version 
 
 [Signup is here](/tools) if you want the notification.
 
-The architecture doc. scope, decisions, critic notes. is [on the tools page](/tools) now. For anyone building something similar. Don't wait for me. Every design system team should be building this bridge.
+The architecture doc (scope, decisions, critic notes) is [on the tools page](/tools) now, for anyone building something similar. Don't wait for me. Every design system team should be building this bridge.
