@@ -19,6 +19,19 @@ export function CaseStudyDetail({
     return () => io.disconnect();
   }, []);
 
+  const [contactOpen, setContactOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const contactRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!contactOpen) return;
+    const onDoc = (e: MouseEvent) => { if (contactRef.current && !contactRef.current.contains(e.target as Node)) setContactOpen(false); };
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setContactOpen(false); };
+    document.addEventListener("mousedown", onDoc);
+    document.addEventListener("keydown", onKey);
+    return () => { document.removeEventListener("mousedown", onDoc); document.removeEventListener("keydown", onKey); };
+  }, [contactOpen]);
+  const copyEmail = async () => { try { await navigator.clipboard.writeText("stapleycreative@gmail.com"); setCopied(true); setTimeout(() => setCopied(false), 1600); } catch {} };
+
   return (
     <div className="csd">
       <style>{CSS}</style>
@@ -38,7 +51,16 @@ export function CaseStudyDetail({
             {tags.length ? <div><div className="k">{isPost ? "Topics" : "Tags"}</div><div className="dtags">{tags.map((t) => <span key={t} className="tag">{t}</span>)}</div></div> : null}
             <div className={"cta" + (showCta ? " show" : "")}>
               <div className="k">Get in touch</div>
-              <a href="mailto:stapleycreative@gmail.com">Start a conversation →</a>
+              <div className="csd-cwrap" ref={contactRef}>
+                <button className="csd-cta-btn" onClick={() => setContactOpen((o) => !o)} aria-expanded={contactOpen} aria-haspopup="menu">Start a conversation →</button>
+                {contactOpen ? (
+                  <div className="csd-cmenu" role="menu">
+                    <button className="csd-citem" role="menuitem" onClick={copyEmail}>{copied ? "Copied ✓" : "Copy email"}<span className="csd-cval">stapleycreative@gmail.com</span></button>
+                    <a className="csd-citem" role="menuitem" href="https://www.linkedin.com/in/stapleycreative/" target="_blank" rel="noopener">LinkedIn<span className="csd-cval">/in/stapleycreative ↗</span></a>
+                    <a className="csd-citem" role="menuitem" href="mailto:stapleycreative@gmail.com">Open in email app<span className="csd-cval">mailto</span></a>
+                  </div>
+                ) : null}
+              </div>
             </div>
           </aside>
           <div className="dcontent">
@@ -72,7 +94,12 @@ const CSS = `
 .csd .tag{font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#65636d;background:rgba(20,20,19,.06);padding:2px 7px;border-radius:4px}
 .csd .cta{opacity:0;transform:translateY(8px);transition:opacity .5s cubic-bezier(.16,1,.3,1),transform .5s cubic-bezier(.16,1,.3,1);margin-top:8px;padding-top:18px;border-top:1px solid #eae7ec}
 .csd .cta.show{opacity:1;transform:none}
-.csd .cta a{display:inline-block;margin-top:6px;font-size:14px;font-weight:500;color:#F98077;text-decoration:none}
+.csd .csd-cwrap{position:relative;display:inline-block;margin-top:6px}
+.csd .csd-cta-btn{font-size:14px;font-weight:500;color:#F98077;background:none;border:0;padding:0;cursor:pointer;font-family:inherit}
+.csd .csd-cmenu{position:absolute;top:calc(100% + 8px);left:0;min-width:300px;background:#fdfcfd;border:1px solid #eae7ec;border-radius:10px;box-shadow:0 18px 44px -22px rgba(33,31,38,.34);padding:6px;z-index:40}
+.csd .csd-citem{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;white-space:nowrap;text-align:left;background:none;border:0;cursor:pointer;font-family:inherit;font-size:13px;font-weight:500;color:#211f26;padding:10px 12px;border-radius:7px;text-decoration:none}
+.csd .csd-citem:hover{background:rgba(20,20,19,.05)}
+.csd .csd-cval{font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#84828e;font-weight:400}
 .csd .dcontent{position:relative;min-width:0;max-width:720px;font-size:16px;line-height:1.7;color:#211f26}
 .csd .sentinel{position:absolute;top:560px;left:0;width:1px;height:1px}
 .csd .dcontent p{margin:0 0 18px;color:#65636d}
