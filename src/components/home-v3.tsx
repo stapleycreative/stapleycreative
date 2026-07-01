@@ -5,26 +5,26 @@ import Link from "next/link";
 
 type Work = {
   slug: string; title: string; sub: string; role: string; year: string;
-  client: string; tags: string[]; metric: string; ground: string; accent: string; lead: string;
+  client: string; tags: string[]; metric: string; ground: string; accent: string; lead: string; img?: string;
 };
 type Post = { slug: string; title: string; rt: string; ground: string; accent: string };
 
 const works: Work[] = [
   { slug: "ifit", title: "Checkout wasn't the problem. Confidence was.", sub: "NordicTrack checkout · iFIT",
     role: "Creative Director → Principal Designer", year: "2011–2022", client: "iFIT", tags: ["Scale", "Revenue", "Leadership"],
-    metric: '<b class="hi">44%</b> of $1.7B hardware revenue', ground: "#0B2A3A", accent: "#00A3E0",
+    metric: '<b class="hi">44%</b> of $1.7B hardware revenue', ground: "#0B2A3A", accent: "#00A3E0", img: "/work/previews/ifit.jpg",
     lead: "NordicTrack checkout looked like a conversion problem. It was a confidence problem." },
   { slug: "hiki", title: "Designing for nervous systems, not user flows", sub: "Social + dating — Hiki",
     role: "Lead Product Designer (sole designer)", year: "2023–2025", client: "Hiki", tags: ["Behavioral", "Accessibility", "Consumer"],
-    metric: '<b class="hi">700+</b> screens · iOS + Android', ground: "#2D1F3D", accent: "#E85C8A",
+    metric: '<b class="hi">700+</b> screens · iOS + Android', ground: "#2D1F3D", accent: "#E85C8A", img: "/work/previews/hiki.jpg",
     lead: "Hiki was a social and dating platform for neurodivergent adults. As the sole designer I rebuilt it from the ground up: rebrand, design system, 700+ screens." },
   { slug: "santas-red-letter", title: "What if Santa wrote back?", sub: "Founder — Santa's Red Letter",
     role: "Founder / Designer / Operator", year: "2014–2021", client: "Santa's Red Letter", tags: ["Entrepreneurship", "Brand", "Product"],
-    metric: "Built, scaled, and sold", ground: "#A8232B", accent: "#F8F6F2",
+    metric: "Built, scaled, and sold", ground: "#A8232B", accent: "#F8F6F2", img: "/work/previews/santas-red-letter.jpg",
     lead: "I built a business from a bedtime question. Personalized letters from Santa: launched in two months, national TV coverage, partnered with Toys for Tots, then sold." },
   { slug: "sunday-school", title: "Designing for the hardest emotional transition there is", sub: "Social advocacy platform",
     role: "Creator / Designer / Author", year: "2016–2020", client: "Stuff You Missed in Sunday School", tags: ["Emotional Design", "Persuasion", "Content"],
-    metric: "Belief change without rejection", ground: "#111318", accent: "#EC2C6E",
+    metric: "Belief change without rejection", ground: "#111318", accent: "#EC2C6E", img: "/work/previews/sunday-school.jpg",
     lead: "How do you help people question load-bearing beliefs without triggering the reflexive rejection that protects those beliefs?" },
 ];
 
@@ -207,7 +207,9 @@ export function HomeV3() {
                     <h3><span className="ink">{w.title}</span></h3>
                     <div className="desc">{w.sub}</div>
                     <div className="metric" dangerouslySetInnerHTML={{ __html: w.metric }} />
-                    <div className="thumb" style={{ background: heroBg(w.ground, w.accent) }} />
+                    <div className="thumb" style={{ background: heroBg(w.ground, w.accent) }}>
+                      {w.img && <img src={w.img} alt="" loading="lazy" onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }} />}
+                    </div>
                   </div>
                   <span className="chev">↗</span>
                 </Link>
@@ -216,6 +218,7 @@ export function HomeV3() {
             <div className="v3-preview" aria-hidden="true">
               {preview && (
                 <div key={preview.slug} className="pv show" style={{ background: heroBg(preview.ground, preview.accent) }}>
+                  {preview.img && <img src={preview.img} alt="" className="pvimg" onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }} />}
                   <span className="cap">{preview.sub}</span>
                 </div>
               )}
@@ -287,7 +290,10 @@ const CSS = `
 .v3-nav{position:sticky;top:0;z-index:60;background:transparent;border-bottom:1px solid transparent;transition:background var(--ds) var(--ease),border-color var(--ds) var(--ease)}
 .v3-nav.scrolled{background:rgba(253,252,253,.8);backdrop-filter:blur(8px);border-bottom:1px solid rgba(33,31,38,.055)}
 .v3-navwrap{display:flex;align-items:center;justify-content:space-between;height:56px}
-.v3-logo{font-size:15px;font-weight:600;letter-spacing:-.01em;background:none;border:0;cursor:pointer;color:var(--text);font-family:inherit}
+.v3-logo{font-size:15px;font-weight:600;letter-spacing:-.01em;background:none;border:0;cursor:pointer;color:var(--text);font-family:inherit;position:relative;transition:letter-spacing .35s var(--ease),text-shadow .35s var(--ease);animation:wmSettle .9s cubic-bezier(.16,1,.3,1) both}
+.v3-logo:hover{letter-spacing:.02em;text-shadow:-1.1px 0 rgba(255,45,60,.5),1.1px 0 rgba(0,190,255,.5)}
+@keyframes wmSettle{0%{letter-spacing:.14em;text-shadow:-3px 0 rgba(255,45,60,.65),3px 0 rgba(0,190,255,.65);opacity:0}55%{opacity:1}100%{letter-spacing:-.01em;text-shadow:0 0 0 rgba(0,0,0,0);opacity:1}}
+@media(prefers-reduced-motion:reduce){.v3-logo{animation:none;transition:none}.v3-logo:hover{text-shadow:none;letter-spacing:-.01em}}
 .v3-links{display:flex;height:100%}
 .v3-links button{position:relative;display:flex;align-items:center;gap:6px;padding:0 12px;font-size:13px;font-weight:500;color:var(--t2);background:none;border:0;cursor:pointer;font-family:inherit}
 .v3-links .n{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--t3)}
@@ -349,8 +355,10 @@ const CSS = `
 .v3-preview:has(.pv.show){box-shadow:0 20px 48px -24px rgba(33,31,38,.4)}
 .v3-preview .pv{position:absolute;inset:0;border-radius:12px;overflow:hidden;opacity:0;transform:scale(1.05);filter:saturate(.92);transition:opacity var(--ds) var(--ease),transform var(--dl) var(--ease),filter var(--dl) var(--ease)}
 .v3-preview .pv.show{opacity:1;transform:scale(1);filter:saturate(1.05)}
+.v3-preview .pvimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
 .v3-preview .cap{position:absolute;left:14px;bottom:12px;color:#fff;font-family:var(--mono);font-size:11px;letter-spacing:.04em;background:rgba(20,20,19,.4);padding:3px 8px;border-radius:5px;backdrop-filter:blur(4px);z-index:2}
-.v3-row .thumb{display:none;grid-column:1 / -1;width:172px;aspect-ratio:16/10;border-radius:8px;overflow:hidden;margin-top:12px}
+.v3-row .thumb{display:none;grid-column:1 / -1;width:172px;aspect-ratio:16/10;border-radius:8px;overflow:hidden;margin-top:12px;position:relative}
+.v3-row .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 @media(max-width:980px){.v3-workgrid{grid-template-columns:1fr}.v3-preview{display:none}.v3-row .thumb{display:block}.v3-row .chev{display:none}}
 .v3-statement{font-size:clamp(23px,2.8vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.15;max-width:20ch;margin:0 0 20px}
 .v3-lead{font-size:16px;color:var(--t2);max-width:640px;margin-bottom:26px}
