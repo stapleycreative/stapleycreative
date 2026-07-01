@@ -76,7 +76,7 @@ function ContactMenu() {
   return (
     <div className="cwrap" ref={ref}>
       <button className="v3-btn ghost" onClick={() => setOpen((o) => !o)} aria-expanded={open} aria-haspopup="menu">
-        <span>Get in touch</span><span className="arw">{open ? "×" : "→"}</span>
+        <span>Get in touch</span>
       </button>
       {open && (
         <div className="cmenu" role="menu">
@@ -284,7 +284,7 @@ const CSS = `
 .v3-hero{min-height:84vh;display:flex;flex-direction:column;justify-content:center;padding:88px 0 56px}
 .v3-status{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);display:flex;align-items:center;gap:8px;margin-bottom:22px}
 .v3-status .dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
-.v3-h1{font-family:var(--serif);font-size:clamp(36px,5.2vw,72px);font-weight:360;letter-spacing:-.02em;line-height:1.05;max-width:15ch;font-variation-settings:"opsz" 144;margin:0}
+.v3-h1{font-family:var(--serif);font-size:clamp(34px,4.6vw,62px);font-weight:360;letter-spacing:-.02em;line-height:1.08;max-width:none;font-variation-settings:"opsz" 144;margin:0}
 .v3-sub{margin-top:28px;font-size:18px;color:var(--t2);max-width:640px;line-height:1.6}
 .v3-cta{margin-top:34px;display:flex;gap:12px;flex-wrap:wrap;align-items:stretch}
 .v3-btn{padding:12px 20px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;border:1px solid transparent;font-family:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:14px;transition:transform 150ms cubic-bezier(.34,1.56,.64,1),background 180ms var(--ease),border-color 180ms var(--ease)}
@@ -315,7 +315,7 @@ const CSS = `
 .v3-row{position:relative;display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:start;padding:20px 4px;border-bottom:1px solid var(--border-sub);text-decoration:none;color:inherit;transition:padding-left var(--ds) var(--ease)}
 .v3-row:hover{padding-left:12px}
 .v3-row .idx{font-family:var(--mono);font-size:11px;color:var(--t3);padding-top:6px}
-.v3-row h3{font-family:var(--serif);font-size:clamp(21px,2.3vw,28px);font-weight:500;letter-spacing:-.005em;line-height:1.12;font-variation-settings:"opsz" 40;margin:0}
+.v3-row h3{font-size:clamp(20px,2.1vw,26px);font-weight:600;letter-spacing:-.01em;line-height:1.15;margin:0}
 .v3-row h3 .ink{background-image:linear-gradient(var(--text),var(--text));background-repeat:no-repeat;background-position:0 100%;background-size:0% 1.5px;transition:background-size var(--ds) var(--ease);padding-bottom:2px}
 .v3-row:hover h3 .ink{background-size:100% 1.5px}
 .v3-row .desc{margin-top:5px;font-size:14px;color:var(--t2)}
@@ -332,7 +332,7 @@ const CSS = `
 .v3-preview .cap{position:absolute;left:14px;bottom:12px;color:#fff;font-family:var(--mono);font-size:11px;letter-spacing:.04em;background:rgba(20,20,19,.4);padding:3px 8px;border-radius:5px;backdrop-filter:blur(4px);z-index:2}
 .v3-row .thumb{display:none;grid-column:1 / -1;width:172px;aspect-ratio:16/10;border-radius:8px;overflow:hidden;margin-top:12px}
 @media(max-width:980px){.v3-workgrid{grid-template-columns:1fr}.v3-preview{display:none}.v3-row .thumb{display:block}.v3-row .chev{display:none}}
-.v3-statement{font-family:var(--serif);font-size:clamp(26px,3.2vw,38px);font-weight:500;letter-spacing:-.015em;line-height:1.1;max-width:18ch;margin:0 0 20px;font-variation-settings:"opsz" 72}
+.v3-statement{font-size:clamp(23px,2.8vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.15;max-width:20ch;margin:0 0 20px}
 .v3-lead{font-size:16px;color:var(--t2);max-width:640px;margin-bottom:26px}
 .v3-nodes{display:grid;grid-template-columns:1fr 1fr;gap:0 40px}
 @media(max-width:640px){.v3-nodes{grid-template-columns:1fr}}

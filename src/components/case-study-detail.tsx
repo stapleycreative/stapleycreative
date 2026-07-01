@@ -73,7 +73,7 @@ const CSS = `
 .csd .dcontent{position:relative;min-width:0;max-width:720px;font-size:16px;line-height:1.7;color:#211f26}
 .csd .sentinel{position:absolute;top:560px;left:0;width:1px;height:1px}
 .csd .dcontent p{margin:0 0 18px;color:#65636d}
-.csd .dcontent h2{font-family:var(--font-serif),Georgia,serif;font-size:24px;font-weight:500;letter-spacing:-.01em;margin:38px 0 12px;color:#211f26}
+.csd .dcontent h2{font-size:22px;font-weight:600;letter-spacing:-.01em;margin:38px 0 12px;color:#211f26}
 .csd .dcontent h3{font-size:18px;font-weight:600;margin:28px 0 8px}
 .csd .dcontent a{color:#F98077;text-decoration:underline;text-underline-offset:2px}
 .csd .dcontent img{border-radius:8px;max-width:100%;height:auto}
