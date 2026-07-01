@@ -34,10 +34,13 @@ const posts: Post[] = [
   { slug: "five-gate-design-process", title: "The 5-Gate Design Process: forcing AI (and me) to earn each step", rt: "4 min", ground: "#2A2230", accent: "#FFC24B" },
 ];
 
-const aiNodes: [string, string][] = [
-  ["bisociation", "Creativity Engine"], ["adversarial review", "Claude ↔ ChatGPT relay"],
-  ["procedural memory", "Mode-based workflow"], ["metacognition", "5-Gate design process"],
-  ["sensorimotor loop", "Figma MCP bridge"], ["skill chunking", "25-skill plugin library"],
+const aiNodes: [string, string, string?][] = [
+  ["bisociation", "Creativity Engine", "creativity-engine"],
+  ["adversarial review", "Claude ↔ ChatGPT relay", "adversarial-critic-relay"],
+  ["procedural memory", "Mode-based workflow", "mode-based-workflow-adhd"],
+  ["metacognition", "5-Gate design process", "five-gate-design-process"],
+  ["sensorimotor loop", "Figma MCP bridge", "figma-ds-spec-plugin"],
+  ["skill chunking", "25-skill plugin library"],
 ];
 
 const shade = (hex: string, p: number) => {
@@ -51,6 +54,46 @@ const heroBg = (ground: string, accent: string) =>
   `radial-gradient(120% 130% at 72% 12%, ${accent}66, transparent 55%), linear-gradient(135deg, ${ground}, ${shade(ground, -18)})`;
 
 const sections = ["home", "work", "ai", "writing", "about"];
+
+function ContactMenu() {
+  const [open, setOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onDoc = (e: MouseEvent) => { if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false); };
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
+    document.addEventListener("mousedown", onDoc);
+    document.addEventListener("keydown", onKey);
+    return () => { document.removeEventListener("mousedown", onDoc); document.removeEventListener("keydown", onKey); };
+  }, [open]);
+
+  const copy = async () => {
+    try { await navigator.clipboard.writeText("stapleycreative@gmail.com"); setCopied(true); setTimeout(() => setCopied(false), 1600); } catch {}
+  };
+
+  return (
+    <div className="cwrap" ref={ref}>
+      <button className="v3-btn ghost" onClick={() => setOpen((o) => !o)} aria-expanded={open} aria-haspopup="menu">
+        <span>Get in touch</span><span className="arw">{open ? "×" : "→"}</span>
+      </button>
+      {open && (
+        <div className="cmenu" role="menu">
+          <button className="citem" role="menuitem" onClick={copy}>
+            {copied ? "Copied ✓" : "Copy email"}<span className="cval">stapleycreative@gmail.com</span>
+          </button>
+          <a className="citem" role="menuitem" href="https://www.linkedin.com/in/stapleycreative/" target="_blank" rel="noopener">
+            LinkedIn<span className="cval">/in/stapleycreative ↗</span>
+          </a>
+          <a className="citem" role="menuitem" href="mailto:stapleycreative@gmail.com">
+            Open in email app<span className="cval">mailto</span>
+          </a>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export function HomeV3() {
   const markRef = useRef<HTMLImageElement>(null);
@@ -125,8 +168,8 @@ export function HomeV3() {
           <h1 ref={heroRef} className="v3-h1">Every product has two versions. The one everyone thinks they’re building, and the one users actually experience.</h1>
           <p className="v3-sub">I’m Craig. Twenty years in design taught me that interfaces rarely fail first. Models do. Lately, I’ve been focused on AI products, human review loops, and the systems that make complex workflows feel usable.</p>
           <div className="v3-cta">
-            <button className="v3-btn primary" onClick={() => go("work")}>See the work ↓</button>
-            <a className="v3-btn ghost" href="mailto:stapleycreative@gmail.com">Get in touch</a>
+            <button className="v3-btn primary" onClick={() => go("work")}><span>See the work</span><span className="arw">↓</span></button>
+            <ContactMenu />
           </div>
           <div className="v3-meta3">
             <div><div className="k">Focus</div><div className="v">Cognitive interfaces</div></div>
@@ -170,9 +213,16 @@ export function HomeV3() {
           <h3 className="v3-statement">I build small minds. Then I put them to work.</h3>
           <p className="v3-lead">Not “AI-assisted design.” Small cognitive systems, each modeled on a specific part of how brains produce good work, plugged into my process as separate roles. The judgment stays with me.</p>
           <div className="v3-nodes">
-            {aiNodes.map(([fn, ar]) => (
-              <div key={fn} className="node"><span className="fn">{fn}</span><span className="ar">{ar}</span></div>
-            ))}
+            {aiNodes.map(([fn, ar, slug]) =>
+              slug ? (
+                <Link key={fn} href={`/blog/${slug}`} className="node nodelink">
+                  <span className="fn">{fn}</span>
+                  <span className="ar">{ar}<span className="arw2"> ↗</span></span>
+                </Link>
+              ) : (
+                <div key={fn} className="node"><span className="fn">{fn}</span><span className="ar">{ar}</span></div>
+              )
+            )}
           </div>
         </section>
 
@@ -229,10 +279,23 @@ const CSS = `
 .v3-status .dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
 .v3-h1{font-family:var(--serif);font-size:clamp(36px,5.2vw,72px);font-weight:360;letter-spacing:-.02em;line-height:1.05;max-width:15ch;font-variation-settings:"opsz" 144;margin:0}
 .v3-sub{margin-top:28px;font-size:18px;color:var(--t2);max-width:640px;line-height:1.6}
-.v3-cta{margin-top:34px;display:flex;gap:12px;flex-wrap:wrap}
-.v3-btn{padding:12px 20px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;border:1px solid transparent;font-family:inherit;text-decoration:none;display:inline-block}
+.v3-cta{margin-top:34px;display:flex;gap:12px;flex-wrap:wrap;align-items:stretch}
+.v3-btn{padding:12px 20px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;border:1px solid transparent;font-family:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:14px;transition:transform 150ms cubic-bezier(.34,1.56,.64,1),background 180ms var(--ease),border-color 180ms var(--ease)}
 .v3-btn.primary{background:var(--text);color:var(--bg)}
 .v3-btn.ghost{border-color:var(--border);color:var(--text);background:none}
+.v3-btn:active{transform:scale(.955)}
+.v3-btn .arw{font-size:15px;line-height:1;opacity:.8}
+.cwrap{position:relative;display:inline-flex}
+.cmenu{position:absolute;top:calc(100% + 8px);left:0;min-width:250px;background:var(--bg);border:1px solid var(--border);border-radius:10px;box-shadow:0 20px 44px -22px rgba(33,31,38,.34);padding:6px;z-index:50;animation:cmIn .18s var(--ease)}
+@keyframes cmIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.citem{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;text-align:left;background:none;border:0;cursor:pointer;font-family:inherit;font-size:13px;font-weight:500;color:var(--text);padding:10px 12px;border-radius:7px;text-decoration:none}
+.citem:hover{background:var(--subtle)}
+.citem .cval{font-family:var(--mono);font-size:10.5px;color:var(--t3);font-weight:400}
+.v3-nodes .nodelink{text-decoration:none;color:inherit}
+.v3-nodes .nodelink .ar{transition:color .2s var(--ease)}
+.v3-nodes .nodelink:hover .ar{color:var(--accent)}
+.v3-nodes .arw2{color:var(--t3);opacity:0;transition:opacity .2s var(--ease)}
+.v3-nodes .nodelink:hover .arw2{opacity:1;color:var(--accent)}
 .v3-meta3{margin-top:34px;display:flex;gap:48px;flex-wrap:wrap}
 .v3-meta3 .k{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--t3)}
 .v3-meta3 .v{font-size:14px;font-weight:500;margin-top:3px}
