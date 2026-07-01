@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
 export function CaseStudyDetail({
   title, lead, eyebrow, role, year, client, tags = [], accent = "#F98077", isPost = false, inModal = false, children,
@@ -36,8 +37,8 @@ export function CaseStudyDetail({
     <div className="csd">
       <style>{CSS}</style>
       <div className="dwrap">
-        <a className="dback" href="/">← Craig Stapley</a>
-        {!inModal ? <a className="dxlink" href="/" aria-label="Close">✕</a> : null}
+        <Link className="dback" href="/">← Craig Stapley</Link>
+        {!inModal ? <Link className="dxlink" href="/" aria-label="Close">✕</Link> : null}
         <div className="accentbar" style={{ background: accent }} />
         {eyebrow ? <div className="deyebrow">{eyebrow}</div> : null}
         <h1 className="dtitle">{title}</h1>
