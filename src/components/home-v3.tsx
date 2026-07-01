@@ -181,7 +181,7 @@ export function HomeV3() {
         <section id="home" className="v3-hero">
           <div className="v3-status"><span className="dot" />Currently at GiveCampus · Open to staff / principal roles</div>
           <h1 ref={heroRef} className="v3-h1">Every product has two versions. The one everyone thinks they’re building, and the one users actually experience.</h1>
-          <p className="v3-sub">I’m Craig. Twenty years in design taught me that interfaces rarely fail first. Models do. Lately, I’ve been focused on AI products, human review loops, and the systems that make complex workflows feel usable.</p>
+          <p className="v3-sub">I’m Craig. Twenty years of product design somehow turned into building AI workflows, designing systems, and being the person who keeps asking, “Wait… is this actually the problem?”</p>
           <div className="v3-cta">
             <button className="v3-btn primary magnetic" onClick={() => go("work")}><span>See the work</span><span className="arw">↓</span></button>
             <ContactMenu />
