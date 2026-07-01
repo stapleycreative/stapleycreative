@@ -39,8 +39,6 @@ const aiNodes: [string, string, string?][] = [
   ["adversarial review", "Claude ↔ ChatGPT relay", "adversarial-critic-relay"],
   ["procedural memory", "Mode-based workflow", "mode-based-workflow-adhd"],
   ["metacognition", "5-Gate design process", "five-gate-design-process"],
-  ["sensorimotor loop", "Figma MCP bridge", "figma-ds-spec-plugin"],
-  ["skill chunking", "25-skill plugin library"],
 ];
 
 const shade = (hex: string, p: number) => {
