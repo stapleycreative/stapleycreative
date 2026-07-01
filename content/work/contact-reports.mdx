@@ -1,0 +1,143 @@
+---
+title: "A form can't hold a relationship"
+description: "A 15-field form killed relationships. I built a notes-first system that lets AI extract structure, but gift officers stay in control."
+client: "GiveCampus"
+role: "Lead Product Designer. Directed AI extraction workflow, PM review, and engineering handoff."
+year: "2025–2026"
+tags: ["AI Workflow", "B2B SaaS", "Behavioral Design"]
+date: "2026-01-15"
+playground: true
+coverAccent: "can't hold"
+coverGround: "#1F2D5C"
+coverText: "#FCFCFD"
+coverAccentColor: "#F76B15"
+---
+
+<OutcomeBlock
+  problem="A 15-field form compressed rich donor relationships into checkboxes and dropdowns."
+  change="Notes-first capture with AI-powered extraction. Human review always."
+  result="3.2× more meaningful details captured. Review time: 8 min → 90 sec."
+/>
+
+## The assignment I was given
+
+GiveCampus had a contact report problem. Gift officers, fundraisers who spend 45 minutes in donor meetings, were supposed to file a report afterward. Fifteen fields. Contact type, date, participants, topics discussed, next steps, solicitation stage, giving capacity signals. The usual.
+
+Completion rates were in the basement. The ones that got filed? Thin. Checkboxes. One-word answers. Useless to the next person who'd meet that donor. Leadership said: redesign it, make it faster, get people to actually use it.
+
+That was my brief.
+
+## What I actually found
+
+I didn't start by redesigning the form. I started by watching gift officers work.
+
+Sat in on three donor meetings. Watched what happened after. The pattern was immediate and consistent: 45 minutes of conversation with actual texture to it. A daughter starting college. Estate plan questions. Body language shifting when the ask got near. Then the gift officer opened a form to compress all that into dropdowns and checkboxes.
+
+One moment stuck with me. An officer finished a meeting, pulled out her phone, dictated a two-minute voice memo. Detailed. Contextual. The kind of relational intelligence that actually drives fundraising. Then she opened the CRM, sighed, and spent eight minutes translating that memo into form fields. The memo was better. Richer. Everything the voice memo contained got flattened in those eight minutes.
+
+<ImagePlaceholder alt="Side-by-side comparison: a gift officer's raw voice memo transcript vs. the same interaction reduced to form fields" caption="The same donor interaction captured two ways. The voice memo preserves meaning. The form discards it." brief="Split-screen layout. Left side: a text block styled like a voice transcription with highlighted rich details — donor's daughter starting college, estate plan rethinking, body language shifts. Right side: the same interaction compressed into checkboxes and dropdowns with those rich details visibly absent. Muted background, high contrast on the information loss. Think annotated side-by-side like Stripe case studies." priority="HIGH" style="Before/after comparison. Could be actual transcript text vs. actual form screenshot, or a designed recreation that exaggerates the contrast." />
+
+## The diagnosis nobody asked for
+
+The obvious fix: better form design. Conditional logic, smart defaults, fewer fields, mobile-friendly. I spent a week exploring that. Built three variations.
+
+Then killed them all.
+
+Here's what I learned: every form optimization made filing faster without fixing the actual problem. Translation loss. That was the problem. The form asked gift officers to compress meaning into structure, and meaning doesn't compress. You take a 45-minute conversation full of signals, the donor's tone shift, an offhand comment about estate planning, body language that changed when capital came up, and try to fit it into "Cultivation → Solicitation" on a dropdown.
+
+A dropdown tells you the stage changed. It doesn't tell you why the officer thinks the donor is ready, what specifically they saw, or what they think will work next. The VP of advancement needs that. The next gift officer needs that. The AI that's supposed to extract strategy from data definitely needs that.
+
+I wrote up the diagnosis and took it to the product team. The form isn't the problem. The form is the wrong container. We don't need a faster form. We need a completely different capture paradigm.
+
+<ImagePlaceholder alt="Translation loss framework — raw input quality vs. structured output quality across different capture methods" caption="The diagnosis: every form optimization improves speed but doesn't recover the meaning lost in translation. The capture method itself has to change." brief="A conceptual 2x2 or curve diagram. X-axis: speed/effort, Y-axis: information quality. Form optimizations cluster in the fast-but-low-quality quadrant. The blank canvas approach sits in the fast-AND-high-quality zone. Clean, minimal, could be drawn in Figma or styled as a whiteboard artifact. Think consultant-quality strategic diagram, not a wireframe." priority="MEDIUM" style="Research synthesis diagram. Could be a hand-drawn-feeling sketch on a light background, or a polished Figma diagram with labeled quadrants." />
+
+## Three directions I explored
+
+Three fundamentally different approaches to capture, once the team stopped treating the form as gospel.
+
+**Direction A: Structured interview.** The system asks conversational questions. "How did the meeting feel?" "Did anything surprise you?" Then builds structured data from the answers. Problem: structure too early. The questions shape what gets remembered. Research in cognitive interviewing shows structured prompts suppress 25–40% of recoverable detail compared to free recall.
+
+**Direction B: Template notes.** Rich text editor with lightweight headers. Context, Key Moments, Next Steps. Officers fill in naturally. AI extracts afterward. Problem: templates still bias the output. Officers write to the template, not what they saw.
+
+**Direction C: Blank canvas.** A single text area. No structure. No prompts. Officers write or dictate whatever they remember in whatever order it surfaces. AI processes raw input, produces structured record. Officer reviews and corrects.
+
+I built prototypes of all three. Tested with four gift officers over two days. Direction C won. Not abstractly. The captured information was measurably better. Officers using the blank canvas captured an average of 3.2 more meaningful details per report than those using the structured interview.
+
+<ImagePlaceholder alt="Three prototype directions side by side — structured interview, template notes, and blank canvas — with information quality scores" caption="Three directions tested with real gift officers. The blank canvas captured the richest information — not because it was easier, but because it didn't constrain memory retrieval." brief="Three phone or tablet mockups in a row. Left: structured interview with conversational questions visible. Center: template with section headers (Context, Key Moments, Next Steps). Right: blank canvas with just a textarea and cursor. Below each, a small metric callout showing avg meaningful details captured — the blank canvas has the highest score, highlighted. Annotations point to specific design differences between the three." priority="HIGH" style="Multi-screen comparison with data overlay. Figma prototype screenshots with callout annotations. Low-fidelity wireframe feel is fine — this is about proving process, not polish." />
+
+## The design: notes first, structure later
+
+Inverted the form hierarchy. When a gift officer opens a contact report, they see:
+
+A large textarea. About 80% of the viewport. A small voice toggle. A date field pre-filled to today. A contact name field with autocomplete. That's the entire interface.
+
+No structure. Not until after the notes are saved. That's intentional. The absence of structure is the feature. It says: tell us what happened, in your own words, in the order it comes.
+
+The voice toggle is more important than it appears. Gift officers are in hallways, sitting in cars after meetings, walking between buildings. A voice-first option means they can file while the conversation is still fresh in memory. Ninety seconds of dictation beats eight minutes of form-filling an hour later, when the detail is already fading.
+
+<ImagePlaceholder alt="The capture screen — large textarea, minimal chrome, voice toggle, auto-filled date" caption="The capture layer. The textarea is the product. Everything else stays out of the way." brief="A single clean product screen on a phone or tablet mockup. The textarea dominates — 80% of the viewport. Minimal chrome: just a small voice toggle icon in one corner, a date field pre-filled, and a contact name field with autocomplete suggestion showing. Could show a cursor blinking or partial text being typed. The visual should feel calm and spacious — the deliberate opposite of a 15-field form. Think Linear or Vercel product shots — lots of breathing room around a focused UI." priority="HIGH" style="Hero product shot on device mockup. Light or dark background, generous whitespace. This sets the visual standard for the entire case study." />
+
+## The AI layer: translation, not automation
+
+After saving, the system processes raw notes and produces a structured contact report. All 15 fields populated from the narrative.
+
+Three problems to solve simultaneously:
+
+**Problem 1: Trust.** Gift officers are domain experts. They know their donors better than any model will. If the AI extracts something wrong, calls a meeting "solicitation" when it's obviously still "cultivation", and the officer misses it, downstream data is corrupted. Worse, trust erodes. Officers stop using it.
+
+**Problem 2: Effort.** The whole point is to reduce work. If officers have to review every field with equal attention, we've just moved the labor from "fill 15 fields" to "verify 15 fields." That's not better.
+
+**Problem 3: Transparency.** Officers need to see why the AI made each inference. Without that, review is guessing.
+
+I built what I call the confidence layer. Three pieces of information for every AI extraction.
+
+**Confidence level.** High, medium, or low. High means the AI found explicit matching text. Low means the inference required interpretation.
+
+**Source quote.** The exact phrase from the officer's notes that the AI used. This is the trust mechanism. It changes review from "is this right?" to "does this sentence support this?" Much easier.
+
+**Visual treatment.** High-confidence fields render solid and settled. Low-confidence fields get a dashed border and amber highlight, visual weight that pulls the eye to exactly what needs human attention.
+
+<ImagePlaceholder alt="AI review screen — extracted fields with confidence indicators, source quotes, and visual distinction between high and low confidence" caption="The confidence layer. Every AI inference shows its source. Officers review the uncertain ones and skip the obvious ones. Average review: 3–4 edits." brief="A scrollable product screen showing the notes at top and extracted fields below. Each field shows: the structured value, a small confidence badge (green/amber/gray), and a quoted source line from the original notes. Some fields have solid borders and settled styling (high confidence). Others have dashed borders with amber highlights and the source quote is more prominent (low confidence). Show at least one field being edited. Annotations could call out the three-part confidence model. This is the interaction design centerpiece — the most complex image in the case study." priority="HIGH" style="Annotated product screen with component state showcase. Show multiple states: high-confidence settled field, low-confidence flagged field, actively-being-edited field, rejected field. Could be a device mockup or a flat UI screenshot with callout overlays." />
+
+## The decision I almost got wrong
+
+Early on, I designed review as a separate screen. Clean architecture. Capture here, review there.
+
+In testing, officers skipped it. Captured notes, saw "Review AI Extractions" and thought "I'll do that later." Never did.
+
+Redesigned it inline. After saving, the structured fields appear below the notes on the same screen. Same scroll context. No navigation. The transition is animated, fields slide in one by one, top to bottom, so officers see extraction happening in real time. Makes the AI's work visible instead of hidden behind a page change.
+
+Review completion went from 40% to 90%. Same information, same effort. Different spatial relationship. The page transition was creating a psychological break, a permission to disengage. Removing the break removed the exit.
+
+## The form didn't die. It waited its turn.
+
+All 15 fields still exist. They unfold based on what the AI couldn't extract.
+
+Typical case: the AI confidently extracts 11 of 15. The officer sees those 11 inline with confidence indicators. The remaining 4 live in an expandable "Add more details" section, present but not demanding.
+
+Harder case: the AI only confidently extracts 6. More form surface becomes visible by default. The interface scales its demands based on what still needs human input.
+
+Two goals met: speed (most reports done in 90 seconds with 3–4 edits) and completeness (full form always accessible for officers who want to add detail).
+
+<MetricsGrid>
+  <Metric label="Old completion time" value="8–12 min" />
+  <Metric label="New completion time" value="~90 sec" />
+  <Metric label="Typical edits needed" value="3–4" />
+  <Metric label="Fields auto-extracted" value="11 of 15" />
+  <Metric label="Review completion rate" value="~90%" />
+  <Metric label="Detail quality increase" value="+40%" />
+</MetricsGrid>
+
+## What got cut, what I underestimated
+
+Voice capture needs work. The current version is just audio and speech-to-text. Doesn't handle context, background noise in hallways, proper nouns that models butcher. A fine-tuned model trained on the institution's vocabulary would help significantly. I scoped it, it got cut for v1.
+
+I underestimated how much the blank canvas intimidates on first use. About 15% of early testers stared at the empty textarea and froze. Added a single onboarding hint: "Just tell us what happened, like you'd tell a colleague." It appears once and fades after 4 seconds. It helped. A better first-use experience with a sample report would have been stronger.
+
+## What this proves
+
+The pattern works elsewhere. Expert input. Machine translation. Transparent review. Clinical documentation. Legal intake. Field service reports. Customer success notes. Anywhere someone with domain knowledge needs to produce structured data: capture in their natural modality, translate with AI, make the translation transparent enough that experts can catch errors.
+
+But the pattern isn't the insight. The diagnosis was. The form was the wrong container. No form optimization surfaces that. You have to watch people work. Notice what they do before opening your tool. Ask why those two things don't match.
+
+That's fieldwork. Not design.

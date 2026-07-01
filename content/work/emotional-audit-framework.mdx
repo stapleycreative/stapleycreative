@@ -1,0 +1,155 @@
+---
+title: "Reading the emotional body language of a web page"
+description: "Designers talk about how a page feels. I built the framework that measures it. Eleven dimensions, fifteen deterministic rules, one engine, three planned surfaces. First surface shipped April 2026."
+client: "Personal R&D / Stapley Creative"
+role: "Framework author and orchestrator. Directed an AI build-critique loop across Claude and ChatGPT."
+year: "2026"
+tags: ["Design Tools", "AI Workflow", "Perceptual Design"]
+date: "2026-04-13"
+playground: true
+coverAccent: "a personality"
+coverGround: "#1E2A2E"
+coverText: "#FCFCFD"
+coverAccentColor: "#FFC24B"
+---
+
+<OutcomeBlock
+  problem="Designers talk about pages 'feeling' warm, heavy, clean, cold. The language is real, the reading is real, but there's no mechanical way to check whether the page you shipped matches the page you intended."
+  change="Built an opinionated perceptual framework. Fifteen deterministic rules across six layers produce an eleven-dimension tone profile and a congruence score against declared intent. One rule engine, three planned surfaces. Chrome extension shipped first."
+  result="Signal v0.1 shipped April 13, 2026. Free Chrome extension. Local-only reading diary, no telemetry. The engine that powers it is the same one that will power the Figma plugin and the design agent. Framework is on the site. Rules are citable."
+/>
+
+The strategic bet underneath this isn't the extension. It's that perceptual evaluation should be part of the design loop, not a debrief after launch. Most design tools check the thing the tool is good at. Lighthouse measures performance. Axe measures accessibility. Figma measures spec adherence. None of them measure what the page is actually projecting to a nervous system. That's the gap. A framework that reads computed CSS, layout metrics, and visual properties and tells you whether the signal matches the intent closes it. One rule engine. Same engine runs in the browser after deploy, in Figma during design, and inside an agent that reviews work before it ever reaches a human. That last piece is the real thesis. The first surface is the proof I can ship it.
+
+## The problem I was solving for myself
+
+I already ran an emotional state audit at the start of every project. Three questions: what state is the user arriving in, what state do they need to be in when they leave, what role does the interface play in the shift. Useful framing. But there was no verification loop. Once the design shipped, I had no way to check whether the page actually delivered the state the audit prescribed.
+
+So I was doing the audit at the start and then eyeballing the outcome. That's how half of design works, and it's exactly the part I'm least confident in. My eyes have preferences. My eyes have a bad day. My eyes tell me a page feels "clean" when what they actually mean is "I designed it and I'm fond of it."
+
+I wanted something that reads the page the way a nervous system reads it. Not my opinion about the page.
+
+## The first decision: rules before AI
+
+Every version of this tool that gets built by someone else is going to be a model. Feed a screenshot into GPT, ask "how does this feel," ship the answer. It would work. It would also be useless for the thing I actually need it to do.
+
+A model that says "this page feels cold" leaves a designer guessing what to change. A rule that says "color temperature averages 7200K, saturation is below 15%, dominant hue sits between 200 and 240" tells you exactly where the coldness is coming from. You can argue with a rule. You can't argue with a model that won't show its work.
+
+The tradeoff I made: deterministic rules are harder to build, they move slower, and they require me to justify every threshold in writing. Every scoring decision gets a citation. I traded speed of development for explainability, and I traded headline "AI" framing for trust with designers who (correctly) don't want a black box telling them their work feels wrong. The AI layer comes later and sits on top of the rules. Screenshot-based computer vision, narrative synthesis, pattern recognition across a reading diary. All of that is easier to build once the deterministic foundation is in place.
+
+<ImagePlaceholder
+  alt="Signal Chrome extension side panel showing a tone profile with eleven horizontal bars: Warm/Cool, Calm/Energetic, Minimal/Dense, Formal/Casual, Playful/Serious, Soft/Sharp, Open/Closed, Light/Heavy, Organic/Geometric, Static/Dynamic, Accessible/Exclusive. Each bar has a labeled midpoint and a filled position showing where the scanned page lands."
+  caption="Signal reads the page and produces a tone profile across eleven dimensions. Not a score. A reading."
+  brief="Browser side-panel screenshot of the Signal Chrome extension. Eleven horizontal diverging bars stacked vertically, each labeled with its two poles. Each bar has a small dot or filled position showing the reading. Above: the page URL being read and the user's declared target tones as chips. Below: a congruence percentage. Clean side-panel UI, sans-serif, tight vertical rhythm, subtle grid. Dark or light theme acceptable — match the actual shipped extension."
+  priority="HIGH"
+  style="Product screenshot, browser extension side panel. Tight, instrument-coded visual language."
+/>
+
+## Six layers of evidence
+
+The engine reads the page across six layers. Each layer has rules. Each rule has a threshold. Each threshold is cited.
+
+**Perceptual.** Color temperature, saturation levels, contrast ratios, luminance distribution. The raw sensory input before cognition. The fastest signal a nervous system reads.
+
+**Cognitive.** Type scale, information density, reading complexity, scan patterns. How hard the page makes a brain work to parse it. High cognitive load reads as "dense" or "heavy" regardless of aesthetic choices.
+
+**Trust.** Visual consistency, alignment precision, spacing regularity, professional signals. The subconscious "can I trust this?" read. Pages that look slightly off register as untrustworthy even when the content is fine.
+
+**Tone.** The aggregate personality read across eleven dimensions: warm/cool, calm/energetic, minimal/dense, formal/casual, playful/serious, soft/sharp, open/closed, light/heavy, organic/geometric, static/dynamic, accessible/exclusive. Each derived from measurable properties, not vibes.
+
+**Motion.** Animation presence, easing curves, transition density. Whether the page moves to guide attention or moves to perform for the visitor.
+
+**Congruence.** The hero output. You declared "calm, professional, approachable." The page reads as "cool, dense, exclusive." That gap is the finding. That gap is the design brief.
+
+## Intent first, evidence second
+
+Signal doesn't open with a scan. It opens with a question: what are you trying to project?
+
+Pick one to three target tones. "Calm." "Professional." "Warm." Whatever the project is designed toward. Then scan. The tone profile renders. The congruence score tells you where the page hit and where it missed.
+
+This order matters. A page without declared intent can only be measured against averages, and averages are useless. "Your page is 62% warm" means nothing. "You targeted warm, but the page reads cool because your grays are blue-shifted and your type scale is tight enough to read as clinical" means everything.
+
+Intent first. Evidence second. Diagnosis third. Same pattern I use on every project. Automating it in a tool was the point.
+
+<PullQuote>The page has an opinion about who should use it. The tool reads that opinion back to you. Whether it matches the intent is the only question that matters.</PullQuote>
+
+## One engine, three surfaces
+
+The architecture is the actual design decision. Extension, Figma plugin, and design agent all share the same rule engine. Not three tools. Three surfaces on one engine.
+
+**Surface 1: Chrome extension (shipped April 13, 2026).** Reads any page in the browser. Compares declared tone against what the page projects. Fastest feedback loop in the set, because it runs on shipped work.
+
+**Surface 2: Figma plugin (next).** Same engine, same rules, reads the Figma canvas instead of the DOM. Lets designers catch congruence drift during design, not after deploy. The tradeoff is the Figma API gives you less information than a browser does, so the plugin has a smaller subset of rules available. I'm keeping the rule set identical across surfaces on purpose. The Figma plugin just reports which rules it could and couldn't evaluate.
+
+**Surface 3: Design agent (later).** Same engine, invoked as a check inside a design-review workflow. Agent reads a build, runs the framework, produces a critique. Becomes one of several critics in the adversarial review loop I already use.
+
+The strategic reason this matters: perceptual evaluation has to meet designers where they work. After deploy, inside the design file, and inside the agent flow that's increasingly how design work gets reviewed. Building a separate tool for each context would fork the rule logic and guarantee drift. One engine keeps all three surfaces honest.
+
+<ImagePlaceholder
+  alt="Architecture diagram: one central rule engine connected to three surfaces. Left: Chrome extension reading a live web page. Center: Figma plugin reading design frames. Right: Design agent invoking the engine in a review workflow. Arrows showing the same eleven-dimension tone profile output flowing to each surface."
+  caption="One engine. Three surfaces. The rules don't fork. The reading is consistent across the browser, the design file, and the agent."
+  brief="Clean architecture diagram. Central node labeled 'Rule engine' containing a small list of the six layers. Three branches out to three surface labels with small iconography: Chrome extension (browser window), Figma plugin (Figma canvas), Design agent (chat/review panel). Each surface shows the same tone profile output in miniature. Minimal, instrument-coded, not cute. Think systems diagram in a technical paper, not marketing infographic."
+  priority="HIGH"
+  style="Technical architecture diagram. Flat, minimal, monochrome with one accent color (the cover amber)."
+/>
+
+## What v0.1 ships, what it doesn't
+
+Honest list.
+
+**Shipped:** Fifteen rules across six layers. Eleven-dimension tone profile. Intent-driven congruence score. Reading diary stored locally in Chrome. Privacy page exists because the tool sends nothing anywhere. Framework doc with every rule, every threshold, every citation.
+
+**Not yet:** Screenshot-based computer vision pass. Runtime motion observation (CSS transitions read statically, JS-driven animation isn't caught). Page-type classifier that would let the engine adjust expectations for a dashboard versus a marketing page versus a product detail page. Calibrated thresholds from a benchmark set of 50+ pages across verticals. Figma plugin surface. Agent surface.
+
+I shipped the subset that works. Rules first, framework next, additional surfaces after. The thing v0.1 does is narrow. What it does, it does without guessing.
+
+## Tradeoffs I named
+
+**Rules over models.** Slower to build. Harder to extend. Easier to trust. Covered above.
+
+**Local-only reading diary.** No accounts, no sync, no analytics, no telemetry. Decision means users lose their diary if they uninstall or switch browsers. I considered a lightweight sync option and chose to ship nothing over shipping something that would require a privacy story. Can add later. Cannot unship a sync.
+
+**Eleven dimensions, not five.** Five would be easier to read. Eleven is the minimum I could defend after testing on real pages. Some dimensions (playful/serious, organic/geometric) only fire on a small set of pages, but when they fire they're the signal that matters. Kept the richer set and designed the UI to let low-signal dimensions fade visually.
+
+**Shipped without the Figma surface.** The more strategic surface for a design audience is the Figma plugin. I built the extension first because it proves the rule engine on live pages, which is a harder test than proving it in a canvas with clean component data. The extension is the hard test. The Figma plugin is the easier follow-on.
+
+<MetricsGrid>
+  <Metric label="Layers of evidence" value="6" />
+  <Metric label="Deterministic rules (v0.1)" value="15" />
+  <Metric label="Tone dimensions" value="11" />
+  <Metric label="Surfaces planned" value="3" />
+  <Metric label="Surfaces shipped" value="1" />
+  <Metric label="Telemetry" value="None" />
+</MetricsGrid>
+
+## Why this is a portfolio artifact, not just a tool
+
+Two reasons I kept building after v0.1 worked for me personally.
+
+The first is that the tool externalizes a cognitive function I can't reliably perform in my own head. That's the pattern behind every tool on this site. The [design compiler](/blog/design-compiler) externalizes hierarchy reasoning. The [adversarial critic relay](/blog/adversarial-critic-relay) externalizes the review I don't want to do myself. Signal externalizes perceptual judgment. They're all instances of the same thesis: the design work that compounds isn't the artifact, it's the framework that keeps the artifact honest.
+
+The second is that a recruiter who can't see my Figma files or codebase can install this extension in thirty seconds and run the framework on anything they want. The framework doc, with every rule cited, is on the site. That's the work. The extension is the proof I can ship it.
+
+## The connection to the rest of the site
+
+The [emotional state audit](/blog/emotional-state-first-ux) asks what the page should feel like. Signal answers what it actually feels like. Signal turns the audit from intent-only into intent plus verification.
+
+The [design compiler](/blog/design-compiler) earns hierarchy from first principles, rejecting pattern-matched layouts. Signal checks whether the earned hierarchy produces the intended emotional read. Hierarchy without congruence still fails.
+
+The [adversarial critic relay](/blog/adversarial-critic-relay) catches what a builder can't see. Signal is another critic with a different axis. It reads the page the way a nervous system would, not the way a designer hopes it will.
+
+Same pattern every time. Externalize the judgment I can't trust myself to make consistently.
+
+## What I'd do differently
+
+The v0.1 scope was right. The thing I underestimated is how much the Figma surface would compound the extension. The minute I shipped the extension, every Figma review I ran afterward surfaced the same reaction: "wait, can I run this on the design file before I push it?" The correct order might have been extension first, Figma plugin two weeks later, not two months later. The gap between surfaces costs more than the cost of building them closer together.
+
+Page-type classification is the other piece I'd bring forward. The engine currently measures a dashboard the same way it measures a marketing page, and that's not defensible past v0.1. The thresholds need to adjust. Not the rules, the thresholds. That's a calibration problem, not a framework problem, and it's the next serious investment.
+
+## What this is really about
+
+The tool is the Chrome extension. The work is the framework. The bet is that design is moving toward a world where evaluation happens continuously. During design. After deploy. Inside agent review. The tools that survive that transition are the ones that share a rule engine instead of forking per surface.
+
+I built this because I needed it. I'm shipping it because the framework is the point. The extension is the first surface that proves the framework runs. The next two surfaces will prove it generalizes.
+
+Everything under this case study is downstream of that call.
