@@ -28,13 +28,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  modal,
 }: {
   children: React.ReactNode;
+  modal: React.ReactNode;
 }) {
   return (
     <html lang="en" className={`${jakarta.variable} ${fraunces.variable}`}>
       <body className="bg-bg-primary text-text-primary min-h-screen flex flex-col">
         <SiteChrome>{children}</SiteChrome>
+        {modal}
       </body>
     </html>
   );

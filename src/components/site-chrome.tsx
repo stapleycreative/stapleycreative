@@ -10,7 +10,7 @@ import { Footer } from "./footer";
  */
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const bare = pathname?.startsWith("/v3");
+  const bare = pathname === "/" || pathname?.startsWith("/v3");
 
   if (bare) {
     return <main className="flex-1">{children}</main>;
