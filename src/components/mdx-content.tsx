@@ -8,6 +8,7 @@ import { HikiScreenshots } from "./screenshot-gallery";
 import { MediaGrid2x2, VideoBlock, VideoPair } from "./video-block";
 import { CardAnatomy, Annotation } from "./card-anatomy";
 import { SYSTEM_DIAGRAMS } from "./system-diagrams";
+import { CreativityPhases, EngineRun, CriticRelay, ModeWheel, ModeTimeline, FiveGates } from "./blog-diagrams";
 
 /* Custom components available inside MDX files */
 const components = {
@@ -20,6 +21,12 @@ const components = {
   LiveNowCard,
   CardAnatomy,
   Annotation,
+  CreativityPhases,
+  EngineRun,
+  CriticRelay,
+  ModeWheel,
+  ModeTimeline,
+  FiveGates,
 
   /**
    * Side-by-side checkout-flow comparison rendered in code.
