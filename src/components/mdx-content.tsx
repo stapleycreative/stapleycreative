@@ -7,6 +7,7 @@ import { ResearchSegments } from "./research-segments";
 import { HikiScreenshots } from "./screenshot-gallery";
 import { MediaGrid2x2, VideoBlock, VideoPair } from "./video-block";
 import { CardAnatomy, Annotation } from "./card-anatomy";
+import { SYSTEM_DIAGRAMS } from "./system-diagrams";
 
 /* Custom components available inside MDX files */
 const components = {
@@ -313,6 +314,89 @@ const components = {
             ))
           : children}
       </ul>
+    </div>
+  ),
+
+  SystemDiagram: ({ slug }: { slug: string }) => {
+    const entry = SYSTEM_DIAGRAMS[slug];
+    if (!entry) return null;
+    return (
+      <figure className="not-prose my-10">
+        <div
+          className="rounded-xl flex items-center justify-center py-6"
+          style={{ backgroundColor: "var(--color-bg-surface)", border: "1px solid var(--color-border-subtle)" }}
+        >
+          <div className="w-full max-w-[460px] aspect-[340/200]">
+            <entry.Diagram />
+          </div>
+        </div>
+        <figcaption className="text-xs mt-3 font-mono" style={{ color: "var(--color-text-tertiary)" }}>
+          {entry.caption}
+        </figcaption>
+      </figure>
+    );
+  },
+
+  /** "What this case proves" — recruiter routing block. Short claims, two columns.
+   *  `items` accepts an array or a pipe-delimited string (MDX-attribute-safe). */
+  CaseProves: ({ items: itemsProp }: { items: string[] | string }) => {
+    const items = Array.isArray(itemsProp)
+      ? itemsProp
+      : String(itemsProp ?? "")
+          .split("|")
+          .map((t) => t.trim())
+          .filter(Boolean);
+    return (
+    <aside
+      className="not-prose my-14 rounded-xl p-6 sm:p-8"
+      style={{ backgroundColor: "var(--color-bg-surface)", border: "1px solid var(--color-border-subtle)" }}
+    >
+      <span className="text-[11px] font-mono tracking-[0.15em] uppercase" style={{ color: "var(--color-accent)" }}>
+        What this case proves
+      </span>
+      <ul className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-3" style={{ listStyle: "none", margin: 0, padding: 0 }}>
+        {items.map((item) => (
+          <li key={item} className="relative pl-5 text-[14.5px] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
+            <span
+              aria-hidden
+              className="absolute left-0 top-[0.62em] w-[6px] h-[2px] rounded-full"
+              style={{ backgroundColor: "var(--color-accent)" }}
+            />
+            {item}
+          </li>
+        ))}
+      </ul>
+    </aside>
+    );
+  },
+
+  /** A named decision — visually distinct from narrative prose. */
+  DecisionBlock: ({ children }: { children: React.ReactNode }) => (
+    <div
+      className="not-prose my-8 pl-5 py-1"
+      style={{ borderLeft: "2px solid var(--color-accent)" }}
+    >
+      <span className="text-[11px] font-mono tracking-[0.15em] uppercase block mb-1.5" style={{ color: "var(--color-accent)" }}>
+        Decision
+      </span>
+      <p className="text-[15.5px] leading-relaxed font-medium m-0" style={{ color: "var(--color-text-primary)" }}>
+        {children}
+      </p>
+    </div>
+  ),
+
+  /** A named tradeoff — honest cost of the decision, muted. */
+  TradeoffBlock: ({ children }: { children: React.ReactNode }) => (
+    <div
+      className="not-prose my-8 pl-5 py-1"
+      style={{ borderLeft: "2px solid var(--color-border-strong)" }}
+    >
+      <span className="text-[11px] font-mono tracking-[0.15em] uppercase block mb-1.5" style={{ color: "var(--color-text-tertiary)" }}>
+        Tradeoff
+      </span>
+      <p className="text-[15px] leading-relaxed m-0" style={{ color: "var(--color-text-secondary)" }}>
+        {children}
+      </p>
     </div>
   ),
 
