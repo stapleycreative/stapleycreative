@@ -271,6 +271,11 @@ export function HomeV3() {
             </figure>
           </div>
         </section>
+
+        <footer className="v3-foot">
+          <span>© {new Date().getFullYear()} Craig Stapley</span>
+          <span className="note">Some projects have been simplified or redacted to respect confidentiality.</span>
+        </footer>
       </div>
     </div>
   );
@@ -283,6 +288,9 @@ const CSS = `
   --ease:cubic-bezier(0.16,1,0.3,1);--dq:180ms;--ds:300ms;--dl:620ms;
   position:relative;font-family:var(--font-family),system-ui,sans-serif;color:var(--text);background:var(--bg)}
 .v3 *{box-sizing:border-box}
+.v3-foot{max-width:var(--wide);margin:0 auto;padding:40px 24px 64px;display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;border-top:1px solid var(--border-sub);font-family:var(--mono);font-size:11px;color:var(--t3)}
+.v3-foot .note{max-width:52ch;text-align:right}
+@media(max-width:640px){.v3-foot{flex-direction:column;gap:8px}.v3-foot .note{text-align:left}}
 .v3-wrap{max-width:var(--wide);margin:0 auto;padding:0 24px}
 @media(min-width:1100px){.v3-wrap{max-width:1240px;padding-left:240px;padding-right:24px}}
 .v3-mark{position:absolute;left:0;top:0;height:760px;width:auto;z-index:70;pointer-events:none;user-select:none;will-change:transform}
