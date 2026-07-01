@@ -10,10 +10,10 @@ type Work = {
 type Post = { slug: string; title: string; rt: string; ground: string; accent: string };
 
 const works: Work[] = [
-  { slug: "ifit", title: "Eleven years, one proposal", sub: "NordicTrack checkout — iFIT",
+  { slug: "ifit", title: "Checkout wasn't the problem. Confidence was.", sub: "NordicTrack checkout · iFIT",
     role: "Creative Director → Principal Designer", year: "2011–2022", client: "iFIT", tags: ["Scale", "Revenue", "Leadership"],
     metric: '<b class="hi">44%</b> of $1.7B hardware revenue', ground: "#0B2A3A", accent: "#00A3E0",
-    lead: "I wrote a deck showing NordicTrack's checkout could go from seven steps to four. Leadership put me on the project because of it." },
+    lead: "NordicTrack checkout looked like a conversion problem. It was a confidence problem." },
   { slug: "hiki", title: "Designing for nervous systems, not user flows", sub: "Social + dating — Hiki",
     role: "Lead Product Designer (sole designer)", year: "2023–2025", client: "Hiki", tags: ["Behavioral", "Accessibility", "Consumer"],
     metric: '<b class="hi">700+</b> screens · iOS + Android', ground: "#2D1F3D", accent: "#E85C8A",
@@ -75,7 +75,7 @@ function ContactMenu() {
 
   return (
     <div className="cwrap" ref={ref}>
-      <button className="v3-btn ghost" onClick={() => setOpen((o) => !o)} aria-expanded={open} aria-haspopup="menu">
+      <button className="v3-btn ghost magnetic" onClick={() => setOpen((o) => !o)} aria-expanded={open} aria-haspopup="menu">
         <span>Get in touch</span>
       </button>
       {open && (
@@ -135,7 +135,24 @@ export function HomeV3() {
     );
     document.querySelectorAll(".v3 [data-reveal]").forEach((el) => rio.observe(el));
 
-    return () => { window.removeEventListener("scroll", onScroll); io.disconnect(); rio.disconnect(); };
+    // Magnetic button lean (Motion Lab station 02). Primary action set only, tiny amplitude.
+    const magCleanups: Array<() => void> = [];
+    if (!reduced) {
+      document.querySelectorAll<HTMLElement>(".v3 .v3-btn.magnetic").forEach((btn) => {
+        const onMove = (e: MouseEvent) => {
+          const r = btn.getBoundingClientRect();
+          const x = e.clientX - (r.left + r.width / 2);
+          const y = e.clientY - (r.top + r.height / 2);
+          btn.style.transform = `translate(${(x * 0.08).toFixed(2)}px, ${(y * 0.15).toFixed(2)}px)`;
+        };
+        const onLeave = () => { btn.style.transform = ""; };
+        btn.addEventListener("mousemove", onMove);
+        btn.addEventListener("mouseleave", onLeave);
+        magCleanups.push(() => { btn.removeEventListener("mousemove", onMove); btn.removeEventListener("mouseleave", onLeave); });
+      });
+    }
+
+    return () => { window.removeEventListener("scroll", onScroll); io.disconnect(); rio.disconnect(); magCleanups.forEach((fn) => fn()); };
   }, []);
 
   const go = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -168,7 +185,7 @@ export function HomeV3() {
           <h1 ref={heroRef} className="v3-h1">Every product has two versions. The one everyone thinks they’re building, and the one users actually experience.</h1>
           <p className="v3-sub">I’m Craig. Twenty years in design taught me that interfaces rarely fail first. Models do. Lately, I’ve been focused on AI products, human review loops, and the systems that make complex workflows feel usable.</p>
           <div className="v3-cta">
-            <button className="v3-btn primary" onClick={() => go("work")}><span>See the work</span><span className="arw">↓</span></button>
+            <button className="v3-btn primary magnetic" onClick={() => go("work")}><span>See the work</span><span className="arw">↓</span></button>
             <ContactMenu />
           </div>
           <div className="v3-meta3">
@@ -286,15 +303,19 @@ const CSS = `
 .v3-h1{font-family:var(--serif);font-size:clamp(34px,4.6vw,62px);font-weight:360;letter-spacing:-.02em;line-height:1.08;max-width:none;font-variation-settings:"opsz" 144;margin:0}
 .v3-sub{margin-top:28px;font-size:18px;color:var(--t2);max-width:640px;line-height:1.6}
 .v3-cta{margin-top:34px;display:flex;gap:12px;flex-wrap:wrap;align-items:stretch}
-.v3-btn{padding:12px 20px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;border:1px solid transparent;font-family:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:14px;transition:transform 150ms cubic-bezier(.34,1.56,.64,1),background 180ms var(--ease),border-color 180ms var(--ease)}
+.v3-btn{padding:12px 20px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;border:1px solid transparent;font-family:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:14px;will-change:transform;transition:transform 200ms cubic-bezier(.34,1.56,.64,1),background 180ms var(--ease),border-color 180ms var(--ease)}
 .v3-btn.primary{background:var(--text);color:var(--bg)}
 .v3-btn.ghost{border-color:var(--border);color:var(--text);background:none}
+.v3-btn.ghost:hover{border-color:var(--t3)}
 .v3-btn:active{transform:scale(.955)}
-.v3-btn .arw{font-size:15px;line-height:1;opacity:.8}
+.v3-btn.magnetic:active{transform:scale(.955)!important}
+.v3-btn .arw{font-size:15px;line-height:1;opacity:.8;transition:transform 200ms var(--ease)}
+.v3-btn.primary:hover .arw{transform:translateY(3px)}
+@media(prefers-reduced-motion:reduce){.v3-btn,.v3-btn .arw{transition:none}}
 .cwrap{position:relative;display:inline-flex}
-.cmenu{position:absolute;bottom:calc(100% + 8px);left:0;min-width:250px;background:var(--bg);border:1px solid var(--border);border-radius:10px;box-shadow:0 -18px 44px -22px rgba(33,31,38,.34);padding:6px;z-index:50;animation:cmIn .18s var(--ease)}
+.cmenu{position:absolute;bottom:calc(100% + 8px);left:0;min-width:300px;background:var(--bg);border:1px solid var(--border);border-radius:10px;box-shadow:0 -18px 44px -22px rgba(33,31,38,.34);padding:6px;z-index:50;animation:cmIn .18s var(--ease)}
 @keyframes cmIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.citem{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;text-align:left;background:none;border:0;cursor:pointer;font-family:inherit;font-size:13px;font-weight:500;color:var(--text);padding:10px 12px;border-radius:7px;text-decoration:none}
+.citem{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;white-space:nowrap;text-align:left;background:none;border:0;cursor:pointer;font-family:inherit;font-size:13px;font-weight:500;color:var(--text);padding:10px 12px;border-radius:7px;text-decoration:none}
 .citem:hover{background:var(--subtle)}
 .citem .cval{font-family:var(--mono);font-size:10.5px;color:var(--t3);font-weight:400}
 .v3-nodes .nodelink{text-decoration:none;color:inherit}
