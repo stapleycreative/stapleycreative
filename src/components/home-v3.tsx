@@ -293,8 +293,8 @@ const CSS = `
 .v3-btn:active{transform:scale(.955)}
 .v3-btn .arw{font-size:15px;line-height:1;opacity:.8}
 .cwrap{position:relative;display:inline-flex}
-.cmenu{position:absolute;top:calc(100% + 8px);left:0;min-width:250px;background:var(--bg);border:1px solid var(--border);border-radius:10px;box-shadow:0 20px 44px -22px rgba(33,31,38,.34);padding:6px;z-index:50;animation:cmIn .18s var(--ease)}
-@keyframes cmIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.cmenu{position:absolute;bottom:calc(100% + 8px);left:0;min-width:250px;background:var(--bg);border:1px solid var(--border);border-radius:10px;box-shadow:0 -18px 44px -22px rgba(33,31,38,.34);padding:6px;z-index:50;animation:cmIn .18s var(--ease)}
+@keyframes cmIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .citem{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;text-align:left;background:none;border:0;cursor:pointer;font-family:inherit;font-size:13px;font-weight:500;color:var(--text);padding:10px 12px;border-radius:7px;text-decoration:none}
 .citem:hover{background:var(--subtle)}
 .citem .cval{font-family:var(--mono);font-size:10.5px;color:var(--t3);font-weight:400}
