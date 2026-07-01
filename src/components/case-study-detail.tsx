@@ -23,6 +23,7 @@ export function CaseStudyDetail({
     <div className="csd">
       <style>{CSS}</style>
       <div className="dwrap">
+        <a className="dback" href="/">← Craig Stapley</a>
         <div className="accentbar" style={{ background: accent }} />
         {eyebrow ? <div className="deyebrow">{eyebrow}</div> : null}
         <h1 className="dtitle">{title}</h1>
@@ -36,7 +37,7 @@ export function CaseStudyDetail({
             {tags.length ? <div><div className="k">{isPost ? "Topics" : "Tags"}</div><div className="dtags">{tags.map((t) => <span key={t} className="tag">{t}</span>)}</div></div> : null}
             <div className={"cta" + (showCta ? " show" : "")}>
               <div className="k">Open to work</div>
-              <a href="mailto:stapleycreative@gmail.com">Like this? Let’s talk →</a>
+              <a href="mailto:stapleycreative@gmail.com">Let’s talk about roles →</a>
             </div>
           </aside>
           <div className="dcontent">
@@ -52,6 +53,8 @@ export function CaseStudyDetail({
 const CSS = `
 .csd{font-family:var(--font-family),system-ui,sans-serif;color:#211f26}
 .csd .dwrap{max-width:1080px;margin:0 auto;padding:56px 24px 120px}
+.csd .dback{display:inline-block;font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#84828e;text-decoration:none;margin-bottom:26px}
+.csd .dback:hover{color:#211f26}
 .csd .accentbar{width:44px;height:4px;border-radius:3px;margin-bottom:22px}
 .csd .deyebrow{font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#84828e;margin-bottom:14px}
 .csd .dtitle{font-family:var(--font-serif),Georgia,serif;font-size:clamp(32px,4.6vw,52px);font-weight:460;letter-spacing:-.025em;line-height:1.04;max-width:18ch;margin:0;font-variation-settings:"opsz" 110}

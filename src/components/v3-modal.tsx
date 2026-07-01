@@ -13,6 +13,7 @@ type Props = {
 export function V3Modal(props: Props) {
   const router = useRouter();
   const closeRef = useRef<HTMLButtonElement>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
   const close = () => router.back();
 
@@ -25,7 +26,18 @@ export function V3Modal(props: Props) {
     document.body.style.right = "0";
     setTimeout(() => closeRef.current?.focus(), 0);
 
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") close(); };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") { close(); return; }
+      if (e.key === "Tab" && modalRef.current) {
+        const f = modalRef.current.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input, textarea, select, [tabindex]:not([tabindex="-1"])'
+        );
+        if (!f.length) return;
+        const first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    };
     window.addEventListener("keydown", onKey);
     return () => {
       window.removeEventListener("keydown", onKey);
@@ -39,7 +51,7 @@ export function V3Modal(props: Props) {
   }, []);
 
   const node = (
-    <div className="v3modal" role="dialog" aria-modal="true" aria-label={props.title}>
+    <div className="v3modal" ref={modalRef} role="dialog" aria-modal="true" aria-label={props.title}>
       <style>{CSS}</style>
       <button ref={closeRef} className="dx" aria-label="Close" onClick={close}>✕</button>
       <CaseStudyDetail {...props} />

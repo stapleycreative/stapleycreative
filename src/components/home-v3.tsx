@@ -10,10 +10,6 @@ type Work = {
 type Post = { slug: string; title: string; rt: string; ground: string; accent: string };
 
 const works: Work[] = [
-  { slug: "contact-reports", title: "A form can't hold a relationship", sub: "AI-Extracted Structure — GiveCampus",
-    role: "Lead Product Designer", year: "2025–2026", client: "GiveCampus", tags: ["AI", "Product Design", "2024"],
-    metric: 'reduced report time by <b class="hi">70%</b>', ground: "#1F2D5C", accent: "#F76B15",
-    lead: "A 15-field form was killing relationships. I built a notes-first system that lets AI extract structure, while gift officers stay in control." },
   { slug: "ifit", title: "Eleven years, one proposal", sub: "NordicTrack checkout — iFIT",
     role: "Creative Director → Principal Designer", year: "2011–2022", client: "iFIT", tags: ["Scale", "Revenue", "Leadership"],
     metric: '<b class="hi">44%</b> of $1.7B hardware revenue', ground: "#0B2A3A", accent: "#00A3E0",
@@ -22,10 +18,6 @@ const works: Work[] = [
     role: "Lead Product Designer (sole designer)", year: "2023–2025", client: "Hiki", tags: ["Behavioral", "Accessibility", "Consumer"],
     metric: '<b class="hi">700+</b> screens · iOS + Android', ground: "#2D1F3D", accent: "#E85C8A",
     lead: "Hiki was a social and dating platform for neurodivergent adults. As the sole designer I rebuilt it from the ground up: rebrand, design system, 700+ screens." },
-  { slug: "emotional-audit-framework", title: "Reading the emotional body language of a web page", sub: "Signal — Personal R&D",
-    role: "Framework author + orchestrator", year: "2026", client: "Stapley Creative", tags: ["Design Tools", "AI Workflow", "Perceptual"],
-    metric: '<b class="hi">11</b> dimensions · 15 rules · 1 engine', ground: "#1E2A2E", accent: "#FFC24B",
-    lead: "Designers talk about how a page feels. I built the framework that measures it: eleven dimensions, fifteen deterministic rules, one engine, three planned surfaces." },
   { slug: "santas-red-letter", title: "What if Santa wrote back?", sub: "Founder — Santa's Red Letter",
     role: "Founder / Designer / Operator", year: "2014–2021", client: "Santa's Red Letter", tags: ["Entrepreneurship", "Brand", "Product"],
     metric: "Built, scaled, and sold", ground: "#A8232B", accent: "#F8F6F2",
@@ -66,7 +58,7 @@ export function HomeV3() {
   const listRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState("home");
   const [scrolled, setScrolled] = useState(false);
-  const [preview, setPreview] = useState<Work | null>(null);
+  const [preview, setPreview] = useState<Work | null>(works[0]);
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -93,7 +85,14 @@ export function HomeV3() {
         { duration: 900, easing: "cubic-bezier(0.16,1,0.3,1)", fill: "backwards" }
       );
     }
-    return () => { window.removeEventListener("scroll", onScroll); io.disconnect(); };
+    // Section fade-ups on scroll
+    const rio = new IntersectionObserver(
+      (es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); rio.unobserve(e.target); } }),
+      { threshold: 0.15 }
+    );
+    document.querySelectorAll(".v3 [data-reveal]").forEach((el) => rio.observe(el));
+
+    return () => { window.removeEventListener("scroll", onScroll); io.disconnect(); rio.disconnect(); };
   }, []);
 
   const go = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -138,9 +137,9 @@ export function HomeV3() {
 
         {/* Work */}
         <section id="work" className="v3-sec">
-          <div className="v3-seclabel"><h2>Selected work</h2><span className="n">02</span></div>
+          <div className="v3-seclabel" data-reveal><h2>Selected work</h2><span className="n">02</span></div>
           <div className="v3-workgrid">
-            <div className="v3-worklist" ref={listRef} onMouseLeave={() => setPreview(null)}>
+            <div className="v3-worklist" ref={listRef} onMouseLeave={() => setPreview(works[0])}>
               {works.map((w, i) => (
                 <Link key={w.slug} href={`/work/${w.slug}`} className="v3-row" onMouseEnter={() => setPreview(w)}>
                   <span className="idx">{"0" + (i + 1)}</span>
@@ -167,7 +166,7 @@ export function HomeV3() {
 
         {/* AI */}
         <section id="ai" className="v3-sec">
-          <div className="v3-seclabel"><h2>AI</h2><span className="n">03</span></div>
+          <div className="v3-seclabel" data-reveal><h2>AI</h2><span className="n">03</span></div>
           <h3 className="v3-statement">I build small minds. Then I put them to work.</h3>
           <p className="v3-lead">Not “AI-assisted design.” Small cognitive systems, each modeled on a specific part of how brains produce good work, plugged into my process as separate roles. The judgment stays with me.</p>
           <div className="v3-nodes">
@@ -179,7 +178,7 @@ export function HomeV3() {
 
         {/* Writing */}
         <section id="writing" className="v3-sec">
-          <div className="v3-seclabel"><h2>Writing</h2><span className="n">04</span></div>
+          <div className="v3-seclabel" data-reveal><h2>Writing</h2><span className="n">04</span></div>
           {posts.map((p) => (
             <Link key={p.slug} href={`/blog/${p.slug}`} className="v3-post">
               <span className="t">{p.title}</span><span className="rt">{p.rt}</span>
@@ -189,7 +188,7 @@ export function HomeV3() {
 
         {/* About */}
         <section id="about" className="v3-sec v3-about">
-          <div className="v3-seclabel"><h2>About</h2><span className="n">05</span></div>
+          <div className="v3-seclabel" data-reveal><h2>About</h2><span className="n">05</span></div>
           <p>I think at the system level and build at the prototype level. AI is a design material in my workflow, not a replacement for design judgment. Twenty years across consumer, B2B SaaS, and ed-tech, always at the intersection of complex systems and human behavior.</p>
           <div className="v3-contact">
             <a className="em" href="mailto:stapleycreative@gmail.com">stapleycreative@gmail.com</a>
@@ -202,8 +201,8 @@ export function HomeV3() {
 }
 
 const CSS = `
-.v3{--bg:#fdfcfd;--surface:#faf9fb;--subtle:#f2eff3;--text:#211f26;--t2:#65636d;--t3:#84828e;
-  --border:#d0cdd7;--border-sub:#eae7ec;--border-strong:#bcbac7;--accent:#F98077;--wide:1080px;
+.v3{--bg:var(--color-bg-primary);--surface:var(--color-bg-surface);--subtle:var(--color-bg-subtle);--text:var(--color-text-primary);--t2:var(--color-text-secondary);--t3:var(--color-text-tertiary);
+  --border:var(--color-border-default);--border-sub:var(--color-border-subtle);--border-strong:var(--color-border-strong);--accent:var(--color-accent);--wide:1080px;
   --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,monospace;--serif:var(--font-serif),Georgia,serif;
   --ease:cubic-bezier(0.16,1,0.3,1);--dq:180ms;--ds:300ms;--dl:620ms;
   position:relative;font-family:var(--font-family),system-ui,sans-serif;color:var(--text);background:var(--bg)}
@@ -279,5 +278,7 @@ const CSS = `
 .v3-contact{margin-top:24px;display:flex;gap:24px;flex-wrap:wrap;font-size:14px}
 .v3-contact a.em{color:var(--text);font-weight:500;text-decoration:underline;text-underline-offset:3px}
 .v3-contact a{color:var(--t2);text-decoration:none}
-@media (prefers-reduced-motion: reduce){.v3 *{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+.v3 [data-reveal]{opacity:0;transform:translateY(12px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.v3 [data-reveal].in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){.v3 *{animation-duration:.001ms!important;transition-duration:.001ms!important}.v3 [data-reveal]{opacity:1;transform:none}}
 `;
