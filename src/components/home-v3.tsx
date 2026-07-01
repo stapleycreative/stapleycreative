@@ -296,7 +296,7 @@ const CSS = `
 .v3-nav{position:sticky;top:0;z-index:60;background:transparent;border-bottom:1px solid transparent;transition:background var(--ds) var(--ease),border-color var(--ds) var(--ease)}
 .v3-nav.scrolled{background:rgba(253,252,253,.8);backdrop-filter:blur(8px);border-bottom:1px solid rgba(33,31,38,.055)}
 .v3-navwrap{display:flex;align-items:center;justify-content:space-between;height:56px}
-.v3-logo{font-size:15px;font-weight:600;letter-spacing:-.01em;background:none;border:0;cursor:pointer;color:var(--text);font-family:inherit;position:relative;transition:letter-spacing .3s var(--ease),text-shadow .3s var(--ease);animation:wmSettle 1.15s cubic-bezier(.16,1,.3,1) both}
+.v3-logo{font-size:15px;font-weight:600;letter-spacing:-.01em;background:none;border:0;cursor:pointer;color:var(--text);font-family:inherit;position:relative;transition:letter-spacing .3s var(--ease),text-shadow .3s var(--ease);animation:wmSettle 1.15s cubic-bezier(.16,1,.3,1) backwards}
 .v3-logo:hover{letter-spacing:.04em;text-shadow:-2.5px 0 rgba(255,45,70,.75),2.5px 0 rgba(0,190,255,.75)}
 @keyframes wmSettle{0%{opacity:0;letter-spacing:.24em;text-shadow:-6px 0 rgba(255,45,70,.8),6px 0 rgba(0,190,255,.8)}60%{opacity:1}100%{opacity:1;letter-spacing:-.01em;text-shadow:0 0 0 rgba(0,0,0,0)}}
 @media(prefers-reduced-motion:reduce){.v3-logo{animation:none;transition:none}.v3-logo:hover{text-shadow:none;letter-spacing:-.01em}}
