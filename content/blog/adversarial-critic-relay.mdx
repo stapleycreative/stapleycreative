@@ -31,11 +31,11 @@ Single-model AI flattens all that into one voice. The relay splits it apart.
 
 ## The architecture
 
-- **Builder (Claude).** Writes code. Builds Figma. Drafts copy. Owns the artifact.
+- **Builder (Claude).** Writes the code, builds the Figma, drafts the copy. Owns the artifact.
 - **Critic Panel (ChatGPT).** Four roles defined in YAML. **Critic** shoots holes in the direction. **Researcher** checks what the literature and competitors actually say. **PM** answers "does this ship, or is it scope creep?" **Engineer** checks whether it's actually buildable. Each role has its own system prompt, its own file search, its own web access. None of them share context with the builder.
 - **Relay (Python bridge).** Ferries artifacts between them. Claude produces. The relay hands the output to each critic in turn. I read the critiques and decide what lands.
 
-The asymmetry is the whole point. Claude doesn't know what ChatGPT will say. ChatGPT only sees what Claude shipped, not what Claude was thinking. That's the design crit. That's the gap.
+The asymmetry is the point. Claude doesn't know what ChatGPT will say. ChatGPT only sees what Claude shipped, not what Claude was thinking. That's the design crit.
 
 <PullQuote>The useful unit isn't "model." It's "role." A role is a model plus a system prompt plus a knowledge base plus a toolset. Treat roles as team members.</PullQuote>
 
@@ -55,15 +55,13 @@ Happens every time. Not because ChatGPT is smarter than Claude (it isn't, most d
 
 Models aren't fungible. Claude has its own defaults, failure modes, blind spots. Claude is generous, over-complete, a little too eager. ChatGPT is terse, skeptical, cuts scope too fast. Gemini (when I reach for it) is a quiet validator. Useful for catching when the other two are both wrong.
 
-You don't build an AI team by picking the smartest model. You pick, for each seat, the failure mode you can most afford to live with. The builder over-produces, so you can cut. The critic under-validates, so it stays mean. Smart isn't the variable. Which way it breaks is.
-
-Builder needs a model that over-produces. You can always cut. Critic needs a model that under-validates. You want skeptical. Researcher needs strong tool use and citation discipline.
+You don't build an AI team by picking the smartest model. You pick, for each seat, the failure mode you can most afford to live with. The builder over-produces, so you can cut. The critic under-validates, so it stays mean. The researcher needs strong tool use and citation discipline. Smart isn't the variable. Which way it breaks is.
 
 And they stay separate. Share memory once, they start agreeing. Agree once, you're back to one voice in your head.
 
 ## The distinction
 
-One AI model is your own inner voice bounced back louder. It agrees. It remembers what you said three turns ago and builds on it. It cannot review anything. It can only applaud.
+One AI model is your own inner voice bounced back louder. It agrees. It remembers what you said three turns ago and builds on it. It can't review anything, only applaud.
 
 Two models, wired so they never share context, never see each other's work, never align on style, now you have the beginning of a team.
 

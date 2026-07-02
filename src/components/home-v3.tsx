@@ -11,13 +11,13 @@ type Post = { slug: string; title: string; rt: string; ground: string; accent: s
 
 const works: Work[] = [
   { slug: "ifit", title: "Checkout wasn't the problem. Confidence was.", sub: "NordicTrack checkout · iFIT",
-    role: "Creative Director → Principal Designer", year: "2011–2022", client: "iFIT", tags: ["Scale", "Revenue", "Leadership"],
+    role: "Creative Director → Principal Designer", year: "2011–2022", client: "iFIT", tags: ["Scale", "Revenue", "DTC"],
     metric: '<b class="hi">44%</b> of $1.7B hardware revenue', ground: "#0B2A3A", accent: "#00A3E0", img: "/work/previews/ifit.jpg",
     lead: "NordicTrack's checkout read as a conversion problem. People weren't bailing on the form. They were bailing on the doubt." },
   { slug: "hiki", title: "Designing for nervous systems, not user flows", sub: "Social + dating · Hiki",
-    role: "Lead Product Designer (sole designer)", year: "2023–2025", client: "Hiki", tags: ["Behavioral", "Accessibility", "Consumer"],
+    role: "Lead Product Designer. Directed rebrand, design system, 700+ screens.", year: "2023–2025", client: "Hiki", tags: ["Behavioral", "Accessibility", "Consumer"],
     metric: '<b class="hi">700+</b> screens · iOS + Android', ground: "#2D1F3D", accent: "#E85C8A", img: "/work/previews/hiki.jpg",
-    lead: "A dating platform for neurodivergent adults, where the usual dating-app tricks (urgency, dopamine, infinite swipe) are the exact things that overload the user. Sole designer. Rebuilt it whole: rebrand, design system, 700+ screens." },
+    lead: "A dating platform for neurodivergent adults, where the usual dating-app tricks (urgency, dopamine, infinite swipe) are the exact things that overload the user. Sole designer, directing the whole rebuild: rebrand, design system, 700+ screens." },
   { slug: "santas-red-letter", title: "What if Santa wrote back?", sub: "Personalized letters · Santa's Red Letter",
     role: "Founder / Designer / Operator", year: "2014–2021", client: "Santa's Red Letter", tags: ["Entrepreneurship", "Brand", "Product"],
     metric: "Built, scaled, and sold", ground: "#A8232B", accent: "#F8F6F2", img: "/work/previews/santas-red-letter.jpg",
@@ -181,7 +181,7 @@ export function HomeV3() {
         <section id="home" className="v3-hero">
           <div className="v3-status"><span className="dot" />At GiveCampus · Open to staff / principal roles</div>
           <h1 ref={heroRef} className="v3-h1">Every product has two versions. The one everyone thinks they’re building, and the one users actually experience.</h1>
-          <p className="v3-sub">I’m Craig. Twenty years of product design somehow turned into building AI workflows, designing systems, and being the person who keeps asking, “Wait… is this actually the problem?”</p>
+          <p className="v3-sub">I’m Craig. I design for how attention, emotion, and trust actually work. Twenty years of that somehow turned into building AI workflows, designing systems, and being the person who keeps asking, “Wait… is this actually the problem?”</p>
           <div className="v3-cta">
             <button className="v3-btn primary magnetic" onClick={() => go("work")}><span>See the work</span><span className="arw">↓</span></button>
             <ContactMenu />
